@@ -14,6 +14,7 @@
 		EF38215F1E2415DF00032F42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF38215D1E2415DF00032F42 /* LaunchScreen.storyboard */; };
 		EF38216A1E2415DF00032F42 /* userLocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3821691E2415DF00032F42 /* userLocationTests.swift */; };
 		EF3821751E2415DF00032F42 /* userLocationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3821741E2415DF00032F42 /* userLocationUITests.swift */; };
+		EF3821841E24162A00032F42 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3821831E24162A00032F42 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		EF3821701E2415DF00032F42 /* userLocationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = userLocationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF3821741E2415DF00032F42 /* userLocationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userLocationUITests.swift; sourceTree = "<group>"; };
 		EF3821761E2415DF00032F42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EF3821831E24162A00032F42 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF3821841E24162A00032F42 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +84,7 @@
 				EF3821681E2415DF00032F42 /* userLocationTests */,
 				EF3821731E2415DF00032F42 /* userLocationUITests */,
 				EF3821521E2415DF00032F42 /* Products */,
+				EF3821821E24162A00032F42 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -123,6 +127,14 @@
 				EF3821761E2415DF00032F42 /* Info.plist */,
 			);
 			path = userLocationUITests;
+			sourceTree = "<group>";
+		};
+		EF3821821E24162A00032F42 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EF3821831E24162A00032F42 /* CoreLocation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
