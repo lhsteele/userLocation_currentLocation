@@ -15,6 +15,8 @@
 		EF38216A1E2415DF00032F42 /* userLocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3821691E2415DF00032F42 /* userLocationTests.swift */; };
 		EF3821751E2415DF00032F42 /* userLocationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3821741E2415DF00032F42 /* userLocationUITests.swift */; };
 		EF3821841E24162A00032F42 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3821831E24162A00032F42 /* CoreLocation.framework */; };
+		EF8F847C1E25A03600C32EBA /* favoriteLocationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8F847B1E25A03600C32EBA /* favoriteLocationsTableViewController.swift */; };
+		EF8F84801E25A33A00C32EBA /* userFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8F847F1E25A33A00C32EBA /* userFavorites.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		EF3821741E2415DF00032F42 /* userLocationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userLocationUITests.swift; sourceTree = "<group>"; };
 		EF3821761E2415DF00032F42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF3821831E24162A00032F42 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		EF8F847B1E25A03600C32EBA /* favoriteLocationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = favoriteLocationsTableViewController.swift; path = ../favoriteLocationsTableViewController.swift; sourceTree = "<group>"; };
+		EF8F847F1E25A33A00C32EBA /* userFavorites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userFavorites.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 			children = (
 				EF3821541E2415DF00032F42 /* AppDelegate.swift */,
 				EF3821561E2415DF00032F42 /* ViewController.swift */,
+				EF8F847B1E25A03600C32EBA /* favoriteLocationsTableViewController.swift */,
+				EF8F847F1E25A33A00C32EBA /* userFavorites.swift */,
 				EF3821581E2415DF00032F42 /* Main.storyboard */,
 				EF38215B1E2415DF00032F42 /* Assets.xcassets */,
 				EF38215D1E2415DF00032F42 /* LaunchScreen.storyboard */,
@@ -271,8 +277,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF8F84801E25A33A00C32EBA /* userFavorites.swift in Sources */,
 				EF3821571E2415DF00032F42 /* ViewController.swift in Sources */,
 				EF3821551E2415DF00032F42 /* AppDelegate.swift in Sources */,
+				EF8F847C1E25A03600C32EBA /* favoriteLocationsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
