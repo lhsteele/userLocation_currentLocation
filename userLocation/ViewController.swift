@@ -30,9 +30,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             UserDefaults.standard.set(userFavorite, forKey: "favorite")
             UserDefaults.standard.synchronize()
             print ("Location Saved")
+            
+            let locations: [String] = ["Home"]
+            var coordinates = [Any] ()
+            
+            if let favoriteLocation = UserDefaults.standard.object(forKey: "favorite") {
+                coordinates.append(favoriteLocation)
+                print (coordinates)
+            }
+            
         }
     
     }
+    
     
     
     /*
