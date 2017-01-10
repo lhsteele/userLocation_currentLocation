@@ -15,11 +15,41 @@ import CoreLocation
 class ViewController: UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet weak var map: MKMapView!
+    @IBOutlet weak var saveLocation: UIButton!
+
+//trying to attach a button to enact the "save" function. It says unresolved identifier, which I think means it's being used before it's been defined. But if I put these two IBActions after definition, within curly brackets, it says only instance methods can be declared as IBAction. So I put outside the curly brackets, but after the definition, and it still says unresolved identifier.
+    @IBAction func saveUserFavorite(_ sender: Any) {
+        UserDefaults.standard.set(userFavorite, forKey: "favorite")
+        UserDefaults.standard.synchronize()
+        print ("Location Saved")
+    }
+    @IBAction func valueChangeEnded(_ sender: UIButton) {
+        UserDefaults.standardUserDefaults().setFloat(userFavorite, forKey: "favorite")
+    }
+    
+
+    
     
     let manager = CLLocationManager ()
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations[0]
+        
+//code below I think creates a variable called localValue which is made up of the current longitute and latitude. the two variables lat and long allow me to concatenate them into one variable called userFavorite
+//the reason I'm using variables and not constants is that I would like the user to be able to save more than one favorite location.
+//userDefaults commands below I think save the userFavorite variable.
+//print was simply to see if it was working.
+        
+        var localValue: CLLocationCoordinate2D = manager.location!.coordinate
+        var lat: String = localValue.latitude.description
+        var long: String = localValue.longitude.description
+        var userFavorite = lat + ", " + long
+        
+        UserDefaults.standard.set(userFavorite, forKey: "favorite")
+        UserDefaults.standard.synchronize()
+        
+        print (userFavorite)
+
         
         let span:MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
         
@@ -32,13 +62,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         self.map.showsUserLocation = true
     }
     
-//this is the function called every time a user's location updates. Set a variable called "location", and set that equal to an array called "locations". We want the first element of the array, so the most recent position of our user.
-//span. how much we want the map to be zoomed in on user's current location
-//myLocation sets the user's current location
-//region combines the user's location with the span, how much we can see.
-//map.setRegion tells the map what to show, set animated to "true" to turn on
-    
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -49,10 +72,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
     }
-
-//desiredAccuracy/kCLocationAccuracyBest means we want to get the best accuracy of the user's current location
-//requestWhenInUseAuthorization. Some apps want to get authorization for the app to track location in the background, but we only need to know their location when the app is in use.
-//startUpdatingLocation. Calling a function every time the user's location is updated.
     
     
     override func didReceiveMemoryWarning() {
@@ -60,6 +79,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-
+    
 }
 
