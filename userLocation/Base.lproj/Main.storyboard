@@ -30,8 +30,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Save Location"/>
                                 <connections>
-                                    <action selector="saveFavoriteLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e8K-NN-go5"/>
-                                    <action selector="valueChangeEnded:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="QU6-jw-eBV"/>
+                                    <action selector="saveUserFavorite:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MFY-HB-ogT"/>
                                 </connections>
                             </button>
                         </subviews>

@@ -31,12 +31,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             UserDefaults.standard.synchronize()
             print ("Location Saved")
         }
+    
     }
     
+    
+    /*
     @IBAction func valueChangeEnded(_ sender: UIButton) {
         UserDefaults.standardUserDefaults().setFloat(userFavorite, forKey: "favorite")
     }
-    
+    */
     
     
     
@@ -49,12 +52,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         //the reason I'm using variables and not constants is that I would like the user to be able to save more than one favorite location.
         //userDefaults commands below I think save the userFavorite variable.
         //print was simply to see if it was working.
-        
-        
-        UserDefaults.standard.set(userFavorite, forKey: "favorite")
-        UserDefaults.standard.synchronize()
-        
-        print (userFavorite)
         
         
         let span:MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
