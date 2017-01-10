@@ -423,6 +423,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = userLocation/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.LisaSteele.userLocation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -435,6 +436,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = userLocation/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.LisaSteele.userLocation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -515,6 +517,7 @@
 				EF38217B1E2415DF00032F42 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EF38217C1E2415DF00032F42 /* Build configuration list for PBXNativeTarget "userLocationTests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +526,7 @@
 				EF38217E1E2415DF00032F42 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EF38217F1E2415DF00032F42 /* Build configuration list for PBXNativeTarget "userLocationUITests" */ = {
 			isa = XCConfigurationList;
@@ -531,6 +535,7 @@
 				EF3821811E2415DF00032F42 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
