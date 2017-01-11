@@ -95,7 +95,7 @@ class favoriteLocationsTableViewController: UITableViewController {
     }
     */
 
-    
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -104,5 +104,5 @@ class favoriteLocationsTableViewController: UITableViewController {
         let destination = segue.destination as! favoriteLocationsTableViewController
         
     }
-    
+    */
 }

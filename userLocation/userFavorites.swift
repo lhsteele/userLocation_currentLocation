@@ -10,10 +10,10 @@ import UIKit
 
 class userFavorites: NSObject {
     var location: String?
-    var coordinate: Double?
+    var coordinate: String?
     
     
-    init(location: String? = nil, coordinate: Double? = nil, stringOfCoordinate: String? = nil) {
+    init(location: String? = nil, coordinate: String? = nil) {
         self.location = location
         self.coordinate = coordinate
         super.init()
