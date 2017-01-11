@@ -8,7 +8,7 @@
 
 import UIKit
 
-class userFavorites: NSObject {
+class savedFavorites: NSObject {
     var location: String?
     var coordinate: String?
     

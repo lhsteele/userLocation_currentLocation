@@ -16,8 +16,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var saveLocation: UIButton!
-    
-    //trying to attach a button to enact the "save" function. It says unresolved identifier, which I think means it's being used before it's been defined. But if I put these two IBActions after definition, within curly brackets, it says only instance methods can be declared as IBAction. So I put outside the curly brackets, but after the definition, and it still says unresolved identifier.
+
     @IBAction func saveUserFavorite(_ sender: Any) {
         if let location = manager.location {
             let localValue: CLLocationCoordinate2D = location.coordinate
@@ -44,25 +43,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     
-    
-    /*
-    @IBAction func valueChangeEnded(_ sender: UIButton) {
-        UserDefaults.standardUserDefaults().setFloat(userFavorite, forKey: "favorite")
-    }
-    */
-    
-    
-    
     let manager = CLLocationManager ()
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations[0]
-        
-        //code below I think creates a variable called localValue which is made up of the current longitute and latitude. the two variables lat and long allow me to concatenate them into one variable called userFavorite
-        //the reason I'm using variables and not constants is that I would like the user to be able to save more than one favorite location.
-        //userDefaults commands below I think save the userFavorite variable.
-        //print was simply to see if it was working.
-        
         
         let span:MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
         
@@ -84,7 +68,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
+        
     }
+    
     
     
     override func didReceiveMemoryWarning() {

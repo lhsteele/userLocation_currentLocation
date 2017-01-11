@@ -13,9 +13,9 @@ import UIKit
 class favoriteLocationsTableViewController: UITableViewController {
     
     @IBOutlet var homeLabel: UILabel!
+    var favorite: savedFavorites?
     
-    
-    var favorites: [userFavorites] = []
+    var listOfFavorites: [savedFavorites] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,24 +41,31 @@ class favoriteLocationsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.favorites.count 
+        return self.listOfFavorites.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
-        let favorite = self.favorites[indexPath.row]
+        let favorite = self.listOfFavorites[indexPath.row]
         
         if let coordinate = favorite.coordinate {
             cell.textLabel?.text = coordinate
         } else {
-            cell.textLabel?.text = ""
+            cell.textLabel?.text = "No Coordinates Saved"
         }
         
         return cell
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let indexPath = self.tableView.indexPath(for: sender as! UITableViewCell)!
+        let favorite = self.listOfFavorites[indexPath.row]
+        let destination = segue.destination as! favoriteLocationsTableViewController
+        destination.listOfFavorites = [favorite]
+    }
+
 
     /*
     // Override to support conditional editing of the table view.
@@ -92,17 +99,6 @@ class favoriteLocationsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
         return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let indexPath = self.tableView.indexPath(for: sender as! UITableViewCell)!
-        let destination = segue.destination as! favoriteLocationsTableViewController
-        
     }
     */
 }
