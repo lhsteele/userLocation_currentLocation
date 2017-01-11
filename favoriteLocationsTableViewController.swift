@@ -9,7 +9,11 @@
 import UIKit
 
 
+
 class favoriteLocationsTableViewController: UITableViewController {
+    
+    @IBOutlet var homeLabel: UILabel!
+    
     
     var favorites: [userFavorites] = []
 
@@ -91,14 +95,14 @@ class favoriteLocationsTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let indexPath = self.tableView.indexPath(for: sender as! UITableViewCell)!
+        let destination = segue.destination as! favoriteLocationsTableViewController
+        
     }
-    */
-
+    
 }
