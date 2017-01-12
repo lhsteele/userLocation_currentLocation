@@ -17,6 +17,7 @@
 		EF3821841E24162A00032F42 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3821831E24162A00032F42 /* CoreLocation.framework */; };
 		EF8F847C1E25A03600C32EBA /* favoriteLocationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8F847B1E25A03600C32EBA /* favoriteLocationsTableViewController.swift */; };
 		EF8F84801E25A33A00C32EBA /* userFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8F847F1E25A33A00C32EBA /* userFavorites.swift */; };
+		EF8F84821E280B6300C32EBA /* dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8F84811E280B6300C32EBA /* dictionary.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		EF3821831E24162A00032F42 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		EF8F847B1E25A03600C32EBA /* favoriteLocationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = favoriteLocationsTableViewController.swift; path = ../favoriteLocationsTableViewController.swift; sourceTree = "<group>"; };
 		EF8F847F1E25A33A00C32EBA /* userFavorites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userFavorites.swift; sourceTree = "<group>"; };
+		EF8F84811E280B6300C32EBA /* dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dictionary.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 			children = (
 				EF3821541E2415DF00032F42 /* AppDelegate.swift */,
 				EF3821561E2415DF00032F42 /* ViewController.swift */,
+				EF8F84811E280B6300C32EBA /* dictionary.swift */,
 				EF8F847B1E25A03600C32EBA /* favoriteLocationsTableViewController.swift */,
 				EF8F847F1E25A33A00C32EBA /* userFavorites.swift */,
 				EF3821581E2415DF00032F42 /* Main.storyboard */,
@@ -278,6 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF8F84801E25A33A00C32EBA /* userFavorites.swift in Sources */,
+				EF8F84821E280B6300C32EBA /* dictionary.swift in Sources */,
 				EF3821571E2415DF00032F42 /* ViewController.swift in Sources */,
 				EF3821551E2415DF00032F42 /* AppDelegate.swift in Sources */,
 				EF8F847C1E25A03600C32EBA /* favoriteLocationsTableViewController.swift in Sources */,
