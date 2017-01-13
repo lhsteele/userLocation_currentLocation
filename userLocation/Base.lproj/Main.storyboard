@@ -40,7 +40,6 @@
                     <connections>
                         <outlet property="map" destination="dg0-d2-acE" id="Ssm-V4-yEi"/>
                         <outlet property="saveLocation" destination="5vh-wZ-Dsu" id="hhX-dH-wje"/>
-                        <segue destination="8vQ-W8-wwu" kind="show" identifier="favoritesListSegue" id="JNi-lD-9CY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -74,10 +73,6 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="8vQ-W8-wwu" id="AtT-wT-PP8"/>
-                            <outlet property="delegate" destination="8vQ-W8-wwu" id="zva-sA-ioE"/>
-                        </connections>
                     </tableView>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pX4-EA-J4z" userLabel="First Responder" sceneMemberID="firstResponder"/>

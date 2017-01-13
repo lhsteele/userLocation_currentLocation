@@ -35,7 +35,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             locationDictionary.updateValue(userFavorite, forKey: "Home")
             print (locationDictionary)
             
-            let locations: [String] = ["Home"]
+        
             var coordinates = [Any] ()
             
             if let favoriteLocation = UserDefaults.standard.object(forKey: "favorite") {

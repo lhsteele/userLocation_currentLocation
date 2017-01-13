@@ -12,7 +12,7 @@ import UIKit
 
 class favoriteLocationsTableViewController: UITableViewController {
     
-    @IBOutlet var homeLabel: UILabel!
+    
     var favorite: savedFavorites?
     
     var listOfFavorites: [savedFavorites] = []
