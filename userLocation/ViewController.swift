@@ -17,19 +17,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var saveLocation: UIButton!
 
+    var coordinatesArray = [Double] ()
+    
     @IBAction func saveUserFavorite(_ sender: Any) {
         if let location = manager.location {
             let localValue: CLLocationCoordinate2D = location.coordinate
             
-            let lat: String = localValue.latitude.description
-            let long: String = localValue.longitude.description
+            let lat: Double = localValue.latitude.description
+            let long: Double = localValue.longitude.description
            
-            var coordinatesArray = [String] ()
             
             coordinatesArray.append(lat)
             coordinatesArray.append(long)
             
-            var favoriteCoordinatesArray = [Array<String>] ()
+            var favoriteCoordinatesArray = [Array<Double>] ()
             
             favoriteCoordinatesArray.append(coordinatesArray)
             print(favoriteCoordinatesArray)

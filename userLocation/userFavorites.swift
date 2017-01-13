@@ -9,11 +9,11 @@
 import UIKit
 
 class savedFavorites: NSObject {
-    var location: String?
-    var coordinate: String?
+    var location: Double?
+    var coordinate: Double?
     
     
-    init(location: String? = nil, coordinate: String? = nil) {
+    init(location: Double? = nil, coordinate: Double? = nil) {
         self.location = location
         self.coordinate = coordinate
         super.init()
