@@ -23,21 +23,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             
             let lat: String = localValue.latitude.description
             let long: String = localValue.longitude.description
-            let userFavorite = lat + ", " + long
+           
+            var coordinatesArray = [String] ()
             
+            coordinatesArray.append(lat)
+            coordinatesArray.append(long)
             
-            UserDefaults.standard.set(userFavorite, forKey: "favorite")
-            UserDefaults.standard.synchronize()
-            print ("Location Saved")
+            var favoriteCoordinatesArray = [Array<String>] ()
             
-            let locations: [String] = ["Home"]
-            var coordinates = [Any] ()
-            
-            if let favoriteLocation = UserDefaults.standard.object(forKey: "favorite") {
-                coordinates.append(favoriteLocation)
-                print (coordinates)
-            }
-            
+            favoriteCoordinatesArray.append(coordinatesArray)
+            print(favoriteCoordinatesArray)
         }
     
     }
