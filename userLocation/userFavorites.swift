@@ -7,20 +7,19 @@
 //
 
 import UIKit
+import MapKit
 
-class savedFavorites: NSObject {
-    var location: Double?
-    var coordinate: Double?
+
+class savedFavorites: NSObject, MKAnnotation {
+    var location: String?
+    var coordinate: CLLocationCoordinate2D
     
     
-    init(location: Double? = nil, coordinate: Double? = nil) {
+    init(location: String? = nil, coordinate: CLLocationCoordinate2D) {
         self.location = location
         self.coordinate = coordinate
         super.init()
     }
-    
- 
-
 }
 
     

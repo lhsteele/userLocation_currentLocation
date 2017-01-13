@@ -44,7 +44,7 @@ class favoriteLocationsTableViewController: UITableViewController {
         return self.listOfFavorites.count
     }
 
-    
+    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
@@ -65,7 +65,7 @@ class favoriteLocationsTableViewController: UITableViewController {
         let destination = segue.destination as! favoriteLocationsTableViewController
         destination.listOfFavorites = [favorite]
     }
-
+    */
 
     /*
     // Override to support conditional editing of the table view.
