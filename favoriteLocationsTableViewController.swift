@@ -13,9 +13,9 @@ import UIKit
 class favoriteLocationsTableViewController: UITableViewController {
     
     
-    var favorite: savedFavorites?
+    var favorite: SavedFavorites?
     
-    var listOfFavorites: [savedFavorites] = []
+    var listOfFavorites: [SavedFavorites] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()

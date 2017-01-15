@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 
-class savedFavorites: NSObject, MKAnnotation {
+class SavedFavorites: NSObject, MKAnnotation {
     var location: String?
     var coordinate: CLLocationCoordinate2D
     
