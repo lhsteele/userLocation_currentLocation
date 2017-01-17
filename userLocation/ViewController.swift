@@ -19,22 +19,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
     var coordinatesArray = [String] ()
     
-    let manager = CLLocationManager ()
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations[0]
-        
-        let span:MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
-        
-        let myLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
-        
-        let region:MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
-        
-        map.setRegion(region, animated: true)
-        
-        self.map.showsUserLocation = true
-    }
-    
     @IBAction func saveUserFavorite(_ sender: Any) {
         if let location = manager.location {
             let localValue: CLLocationCoordinate2D = location.coordinate
@@ -42,33 +26,34 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             let lat: String = localValue.latitude.description
             let long: String = localValue.longitude.description
             
-            class savedFavorites: NSObject, MKAnnotation {
-                var location: String?
-                var coordinate: CLLocationCoordinate2D
-                
-                init(location: String? = nil, coordinate: CLLocationCoordinate2D) {
-                    self.location = location
-                    self.coordinate = coordinate
-                    super.init()
-                }
-            }
-            
             coordinatesArray.append(lat)
             coordinatesArray.append(long)
             
-                        var favoriteCoordinatesArray = [Array<String>] ()
+            var favoriteCoordinatesArray = [Array<String>] ()
             
             favoriteCoordinatesArray.append(coordinatesArray)
             print(favoriteCoordinatesArray)
-                
-            }
-            
         }
-    
     }
     
+    let manager = CLLocationManager ()
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations[0]
     
+        let span:MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
     
+        let myLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
+    
+        let region:MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
+    
+        map.setRegion(region, animated: true)
+    
+        self.map.showsUserLocation = true
+    }
+
+
+
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -87,7 +72,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
 }
 
