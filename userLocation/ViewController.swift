@@ -17,41 +17,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var saveLocation: UIButton!
 
-    var coordinatesArray = [CLLocationCoordinate2D] ()
-    
-    
-    
-    @IBAction func saveUserFavorite(_ sender: Any) {
-        if let location = manager.location {
-            let localValue: CLLocationCoordinate2D = location.coordinate
-            
-            class savedFavorites: NSObject, MKAnnotation {
-                var location: String?
-                var coordinate: CLLocationCoordinate2D
-                
-                
-                init(location: String? = nil, coordinate: CLLocationCoordinate2D) {
-                    self.location = location
-                    self.coordinate = coordinate
-                    super.init()
-            
-                }
-                
-            }
-            
-            coordinatesArray.append(coordinate)
-            
-            //let lat: Double = localValue.latitude.description
-            //let long: Double = localValue.longitude.description
-           
-            var favoriteCoordinatesArray = [Array<CLLocationCoordinate2D>] ()
-            
-            favoriteCoordinatesArray.append(coordinatesArray)
-            print(favoriteCoordinatesArray)
-        }
-    
-    }
-    
+    var coordinatesArray = [String] ()
     
     let manager = CLLocationManager ()
     
@@ -68,6 +34,40 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         self.map.showsUserLocation = true
     }
+    
+    @IBAction func saveUserFavorite(_ sender: Any) {
+        if let location = manager.location {
+            let localValue: CLLocationCoordinate2D = location.coordinate
+            
+            let lat: String = localValue.latitude.description
+            let long: String = localValue.longitude.description
+            
+            class savedFavorites: NSObject, MKAnnotation {
+                var location: String?
+                var coordinate: CLLocationCoordinate2D
+                
+                init(location: String? = nil, coordinate: CLLocationCoordinate2D) {
+                    self.location = location
+                    self.coordinate = coordinate
+                    super.init()
+                }
+            }
+            
+            coordinatesArray.append(lat)
+            coordinatesArray.append(long)
+            
+                        var favoriteCoordinatesArray = [Array<String>] ()
+            
+            favoriteCoordinatesArray.append(coordinatesArray)
+            print(favoriteCoordinatesArray)
+                
+            }
+            
+        }
+    
+    }
+    
+    
     
     override func viewDidLoad() {
         
