@@ -6,6 +6,10 @@
 //  Copyright © 2017 Lisa Steele. All rights reserved.
 //
 
+//play around with Swifty to convert to String and back
+//button from mapview needs to push to the Save a Favorite Location view
+//when this view controller is pushed, lat and long saved. (RGB slider) add data to segue.
+//here they will type in name of Location, save that.
 
 
 import UIKit
@@ -17,24 +21,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var saveLocation: UIButton!
 
-    var coordinatesArray = [String] ()
+    var coordinatesArray = [(lat: Double, long: Double)] ()
+    var storeValue = ""
     
     @IBAction func saveUserFavorite(_ sender: Any) {
         if let location = manager.location {
             let localValue: CLLocationCoordinate2D = location.coordinate
             
-            let lat: String = localValue.latitude.description
-            let long: String = localValue.longitude.description
+            let lat = localValue.latitude
+            let long = localValue.longitude
             
-            coordinatesArray.append(lat)
-            coordinatesArray.append(long)
-            
-            var favoriteCoordinatesArray = [Array<String>] ()
-            
-            favoriteCoordinatesArray.append(coordinatesArray)
-            print(favoriteCoordinatesArray)
+            coordinatesArray.append((lat: lat, long: long))
+
         }
     }
+    
     
     let manager = CLLocationManager ()
 
@@ -64,6 +65,25 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
         
+        
+        for coord in coordinatesArray {
+            
+            let temporaryString = "\(coord.lat)-\(coord.long)"
+            
+            storeValue += temporaryString + ";"
+            
+        }
+        
+        func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if (segue.identifier == "saveLocationDetailSegue") {
+                let saveLocationDetailViewController = segue.destination
+                let newLocationCoordinates = self.storeValue
+                let destination = segue.destination as! saveLocationDetailViewController
+                destination.locationCoordinates = newLocationCoordinates
+            }
+        }
+
+
     }
     
     
@@ -73,5 +93,5 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-}
+    }
 

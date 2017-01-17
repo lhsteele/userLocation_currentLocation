@@ -10,12 +10,11 @@ import UIKit
 import MapKit
 
 
-class SavedFavorites: NSObject, MKAnnotation {
+class SavedFavorites: NSObject {
     var location: String?
-    var coordinate: CLLocationCoordinate2D
+    var coordinate: String?
     
-    
-    init(location: String? = nil, coordinate: CLLocationCoordinate2D) {
+    init(location: String? = nil, coordinate: String? = nil) {
         self.location = location
         self.coordinate = coordinate
         super.init()
