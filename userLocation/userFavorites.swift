@@ -14,6 +14,7 @@ class SavedFavorites: NSObject {
     var location: String?
     var coordinate: String?
     
+    
     init(location: String? = nil, coordinate: String? = nil) {
         self.location = location
         self.coordinate = coordinate

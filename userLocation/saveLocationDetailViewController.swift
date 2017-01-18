@@ -11,23 +11,19 @@ import UIKit
 class saveLocationDetailViewController: UIViewController {
     
     @IBOutlet var locationNameField: UITextField!
-   
+    @IBOutlet var locationCoordinates: UILabel!
     
     var locationName = String.self
-    var locationCoordinates = String
+    var coordinatesPassed = ""
     
   
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let newLocationCoordinates = self.locationCoordinates {
-            let saveTheseCoordinates = newLocationCoordinates.coordinate
-        }
+        locationCoordinates.text = coordinatesPassed
         
-        print(locationCoordinates)
-        
-        // Do any additional setup after loading the view.
+        print(coordinatesPassed)
     }
 
     override func didReceiveMemoryWarning() {
