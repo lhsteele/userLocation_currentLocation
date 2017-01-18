@@ -33,7 +33,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             
             coordinatesArray.append((lat: lat, long: long))
             
-            self.performSegue(withIdentifier: "saveLocationDetailSegue", sender: storeValue)
+            
         }
     }
     
@@ -77,10 +77,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         func prepare(for segue: UIStoryboardSegue, sender: String) {
             if (segue.identifier == "saveLocationDetailSegue") {
-                
-                if let destination = segue.destination as? saveLocationDetailViewController {
-                    destination.coordinatesPassed = storeValue
-                }
+                let pointer = segue.destination as! saveLocationDetailViewController
+                pointer.coordinatesPassed = storeValue
             }
         }
 
