@@ -78,19 +78,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         func prepare(for segue: UIStoryboardSegue, sender: String) {
             if (segue.identifier == "saveLocationDetailSegue") {
                 
-                let destination = segue.destination as? saveLocationDetailViewController
-                destination?.coordinatesPassed = storeValue
+                if let destination = segue.destination as? saveLocationDetailViewController {
+                    destination.coordinatesPassed = storeValue
+                }
             }
         }
 
     }
-    
-    
-    
+
+    /*
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    }
-
+    */
+}
