@@ -64,6 +64,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBAction func saveUserFavorite(_ sender: Any) {
         if let location = manager.location {
+            
+            
             let localValue: CLLocationCoordinate2D = location.coordinate
             
             let lat = localValue.latitude
@@ -75,10 +77,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             let stringCoord = "\(latString)-\(longString)"
             
             
-            let storeValue = stringCoord
+            self.storeValue = stringCoord
             
             
-          
             /*
             coordinatesArray.append((lat: lat, long: long))
             
@@ -96,6 +97,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             */
         }
         
+        performSegue(withIdentifier: "saveLocationDetailSegue", sender: sender)
+
     }
     
     func storeValueWorking () {
@@ -108,7 +111,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
             let pointer = segue.destination as! saveLocationDetailViewController
             
-            pointer.coordinatesPassed = ""
+            pointer.coordinatesPassed = self.storeValue
         }
     }
     

@@ -31,7 +31,6 @@
                                 <state key="normal" title="Save Location"/>
                                 <connections>
                                     <action selector="saveUserFavorite:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MFY-HB-ogT"/>
-                                    <segue destination="1fE-IW-njT" kind="show" identifier="saveLocationDetailSegue" id="dsN-Uh-JHW"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -41,6 +40,7 @@
                     <connections>
                         <outlet property="map" destination="dg0-d2-acE" id="Ssm-V4-yEi"/>
                         <outlet property="saveLocation" destination="5vh-wZ-Dsu" id="hhX-dH-wje"/>
+                        <segue destination="1fE-IW-njT" kind="show" identifier="saveLocationDetailSegue" id="SLi-Nt-2wY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
