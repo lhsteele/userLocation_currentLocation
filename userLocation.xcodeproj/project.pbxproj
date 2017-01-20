@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EF3821551E2415DF00032F42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3821541E2415DF00032F42 /* AppDelegate.swift */; };
-		EF3821571E2415DF00032F42 /* 3..0......0.00..swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3821561E2415DF00032F42 /* 3..0......0.00..swift */; };
+		EF3821571E2415DF00032F42 /* MapView Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3821561E2415DF00032F42 /* MapView Controller.swift */; };
 		EF38215A1E2415DF00032F42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF3821581E2415DF00032F42 /* Main.storyboard */; };
 		EF38215C1E2415DF00032F42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF38215B1E2415DF00032F42 /* Assets.xcassets */; };
 		EF38215F1E2415DF00032F42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF38215D1E2415DF00032F42 /* LaunchScreen.storyboard */; };
@@ -40,7 +40,7 @@
 /* Begin PBXFileReference section */
 		EF3821511E2415DF00032F42 /* userLocation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = userLocation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF3821541E2415DF00032F42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EF3821561E2415DF00032F42 /* 3..0......0.00..swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 3..0......0.00..swift; sourceTree = "<group>"; };
+		EF3821561E2415DF00032F42 /* MapView Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapView Controller.swift"; sourceTree = "<group>"; };
 		EF3821591E2415DF00032F42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EF38215B1E2415DF00032F42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF38215E1E2415DF00032F42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -108,7 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				EF3821541E2415DF00032F42 /* AppDelegate.swift */,
-				EF3821561E2415DF00032F42 /* 3..0......0.00..swift */,
+				EF3821561E2415DF00032F42 /* MapView Controller.swift */,
 				EF8F847B1E25A03600C32EBA /* favoriteLocationsTableViewController.swift */,
 				EF8F847F1E25A33A00C32EBA /* userFavorites.swift */,
 				EF3821581E2415DF00032F42 /* Main.storyboard */,
@@ -282,7 +282,7 @@
 			files = (
 				EF8F84801E25A33A00C32EBA /* userFavorites.swift in Sources */,
 				EFFB04E31E2E8BD40071D961 /* saveLocationDetailViewController.swift in Sources */,
-				EF3821571E2415DF00032F42 /* 3..0......0.00..swift in Sources */,
+				EF3821571E2415DF00032F42 /* MapView Controller.swift in Sources */,
 				EF3821551E2415DF00032F42 /* AppDelegate.swift in Sources */,
 				EF8F847C1E25A03600C32EBA /* favoriteLocationsTableViewController.swift in Sources */,
 			);

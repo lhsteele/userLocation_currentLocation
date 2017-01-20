@@ -24,6 +24,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var coordinatesArray = [(lat: Double, long: Double)] ()
     var storeValue = ""
     
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.requestWhenInUseAuthorization()
+        manager.startUpdatingLocation()
+        
+    }
+    
     @IBAction func saveUserFavorite(_ sender: Any) {
         if let location = manager.location {
             let localValue: CLLocationCoordinate2D = location.coordinate
@@ -33,7 +45,24 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             
             coordinatesArray.append((lat: lat, long: long))
             
+            for coord in coordinatesArray {
+                
+                let temporaryString = "\(coord.lat)-\(coord.long)"
+                
+                storeValue += temporaryString + ";"
             
+            }
+            
+        }
+        
+    }
+    
+
+    func prepare(for segue: UIStoryboardSegue, sender: String) {
+        if (segue.identifier == "saveLocationDetailSegue") {
+            let pointer = segue.destination as! saveLocationDetailViewController
+            
+            pointer.coordinatesPassed = storeValue
         }
     }
     
@@ -52,36 +81,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         map.setRegion(region, animated: true)
     
         self.map.showsUserLocation = true
-    }
-
-
-
-    override func viewDidLoad() {
         
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        manager.delegate = self
-        manager.desiredAccuracy = kCLLocationAccuracyBest
-        manager.requestWhenInUseAuthorization()
-        manager.startUpdatingLocation()
-        
-        
-        for coord in coordinatesArray {
-            
-            let temporaryString = "\(coord.lat)-\(coord.long)"
-            
-            storeValue += temporaryString + ";"
-            
-        }
-        
-        func prepare(for segue: UIStoryboardSegue, sender: String) {
-            if (segue.identifier == "saveLocationDetailSegue") {
-                let pointer = segue.destination as! saveLocationDetailViewController
-                pointer.coordinatesPassed = storeValue
-            }
-        }
-
+        print(storeValue)
     }
 
     /*
