@@ -16,6 +16,8 @@ import UIKit
 import MapKit
 import CoreLocation
 
+
+
 class ViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var map: MKMapView!
@@ -24,6 +26,30 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var coordinatesArray = [(lat: Double, long: Double)] ()
     var storeValue = ""
     
+    
+    let manager = CLLocationManager ()
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        manager.stopUpdatingLocation()
+        
+        let location = locations[0]
+        
+        let span:MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
+        
+        let myLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
+        
+        let region:MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
+        
+        map.setRegion(region, animated: true)
+        
+        self.map.showsUserLocation = true
+        
+        
+    }
+    
+    
+    
+
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -43,48 +69,49 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             let lat = localValue.latitude
             let long = localValue.longitude
             
+            let latString = String(lat)
+            let longString = String(long)
+            
+            let stringCoord = "\(latString)-\(longString)"
+            
+            
+            let storeValue = stringCoord
+            
+            
+          
+            /*
             coordinatesArray.append((lat: lat, long: long))
             
             for coord in coordinatesArray {
                 
-                let temporaryString = "\(coord.lat)-\(coord.long)"
+                    let temporaryString = "\(coord.lat)-\(coord.long)"
                 
-                storeValue += temporaryString + ";"
+                    storeValue = temporaryString + ";"
             
             }
             
-        }
-        
-    }
-    
-
-    func prepare(for segue: UIStoryboardSegue, sender: String) {
-        if (segue.identifier == "saveLocationDetailSegue") {
-            let pointer = segue.destination as! saveLocationDetailViewController
+            print(storeValue)
             
-            pointer.coordinatesPassed = storeValue
+            print(coordinatesArray)
+            */
         }
+        
     }
     
-    
-    let manager = CLLocationManager ()
-
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations[0]
-    
-        let span:MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
-    
-        let myLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
-    
-        let region:MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
-    
-        map.setRegion(region, animated: true)
-    
-        self.map.showsUserLocation = true
-        
+    func storeValueWorking () {
         print(storeValue)
     }
+    
+        //print(storeValue) in this function doesn't print to console.
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "saveLocationDetailSegue") {
 
+            let pointer = segue.destination as! saveLocationDetailViewController
+            
+            pointer.coordinatesPassed = ""
+        }
+    }
+    
     /*
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -92,3 +119,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     */
 }
+
+
+
