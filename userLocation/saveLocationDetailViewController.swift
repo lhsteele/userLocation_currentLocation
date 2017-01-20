@@ -8,22 +8,51 @@
 
 import UIKit
 
-class saveLocationDetailViewController: UIViewController {
+class saveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var locationNameField: UITextField!
     @IBOutlet var locationCoordinates: UILabel!
     
-    var locationName = String.self
-    var coordinatesPassed = ""
     
-  
+    var locationName: SavedFavorites?
+    var coordinatesPassed = ""
+    var locationNameString = String()
+   
+    
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == self.locationNameField {
+            self.locationName?.location = textField.text
+            
+        }
+        
+        //textField.returnKeyType = UIReturnKeyType.done
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         locationCoordinates.text = coordinatesPassed
         
-        print(coordinatesPassed)
+        self.locationNameField.delegate = self
+        
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        locationNameField.resignFirstResponder()
+        saveNewFavLoc()
+        return true
+    }
+    
+    func saveNewFavLoc () {
+        locationNameString = "\(locationName)"
+        
+        var newFavLoc = coordinatesPassed
+        newFavLoc.append(locationNameString)
+        
+        print(newFavLoc)
+    
     }
 
     override func didReceiveMemoryWarning() {

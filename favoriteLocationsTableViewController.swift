@@ -24,7 +24,7 @@ class favoriteLocationsTableViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,7 +44,7 @@ class favoriteLocationsTableViewController: UITableViewController {
         return self.listOfFavorites.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
@@ -59,13 +59,7 @@ class favoriteLocationsTableViewController: UITableViewController {
         return cell
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let indexPath = self.tableView.indexPath(for: sender as! UITableViewCell)!
-        let favorite = self.listOfFavorites[indexPath.row]
-        let destination = segue.destination as! favoriteLocationsTableViewController
-        destination.listOfFavorites = [favorite]
-    }
-    */
+ 
 
     /*
     // Override to support conditional editing of the table view.

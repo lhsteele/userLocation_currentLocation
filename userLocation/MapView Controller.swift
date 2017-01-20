@@ -71,6 +71,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             let lat = localValue.latitude
             let long = localValue.longitude
             
+            /*
             let latString = String(lat)
             let longString = String(long)
             
@@ -78,9 +79,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             
             
             self.storeValue = stringCoord
+            */
             
             
-            /*
             coordinatesArray.append((lat: lat, long: long))
             
             for coord in coordinatesArray {
@@ -90,22 +91,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                     storeValue = temporaryString + ";"
             
             }
-            
-            print(storeValue)
-            
-            print(coordinatesArray)
-            */
+ 
         }
         
         performSegue(withIdentifier: "saveLocationDetailSegue", sender: sender)
 
     }
     
-    func storeValueWorking () {
-        print(storeValue)
-    }
-    
-        //print(storeValue) in this function doesn't print to console.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "saveLocationDetailSegue") {
 
