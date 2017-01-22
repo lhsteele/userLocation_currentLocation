@@ -44,7 +44,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         self.map.showsUserLocation = true
         
-        
     }
     
     
@@ -95,6 +94,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
         
         performSegue(withIdentifier: "saveLocationDetailSegue", sender: sender)
+        
 
     }
     

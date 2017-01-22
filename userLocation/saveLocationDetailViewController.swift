@@ -19,6 +19,27 @@ class saveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     var locationNameString = String()
    
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        locationCoordinates.text = coordinatesPassed
+        
+        self.locationNameField.delegate = self
+        
+    }
+    
+    
+    func saveNewFavLoc () {
+        locationNameString = "\(locationNameField.text)"
+        
+        var newFavLoc = coordinatesPassed
+        newFavLoc.append(locationNameString)
+        
+        print(newFavLoc)
+        
+    }
+    
+
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == self.locationNameField {
@@ -30,31 +51,13 @@ class saveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        locationCoordinates.text = coordinatesPassed
-        
-        self.locationNameField.delegate = self
-        
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         locationNameField.resignFirstResponder()
         saveNewFavLoc()
         return true
     }
     
-    func saveNewFavLoc () {
-        locationNameString = "\(locationName)"
-        
-        var newFavLoc = coordinatesPassed
-        newFavLoc.append(locationNameString)
-        
-        print(newFavLoc)
     
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
