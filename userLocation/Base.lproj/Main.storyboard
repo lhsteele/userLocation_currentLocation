@@ -232,6 +232,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Save Favorite"/>
                                 <connections>
+                                    <action selector="saveFavorite:" destination="1fE-IW-njT" eventType="touchUpInside" id="aFr-jG-7nI"/>
                                     <segue destination="8vQ-W8-wwu" kind="show" id="u0R-PN-Pvv"/>
                                 </connections>
                             </button>
@@ -241,7 +242,7 @@
                     <connections>
                         <outlet property="locationCoordinates" destination="FEf-9O-2Ju" id="kAY-Bl-KCK"/>
                         <outlet property="locationNameField" destination="QU3-IV-h1n" id="YWu-6z-2Qw"/>
-                        <outlet property="saveFavorite" destination="tG5-RV-zxw" id="az8-09-oqj"/>
+                        <outlet property="saveFavorite" destination="tG5-RV-zxw" id="JCr-Ev-yxV"/>
                         <segue destination="8vQ-W8-wwu" kind="show" identifier="favoriteLocationTableSegue" id="hht-FS-v94"/>
                     </connections>
                 </viewController>

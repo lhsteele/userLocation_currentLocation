@@ -55,20 +55,22 @@ class saveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    
     @IBAction func saveFavorite(_ sender: Any) {
         let defaults = UserDefaults.standard
         defaults.set(newFavLoc, forKey: "NewFavoriteLocation")
         
-        performSegue(withIdentifier: "favoriteLocatioTableSegue", sender: sender)
+        performSegue(withIdentifier: "favoriteLocationTableSegue", sender: sender)
         
         print(newFavLoc)
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "favoriteLocationTableSegue") {
             let pTwo = segue.destination as! favoriteLocationsTableViewController
         
-            //pTwo.favorite = self.newFavLoc
+            pTwo.favorite = self.newFavLoc
         }
     }
     

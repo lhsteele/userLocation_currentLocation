@@ -13,7 +13,7 @@ import UIKit
 class favoriteLocationsTableViewController: UITableViewController {
     
     
-    var favorite: SavedFavorites?
+    var favorite: ""?
     
     var listOfFavorites: [SavedFavorites] = []
 
@@ -25,6 +25,18 @@ class favoriteLocationsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    func addFavorite() {
+        let favorite = SavedFavorites(location: <#T##String?#>, coordinate: <#T##String?#>)
+        self.listOfFavorites.append(favorite)
+        let newIndexPath = IndexPath(row: self.listOfFavorites.count - 1, section: 0)
+        self.tableView.insertRows(at: [newIndexPath], with: .automatic)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
