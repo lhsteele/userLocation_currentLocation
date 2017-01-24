@@ -8,17 +8,22 @@
 
 import UIKit
 
+let favoriteLocationKey = "NewFavoriteLocation"
 
-
-class favoriteLocationsTableViewController: UITableViewController {
+class FavoriteLocationsTableViewController: UITableViewController {
     
     
-    var favorite: ""?
+    //var favorite = ""
     
     var listOfFavorites: [SavedFavorites] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let defaults = UserDefaults.standard
+        let favoriteLocations =  defaults.string(forKey: favoriteLocationKey)
+        
+        print (favoriteLocations)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -27,12 +32,14 @@ class favoriteLocationsTableViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    /*
     func addFavorite() {
-        let favorite = SavedFavorites(location: <#T##String?#>, coordinate: <#T##String?#>)
+        let favorite = SavedFavorites(location: "", coordinate: "")
         self.listOfFavorites.append(favorite)
         let newIndexPath = IndexPath(row: self.listOfFavorites.count - 1, section: 0)
         self.tableView.insertRows(at: [newIndexPath], with: .automatic)
     }
+ */
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

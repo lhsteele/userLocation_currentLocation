@@ -50,7 +50,7 @@
         <!--Favorite Locations Table View Controller-->
         <scene sceneID="Bf6-in-On2">
             <objects>
-                <tableViewController id="8vQ-W8-wwu" customClass="favoriteLocationsTableViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="8vQ-W8-wwu" customClass="FavoriteLocationsTableViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="EBi-Zd-QvF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -197,7 +197,7 @@
         <!--Save Location Detail View Controller-->
         <scene sceneID="NYj-pq-Pap">
             <objects>
-                <viewController id="1fE-IW-njT" customClass="saveLocationDetailViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="1fE-IW-njT" customClass="SaveLocationDetailViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tGL-wn-hl8"/>
                         <viewControllerLayoutGuide type="bottom" id="uxn-5g-1YL"/>

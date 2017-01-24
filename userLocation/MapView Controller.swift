@@ -85,7 +85,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             
             for coord in coordinatesArray {
                 
-                    let temporaryString = "\(coord.lat)-\(coord.long)"
+                    let temporaryString = "\(coord.lat);\(coord.long)"
                 
                     storeValue = temporaryString + ";"
             
@@ -101,9 +101,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "saveLocationDetailSegue") {
 
-            let pointer = segue.destination as! saveLocationDetailViewController
+            let pointer = segue.destination as! SaveLocationDetailViewController
             
-            pointer.coordinatesPassed = self.storeValue
+            pointer.coordinatesPassed = storeValue
         }
     }
     

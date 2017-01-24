@@ -8,7 +8,7 @@
 
 import UIKit
 
-class saveLocationDetailViewController: UIViewController, UITextFieldDelegate {
+class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var locationNameField: UITextField!
     @IBOutlet var locationCoordinates: UILabel!
@@ -30,7 +30,9 @@ class saveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     
     
     func saveNewFavLoc () {
-        locationNameString = "\(locationNameField.text)"
+        if let text = locationNameField.text {
+            locationNameString = "\(text)"
+        }
         
         var newFavCoord = coordinatesPassed
         newFavLoc = newFavCoord + (locationNameString)
@@ -61,16 +63,15 @@ class saveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         defaults.set(newFavLoc, forKey: "NewFavoriteLocation")
         
         performSegue(withIdentifier: "favoriteLocationTableSegue", sender: sender)
-        
-        print(newFavLoc)
+       
     }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "favoriteLocationTableSegue") {
-            let pTwo = segue.destination as! favoriteLocationsTableViewController
+            let pTwo = segue.destination as! FavoriteLocationsTableViewController
         
-            pTwo.favorite = self.newFavLoc
+            //pTwo.favorite = self.newFavLoc
         }
     }
     
