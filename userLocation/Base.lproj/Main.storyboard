@@ -26,9 +26,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5vh-wZ-Dsu">
-                                <rect key="frame" x="120" y="550" width="134" height="30"/>
+                                <rect key="frame" x="98" y="550" width="179" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Save Location"/>
+                                <state key="normal" title="Create a Favorite Location"/>
                                 <connections>
                                     <action selector="saveUserFavorite:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MFY-HB-ogT"/>
                                 </connections>
@@ -38,8 +38,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="ykX-CS-U2g"/>
                     <connections>
+                        <outlet property="createAFavoriteLocation" destination="5vh-wZ-Dsu" id="EPQ-DQ-Tcl"/>
                         <outlet property="map" destination="dg0-d2-acE" id="Ssm-V4-yEi"/>
-                        <outlet property="saveLocation" destination="5vh-wZ-Dsu" id="hhX-dH-wje"/>
                         <segue destination="1fE-IW-njT" kind="show" identifier="saveLocationDetailSegue" id="SLi-Nt-2wY"/>
                     </connections>
                 </viewController>
@@ -60,11 +60,11 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dji-Rc-pjm" id="q8g-mx-hro">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Home" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vIo-T0-sed">
-                                            <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                            <rect key="frame" x="15" y="0.0" width="345" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -79,10 +79,11 @@
                             <outlet property="delegate" destination="8vQ-W8-wwu" id="zva-sA-ioE"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="B61-2n-S1P"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pX4-EA-J4z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2808.8000000000002" y="123.68815592203899"/>
+            <point key="canvasLocation" x="3748" y="123.68815592203899"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="wMg-Zx-xbr">
@@ -226,13 +227,22 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tG5-RV-zxw">
+                                <rect key="frame" x="84" y="548" width="206" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Save Favorite"/>
+                                <connections>
+                                    <segue destination="8vQ-W8-wwu" kind="show" id="u0R-PN-Pvv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="locationCoordinates" destination="FEf-9O-2Ju" id="kAY-Bl-KCK"/>
                         <outlet property="locationNameField" destination="QU3-IV-h1n" id="YWu-6z-2Qw"/>
-                        <segue destination="8vQ-W8-wwu" kind="show" identifier="favoriteLocationTableSegue" id="YVo-C4-KMQ"/>
+                        <outlet property="saveFavorite" destination="tG5-RV-zxw" id="az8-09-oqj"/>
+                        <segue destination="8vQ-W8-wwu" kind="show" identifier="favoriteLocationTableSegue" id="hht-FS-v94"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nwq-Iv-jDY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -257,5 +267,26 @@
             </objects>
             <point key="canvasLocation" x="237.59999999999999" y="123.68815592203899"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="htP-OS-fLK">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Hjq-Ab-ZgF" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="psW-Ex-4Jc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8vQ-W8-wwu" kind="relationship" relationship="rootViewController" id="ATt-yP-J7D"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WiD-ur-9kQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2808.8000000000002" y="123.68815592203899"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="hht-FS-v94"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -12,12 +12,12 @@ class saveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var locationNameField: UITextField!
     @IBOutlet var locationCoordinates: UILabel!
-    
+    @IBOutlet var saveFavorite: UIButton!
     
     var locationName: SavedFavorites?
     var coordinatesPassed = ""
     var locationNameString = String()
-   
+    var newFavLoc = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,10 +32,8 @@ class saveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     func saveNewFavLoc () {
         locationNameString = "\(locationNameField.text)"
         
-        var newFavLoc = coordinatesPassed
-        newFavLoc.append(locationNameString)
-        
-        print(newFavLoc)
+        var newFavCoord = coordinatesPassed
+        newFavLoc = newFavCoord + (locationNameString)
         
     }
     
@@ -57,6 +55,22 @@ class saveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    @IBAction func saveFavorite(_ sender: Any) {
+        let defaults = UserDefaults.standard
+        defaults.set(newFavLoc, forKey: "NewFavoriteLocation")
+        
+        performSegue(withIdentifier: "favoriteLocatioTableSegue", sender: sender)
+        
+        print(newFavLoc)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "favoriteLocationTableSegue") {
+            let pTwo = segue.destination as! favoriteLocationsTableViewController
+        
+            //pTwo.favorite = self.newFavLoc
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -109,10 +109,10 @@
 			children = (
 				EF3821541E2415DF00032F42 /* AppDelegate.swift */,
 				EF3821561E2415DF00032F42 /* MapView Controller.swift */,
+				EFFB04E21E2E8BD40071D961 /* saveLocationDetailViewController.swift */,
 				EF8F847B1E25A03600C32EBA /* favoriteLocationsTableViewController.swift */,
 				EF8F847F1E25A33A00C32EBA /* userFavorites.swift */,
 				EF3821581E2415DF00032F42 /* Main.storyboard */,
-				EFFB04E21E2E8BD40071D961 /* saveLocationDetailViewController.swift */,
 				EF38215B1E2415DF00032F42 /* Assets.xcassets */,
 				EF38215D1E2415DF00032F42 /* LaunchScreen.storyboard */,
 				EF3821601E2415DF00032F42 /* Info.plist */,

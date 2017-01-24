@@ -21,7 +21,7 @@ import CoreLocation
 class ViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var map: MKMapView!
-    @IBOutlet weak var saveLocation: UIButton!
+    @IBOutlet weak var createAFavoriteLocation: UIButton!
 
     var coordinatesArray = [(lat: Double, long: Double)] ()
     var storeValue = ""
