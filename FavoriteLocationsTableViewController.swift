@@ -24,23 +24,34 @@ class FavoriteLocationsTableViewController: UITableViewController {
         let defaults = UserDefaults.standard
         let favoriteLocations =  defaults.string(forKey: favoriteLocationKey)
         
-        var output = [(lat: "", long: "", location: "")] 
+        /*
+         
         
         if let newCell = favoriteLocations?.components(separatedBy: ";") {
             let components = newCell
         }
+         */
         
-        //let components = favoriteLocations.components(separatedBy: ";")
+        let components = favoriteLocations?.components(separatedBy: ";")
+         
+        print (components)
+        
+        var output = [(lat: "", long: "", location: "")]
         
         
-        for component in components {
+        for component in components! {
             if !component.isEmpty {
                 
                 let subComponents = component.components(separatedBy: ";")
-                let tuple = (lat: subComponents[0], long: [1], location: [2])
-                output.append(tuple)
+                let tuple = (lat: subComponents[0], long: subComponents[1], location: subComponents[2])
+                
+                print (tuple)
+                //output.append(tuple)
             }
         }
+        
+        //print (output)
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
