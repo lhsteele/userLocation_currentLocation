@@ -233,7 +233,6 @@
                                 <state key="normal" title="Save Favorite"/>
                                 <connections>
                                     <action selector="saveFavorite:" destination="1fE-IW-njT" eventType="touchUpInside" id="aFr-jG-7nI"/>
-                                    <segue destination="8vQ-W8-wwu" kind="show" id="u0R-PN-Pvv"/>
                                 </connections>
                             </button>
                         </subviews>
