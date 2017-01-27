@@ -23,6 +23,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
         
         let defaults = UserDefaults.standard
         let favoriteLocations =  defaults.string(forKey: favoriteLocationKey)
+        print (favoriteLocations)
         
         /*
          
@@ -33,22 +34,30 @@ class FavoriteLocationsTableViewController: UITableViewController {
          */
         
         let components = favoriteLocations?.components(separatedBy: ";")
+        let tuple = (lat: components?[0], long: components?[1], location: components?[2])
         
-        print (components)
+        print (tuple)
+        print (tuple.lat)
         
-        var output = [(lat: "", long: "", location: "")]
+        //var output = [(lat: String, long: String, location: String)] ()
         
-        
-        for component in components! {
+        /*
+        for component in components {
             if !component.isEmpty {
                 
                 let subComponents = component.components(separatedBy: ";")
+                //print (subComponents)
+                
+                
+                
                 let tuple = (lat: subComponents[0], long: subComponents[1], location: subComponents[2])
                 
-                print (tuple)
-                //output.append(tuple)
+                
+                //print (tuple)
+                output.append(tuple)
             }
         }
+        */
         
         //print (output)
         

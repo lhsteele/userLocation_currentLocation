@@ -110,12 +110,12 @@
 				EF3821541E2415DF00032F42 /* AppDelegate.swift */,
 				EF3821561E2415DF00032F42 /* MapView Controller.swift */,
 				EFFB04E21E2E8BD40071D961 /* SaveLocationDetailViewController.swift */,
+				EFDE1A581E3A9403002D1589 /* FavoriteLocationsTableViewController.swift */,
 				EF8F847F1E25A33A00C32EBA /* userFavorites.swift */,
 				EF3821581E2415DF00032F42 /* Main.storyboard */,
 				EF38215B1E2415DF00032F42 /* Assets.xcassets */,
 				EF38215D1E2415DF00032F42 /* LaunchScreen.storyboard */,
 				EF3821601E2415DF00032F42 /* Info.plist */,
-				EFDE1A581E3A9403002D1589 /* FavoriteLocationsTableViewController.swift */,
 			);
 			path = userLocation;
 			sourceTree = "<group>";
