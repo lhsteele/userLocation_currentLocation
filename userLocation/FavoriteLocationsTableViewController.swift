@@ -25,23 +25,24 @@ class FavoriteLocationsTableViewController: UITableViewController {
         let favoriteLocations =  defaults.string(forKey: favoriteLocationKey)
         print (favoriteLocations)
         
-        /*
-         
-         
-         if let newCell = favoriteLocations?.components(separatedBy: ";") {
-         let components = newCell
-         }
-         */
         
+        if let newCell = favoriteLocations?.components(separatedBy: ";") {
+            let components = newCell
+            
+            let tuple = (lat: newCell[0], long: newCell[1], location: newCell[2])
+            
+            print (tuple)
+            print (tuple.lat)
+            
+        }
+ 
+        /*
         let components = favoriteLocations?.components(separatedBy: ";")
-        let tuple = (lat: components?[0], long: components?[1], location: components?[2])
         
-        print (tuple)
-        print (tuple.lat)
         
-        //var output = [(lat: String, long: String, location: String)] ()
+        var output = [(lat: String, long: String, location: String)] ()
         
-        /*
+        
         for component in components {
             if !component.isEmpty {
                 
@@ -57,10 +58,10 @@ class FavoriteLocationsTableViewController: UITableViewController {
                 output.append(tuple)
             }
         }
+ 
+        
+        print (output)
         */
-        
-        //print (output)
-        
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -69,14 +70,14 @@ class FavoriteLocationsTableViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
-    /*
-     func addFavorite() {
-     let favorite = SavedFavorites(location: "", coordinate: "")
-     self.listOfFavorites.append(favorite)
-     let newIndexPath = IndexPath(row: self.listOfFavorites.count - 1, section: 0)
-     self.tableView.insertRows(at: [newIndexPath], with: .automatic)
-     }
-     */
+    
+    func addFavorite() {
+        let favorite = SavedFavorites(location: "", coordinate: "")
+        self.listOfFavorites.append(favorite)
+        let newIndexPath = IndexPath(row: self.listOfFavorites.count - 1, section: 0)
+        self.tableView.insertRows(at: [newIndexPath], with: .automatic)
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
