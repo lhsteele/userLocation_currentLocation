@@ -18,6 +18,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
     var listOfFavorites: [SavedFavorites] = []
     var components = ""
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,32 +35,35 @@ class FavoriteLocationsTableViewController: UITableViewController {
             print (tuple)
             print (tuple.lat)
             
+            func addFavorite() {
+                let newLatCoord = tuple.lat
+                let newLongCoord = tuple.long
+                let newLocation = tuple.location
+                self.listOfFavorites.append(newLatCoord)
+                let newIndexPath = IndexPath(row: self.listOfFavorites.count - 1, section: 0)
+                self.tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
         }
+        
+        
  
         /*
         let components = favoriteLocations?.components(separatedBy: ";")
         
-        
         var output = [(lat: String, long: String, location: String)] ()
-        
         
         for component in components {
             if !component.isEmpty {
                 
                 let subComponents = component.components(separatedBy: ";")
-                //print (subComponents)
-                
-                
-                
+                print (subComponents)
+         
                 let tuple = (lat: subComponents[0], long: subComponents[1], location: subComponents[2])
-                
-                
-                //print (tuple)
+         
+                print (tuple)
                 output.append(tuple)
             }
         }
- 
-        
         print (output)
         */
         
@@ -71,11 +75,19 @@ class FavoriteLocationsTableViewController: UITableViewController {
     }
     
     
-    func addFavorite() {
-        let favorite = SavedFavorites(location: "", coordinate: "")
-        self.listOfFavorites.append(favorite)
-        let newIndexPath = IndexPath(row: self.listOfFavorites.count - 1, section: 0)
-        self.tableView.insertRows(at: [newIndexPath], with: .automatic)
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        let favorite = self.listOfFavorites[indexPath.row]
+        
+        if let locationName = listOfFavorites.location {
+            cell.textLabel?.text = listOfFavorites.location
+        } else {
+            cell.textLabel?.text = ""
+        }
+        
+        return cell
     }
     
     
@@ -100,23 +112,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return self.listOfFavorites.count
     }
-    
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        
-        let favorite = self.listOfFavorites[indexPath.row]
-        
-        if let coordinate = favorite.coordinate {
-            cell.textLabel?.text = coordinate
-        } else {
-            cell.textLabel?.text = "No Coordinates Saved"
-        }
-        
-        return cell
-    }
-    
-    
+   
     
     /*
      // Override to support conditional editing of the table view.
