@@ -12,39 +12,34 @@ let favoriteLocationKey = "NewFavoriteLocation"
 
 class FavoriteLocationsTableViewController: UITableViewController {
     
-    
-    //var favorite = ""
-    
+	// listOfFavorites is an array where each item inside 
+	// is of type SavedFavourites.
+	// e.g.
+	// listOfFavourites[0] is of type SavedFavourites, so
+	// the following syntax is correct: listOfFavourites[0].latCoord 
+	// it would return a String? value.
     var listOfFavorites: [SavedFavorites] = []
     var components = ""
     
     
     override func viewDidLoad() {
+		
         super.viewDidLoad()
-        
+	
         let defaults = UserDefaults.standard
         let favoriteLocations =  defaults.string(forKey: favoriteLocationKey)
         print (favoriteLocations)
-        
-        
-        if let newCell = favoriteLocations?.components(separatedBy: ";") {
-            let components = newCell
-            
-            let tuple = (lat: newCell[0], long: newCell[1], location: newCell[2])
-            
+        if let components = favoriteLocations?.components(separatedBy: ";") {
+			
+            let tuple = (lat: components[0], long: components[1], location: components[2])
             print (tuple)
             print (tuple.lat)
-            
-            func addFavorite() {
-                let newLatCoord = tuple.lat
-                let newLongCoord = tuple.long
-                let newLocation = tuple.location
-                self.listOfFavorites.append(newLatCoord)
-                let newIndexPath = IndexPath(row: self.listOfFavorites.count - 1, section: 0)
-                self.tableView.insertRows(at: [newIndexPath], with: .automatic)
-            }
+            addFavorite(tuple: tuple)
         }
-        
+		// After adding all the object to our listOfFavorites
+		// array, we can reload the table view
+		tableView.reloadData()
+		
         
  
         /*
@@ -73,20 +68,59 @@ class FavoriteLocationsTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-    
-    
-    
+	
+	
+	// We define a addFavorite(tuple:) function that takes a tuple as
+	// an argument. This function is defined here, inside the
+	// FavoriteLocationsTableViewController class, at the same level
+	// as all the other functions.
+	
+	// Once defined, we can use it above, on line 37.
+	func addFavorite(tuple: (lat: String, long:String, location: String)) {
+		
+		let newLatCoord = tuple.lat
+		let newLongCoord = tuple.long
+		let newLocation = tuple.location
+		// The 3 contants from above are all of type String?
+		// and we can use them to instantiate a new object
+		// of type SavedFavourites
+		let newFavourite = SavedFavorites(latCoord: newLatCoord, longCoord: newLongCoord, location: newLocation)
+		// only now, this new object of type SavedFavourites
+		// to which the constant newFavourite points to
+		// can be added to our array.
+		self.listOfFavorites.append(newFavourite)
+		// Remember, all the elements of listOfFavorites
+		// need to be of type SavedFavorites.
+	}
+	
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
         let favorite = self.listOfFavorites[indexPath.row]
-        
-        if let locationName = listOfFavorites.location {
-            cell.textLabel?.text = listOfFavorites.location
-        } else {
-            cell.textLabel?.text = ""
-        }
-        
+		
+		// Wrong:
+//        if let locationName = listOfFavorites.location {
+//            cell.textLabel?.text = listOfFavorites.location
+//        } else {
+//            cell.textLabel?.text = ""
+//        }
+		
+		// Correct:
+		// On line 97, we have created a constant pointing to
+		// the item in an array for the current row. We
+		// should use this constant from this point onward.
+		if let locationName = favorite.location {
+			
+			// Since we unwrap the optional favourite.location
+			// and assign the unwrapped value to locationName constant,
+			// we should use this constant from that point onwards
+			// inside this if.
+			cell.textLabel?.text = locationName
+		} else {
+			cell.textLabel?.text = ""
+		}
+
+		
         return cell
     }
     
