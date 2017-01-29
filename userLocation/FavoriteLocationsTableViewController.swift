@@ -18,7 +18,6 @@ class FavoriteLocationsTableViewController: UITableViewController {
     var listOfFavorites: [SavedFavorites] = []
     var components = ""
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,6 +34,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
             print (tuple)
             print (tuple.lat)
             
+            /*
             func addFavorite() {
                 let newLatCoord = tuple.lat
                 let newLongCoord = tuple.long
@@ -43,6 +43,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
                 let newIndexPath = IndexPath(row: self.listOfFavorites.count - 1, section: 0)
                 self.tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
+            */
         }
         
         
@@ -74,8 +75,21 @@ class FavoriteLocationsTableViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    func addFavorite(tuple: (lat: String, long: String, location: String)) {
+        
+        let newLatCoord = tuple.lat
+        let newLongCoord = tuple.long
+        let newLocation = tuple.location
+        
+        let newFavorite = SavedFavorites(latCoord: newLatCoord, longCoord: newLongCoord, location: newLocation)
+        
+        self.listOfFavorites.append(newFavorite)
+        
+        print (listOfFavorites)
+    }
     
     
+    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
@@ -89,6 +103,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
         
         return cell
     }
+    */
     
     
     override func viewWillAppear(_ animated: Bool) {
