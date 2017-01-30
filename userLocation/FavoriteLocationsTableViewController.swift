@@ -69,6 +69,8 @@ class FavoriteLocationsTableViewController: UITableViewController {
         self.listOfFavorites.append(newFavourite)
         // Remember, all the elements of listOfFavorites
         // need to be of type SavedFavorites.
+        let newIndexPath = IndexPath(row: self.listOfFavorites.count - 1, section: 0)
+        self.tableView.insertRows(at: [newIndexPath], with: .automatic)
     }
     
     
@@ -98,8 +100,6 @@ class FavoriteLocationsTableViewController: UITableViewController {
         } else {
             cell.textLabel?.text = ""
         }
-        
-        
         return cell
     }
     
@@ -113,11 +113,9 @@ class FavoriteLocationsTableViewController: UITableViewController {
         }
     }
     
-    
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tableView.reloadData()
+        
     }
     
     override func didReceiveMemoryWarning() {
