@@ -43,6 +43,8 @@ class FavoriteLocationsTableViewController: UITableViewController {
         let moveButton = UIBarButtonItem(title: "Re-order", style: .plain, target: self, action: #selector(FavoriteLocationsTableViewController.toggleEdit))
         navigationItem.leftBarButtonItem = moveButton
         
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(FavoriteLocationsTableViewController.addNewFavorite))
+        navigationItem.rightBarButtonItem = addButton
     }
     
     
@@ -99,6 +101,16 @@ class FavoriteLocationsTableViewController: UITableViewController {
         
         
         return cell
+    }
+    
+    func addNewFavorite(_ sender: Any?) {
+        performSegue(withIdentifier: "AddNewFavoriteSegue", sender: sender)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "AddNewFavoriteSegue") {
+            let pThree = segue.destination as! ViewController
+        }
     }
     
     
