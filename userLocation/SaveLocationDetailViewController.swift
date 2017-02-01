@@ -60,8 +60,19 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func saveFavorite(_ sender: Any) {
         let defaults = UserDefaults.standard
-        defaults.set(newFavLoc, forKey: "NewFavoriteLocation")
+        let existingFavLoc = String()
         
+        /*
+        if let UserDefaults.standard().object(forKey: "NewFavoriteLocation") == nil {
+            let newFavLoc = UserDefaults.standard.object(forKey: "NewFavoriteLocation")
+        } else {
+            defaults.setObject(existingFavLoc, "+", newFavLoc, forKey: "NewFavoriteLocation")
+        }
+        
+        defaults.set(existingFavLoc, "+", newFavLoc, forKey: "NewFavoriteLocation")
+        */
+        
+ 
         performSegue(withIdentifier: "FavoriteLocationTableSegue", sender: sender)
        
     }
