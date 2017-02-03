@@ -29,13 +29,19 @@ class FavoriteLocationsTableViewController: UITableViewController {
         let favoriteLocations =  defaults.string(forKey: favoriteLocationKey)
         
         //need a for loop to loop through and separate by not just ";", but also "+"
-        
-        if let components = favoriteLocations?.components(separatedBy: ";") {
+        if let components = favoriteLocations?.components(separatedBy: "+") {
+            for component in components {
+                if let locationTuple = favoriteLocations?.components(separatedBy: ";") {
+                    let singleLocation = (lat: components[0], long: components[1], location: components[2])
+                    
+                    addFavorite(tuple: singleLocation)
+
+                }
+            }
+            //let locationTuple = (lat: components[0], long: components[1], location: components[2])
             
-            let locationTuple = (lat: components[0], long: components[1], location: components[2])
-            
-            addFavorite(tuple: locationTuple)
         }
+        
         // After adding all the object to our listOfFavorites
         // array, we can reload the table view
         tableView.reloadData()
