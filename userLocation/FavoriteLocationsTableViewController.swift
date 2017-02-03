@@ -44,7 +44,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
                     let singleLocation = (lat: components[0], long: components[1], location: components[2])
                     addFavorite(tuple: singleLocation)
                 } else {
-                    let locationTuple = favoriteLocations?.components(separatedBy: ":")
+                    let locationTuple = favoriteLocations?.components(separatedBy: ";")
                 }
             }
             //let locationTuple = (lat: components[0], long: components[1], location: components[2])
