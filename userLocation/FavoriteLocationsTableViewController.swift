@@ -28,6 +28,15 @@ class FavoriteLocationsTableViewController: UITableViewController {
         let defaults = UserDefaults.standard
         let favoriteLocations =  defaults.string(forKey: favoriteLocationKey)
         
+        /*
+        if let components = favoriteLocations?.components(separatedBy: ";") {
+            let locationTuple = (lat: components[0], long: components[1], location: components[2])
+            addFavorite(tuple: locationTuple)
+            
+            print(locationTuple)
+        }
+        */
+        
         //need a for loop to loop through and separate by not just ";", but also "+"
         if let components = favoriteLocations?.components(separatedBy: "+") {
             for component in components {
@@ -41,6 +50,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
             //let locationTuple = (lat: components[0], long: components[1], location: components[2])
             
         }
+        
         
         // After adding all the object to our listOfFavorites
         // array, we can reload the table view

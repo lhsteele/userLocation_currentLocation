@@ -34,7 +34,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
             locationNameString = "\(text)"
         }
         
-        var newFavCoord = coordinatesPassed
+        let newFavCoord = coordinatesPassed
         newFavLoc = newFavCoord + (locationNameString)
         
     }
@@ -61,10 +61,12 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     @IBAction func saveFavorite(_ sender: Any) {
         let defaults = UserDefaults.standard
         
+        
         if let existingFavLoc = defaults.string(forKey: "NewFavoriteLocation") {
             defaults.set(existingFavLoc + "+" + newFavLoc, forKey: "NewFavoriteLocation")
         }
         
+    
         /*
         if let UserDefaults.standard().object(forKey: "NewFavoriteLocation") == nil {
             let newFavLoc = UserDefaults.standard.object(forKey: "NewFavoriteLocation")
