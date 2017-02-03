@@ -35,7 +35,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
                     let singleLocation = (lat: components[0], long: components[1], location: components[2])
                     
                     addFavorite(tuple: singleLocation)
-
+                    print(singleLocation)
                 }
             }
             //let locationTuple = (lat: components[0], long: components[1], location: components[2])
@@ -65,7 +65,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
         let newLatCoord = tuple.lat
         let newLongCoord = tuple.long
         let newLocation = tuple.location
-        // The 3 contants from above are all of type String?
+        // The 3 contants from above are all of type String
         // and we can use them to instantiate a new object
         // of type SavedFavourites
         let newFavourite = SavedFavorites(latCoord: newLatCoord, longCoord: newLongCoord, location: newLocation)
