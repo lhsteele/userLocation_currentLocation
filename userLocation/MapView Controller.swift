@@ -56,7 +56,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
-        manager.requestWhenInUseAuthorization()
+        manager.requestWhenInUseAuthorization()        
         manager.startUpdatingLocation()
         
     }
