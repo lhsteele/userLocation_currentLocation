@@ -21,7 +21,6 @@ class FavoriteLocationsTableViewController: UITableViewController {
     var listOfFavorites: [SavedFavorites] = []
     var components = ""
     
-    
     override func viewDidLoad() {
 		
         super.viewDidLoad()
@@ -107,6 +106,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
 		// need to be of type SavedFavorites.
 	}
 	
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
@@ -137,6 +137,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
 		
         return cell
     }
+    */
     
     
     override func viewWillAppear(_ animated: Bool) {
