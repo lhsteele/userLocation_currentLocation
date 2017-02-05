@@ -11,10 +11,10 @@ import MapKit
 
 
 class SavedFavorites: NSObject {
+	
     var latCoord: String?
     var longCoord: String?
     var location: String?
-    
     
     init(latCoord: String? = nil, longCoord: String? = nil, location: String? = nil) {
         self.location = location

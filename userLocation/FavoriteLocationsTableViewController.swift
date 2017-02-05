@@ -27,14 +27,23 @@ class FavoriteLocationsTableViewController: UITableViewController {
         super.viewDidLoad()
 	
         let defaults = UserDefaults.standard
-        let favoriteLocations =  defaults.string(forKey: favoriteLocationKey)
-        print (favoriteLocations)
-        if let components = favoriteLocations?.components(separatedBy: ";") {
+		// e.g. storedLocation = "12;23;work+13;45;home"
+        let storedLocations =  defaults.string(forKey: favoriteLocationKey)
+		
+		/*
+		e.g. locations = ["12;23;work", "13;45;home"]
+		*/
+        if let locations = storedLocations?.components(separatedBy: "+") {
 			
-            let tuple = (lat: components[0], long: components[1], location: components[2])
-            print (tuple)
-            print (tuple.lat)
-            addFavorite(tuple: tuple)
+			for location in locations {
+				
+				let locationComponents = location.components(separatedBy: ";")
+				let s = SavedFavorites(latCoord: locationComponents[0],
+									   longCoord: locationComponents[1],
+									   location: locationComponents[2])
+	//			thirdAddFavourite(location: s)
+				listOfFavorites.append(s)
+			}
         }
 		// After adding all the object to our listOfFavorites
 		// array, we can reload the table view
@@ -74,17 +83,22 @@ class FavoriteLocationsTableViewController: UITableViewController {
 	// an argument. This function is defined here, inside the
 	// FavoriteLocationsTableViewController class, at the same level
 	// as all the other functions.
+
+	func secondAddFavorite(lat: String, long:String, location: String) {
+		
+		let newFavourite = SavedFavorites(latCoord: lat, longCoord: long, location: location)
+	}
+	
+	func thirdAddFavourite(location: SavedFavorites) {
+		
+		
+	}
 	
 	// Once defined, we can use it above, on line 37.
 	func addFavorite(tuple: (lat: String, long:String, location: String)) {
 		
-		let newLatCoord = tuple.lat
-		let newLongCoord = tuple.long
-		let newLocation = tuple.location
-		// The 3 contants from above are all of type String?
-		// and we can use them to instantiate a new object
-		// of type SavedFavourites
-		let newFavourite = SavedFavorites(latCoord: newLatCoord, longCoord: newLongCoord, location: newLocation)
+		// We instantiate a new object of type SavedFavourites
+		let newFavourite = SavedFavorites(latCoord: tuple.lat, longCoord: tuple.long, location: tuple.location)
 		// only now, this new object of type SavedFavourites
 		// to which the constant newFavourite points to
 		// can be added to our array.
