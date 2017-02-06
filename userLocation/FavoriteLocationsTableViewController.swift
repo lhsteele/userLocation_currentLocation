@@ -27,6 +27,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
         
         let defaults = UserDefaults.standard
         let favoriteLocations =  defaults.string(forKey: favoriteLocationKey)
+        print(favoriteLocations)
         
         /*
         if let components = favoriteLocations?.components(separatedBy: ";") {
