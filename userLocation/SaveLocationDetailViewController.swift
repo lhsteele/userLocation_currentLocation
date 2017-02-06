@@ -68,6 +68,8 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         } else {
             defaults.set(newFavLoc, forKey: "NewFavoriteLocation")
         }
+        
+        
  
         
         /*
