@@ -38,29 +38,34 @@ class FavoriteLocationsTableViewController: UITableViewController {
         }
         */
         
+        //let charSet = NSCharacterSet(charactersIn: ";;+")
+        
         //need a for loop to loop through and separate by not just ";", but also "+"
         if let components = favoriteLocations?.components(separatedBy: "+") {
             print(components)
             for component in components {
-                if let locationTuple = favoriteLocations?.components(separatedBy: ";") {
-                    print(locationTuple)
-                    let singleLocation = (lat: components[0], long: components[1], location: components[2])
-                    addFavorite(tuple: singleLocation)
-                } else {
-                    let locationTuple = favoriteLocations?.components(separatedBy: ";")
-                    print(locationTuple)
-                }
+                let locationComponents = component.components(separatedBy: ";")
+                //components method always results in an array
+                print(locationComponents)
+                let singleLocation = (lat: locationComponents[0], long: locationComponents[1], location: locationComponents[2])
+                print(singleLocation)
+                addFavorite(tuple: singleLocation)
             }
-            //let locationTuple = (lat: components[0], long: components[1], location: components[2])
-            
         }
- 
- 
+        //On line 44, we iterate through the favoriteLocations string and deconstruct by the character "+". Then on line 47, I was interating back through the favoriteLocations string to then deconstruct by ";". This is the reason locationComponents was adding the "+" back in, and not deconstructing properly. Now it is iterating through the component variable, which at this point is "lat, long, location". The .components method always results in an array. So this is why I can refer to index numbers on line 50, because the component variable has been deconstructed by ";", and is now an array of strings.
+        
+        
+        //let locationTuple = (lat: components[0], long: components[1], location: components[2])
+        
         
         
         // After adding all the object to our listOfFavorites
         // array, we can reload the table view
         tableView.reloadData()
+        
+        //read from iCloud
+        
+        //need to tableView.reloadData() again in the success closure after reading from iCloud. We may need to split data again (as above), append to listOfFavorites, feed to table view, and then trigger the tableView reload.
         
         let moveButton = UIBarButtonItem(title: "Re-order", style: .plain, target: self, action: #selector(FavoriteLocationsTableViewController.toggleEdit))
         navigationItem.leftBarButtonItem = moveButton
