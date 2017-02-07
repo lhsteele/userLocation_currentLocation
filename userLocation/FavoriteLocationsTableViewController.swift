@@ -40,17 +40,22 @@ class FavoriteLocationsTableViewController: UITableViewController {
         
         //need a for loop to loop through and separate by not just ";", but also "+"
         if let components = favoriteLocations?.components(separatedBy: "+") {
+            print(components)
             for component in components {
                 if let locationTuple = favoriteLocations?.components(separatedBy: ";") {
+                    print(locationTuple)
                     let singleLocation = (lat: components[0], long: components[1], location: components[2])
                     addFavorite(tuple: singleLocation)
                 } else {
                     let locationTuple = favoriteLocations?.components(separatedBy: ";")
+                    print(locationTuple)
                 }
             }
             //let locationTuple = (lat: components[0], long: components[1], location: components[2])
             
         }
+ 
+ 
         
         
         // After adding all the object to our listOfFavorites
