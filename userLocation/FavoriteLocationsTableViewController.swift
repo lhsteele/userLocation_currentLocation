@@ -11,13 +11,7 @@ import UIKit
 let favoriteLocationKey = "NewFavoriteLocation"
 
 class FavoriteLocationsTableViewController: UITableViewController {
-    
-    // listOfFavorites is an array where each item inside
-    // is of type SavedFavourites.
-    // e.g.
-    // listOfFavourites[0] is of type SavedFavourites, so
-    // the following syntax is correct: listOfFavourites[0].latCoord
-    // it would return a String? value.
+
     var listOfFavorites: [SavedFavorites] = []
     var components = ""
     
@@ -27,41 +21,21 @@ class FavoriteLocationsTableViewController: UITableViewController {
         
         let defaults = UserDefaults.standard
         let favoriteLocations =  defaults.string(forKey: favoriteLocationKey)
-        print(favoriteLocations)
+        //print(favoriteLocations)
         
-        /*
-        if let components = favoriteLocations?.components(separatedBy: ";") {
-            let locationTuple = (lat: components[0], long: components[1], location: components[2])
-            addFavorite(tuple: locationTuple)
-            
-            print(locationTuple)
-        }
-        */
-        
-        //let charSet = NSCharacterSet(charactersIn: ";;+")
-        
-        //need a for loop to loop through and separate by not just ";", but also "+"
         if let components = favoriteLocations?.components(separatedBy: "+") {
-            print(components)
+            //print(components)
             for component in components {
                 let locationComponents = component.components(separatedBy: ";")
-                //components method always results in an array
-                print(locationComponents)
+                //print(locationComponents)
                 let singleLocation = (lat: locationComponents[0], long: locationComponents[1], location: locationComponents[2])
-                print(singleLocation)
+                //print(singleLocation)
                 addFavorite(tuple: singleLocation)
             }
         }
-        //On line 44, we iterate through the favoriteLocations string and deconstruct by the character "+". Then on line 47, I was interating back through the favoriteLocations string to then deconstruct by ";". This is the reason locationComponents was adding the "+" back in, and not deconstructing properly. Now it is iterating through the component variable, which at this point is "lat, long, location". The .components method always results in an array. So this is why I can refer to index numbers on line 50, because the component variable has been deconstructed by ";", and is now an array of strings.
-        
-        
-        //let locationTuple = (lat: components[0], long: components[1], location: components[2])
-        
-        
-        
-        // After adding all the object to our listOfFavorites
-        // array, we can reload the table view
+
         tableView.reloadData()
+        
         
         //read from iCloud
         
@@ -74,30 +48,21 @@ class FavoriteLocationsTableViewController: UITableViewController {
         navigationItem.rightBarButtonItem = addButton
     }
     
-    
-    // We define a addFavorite(tuple:) function that takes a tuple as
-    // an argument. This function is defined here, inside the
-    // FavoriteLocationsTableViewController class, at the same level
-    // as all the other functions.
-    
-    // Once defined, we can use it above, on line 37.
     func addFavorite(tuple: (lat: String, long:String, location: String)) {
         
         let newLatCoord = tuple.lat
         let newLongCoord = tuple.long
         let newLocation = tuple.location
-        // The 3 contants from above are all of type String
-        // and we can use them to instantiate a new object
-        // of type SavedFavourites
+       
         let newFavourite = SavedFavorites(latCoord: newLatCoord, longCoord: newLongCoord, location: newLocation)
-        // only now, this new object of type SavedFavourites
-        // to which the constant newFavourite points to
-        // can be added to our array.
+        print (newFavourite)
+        
         self.listOfFavorites.append(newFavourite)
-        // Remember, all the elements of listOfFavorites
-        // need to be of type SavedFavorites.
+      
         let newIndexPath = IndexPath(row: self.listOfFavorites.count - 1, section: 0)
         self.tableView.insertRows(at: [newIndexPath], with: .automatic)
+        
+        //print(listOfFavorites)
     }
     
     
@@ -105,24 +70,9 @@ class FavoriteLocationsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
         let favorite = self.listOfFavorites[indexPath.row]
-        
-        // Wrong:
-        //        if let locationName = listOfFavorites.location {
-        //            cell.textLabel?.text = listOfFavorites.location
-        //        } else {
-        //            cell.textLabel?.text = ""
-        //        }
-        
-        // Correct:
-        // On line 97, we have created a constant pointing to
-        // the item in an array for the current row. We
-        // should use this constant from this point onward.
+    
         if let locationName = favorite.location {
             
-            // Since we unwrap the optional favourite.location
-            // and assign the unwrapped value to locationName constant,
-            // we should use this constant from that point onwards
-            // inside this if.
             cell.textLabel?.text = locationName
         } else {
             cell.textLabel?.text = ""
@@ -171,12 +121,14 @@ class FavoriteLocationsTableViewController: UITableViewController {
             self.listOfFavorites.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
+        tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         let favoriteMoving = listOfFavorites.remove(at: fromIndexPath.row)
         listOfFavorites.insert(favoriteMoving, at: to.row)
     }
+    
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         if tableView.isEditing {
@@ -185,6 +137,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
             return .delete
         }
     }
+    
     
     override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return false

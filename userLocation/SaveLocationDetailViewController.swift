@@ -60,9 +60,8 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func saveFavorite(_ sender: Any) {
         let defaults = UserDefaults.standard
-        
         //defaults.removeObject(forKey: "NewFavoriteLocation")
-    
+        
         if let existingFavLoc = defaults.string(forKey: "NewFavoriteLocation") {
             defaults.set(existingFavLoc + "+" + newFavLoc, forKey: "NewFavoriteLocation")
         } else {
@@ -71,33 +70,8 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         
         //Here, we need to send this information to iCloud. Send key in similar data structure.
  
+        //Zephyr.sync(keys: "NewFavoriteLocation")
         
-        /*
-        if existingFavLoc == nil {
-            defaults.set(existingFavLoc! + "+" + newFavLoc, forKey: "NewFavoriteLocation")
-        } else {
-            defaults.set(newFavLoc, forKey: "NewFavoriteLocation")
-        }
- */
-        
-        
-        /*
-        if let existingFavLoc = defaults.string(forKey: "NewFavoriteLocation") {
-            defaults.set(existingFavLoc + "+" + newFavLoc, forKey: "NewFavoriteLocation")
-        }
-        */
-    
-        /*
-        if let UserDefaults.standard().object(forKey: "NewFavoriteLocation") == nil {
-            let newFavLoc = UserDefaults.standard.object(forKey: "NewFavoriteLocation")
-        } else {
-            defaults.setObject(existingFavLoc, "+", newFavLoc, forKey: "NewFavoriteLocation")
-        }
-        
-        defaults.set(existingFavLoc, "+", newFavLoc, forKey: "NewFavoriteLocation")
-        */
-        
- 
         performSegue(withIdentifier: "FavoriteLocationTableSegue", sender: sender)
        
     }
@@ -113,7 +87,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
     
 }
