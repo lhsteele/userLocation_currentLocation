@@ -116,16 +116,17 @@ class FavoriteLocationsTableViewController: UITableViewController {
         return true
     }
     
+  
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             self.listOfFavorites.remove(at: indexPath.row)
             let defaults = UserDefaults.standard
             
-            if let deletedLocation = defaults.string(forKey: "NewFavoriteLocation") {
+            var deletedLocation: Bool = true
                 
-                tableView.deleteRows(at: [indexPath], with: .fade)
+            if deletedLocation = tableView.deleteRows(at: [indexPath], with: .fade) {
             
-                defaults.set(deletedLocation, forKey: "NewFavoriteLocation")
+                defaults.set(Bool.deletedLocation, forKey: favoriteLocationKey)
             }
         } 
         tableView.reloadData()
