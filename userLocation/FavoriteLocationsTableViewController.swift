@@ -69,18 +69,20 @@ class FavoriteLocationsTableViewController: UITableViewController {
         //in this function, I need to convert the listOfFavorites back to a single string.
         //assign this to the variable updatedListOfFavorites, and this will be saved to userDefaults.
         
-        for _ in 0...2 {
-            let updatedLatCoord = listOfFavorites[0].latCoord
-            let updatedLongCoord = listOfFavorites[0].longCoord
-            let updatedLocation  = listOfFavorites[0].location
+        for updatedLatCoord in (0...listOfFavorites.count) {
+            let updatedLatCoord = listOfFavorites.latCoord as! SavedFavorites
+            let updatedLongCoord = listOfFavorites.longCoord as! SavedFavorites
+            let updatedLocation  = listOfFavorites.location as! SavedFavorites
             
             let updatedListLocations = (tuple: (latCoord: updatedLatCoord, longCoord: updatedLongCoord, location: updatedLocation))
+            print (updatedListLocations)
         
             let storeUpdatedLat = updatedListLocations.latCoord! as String
             let storeUpdatedLong = updatedListLocations.longCoord! as String
             let storeUpdatedLocation = updatedListLocations.location! as String
             
             let updatedListOfFavorites = "\(storeUpdatedLat);\(storeUpdatedLong);\(storeUpdatedLocation)+"
+            print (updatedListOfFavorites)
         }
         
         let defaults = UserDefaults.standard
