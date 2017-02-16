@@ -60,7 +60,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func saveFavorite(_ sender: Any) {
         let defaults = UserDefaults.standard
-        defaults.removeObject(forKey: "NewFavoriteLocation")
+        //defaults.removeObject(forKey: "NewFavoriteLocation")
         
         if let existingFavLoc = defaults.string(forKey: "NewFavoriteLocation") {
             defaults.set(existingFavLoc + "+" + newFavLoc, forKey: "NewFavoriteLocation")

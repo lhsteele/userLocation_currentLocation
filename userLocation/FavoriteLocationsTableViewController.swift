@@ -14,7 +14,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
 
     var listOfFavorites: [SavedFavorites] = []
     var components = ""
-    var updatedListOfFavorites: [String] = []
+    var updatedListOfFavorites = String()
     
     override func viewDidLoad() {
         
@@ -65,7 +65,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
     }
     
     
-    func resaveListOfFavorites(tuple: (latCoord: String, longCoord: String, location: String)) {
+    func resaveListOfFavorites() -> String {
         //in this function, I need to convert the listOfFavorites back to a single string.
         //assign this to the variable updatedListOfFavorites, and this will be saved to userDefaults.
         
@@ -80,11 +80,13 @@ class FavoriteLocationsTableViewController: UITableViewController {
             let storeUpdatedLong = updatedListLocations.longCoord! as String
             let storeUpdatedLocation = updatedListLocations.location! as String
             
-            let updatedListOfFavorites = [String](arrayLiteral: storeUpdatedLat, storeUpdatedLong, storeUpdatedLocation)
+            let updatedListOfFavorites = (storeUpdatedLat, storeUpdatedLong, storeUpdatedLocation)
         }
         
         let defaults = UserDefaults.standard
         defaults.set(updatedListOfFavorites, forKey: favoriteLocationKey)
+        
+        return updatedListOfFavorites
     }
  
     
@@ -107,7 +109,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
             self.listOfFavorites.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
-        //resaveListOfFavorites()
+        resaveListOfFavorites()
         
         tableView.reloadData()
     }
