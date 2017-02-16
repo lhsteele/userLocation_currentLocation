@@ -22,15 +22,15 @@ class FavoriteLocationsTableViewController: UITableViewController {
         
         let defaults = UserDefaults.standard
         let favoriteLocations =  defaults.string(forKey: favoriteLocationKey)
-        print(favoriteLocations)
+        //print(favoriteLocations)
         
         if let components = favoriteLocations?.components(separatedBy: "+") {
-            print(components)
+            //print(components)
             for component in components {
                 let locationComponents = component.components(separatedBy: ";")
-                print(locationComponents)
+                //print(locationComponents)
                 let singleLocation = (lat: locationComponents[0], long: locationComponents[1], location: locationComponents[2])
-                print(singleLocation)
+                //print(singleLocation)
                 addFavorite(tuple: singleLocation)
             }
         }
@@ -54,28 +54,39 @@ class FavoriteLocationsTableViewController: UITableViewController {
         let newLatCoord = tuple.lat
         let newLongCoord = tuple.long
         let newLocation = tuple.location
-       
+        
         let newFavourite = SavedFavorites(latCoord: newLatCoord, longCoord: newLongCoord, location: newLocation)
-        print (newFavourite)
         
         self.listOfFavorites.append(newFavourite)
       
         let newIndexPath = IndexPath(row: self.listOfFavorites.count - 1, section: 0)
         self.tableView.insertRows(at: [newIndexPath], with: .automatic)
         
-        print(listOfFavorites)
     }
     
-    func removeFavorite(SavedFavorites: (latCoord: String, longCoord: String, location: String)) {
+    
+    func resaveListOfFavorites(tuple: (latCoord: String, longCoord: String, location: String)) {
+        //in this function, I need to convert the listOfFavorites back to a single string.
+        //assign this to the variable updatedListOfFavorites, and this will be saved to userDefaults.
         
+        for index in 0...2 {
+            let updatedLatCoord = listOfFavorites[0].latCoord
+            let updatedLongCoord = listOfFavorites[1].longCoord
+            let updatedLocation  = listOfFavorites[2].location
+            
+            let updatedListLocations = (tuple: (latCoord: updatedLatCoord, longCoord: updatedLongCoord, location: updatedLocation))
         
-        let defaults = UserDefaults.standard
-        
-        if updatedListOfFavorites = listOfFavorites as! [String] {
-            defaults.set(updatedListOfFavorites, forKey: favoriteLocationKey)
+            let storeUpdatedLat = updatedListLocations.latCoord! as String
+            let storeUpdatedLong = updatedListLocations.longCoord! as String
+            let storeUpdatedLocation = updatedListLocations.location! as String
+            
+            let updatedListOfFavorites = [String](arrayLiteral: storeUpdatedLat, storeUpdatedLong, storeUpdatedLocation)
         }
         
+        let defaults = UserDefaults.standard
+        defaults.set(updatedListOfFavorites, forKey: favoriteLocationKey)
     }
+ 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
@@ -96,7 +107,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
             self.listOfFavorites.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
-        removeFavorite()
+        //resaveListOfFavorites()
         
         tableView.reloadData()
     }
