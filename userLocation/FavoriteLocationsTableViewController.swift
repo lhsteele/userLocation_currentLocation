@@ -22,13 +22,13 @@ class FavoriteLocationsTableViewController: UITableViewController {
         
         let defaults = UserDefaults.standard
         let favoriteLocations =  defaults.string(forKey: favoriteLocationKey)
-        //print(favoriteLocations)
+        print(favoriteLocations)
         
         if let components = favoriteLocations?.components(separatedBy: "+") {
-            //print(components)
+            print(components)
             for component in components {
                 let locationComponents = component.components(separatedBy: ";")
-                //print(locationComponents)
+                print(locationComponents)
                 let singleLocation = (lat: locationComponents[0], long: locationComponents[1], location: locationComponents[2])
                 //print(singleLocation)
                 addFavorite(tuple: singleLocation)
@@ -71,8 +71,9 @@ class FavoriteLocationsTableViewController: UITableViewController {
         
         for index in 0...2 {
             let updatedLatCoord = listOfFavorites[0].latCoord
-            let updatedLongCoord = listOfFavorites[1].longCoord
-            let updatedLocation  = listOfFavorites[2].location
+            print(updatedLatCoord)
+            let updatedLongCoord = listOfFavorites[0].longCoord
+            let updatedLocation  = listOfFavorites[0].location
             
             let updatedListLocations = (tuple: (latCoord: updatedLatCoord, longCoord: updatedLongCoord, location: updatedLocation))
         
@@ -80,7 +81,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
             let storeUpdatedLong = updatedListLocations.longCoord! as String
             let storeUpdatedLocation = updatedListLocations.location! as String
             
-            let updatedListOfFavorites = (storeUpdatedLat, storeUpdatedLong, storeUpdatedLocation)
+            let updatedListOfFavorites = "\(storeUpdatedLat);\(storeUpdatedLong);\(storeUpdatedLocation)+"
         }
         
         let defaults = UserDefaults.standard
