@@ -69,9 +69,8 @@ class FavoriteLocationsTableViewController: UITableViewController {
         //in this function, I need to convert the listOfFavorites back to a single string.
         //assign this to the variable updatedListOfFavorites, and this will be saved to userDefaults.
         
-        for index in 0...2 {
+        for _ in 0...2 {
             let updatedLatCoord = listOfFavorites[0].latCoord
-            print(updatedLatCoord)
             let updatedLongCoord = listOfFavorites[0].longCoord
             let updatedLocation  = listOfFavorites[0].location
             
