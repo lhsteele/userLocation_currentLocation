@@ -14,7 +14,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
 
     var listOfFavorites: [SavedFavorites] = []
     var components = ""
-    var updatedListOfFavorites = String()
+    var updatedListOfFavorites = ""
     
     override func viewDidLoad() {
         
@@ -77,7 +77,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
             let updatedLongCoord = favorite.longCoord
             let updatedLocation = favorite.location
             
-            let updatedListOfLocations = (tuple: (latCoord: updatedLatCoord, longCoord: updatedLongCoord, location: updatedLocation))
+            updatedListOfFavorites = (tuple: (latCoord: updatedLatCoord, longCoord: updatedLongCoord, location: updatedLocation))
             print (updatedListOfFavorites)
             
             
@@ -85,9 +85,9 @@ class FavoriteLocationsTableViewController: UITableViewController {
         
         return updatedListOfFavorites
         
-        /*
-        for updatedLatCoord in (0...listOfFavorites.count) {
-            let updatedLatCoord = listOfFavorites.latCoord as! SavedFavorites
+        
+        for _  in (0...listOfFavorites.count) {
+            let updatedLatCoord = listOfFavorites[0].latCoord
             let updatedLongCoord = listOfFavorites.longCoord as! SavedFavorites
             let updatedLocation  = listOfFavorites.location as! SavedFavorites
             
@@ -107,7 +107,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
         
         return updatedListOfFavorites
  
-        */
+        
     }
  
  
