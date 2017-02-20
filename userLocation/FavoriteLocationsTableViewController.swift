@@ -65,27 +65,36 @@ class FavoriteLocationsTableViewController: UITableViewController {
     }
     
     
-    func resaveListOfFavorites() -> String {
+    func resaveListOfFavorites() {
         //in this function, I need to convert the listOfFavorites back to a single string.
         //assign this to the variable updatedListOfFavorites, and this will be saved to userDefaults.
         
         for favorite in listOfFavorites {
             
-            let updatedSingleLocation = (lat: listOfFavorites[0].latCoord, long: listOfFavorites[0].longCoord, location: listOfFavorites[0].location)
+            let updatedSingleLocation = (lat: favorite.latCoord, long: favorite.longCoord, location: favorite.location)
             
             let updatedLatCoord = favorite.latCoord
             let updatedLongCoord = favorite.longCoord
             let updatedLocation = favorite.location
             
-            updatedListOfFavorites = (tuple: (latCoord: updatedLatCoord, longCoord: updatedLongCoord, location: updatedLocation))
-            print (updatedListOfFavorites)
+            updatedListOfFavorites = "\(updatedLatCoord);\(updatedLongCoord);\(updatedLocation)"
+            //print (updatedListOfFavorites)
             
+            /*
+            if updatedListOfFavorites == listOfFavorites.count - 1 {
+                updatedListOfFavorites == updatedListOfFavorites
+            } else {
+                self.updatedListOfFavorites.append("+")
+            }
+            */
             
+            print (listOfFavorites.count - 1)
         }
+    }
+            
         
-        return updatedListOfFavorites
         
-        
+        /*
         for _  in (0...listOfFavorites.count) {
             let updatedLatCoord = listOfFavorites[0].latCoord
             let updatedLongCoord = listOfFavorites.longCoord as! SavedFavorites
@@ -107,10 +116,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
         
         return updatedListOfFavorites
  
-        
-    }
- 
- 
+       */
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
