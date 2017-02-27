@@ -82,8 +82,8 @@ class FavoriteLocationsTableViewController: UITableViewController {
             var updatedSingleLocation = "\(updatedLatCoord);\(updatedLongCoord);\(updatedLocation)"
             
         
-            if updatedSingleLocation == listOfFavorites.last as! String {
-                updatedSingleLocation == listOfFavorites as! String
+            if updatedSingleLocation == listOfFavorites.last as? String {
+                updatedSingleLocation == listOfFavorites as? String
             } else {
                 updatedSingleLocation.append("+")
             }
@@ -91,7 +91,13 @@ class FavoriteLocationsTableViewController: UITableViewController {
             updatedListOfFavorites.append(updatedSingleLocation)
         
             i += 1
+            
+            let defaults = UserDefaults.standard
+            defaults.set(updatedListOfFavorites, forKey: favoriteLocationKey)
         }
+        
+        
+        //print(updatedListOfFavorites)
         
     }
             
@@ -141,7 +147,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
             
             resaveListOfFavorites()
-            print(updatedListOfFavorites)
+            
         }
         
         
