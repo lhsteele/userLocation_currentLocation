@@ -70,26 +70,29 @@ class FavoriteLocationsTableViewController: UITableViewController {
         //assign this to the variable updatedListOfFavorites, and this will be saved to userDefaults.
         
         for favorite in listOfFavorites {
+        
+            var i = 0
             
-            let updatedSingleLocation = (lat: favorite.latCoord, long: favorite.longCoord, location: favorite.location)
+            updatedListOfFavorites = ""
             
             let updatedLatCoord = favorite.latCoord
             let updatedLongCoord = favorite.longCoord
             let updatedLocation = favorite.location
             
-            updatedListOfFavorites = "\(updatedLatCoord);\(updatedLongCoord);\(updatedLocation)"
-            //print (updatedListOfFavorites)
+            var updatedSingleLocation = "\(updatedLatCoord);\(updatedLongCoord);\(updatedLocation)"
             
-            /*
-            if updatedListOfFavorites == listOfFavorites.count - 1 {
-                updatedListOfFavorites == updatedListOfFavorites
+        
+            if updatedSingleLocation == listOfFavorites.last as! String {
+                updatedSingleLocation == listOfFavorites as! String
             } else {
-                self.updatedListOfFavorites.append("+")
+                updatedSingleLocation.append("+")
             }
-            */
             
-            print (listOfFavorites.count - 1)
+            updatedListOfFavorites.append(updatedSingleLocation)
+        
+            i += 1
         }
+        
     }
             
         
