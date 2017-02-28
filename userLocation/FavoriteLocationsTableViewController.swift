@@ -1,4 +1,4 @@
-//
+ //
 //  favoriteLocationsTableViewController.swift
 //  userLocation
 //
@@ -73,13 +73,15 @@ class FavoriteLocationsTableViewController: UITableViewController {
         
             var i = 0
             
-            updatedListOfFavorites = ""
+            var updatedListOfFavorites = ""
             
             let updatedLatCoord = favorite.latCoord
             let updatedLongCoord = favorite.longCoord
             let updatedLocation = favorite.location
             
             var updatedSingleLocation = "\(updatedLatCoord);\(updatedLongCoord);\(updatedLocation)"
+            
+            print (updatedSingleLocation)
             
         
             if updatedSingleLocation == listOfFavorites.last as? String {
@@ -89,6 +91,8 @@ class FavoriteLocationsTableViewController: UITableViewController {
             }
             
             updatedListOfFavorites.append(updatedSingleLocation)
+            
+            print (updatedListOfFavorites)
         
             i += 1
             
