@@ -68,6 +68,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
             defaults.set(newFavLoc, forKey: "NewFavoriteLocation")
         }
         
+        
         //Here, we need to send this information to iCloud. Send key in similar data structure.
  
         //Zephyr.sync(keys: "NewFavoriteLocation")

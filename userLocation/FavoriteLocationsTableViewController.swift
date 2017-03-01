@@ -18,19 +18,20 @@ class FavoriteLocationsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         
+        
         super.viewDidLoad()
         
         let defaults = UserDefaults.standard
         let favoriteLocations =  defaults.string(forKey: favoriteLocationKey)
-        //print(favoriteLocations)
+        print("FavoriteLocation \(favoriteLocations)")
         
         if let components = favoriteLocations?.components(separatedBy: "+") {
-            //print(components)
+            print("Components \(components)")
             for component in components {
                 let locationComponents = component.components(separatedBy: ";")
-                //print(locationComponents)
+                print("LocationComponents \(locationComponents)")
                 let singleLocation = (lat: locationComponents[0], long: locationComponents[1], location: locationComponents[2])
-                //print(singleLocation)
+                print("SingleLocation \(singleLocation)")
                 addFavorite(tuple: singleLocation)
             }
         }
@@ -69,6 +70,8 @@ class FavoriteLocationsTableViewController: UITableViewController {
         //in this function, I need to convert the listOfFavorites back to a single string.
         //assign this to the variable updatedListOfFavorites, and this will be saved to userDefaults.
         
+        print ("ListOfFavorites \(listOfFavorites)")
+        
         for favorite in listOfFavorites {
         
             var i = 0
@@ -81,18 +84,18 @@ class FavoriteLocationsTableViewController: UITableViewController {
             
             var updatedSingleLocation = "\(updatedLatCoord);\(updatedLongCoord);\(updatedLocation)"
             
-            print (updatedSingleLocation)
+            print ("UpdatedSingleLocation \(updatedSingleLocation)")
             
         
-            if updatedSingleLocation == listOfFavorites.last as? String ?? String {
-                updatedSingleLocation == listOfFavorites as? String
-            } else {
+            if updatedSingleLocation == listOfFavorites.last as? String {
                 updatedSingleLocation.append("+")
+            } else {
+                updatedSingleLocation == listOfFavorites as? String
             }
             
             updatedListOfFavorites.append(updatedSingleLocation)
             
-            print (updatedListOfFavorites)
+            print ("UpdatedListOfFavorites \(updatedListOfFavorites)")
         
             i += 1
             
@@ -101,7 +104,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
         }
         
         
-        //print(updatedListOfFavorites)
+        print(updatedListOfFavorites)
         
     }
             
