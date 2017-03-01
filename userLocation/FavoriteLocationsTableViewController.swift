@@ -84,7 +84,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
             print (updatedSingleLocation)
             
         
-            if updatedSingleLocation == listOfFavorites.last as? String {
+            if updatedSingleLocation == listOfFavorites.last as? String ?? String {
                 updatedSingleLocation == listOfFavorites as? String
             } else {
                 updatedSingleLocation.append("+")
