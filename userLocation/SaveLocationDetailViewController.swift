@@ -32,10 +32,14 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     func saveNewFavLoc () {
         if let text = locationNameField.text {
             locationNameString = "\(text)"
+            
+            print("LocationNameString \(locationNameString)")
         }
         
         let newFavCoord = coordinatesPassed
         newFavLoc = newFavCoord + (locationNameString)
+        
+        print("NewFavLoc \(newFavLoc)")
         
     }
     

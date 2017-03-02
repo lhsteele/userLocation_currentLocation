@@ -93,7 +93,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
                 updatedSingleLocation == listOfFavorites as? String
             }
             
-            updatedListOfFavorites.append(updatedSingleLocation)
+            updatedListOfFavorites.append(self.updatedListOfFavorites + updatedSingleLocation)
             
             print ("UpdatedListOfFavorites \(updatedListOfFavorites)")
         
