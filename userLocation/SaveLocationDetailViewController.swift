@@ -85,33 +85,6 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
        
     }
     
-    //Need to call synchronization in order for data to actually be saved to icloud?
-    //This is taken from the Zephyr.swift file, line 90
-    /*
-    public static func sync(keys: String...) {
-        if keys.count > 0 {
-            sync(keys: keys)
-            return
-        }
-        
-        switch sharedInstance.dataStoreWithLatestData() {
-        case .local:
-            printGeneralSyncStatus(finished: false, destination: .remote)
-            sharedInstance.zephyrQueue.sync {
-                sharedInstance.syncToCloud()
-            }
-            printGeneralSyncStatus(finished: true, destination: .remote)
-        case .remote:
-            printGeneralSyncStatus(finished: false, destination: .local)
-            sharedInstance.zephyrQueue.sync {
-                sharedInstance.syncFromCloud()
-            }
-            printGeneralSyncStatus(finished: true, destination: .local)
-        }
-    }
- */
-    
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "FavoriteLocationTableSegue") {
             let pTwo = segue.destination as! FavoriteLocationsTableViewController

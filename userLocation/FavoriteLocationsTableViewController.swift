@@ -38,54 +38,6 @@ class FavoriteLocationsTableViewController: UITableViewController {
 
         tableView.reloadData()
         
-        
-        //read from iCloud
-        
-        //need to tableView.reloadData() again in the success closure after reading from iCloud. We may need to split data again (as above), append to listOfFavorites, feed to table view, and then trigger the tableView reload.
-        
-        
-        //I think this is the call to read from iCloud. line 302.
-        /*
-        func syncFromCloud(key: String? = nil, value: Any? = nil) {
-            
-            let defaults = UserDefaults.standard
-            defaults.set(Date(), forKey: ZephyrSyncKey)
-            
-            // Sync all defaults from iCloud if key is nil, otherwise sync only the specific key/value pair.
-            guard let key = key else {
-                for (key, value) in zephyrRemoteStoreDictionary {
-                    unregisterObserver(key: key)
-                    defaults.set(value, forKey: key)
-                    Zephyr.printKeySyncStatus(key: key, value: value, destination: .local)
-                    registerObserver(key: key)
-                }
-                
-                return
-            }
-            
-            unregisterObserver(key: key)
-            
-            if let value = value {
-                defaults.set(value, forKey: key)
-                Zephyr.printKeySyncStatus(key: key, value: value, destination: .local)
-            } else {
-                defaults.set(nil, forKey: key)
-                Zephyr.printKeySyncStatus(key: key, value: nil, destination: .local)
-            }
-            
-            registerObserver(key: key)
-         
-            let keyFromCloud = defaults.string(forKey: ZephyrSyncKey)
-         
-            if let cloudComponents = keyFromCloud?.components(separatedBy: "+") {
-                for component in components {
-                    let cloudLocationComponents = component.components(separatedBy: ";")
-                    let cloudSingleLocation = (late: locationComponents[0], long: locationComponents[1], location: locationComponents[2])
-                    addKeyFromCloud(tuple: cloudSingleLocation)
-        }
-        */
-
-        
         let moveButton = UIBarButtonItem(title: "Re-order", style: .plain, target: self, action: #selector(FavoriteLocationsTableViewController.toggleEdit))
         navigationItem.leftBarButtonItem = moveButton
         
@@ -131,11 +83,14 @@ class FavoriteLocationsTableViewController: UITableViewController {
         
         print ("ListOfFavorites \(listOfFavorites)")
         
-        for favorite in listOfFavorites {
         
-            var i = 0
+        var i = 0
+        
+        var updatedListOfFavorites = ""
+        
+        for favorite in listOfFavorites {
             
-            var updatedListOfFavorites = ""
+            //put all three constants in an if to safely unwrap. need to define updatedSingleLocation before the if as an empty string. Then reassign in the if.
             
             let updatedLatCoord = favorite.latCoord
             let updatedLongCoord = favorite.longCoord
@@ -145,23 +100,33 @@ class FavoriteLocationsTableViewController: UITableViewController {
             
             print ("UpdatedSingleLocation \(updatedSingleLocation)")
             
-        
-            if updatedSingleLocation == listOfFavorites.last as? String {
+            //do this if in two stages: unwrap listOfFavorites.last first, then compare the result of unwrapping with updatedSingleLocation.
+            
+            if i != listOfFavorites.count - 1 {
                 updatedSingleLocation.append("+")
-            } else {
-                updatedSingleLocation == listOfFavorites as? String
             }
             
-            updatedListOfFavorites.append(self.updatedListOfFavorites + updatedSingleLocation)
+            updatedListOfFavorites.append(updatedSingleLocation)
             
-            print ("UpdatedListOfFavorites \(updatedListOfFavorites)")
+            /*
+            if let lastFavorite = listOfFavorites.last {
+                let lastFavoriteLocation = "\(lastFavorite.latCoord);\(lastFavorite.longCoord);\(lastFavorite.location)"
+                if updatedSingleLocation == lastFavoriteLocation {
+                    updatedSingleLocation.append("+")
+                }
+            }
+            */
+            //updatedListOfFavorites.append(self.updatedListOfFavorites + updatedSingleLocation)
+            
+            //print ("UpdatedListOfFavorites \(updatedListOfFavorites)")
         
             i += 1
             
-            let defaults = UserDefaults.standard
-            defaults.set(updatedListOfFavorites, forKey: favoriteLocationKey)
+            
         }
         
+        let defaults = UserDefaults.standard
+        defaults.set(updatedListOfFavorites, forKey: favoriteLocationKey)
         
         print(updatedListOfFavorites)
         
@@ -201,8 +166,6 @@ class FavoriteLocationsTableViewController: UITableViewController {
         if let locationName = favorite.location {
             
             cell.textLabel?.text = locationName
-        } else {
-            cell.textLabel?.text = ""
         }
         return cell
     }
