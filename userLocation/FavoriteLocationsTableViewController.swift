@@ -92,11 +92,15 @@ class FavoriteLocationsTableViewController: UITableViewController {
             
             //put all three constants in an if to safely unwrap. need to define updatedSingleLocation before the if as an empty string. Then reassign in the if.
             
-            let updatedLatCoord = favorite.latCoord
-            let updatedLongCoord = favorite.longCoord
-            let updatedLocation = favorite.location
+            var updatedSingleLocation = ""
             
-            var updatedSingleLocation = "\(updatedLatCoord);\(updatedLongCoord);\(updatedLocation)"
+            if let updatedLatCoord = favorite.latCoord {
+                if let updatedLongCoord = favorite.longCoord {
+                    if let updatedLocation = favorite.location {
+                        updatedSingleLocation = "\(updatedLatCoord);\(updatedLongCoord);\(updatedLocation)"
+                    }
+                }
+            }
             
             print ("UpdatedSingleLocation \(updatedSingleLocation)")
             
