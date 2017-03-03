@@ -62,6 +62,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     }
     
     
+    
     @IBAction func saveFavorite(_ sender: Any) {
         let defaults = UserDefaults.standard
         //defaults.removeObject(forKey: "NewFavoriteLocation")
@@ -74,12 +75,41 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         
         
         //Here, we need to send this information to iCloud. Send key in similar data structure.
- 
+        
+        
         Zephyr.sync(keys: "NewFavoriteLocation")
+        
+        
         
         performSegue(withIdentifier: "FavoriteLocationTableSegue", sender: sender)
        
     }
+    
+    //Need to call synchronization in order for data to actually be saved to icloud?
+    //This is taken from the Zephyr.swift file, line 90
+    /*
+    public static func sync(keys: String...) {
+        if keys.count > 0 {
+            sync(keys: keys)
+            return
+        }
+        
+        switch sharedInstance.dataStoreWithLatestData() {
+        case .local:
+            printGeneralSyncStatus(finished: false, destination: .remote)
+            sharedInstance.zephyrQueue.sync {
+                sharedInstance.syncToCloud()
+            }
+            printGeneralSyncStatus(finished: true, destination: .remote)
+        case .remote:
+            printGeneralSyncStatus(finished: false, destination: .local)
+            sharedInstance.zephyrQueue.sync {
+                sharedInstance.syncFromCloud()
+            }
+            printGeneralSyncStatus(finished: true, destination: .local)
+        }
+    }
+ */
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

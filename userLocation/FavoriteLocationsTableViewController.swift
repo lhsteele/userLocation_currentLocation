@@ -43,6 +43,49 @@ class FavoriteLocationsTableViewController: UITableViewController {
         
         //need to tableView.reloadData() again in the success closure after reading from iCloud. We may need to split data again (as above), append to listOfFavorites, feed to table view, and then trigger the tableView reload.
         
+        
+        //I think this is the call to read from iCloud. line 302.
+        /*
+        func syncFromCloud(key: String? = nil, value: Any? = nil) {
+            
+            let defaults = UserDefaults.standard
+            defaults.set(Date(), forKey: ZephyrSyncKey)
+            
+            // Sync all defaults from iCloud if key is nil, otherwise sync only the specific key/value pair.
+            guard let key = key else {
+                for (key, value) in zephyrRemoteStoreDictionary {
+                    unregisterObserver(key: key)
+                    defaults.set(value, forKey: key)
+                    Zephyr.printKeySyncStatus(key: key, value: value, destination: .local)
+                    registerObserver(key: key)
+                }
+                
+                return
+            }
+            
+            unregisterObserver(key: key)
+            
+            if let value = value {
+                defaults.set(value, forKey: key)
+                Zephyr.printKeySyncStatus(key: key, value: value, destination: .local)
+            } else {
+                defaults.set(nil, forKey: key)
+                Zephyr.printKeySyncStatus(key: key, value: nil, destination: .local)
+            }
+            
+            registerObserver(key: key)
+         
+            let keyFromCloud = defaults.string(forKey: ZephyrSyncKey)
+         
+            if let cloudComponents = keyFromCloud?.components(separatedBy: "+") {
+                for component in components {
+                    let cloudLocationComponents = component.components(separatedBy: ";")
+                    let cloudSingleLocation = (late: locationComponents[0], long: locationComponents[1], location: locationComponents[2])
+                    addKeyFromCloud(tuple: cloudSingleLocation)
+        }
+        */
+
+        
         let moveButton = UIBarButtonItem(title: "Re-order", style: .plain, target: self, action: #selector(FavoriteLocationsTableViewController.toggleEdit))
         navigationItem.leftBarButtonItem = moveButton
         
@@ -65,6 +108,22 @@ class FavoriteLocationsTableViewController: UITableViewController {
         
     }
     
+    /*
+    func addKeyFromCloud(tuple: (lat: String, long: String, location: String)) {
+        
+        let newCloudLatCoord = tuple.lat
+        let newCloudLongCoord = tuple.long
+        let newCloudLocation = tuple.location
+  
+        let newCloudFavorite = SavedFavorites(latCoord: newCloudLatCoord, longCoord: newCloudLongCoord, location: newCloudLocation)
+  
+        self.listOfFavorites.append(newCloudFavorite)
+  
+        let newIndexPath = IndexPath(row: self.listOfFavorites.count - 1, section: 0)
+        self.tableView.insertRows(at: [newIndexPath], with: .automatic)
+    }
+    */
+  
     
     func resaveListOfFavorites() {
         //in this function, I need to convert the listOfFavorites back to a single string.
