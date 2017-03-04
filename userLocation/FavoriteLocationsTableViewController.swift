@@ -107,6 +107,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
         let defaults = UserDefaults.standard
         defaults.set(updatedListOfFavorites, forKey: favoriteLocationKey)
         
+        //Zephyr.sync(keys: favoriteLocationKey)
         print(updatedListOfFavorites)
         
     }
