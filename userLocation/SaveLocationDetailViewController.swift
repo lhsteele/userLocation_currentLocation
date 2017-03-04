@@ -69,27 +69,24 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         
         if let existingFavLoc = defaults.string(forKey: "NewFavoriteLocation") {
             defaults.set(existingFavLoc + "+" + newFavLoc, forKey: "NewFavoriteLocation")
+            Zephyr.sync(keys: "NewFavoriteLocation")
         } else {
             defaults.set(newFavLoc, forKey: "NewFavoriteLocation")
+            Zephyr.sync(keys: "NewFavoriteLocation")
         }
         
         
         //Here, we need to send this information to iCloud. Send key in similar data structure.
         
         
-        Zephyr.sync(keys: "NewFavoriteLocation")
-        
-        
-        
         performSegue(withIdentifier: "FavoriteLocationTableSegue", sender: sender)
        
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "FavoriteLocationTableSegue") {
-            let pTwo = segue.destination as! FavoriteLocationsTableViewController
-        
-            //pTwo.favorite = self.newFavLoc
+            _ = segue.destination as! FavoriteLocationsTableViewController
         }
     }
     

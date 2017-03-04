@@ -32,9 +32,14 @@ class FavoriteLocationsTableViewController: UITableViewController {
                 print("LocationComponents \(locationComponents)")
                 let singleLocation = (lat: locationComponents[0], long: locationComponents[1], location: locationComponents[2])
                 print("SingleLocation \(singleLocation)")
+                
                 addFavorite(tuple: singleLocation)
             }
+            
+            //Zephyr.sync(keys: "NewFavoriteLocation")
         }
+        
+        
 
         tableView.reloadData()
         
@@ -60,22 +65,6 @@ class FavoriteLocationsTableViewController: UITableViewController {
         
     }
     
-    /*
-    func addKeyFromCloud(tuple: (lat: String, long: String, location: String)) {
-        
-        let newCloudLatCoord = tuple.lat
-        let newCloudLongCoord = tuple.long
-        let newCloudLocation = tuple.location
-  
-        let newCloudFavorite = SavedFavorites(latCoord: newCloudLatCoord, longCoord: newCloudLongCoord, location: newCloudLocation)
-  
-        self.listOfFavorites.append(newCloudFavorite)
-  
-        let newIndexPath = IndexPath(row: self.listOfFavorites.count - 1, section: 0)
-        self.tableView.insertRows(at: [newIndexPath], with: .automatic)
-    }
-    */
-  
     
     func resaveListOfFavorites() {
         //in this function, I need to convert the listOfFavorites back to a single string.
@@ -112,21 +101,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
             
             updatedListOfFavorites.append(updatedSingleLocation)
             
-            /*
-            if let lastFavorite = listOfFavorites.last {
-                let lastFavoriteLocation = "\(lastFavorite.latCoord);\(lastFavorite.longCoord);\(lastFavorite.location)"
-                if updatedSingleLocation == lastFavoriteLocation {
-                    updatedSingleLocation.append("+")
-                }
-            }
-            */
-            //updatedListOfFavorites.append(self.updatedListOfFavorites + updatedSingleLocation)
-            
-            //print ("UpdatedListOfFavorites \(updatedListOfFavorites)")
-        
             i += 1
-            
-            
         }
         
         let defaults = UserDefaults.standard
@@ -135,32 +110,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
         print(updatedListOfFavorites)
         
     }
-            
-        
-        
-        /*
-        for _  in (0...listOfFavorites.count) {
-            let updatedLatCoord = listOfFavorites[0].latCoord
-            let updatedLongCoord = listOfFavorites.longCoord as! SavedFavorites
-            let updatedLocation  = listOfFavorites.location as! SavedFavorites
-            
-            let updatedListLocations = (tuple: (latCoord: updatedLatCoord, longCoord: updatedLongCoord, location: updatedLocation))
-            print (updatedListLocations)
-        
-            let storeUpdatedLat = updatedListLocations.latCoord! as String
-            let storeUpdatedLong = updatedListLocations.longCoord! as String
-            let storeUpdatedLocation = updatedListLocations.location! as String
-            
-            let updatedListOfFavorites = "\(storeUpdatedLat);\(storeUpdatedLong);\(storeUpdatedLocation)+"
-            print (updatedListOfFavorites)
-        }
-        
-        let defaults = UserDefaults.standard
-        defaults.set(updatedListOfFavorites, forKey: favoriteLocationKey)
-        
-        return updatedListOfFavorites
- 
-       */
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
@@ -180,10 +130,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
             
             resaveListOfFavorites()
-            
         }
-        
-        
         tableView.reloadData()
     }
     
@@ -196,7 +143,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "AddNewFavoriteSegue") {
-            let pThree = segue.destination as! ViewController
+            _ = segue.destination as! ViewController
         }
     }
     
