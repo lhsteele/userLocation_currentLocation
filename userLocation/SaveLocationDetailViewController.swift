@@ -75,7 +75,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         
         
         //Here, we need to send this information to iCloud. Send key in similar data structure.
-        //Zephyr.sync(keys: "NewFavoriteLocation")
+        Zephyr.sync(keys: "NewFavoriteLocation")
         
         performSegue(withIdentifier: "FavoriteLocationTableSegue", sender: sender)
        

@@ -58,6 +58,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
         
         let newFavourite = SavedFavorites(latCoord: newLatCoord, longCoord: newLongCoord, location: newLocation)
         
+        //Zephyr.sync(keys: "NewFavoriteLocation")
         self.listOfFavorites.append(newFavourite)
       
         let newIndexPath = IndexPath(row: self.listOfFavorites.count - 1, section: 0)
