@@ -23,20 +23,19 @@ class FavoriteLocationsTableViewController: UITableViewController {
         
         let defaults = UserDefaults.standard
         let favoriteLocations =  defaults.string(forKey: favoriteLocationKey)
-        print("FavoriteLocation \(favoriteLocations)")
+        
         
         if let components = favoriteLocations?.components(separatedBy: "+") {
-            print("Components \(components)")
+            
             for component in components {
                 let locationComponents = component.components(separatedBy: ";")
-                print("LocationComponents \(locationComponents)")
+                
                 let singleLocation = (lat: locationComponents[0], long: locationComponents[1], location: locationComponents[2])
-                print("SingleLocation \(singleLocation)")
                 
                 addFavorite(tuple: singleLocation)
             }
             
-            //Zephyr.sync(keys: "NewFavoriteLocation")
+            //Zephyr.sync(keys: favoriteLocationKey)
         }
         
         
@@ -71,8 +70,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
         //in this function, I need to convert the listOfFavorites back to a single string.
         //assign this to the variable updatedListOfFavorites, and this will be saved to userDefaults.
         
-        print ("ListOfFavorites \(listOfFavorites)")
-        
+        //print ("ListOfFavorites \(listOfFavorites)")
         
         var i = 0
         
@@ -92,7 +90,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
                 }
             }
             
-            print ("UpdatedSingleLocation \(updatedSingleLocation)")
+            //print ("UpdatedSingleLocation \(updatedSingleLocation)")
             
             //do this if in two stages: unwrap listOfFavorites.last first, then compare the result of unwrapping with updatedSingleLocation.
             
@@ -109,7 +107,6 @@ class FavoriteLocationsTableViewController: UITableViewController {
         defaults.set(updatedListOfFavorites, forKey: favoriteLocationKey)
         
         //Zephyr.sync(keys: favoriteLocationKey)
-        print(updatedListOfFavorites)
         
     }
     

@@ -32,15 +32,9 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     func saveNewFavLoc () {
         if let text = locationNameField.text {
             locationNameString = "\(text)"
-            
-            print("LocationNameString \(locationNameString)")
         }
-        
         let newFavCoord = coordinatesPassed
         newFavLoc = newFavCoord + (locationNameString)
-        
-        print("NewFavLoc \(newFavLoc)")
-        
     }
     
 
@@ -48,11 +42,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == self.locationNameField {
             self.locationName?.location = textField.text
-            
         }
-        
-        //textField.returnKeyType = UIReturnKeyType.done
-        
     }
 
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -60,7 +50,6 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         saveNewFavLoc()
         return true
     }
-    
     
     
     @IBAction func saveFavorite(_ sender: Any) {
@@ -75,11 +64,10 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         
         
         //Here, we need to send this information to iCloud. Send key in similar data structure.
-        Zephyr.sync(keys: "NewFavoriteLocation")
         
         performSegue(withIdentifier: "FavoriteLocationTableSegue", sender: sender)
        
-        
+        //Zephyr.sync(keys: "NewFavoriteLocation")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -90,9 +78,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
     }
-    
 }
 
     
