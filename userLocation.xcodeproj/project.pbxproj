@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B3DBC097CCB1F72F6897DCAE /* Pods_userLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6AD688DCCE6AB9651D6E88E /* Pods_userLocation.framework */; };
 		EF3821551E2415DF00032F42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3821541E2415DF00032F42 /* AppDelegate.swift */; };
 		EF3821571E2415DF00032F42 /* MapView Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3821561E2415DF00032F42 /* MapView Controller.swift */; };
 		EF38215A1E2415DF00032F42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF3821581E2415DF00032F42 /* Main.storyboard */; };
@@ -16,7 +17,6 @@
 		EF3821751E2415DF00032F42 /* userLocationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3821741E2415DF00032F42 /* userLocationUITests.swift */; };
 		EF3821841E24162A00032F42 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3821831E24162A00032F42 /* CoreLocation.framework */; };
 		EF8F84801E25A33A00C32EBA /* userFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8F847F1E25A33A00C32EBA /* userFavorites.swift */; };
-		EF917CC51E6F4DA900FEBA68 /* Zephyr.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF917CC41E6F4DA900FEBA68 /* Zephyr.swift */; };
 		EFDE1A591E3A9403002D1589 /* FavoriteLocationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDE1A581E3A9403002D1589 /* FavoriteLocationsTableViewController.swift */; };
 		EFFB04E31E2E8BD40071D961 /* SaveLocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFB04E21E2E8BD40071D961 /* SaveLocationDetailViewController.swift */; };
 /* End PBXBuildFile section */
@@ -39,6 +39,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		12774A7F2F95FB7186F6D3E7 /* Pods-userLocation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-userLocation.release.xcconfig"; path = "Pods/Target Support Files/Pods-userLocation/Pods-userLocation.release.xcconfig"; sourceTree = "<group>"; };
+		C1CAFDC212A7668C352A7C16 /* Pods-userLocation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-userLocation.debug.xcconfig"; path = "Pods/Target Support Files/Pods-userLocation/Pods-userLocation.debug.xcconfig"; sourceTree = "<group>"; };
+		C6AD688DCCE6AB9651D6E88E /* Pods_userLocation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_userLocation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF3821511E2415DF00032F42 /* userLocation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = userLocation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF3821541E2415DF00032F42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF3821561E2415DF00032F42 /* MapView Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapView Controller.swift"; sourceTree = "<group>"; };
@@ -55,7 +58,6 @@
 		EF3821831E24162A00032F42 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		EF5A9AED1E51618500650937 /* userLocation.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = userLocation.entitlements; sourceTree = "<group>"; };
 		EF8F847F1E25A33A00C32EBA /* userFavorites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userFavorites.swift; sourceTree = "<group>"; };
-		EF917CC41E6F4DA900FEBA68 /* Zephyr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Zephyr.swift; sourceTree = "<group>"; };
 		EFDE1A581E3A9403002D1589 /* FavoriteLocationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteLocationsTableViewController.swift; sourceTree = "<group>"; };
 		EFFB04E21E2E8BD40071D961 /* SaveLocationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveLocationDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,6 +68,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF3821841E24162A00032F42 /* CoreLocation.framework in Frameworks */,
+				B3DBC097CCB1F72F6897DCAE /* Pods_userLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +89,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		59958EE151DFF5C31286BE15 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C1CAFDC212A7668C352A7C16 /* Pods-userLocation.debug.xcconfig */,
+				12774A7F2F95FB7186F6D3E7 /* Pods-userLocation.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		EF3821481E2415DF00032F42 = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +106,7 @@
 				EF3821731E2415DF00032F42 /* userLocationUITests */,
 				EF3821521E2415DF00032F42 /* Products */,
 				EF3821821E24162A00032F42 /* Frameworks */,
+				59958EE151DFF5C31286BE15 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -145,8 +158,8 @@
 		EF3821821E24162A00032F42 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EF917CC41E6F4DA900FEBA68 /* Zephyr.swift */,
 				EF3821831E24162A00032F42 /* CoreLocation.framework */,
+				C6AD688DCCE6AB9651D6E88E /* Pods_userLocation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -158,9 +171,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EF3821791E2415DF00032F42 /* Build configuration list for PBXNativeTarget "userLocation" */;
 			buildPhases = (
+				9B8F714F55D3B606E3ED3D4D /* [CP] Check Pods Manifest.lock */,
 				EF38214D1E2415DF00032F42 /* Sources */,
 				EF38214E1E2415DF00032F42 /* Frameworks */,
 				EF38214F1E2415DF00032F42 /* Resources */,
+				17138F20EE632D7452F52691 /* [CP] Embed Pods Frameworks */,
+				CC1F65714F71D5697AEEF711 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -286,6 +302,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		17138F20EE632D7452F52691 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-userLocation/Pods-userLocation-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9B8F714F55D3B606E3ED3D4D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CC1F65714F71D5697AEEF711 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-userLocation/Pods-userLocation-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EF38214D1E2415DF00032F42 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -296,7 +360,6 @@
 				EFFB04E31E2E8BD40071D961 /* SaveLocationDetailViewController.swift in Sources */,
 				EF3821571E2415DF00032F42 /* MapView Controller.swift in Sources */,
 				EF3821551E2415DF00032F42 /* AppDelegate.swift in Sources */,
-				EF917CC51E6F4DA900FEBA68 /* Zephyr.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +507,7 @@
 		};
 		EF38217A1E2415DF00032F42 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C1CAFDC212A7668C352A7C16 /* Pods-userLocation.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = userLocation/userLocation.entitlements;
@@ -461,6 +525,7 @@
 		};
 		EF38217B1E2415DF00032F42 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 12774A7F2F95FB7186F6D3E7 /* Pods-userLocation.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = userLocation/userLocation.entitlements;
