@@ -16,8 +16,8 @@
 		EF3821751E2415DF00032F42 /* userLocationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3821741E2415DF00032F42 /* userLocationUITests.swift */; };
 		EF3821841E24162A00032F42 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3821831E24162A00032F42 /* CoreLocation.framework */; };
 		EF8F84801E25A33A00C32EBA /* userFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8F847F1E25A33A00C32EBA /* userFavorites.swift */; };
+		EF917CC51E6F4DA900FEBA68 /* Zephyr.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF917CC41E6F4DA900FEBA68 /* Zephyr.swift */; };
 		EFDE1A591E3A9403002D1589 /* FavoriteLocationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDE1A581E3A9403002D1589 /* FavoriteLocationsTableViewController.swift */; };
-		EFE2A60D1E4E817000715138 /* Zephyr.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE2A60C1E4E817000715138 /* Zephyr.swift */; };
 		EFFB04E31E2E8BD40071D961 /* SaveLocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFB04E21E2E8BD40071D961 /* SaveLocationDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,8 +55,8 @@
 		EF3821831E24162A00032F42 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		EF5A9AED1E51618500650937 /* userLocation.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = userLocation.entitlements; sourceTree = "<group>"; };
 		EF8F847F1E25A33A00C32EBA /* userFavorites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userFavorites.swift; sourceTree = "<group>"; };
+		EF917CC41E6F4DA900FEBA68 /* Zephyr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Zephyr.swift; sourceTree = "<group>"; };
 		EFDE1A581E3A9403002D1589 /* FavoriteLocationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteLocationsTableViewController.swift; sourceTree = "<group>"; };
-		EFE2A60C1E4E817000715138 /* Zephyr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Zephyr.swift; path = "../../../Downloads/Zephyr-master/Zephyr/Zephyr.swift"; sourceTree = "<group>"; };
 		EFFB04E21E2E8BD40071D961 /* SaveLocationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveLocationDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -145,7 +145,7 @@
 		EF3821821E24162A00032F42 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EFE2A60C1E4E817000715138 /* Zephyr.swift */,
+				EF917CC41E6F4DA900FEBA68 /* Zephyr.swift */,
 				EF3821831E24162A00032F42 /* CoreLocation.framework */,
 			);
 			name = Frameworks;
@@ -296,7 +296,7 @@
 				EFFB04E31E2E8BD40071D961 /* SaveLocationDetailViewController.swift in Sources */,
 				EF3821571E2415DF00032F42 /* MapView Controller.swift in Sources */,
 				EF3821551E2415DF00032F42 /* AppDelegate.swift in Sources */,
-				EFE2A60D1E4E817000715138 /* Zephyr.swift in Sources */,
+				EF917CC51E6F4DA900FEBA68 /* Zephyr.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
