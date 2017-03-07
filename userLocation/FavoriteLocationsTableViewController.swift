@@ -1,4 +1,4 @@
-//
+ //
 //  favoriteLocationsTableViewController.swift
 //  userLocation
 //
@@ -11,190 +11,185 @@ import UIKit
 let favoriteLocationKey = "NewFavoriteLocation"
 
 class FavoriteLocationsTableViewController: UITableViewController {
-    
-	// listOfFavorites is an array where each item inside 
-	// is of type SavedFavourites.
-	// e.g.
-	// listOfFavourites[0] is of type SavedFavourites, so
-	// the following syntax is correct: listOfFavourites[0].latCoord 
-	// it would return a String? value.
+
     var listOfFavorites: [SavedFavorites] = []
     var components = ""
+    var updatedListOfFavorites = ""
     
     override func viewDidLoad() {
-		
+        
+        
         super.viewDidLoad()
-	
+        
         let defaults = UserDefaults.standard
-		// e.g. storedLocation = "12;23;work+13;45;home"
-        let storedLocations =  defaults.string(forKey: favoriteLocationKey)
-		
-		/*
-		e.g. locations = ["12;23;work", "13;45;home"]
-		*/
-        if let locations = storedLocations?.components(separatedBy: "+") {
-			
-			for location in locations {
-				
-				let locationComponents = location.components(separatedBy: ";")
-				let s = SavedFavorites(latCoord: locationComponents[0],
-									   longCoord: locationComponents[1],
-									   location: locationComponents[2])
-	//			thirdAddFavourite(location: s)
-				listOfFavorites.append(s)
-			}
-        }
-		// After adding all the object to our listOfFavorites
-		// array, we can reload the table view
-		tableView.reloadData()
-		
+        let favoriteLocations =  defaults.string(forKey: favoriteLocationKey)
         
- 
-        /*
-        let components = favoriteLocations?.components(separatedBy: ";")
         
-        var output = [(lat: String, long: String, location: String)] ()
-        
-        for component in components {
-            if !component.isEmpty {
+        if let components = favoriteLocations?.components(separatedBy: "+") {
+            
+            for component in components {
+                let locationComponents = component.components(separatedBy: ";")
                 
-                let subComponents = component.components(separatedBy: ";")
-                print (subComponents)
-         
-                let tuple = (lat: subComponents[0], long: subComponents[1], location: subComponents[2])
-         
-                print (tuple)
-                output.append(tuple)
+                let singleLocation = (lat: locationComponents[0], long: locationComponents[1], location: locationComponents[2])
+                
+                addFavorite(tuple: singleLocation)
             }
+            
+            //Zephyr.sync(keys: favoriteLocationKey)
         }
-        print (output)
-        */
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
         
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        self.navigationItem.rightBarButtonItem = self.editButtonItem
+
+        tableView.reloadData()
+        
+        let moveButton = UIBarButtonItem(title: "Re-order", style: .plain, target: self, action: #selector(FavoriteLocationsTableViewController.toggleEdit))
+        navigationItem.leftBarButtonItem = moveButton
+        
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(FavoriteLocationsTableViewController.addNewFavorite))
+        navigationItem.rightBarButtonItem = addButton
     }
-	
-	
-	// We define a addFavorite(tuple:) function that takes a tuple as
-	// an argument. This function is defined here, inside the
-	// FavoriteLocationsTableViewController class, at the same level
-	// as all the other functions.
-
-	func secondAddFavorite(lat: String, long:String, location: String) {
-		
-		let newFavourite = SavedFavorites(latCoord: lat, longCoord: long, location: location)
-	}
-	
-	func thirdAddFavourite(location: SavedFavorites) {
-		
-		
-	}
-	
-	// Once defined, we can use it above, on line 37.
-	func addFavorite(tuple: (lat: String, long:String, location: String)) {
-		
-		// We instantiate a new object of type SavedFavourites
-		let newFavourite = SavedFavorites(latCoord: tuple.lat, longCoord: tuple.long, location: tuple.location)
-		// only now, this new object of type SavedFavourites
-		// to which the constant newFavourite points to
-		// can be added to our array.
-		self.listOfFavorites.append(newFavourite)
-		// Remember, all the elements of listOfFavorites
-		// need to be of type SavedFavorites.
-	}
-	
-
+    
+    func addFavorite(tuple: (lat: String, long:String, location: String)) {
+        
+        let newLatCoord = tuple.lat
+        let newLongCoord = tuple.long
+        let newLocation = tuple.location
+        
+        let newFavourite = SavedFavorites(latCoord: newLatCoord, longCoord: newLongCoord, location: newLocation)
+        
+        //Zephyr.sync(keys: "NewFavoriteLocation")
+        self.listOfFavorites.append(newFavourite)
+      
+        let newIndexPath = IndexPath(row: self.listOfFavorites.count - 1, section: 0)
+        self.tableView.insertRows(at: [newIndexPath], with: .automatic)
+        
+    }
+    
+    
+    func resaveListOfFavorites() {
+        //in this function, I need to convert the listOfFavorites back to a single string.
+        //assign this to the variable updatedListOfFavorites, and this will be saved to userDefaults.
+        
+        //print ("ListOfFavorites \(listOfFavorites)")
+        
+        var i = 0
+        
+        var updatedListOfFavorites = ""
+        
+        for favorite in listOfFavorites {
+            
+            //put all three constants in an if to safely unwrap. need to define updatedSingleLocation before the if as an empty string. Then reassign in the if.
+            
+            var updatedSingleLocation = ""
+            
+            if let updatedLatCoord = favorite.latCoord {
+                if let updatedLongCoord = favorite.longCoord {
+                    if let updatedLocation = favorite.location {
+                        updatedSingleLocation = "\(updatedLatCoord);\(updatedLongCoord);\(updatedLocation)"
+                    }
+                }
+            }
+            
+            //print ("UpdatedSingleLocation \(updatedSingleLocation)")
+            
+            //do this if in two stages: unwrap listOfFavorites.last first, then compare the result of unwrapping with updatedSingleLocation.
+            
+            if i != listOfFavorites.count - 1 {
+                updatedSingleLocation.append("+")
+            }
+            
+            updatedListOfFavorites.append(updatedSingleLocation)
+            
+            i += 1
+        }
+        
+        let defaults = UserDefaults.standard
+        defaults.set(updatedListOfFavorites, forKey: favoriteLocationKey)
+        
+        //Zephyr.sync(keys: favoriteLocationKey)
+        
+    }
+    
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
         let favorite = self.listOfFavorites[indexPath.row]
-		
-		// Wrong:
-//        if let locationName = listOfFavorites.location {
-//            cell.textLabel?.text = listOfFavorites.location
-//        } else {
-//            cell.textLabel?.text = ""
-//        }
-		
-		// Correct:
-		// On line 97, we have created a constant pointing to
-		// the item in an array for the current row. We
-		// should use this constant from this point onward.
-		if let locationName = favorite.location {
-			
-			// Since we unwrap the optional favourite.location
-			// and assign the unwrapped value to locationName constant,
-			// we should use this constant from that point onwards
-			// inside this if.
-			cell.textLabel?.text = locationName
-		} else {
-			cell.textLabel?.text = ""
-		}
-
-		
+    
+        if let locationName = favorite.location {
+            
+            cell.textLabel?.text = locationName
+        }
         return cell
     }
-    */
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            self.listOfFavorites.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            resaveListOfFavorites()
+        }
+        tableView.reloadData()
+    }
+    
+    
+
+    
+    func addNewFavorite(_ sender: Any?) {
+        performSegue(withIdentifier: "AddNewFavoriteSegue", sender: sender)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "AddNewFavoriteSegue") {
+            _ = segue.destination as! ViewController
+        }
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tableView.reloadData()
+        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - Table view data source
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return self.listOfFavorites.count
     }
-   
     
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
+    func toggleEdit() {
+        tableView.setEditing(!tableView.isEditing, animated: true)
+    }
     
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
     
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
     
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
+    
+    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+        let favoriteMoving = listOfFavorites.remove(at: fromIndexPath.row)
+        listOfFavorites.insert(favoriteMoving, at: to.row)
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        if tableView.isEditing {
+            return .none
+        } else {
+            return .delete
+        }
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
 }

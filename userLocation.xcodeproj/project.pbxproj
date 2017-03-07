@@ -17,6 +17,7 @@
 		EF3821841E24162A00032F42 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3821831E24162A00032F42 /* CoreLocation.framework */; };
 		EF8F84801E25A33A00C32EBA /* userFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8F847F1E25A33A00C32EBA /* userFavorites.swift */; };
 		EFDE1A591E3A9403002D1589 /* FavoriteLocationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDE1A581E3A9403002D1589 /* FavoriteLocationsTableViewController.swift */; };
+		EFE2A60D1E4E817000715138 /* Zephyr.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE2A60C1E4E817000715138 /* Zephyr.swift */; };
 		EFFB04E31E2E8BD40071D961 /* SaveLocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFB04E21E2E8BD40071D961 /* SaveLocationDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,8 +53,10 @@
 		EF3821741E2415DF00032F42 /* userLocationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userLocationUITests.swift; sourceTree = "<group>"; };
 		EF3821761E2415DF00032F42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF3821831E24162A00032F42 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		EF5A9AED1E51618500650937 /* userLocation.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = userLocation.entitlements; sourceTree = "<group>"; };
 		EF8F847F1E25A33A00C32EBA /* userFavorites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userFavorites.swift; sourceTree = "<group>"; };
 		EFDE1A581E3A9403002D1589 /* FavoriteLocationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteLocationsTableViewController.swift; sourceTree = "<group>"; };
+		EFE2A60C1E4E817000715138 /* Zephyr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Zephyr.swift; path = "../../../Downloads/Zephyr-master/Zephyr/Zephyr.swift"; sourceTree = "<group>"; };
 		EFFB04E21E2E8BD40071D961 /* SaveLocationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveLocationDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,6 +110,7 @@
 		EF3821531E2415DF00032F42 /* userLocation */ = {
 			isa = PBXGroup;
 			children = (
+				EF5A9AED1E51618500650937 /* userLocation.entitlements */,
 				EF3821541E2415DF00032F42 /* AppDelegate.swift */,
 				EF3821561E2415DF00032F42 /* MapView Controller.swift */,
 				EFFB04E21E2E8BD40071D961 /* SaveLocationDetailViewController.swift */,
@@ -141,6 +145,7 @@
 		EF3821821E24162A00032F42 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EFE2A60C1E4E817000715138 /* Zephyr.swift */,
 				EF3821831E24162A00032F42 /* CoreLocation.framework */,
 			);
 			name = Frameworks;
@@ -214,7 +219,13 @@
 				TargetAttributes = {
 					EF3821501E2415DF00032F42 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 77F66T2364;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					EF3821641E2415DF00032F42 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -285,6 +296,7 @@
 				EFFB04E31E2E8BD40071D961 /* SaveLocationDetailViewController.swift in Sources */,
 				EF3821571E2415DF00032F42 /* MapView Controller.swift in Sources */,
 				EF3821551E2415DF00032F42 /* AppDelegate.swift in Sources */,
+				EFE2A60D1E4E817000715138 /* Zephyr.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,10 +446,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = userLocation/userLocation.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 77F66T2364;
 				INFOPLIST_FILE = userLocation/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.LisaSteele.userLocation;
+				PRODUCT_BUNDLE_IDENTIFIER = "XC-com-lisahsteele-userLocation";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -447,10 +463,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = userLocation/userLocation.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 77F66T2364;
 				INFOPLIST_FILE = userLocation/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.LisaSteele.userLocation;
+				PRODUCT_BUNDLE_IDENTIFIER = "XC-com-lisahsteele-userLocation";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

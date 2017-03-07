@@ -6,12 +6,6 @@
 //  Copyright © 2017 Lisa Steele. All rights reserved.
 //
 
-//play around with Swifty to convert to String and back
-//button from mapview needs to push to the Save a Favorite Location view
-//when this view controller is pushed, lat and long saved. (RGB slider) add data to segue.
-//here they will type in name of Location, save that.
-
-
 import UIKit
 import MapKit
 import CoreLocation
@@ -56,7 +50,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
-        manager.requestWhenInUseAuthorization()
+        manager.requestWhenInUseAuthorization()        
         manager.startUpdatingLocation()
         
     }
@@ -69,18 +63,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             
             let lat = localValue.latitude
             let long = localValue.longitude
-            
-            /*
-            let latString = String(lat)
-            let longString = String(long)
-            
-            let stringCoord = "\(latString)-\(longString)"
-            
-            
-            self.storeValue = stringCoord
-            */
-            
-            
+         
             coordinatesArray.append((lat: lat, long: long))
             
             for coord in coordinatesArray {
@@ -107,12 +90,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    /*
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    */
 }
 
 

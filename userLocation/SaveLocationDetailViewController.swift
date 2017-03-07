@@ -33,10 +33,8 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         if let text = locationNameField.text {
             locationNameString = "\(text)"
         }
-        
-        var newFavCoord = coordinatesPassed
+        let newFavCoord = coordinatesPassed
         newFavLoc = newFavCoord + (locationNameString)
-        
     }
     
 
@@ -44,11 +42,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == self.locationNameField {
             self.locationName?.location = textField.text
-            
         }
-        
-        //textField.returnKeyType = UIReturnKeyType.done
-        
     }
 
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -60,31 +54,31 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func saveFavorite(_ sender: Any) {
         let defaults = UserDefaults.standard
-		
-		let existingLocations = defaults.string(forKey: "NewFavoriteLocation")
-		
-		
-		
-		
-        defaults.set(existingLocations + "+" + newFavLoc, forKey: "NewFavoriteLocation")
+        //defaults.removeObject(forKey: "NewFavoriteLocation")
+        
+        if let existingFavLoc = defaults.string(forKey: "NewFavoriteLocation") {
+            defaults.set(existingFavLoc + "+" + newFavLoc, forKey: "NewFavoriteLocation")
+        } else {
+            defaults.set(newFavLoc, forKey: "NewFavoriteLocation")
+        }
+        
+        
+        //Here, we need to send this information to iCloud. Send key in similar data structure.
+        
         performSegue(withIdentifier: "FavoriteLocationTableSegue", sender: sender)
        
+        //Zephyr.sync(keys: "NewFavoriteLocation")
     }
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "FavoriteLocationTableSegue") {
-            let pTwo = segue.destination as! FavoriteLocationsTableViewController
-        
-            //pTwo.favorite = self.newFavLoc
+            _ = segue.destination as! FavoriteLocationsTableViewController
         }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
 }
 
     

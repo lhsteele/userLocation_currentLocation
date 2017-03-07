@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="gWx-ek-9ZQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="gWx-ek-9ZQ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -80,6 +80,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="B61-2n-S1P"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="AddNewFavoriteSegue" id="DeU-J5-9EH"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pX4-EA-J4z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -88,6 +91,7 @@
         <!--View Controller-->
         <scene sceneID="wMg-Zx-xbr">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UBC-N5-MS1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="4fS-mw-GIs" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1wa-Hv-7HH"/>
@@ -111,17 +115,27 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="haP-Ve-vgY">
+                                <rect key="frame" x="77" y="318" width="220" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Submit"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aOA-N2-fs1">
+                                <rect key="frame" x="77" y="550" width="220" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Create an Account"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UBC-N5-MS1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1327" y="124"/>
+            <point key="canvasLocation" x="-1327.2" y="123.68815592203899"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="4ZL-It-srR">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4hg-Si-nRI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="MXl-OH-pQR" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="v6g-Sm-r2Z"/>
@@ -142,13 +156,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4hg-Si-nRI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-543.20000000000005" y="882.90854572713647"/>
+            <point key="canvasLocation" x="-1327" y="883"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="fCF-pC-Dfn">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bLX-KD-bUS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="bw6-oI-viZ" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="faB-c8-hv1"/>
@@ -160,13 +174,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bLX-KD-bUS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="265" y="883"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="zsa-u5-Vn3">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JeO-C3-d6n" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="4LV-33-gE8" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1VR-T2-7Ky"/>
@@ -190,7 +204,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JeO-C3-d6n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-543.20000000000005" y="123.68815592203899"/>
         </scene>
@@ -288,5 +301,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="hht-FS-v94"/>
+        <segue reference="DeU-J5-9EH"/>
     </inferredMetricsTieBreakers>
 </document>
