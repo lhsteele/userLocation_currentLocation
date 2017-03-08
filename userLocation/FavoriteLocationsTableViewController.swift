@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 let favoriteLocationKey = "NewFavoriteLocation"
 
@@ -57,7 +58,18 @@ class FavoriteLocationsTableViewController: UITableViewController {
         
         let newFavourite = SavedFavorites(latCoord: newLatCoord, longCoord: newLongCoord, location: newLocation)
         
-        //Zephyr.sync(keys: "NewFavoriteLocation")
+        let dbLat = newLatCoord
+        let dbLong = newLongCoord
+        let dbLocation = newLocation
+        
+        let databaseFavLoc : [String: String] = ["Latitude" : dbLat, "Longitude" : dbLong, "Location Name" : dbLocation]
+        
+        var databaseRef: FIRDatabaseReference!
+        
+        databaseRef = FIRDatabase.database().reference()
+        
+        databaseRef.child("UserFavorites").childByAutoId().setValue(databaseFavLoc)
+        
         self.listOfFavorites.append(newFavourite)
       
         let newIndexPath = IndexPath(row: self.listOfFavorites.count - 1, section: 0)
