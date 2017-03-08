@@ -43,10 +43,13 @@ class FavoriteLocationsTableViewController: UITableViewController {
                 
                 let value = snapshot.value as? NSDictionary
                 
-                let latitude = snapshot.value?["Latitude"] as? String
-                let longitude = snapshot.value?["Longitude"] as? String
-                let location = snapshot.value?["Location Name"] as? String
+                let latitude = (snapshot.value as? AnyObject)?["Latitude"] as? String
+                let longitude = (snapshot.value as? AnyObject)?["Longitude"] as? String
+                let location = (snapshot.value as? AnyObject)?["Location Name"] as? String
                 
+                print(latitude)
+                print(longitude)
+                print(location)
                 
                 self.listOfFavorites.insert(SavedFavorites(latCoord: latitude, longCoord: longitude, location: location), at: 0)
             })
