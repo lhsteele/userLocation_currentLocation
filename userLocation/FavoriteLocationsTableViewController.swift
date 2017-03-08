@@ -36,11 +36,22 @@ class FavoriteLocationsTableViewController: UITableViewController {
                 addFavorite(tuple: singleLocation)
             }
             
-            //Zephyr.sync(keys: favoriteLocationKey)
+            let databaseRef = FIRDatabase.database().reference()
+            
+            databaseRef.child("UserFavorites").queryOrderedByKey().observe(.childAdded, with: {
+                snapshot in
+                
+                let value = snapshot.value as? NSDictionary
+                
+                let latitude = snapshot.value?["Latitude"] as? String
+                let longitude = snapshot.value?["Longitude"] as? String
+                let location = snapshot.value?["Location Name"] as? String
+                
+                
+                self.listOfFavorites.insert(SavedFavorites(latCoord: latitude, longCoord: longitude, location: location), at: 0)
+            })
         }
         
-        
-
         tableView.reloadData()
         
         let moveButton = UIBarButtonItem(title: "Re-order", style: .plain, target: self, action: #selector(FavoriteLocationsTableViewController.toggleEdit))
