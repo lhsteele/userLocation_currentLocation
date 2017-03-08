@@ -21,10 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FIRApp.configure()
         
-        var ref: FIRDatabaseReference!
-        
-        ref = FIRDatabase.database().reference()
-        
         return true
     }
 

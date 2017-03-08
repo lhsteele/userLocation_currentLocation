@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     
@@ -64,10 +65,18 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         
         
         //Here, we need to send this information to iCloud. Send key in similar data structure.
+        let dbFavLoc = "NewFavoriteLocation"
+        
+        let databaseFavLoc : [String: String] = ["FavLoc": dbFavLoc]
+        
+        var databaseRef: FIRDatabaseReference!
+        
+        databaseRef = FIRDatabase.database().reference()
+        
+        databaseRef.child("UserFavorites").childByAutoId().setValue(databaseFavLoc)
         
         performSegue(withIdentifier: "FavoriteLocationTableSegue", sender: sender)
        
-        //Zephyr.sync(keys: "NewFavoriteLocation")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
