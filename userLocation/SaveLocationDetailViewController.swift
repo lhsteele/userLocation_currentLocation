@@ -64,7 +64,24 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         }
         
         
-        //Here, we need to send this information to iCloud. Send key in similar data structure.
+        func addToFirebase(tuple: (lat: String, long:String, location: String)) {
+        
+            let dbLat = tuple.lat
+            let dbLong = tuple.long
+            let dbLocation = tuple.location
+            
+            let newDBFavourite = SavedFavorites(latCoord: dbLat, longCoord: dbLong, location: dbLocation)
+            
+            let databaseFavLoc : [String: String] = ["Latitude" : dbLat, "Longitude" : dbLong, "Location Name" : dbLocation]
+            
+            var databaseRef: FIRDatabaseReference!
+            
+            databaseRef = FIRDatabase.database().reference()
+            
+            databaseRef.child("UserFavorites").childByAutoId().setValue(databaseFavLoc)
+        }
+            
+            //Here, we need to send this information to iCloud. Send key in similar data structure.
         performSegue(withIdentifier: "FavoriteLocationTableSegue", sender: sender)
        
     }

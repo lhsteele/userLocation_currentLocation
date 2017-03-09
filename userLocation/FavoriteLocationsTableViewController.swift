@@ -38,6 +38,25 @@ class FavoriteLocationsTableViewController: UITableViewController {
             
             let databaseRef = FIRDatabase.database().reference()
             
+            databaseRef.child("UserFavorites").queryOrderedByKey().observe(.value, with: {
+                snapshot in
+                
+                //let value = snapshot.value as? NSDictionary
+                
+                let latitude = (snapshot.value as? AnyObject)?["Latitude"] as? String
+                let longitude = (snapshot.value as? AnyObject)?["Longitude"] as? String
+                let location = (snapshot.value as? AnyObject)?["Location Name"] as? String
+                
+                print(latitude)
+                print(longitude)
+                print(location)
+                
+                self.listOfFavorites.insert(SavedFavorites(latCoord: latitude, longCoord: longitude, location: location), at: 0)
+                
+                
+            })
+            
+            /*
             databaseRef.child("UserFavorites").queryOrderedByKey().observe(.childAdded, with: {
                 snapshot in
                 
@@ -53,6 +72,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
                 
                 self.listOfFavorites.insert(SavedFavorites(latCoord: latitude, longCoord: longitude, location: location), at: 0)
             })
+            */
         }
         
         tableView.reloadData()
@@ -72,6 +92,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
         
         let newFavourite = SavedFavorites(latCoord: newLatCoord, longCoord: newLongCoord, location: newLocation)
         
+        /*
         let dbLat = newLatCoord
         let dbLong = newLongCoord
         let dbLocation = newLocation
@@ -83,7 +104,8 @@ class FavoriteLocationsTableViewController: UITableViewController {
         databaseRef = FIRDatabase.database().reference()
         
         databaseRef.child("UserFavorites").childByAutoId().setValue(databaseFavLoc)
-        
+        */
+  
         self.listOfFavorites.append(newFavourite)
       
         let newIndexPath = IndexPath(row: self.listOfFavorites.count - 1, section: 0)
