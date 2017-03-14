@@ -17,8 +17,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var createAFavoriteLocation: UIButton!
 
-    var coordinatesArray = [(lat: Double, long: Double)] ()
-    var storeValue = ""
+    //var coordinatesArray = [(lat: Double, long: Double)] ()
+    //var storeValue = ""
+    //var latInt = Int()
+    //var longInt = Int()
+    var latIntPassed = Int()
+    var longIntPassed = Int()
+    var temporaryString = ""
+    
     
     
     let manager = CLLocationManager ()
@@ -61,9 +67,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             
             let localValue: CLLocationCoordinate2D = location.coordinate
             
-            let lat = localValue.latitude
-            let long = localValue.longitude
-         
+            let latIntPassed = localValue.latitude
+            let longIntPassed = localValue.longitude
+            
+            print (latIntPassed)
+            print (longIntPassed)
+            
+            
+            
+            /*
             coordinatesArray.append((lat: lat, long: long))
             
             for coord in coordinatesArray {
@@ -73,6 +85,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                     storeValue = temporaryString + ";"
             
             }
+            */
  
         }
         
@@ -86,7 +99,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
             let pointer = segue.destination as! SaveLocationDetailViewController
             
-            pointer.coordinatesPassed = storeValue
+            
+            print (latIntPassed)
+            print (longIntPassed)
+            
+            
+            pointer.latIntPassed = self.latIntPassed
+            pointer.longIntPassed = self.longIntPassed
+           
+            
         }
     }
     

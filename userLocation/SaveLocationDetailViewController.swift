@@ -15,18 +15,23 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var locationCoordinates: UILabel!
     @IBOutlet var saveFavorite: UIButton!
     
-    var locationName: SavedFavorites?
+    //var locationName: SavedFavorites?
     var coordinatesPassed = ""
     var locationNameString = String()
     var newFavLoc = ""
+    var latIntPassed = Int()
+    var longIntPassed = Int()
+    var newLatCoord = Int()
+    var newLongCoord = Int()
+    var username = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        locationCoordinates.text = coordinatesPassed
+        //locationCoordinates.text = coordinatesPassed
         
         self.locationNameField.delegate = self
-        
+                
     }
     
     
@@ -34,15 +39,20 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         if let text = locationNameField.text {
             locationNameString = "\(text)"
         }
-        let newFavCoord = coordinatesPassed
-        newFavLoc = newFavCoord + (locationNameString)
+        newLatCoord = latIntPassed
+        newLongCoord = longIntPassed
+        newFavLoc = locationNameString
+        
+        print (newLatCoord)
+        print (newLongCoord)
+        print (newFavLoc)
     }
     
 
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == self.locationNameField {
-            self.locationName?.location = textField.text
+            self.locationNameString = textField.text!
         }
     }
 
@@ -54,6 +64,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func saveFavorite(_ sender: Any) {
+        /*
         let defaults = UserDefaults.standard
         //defaults.removeObject(forKey: "NewFavoriteLocation")
         
@@ -62,23 +73,30 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         } else {
             defaults.set(newFavLoc, forKey: "NewFavoriteLocation")
         }
+        */
         
         
-        func addToFirebase(tuple: (lat: String, long:String, location: String)) {
+        func addToFirebase() {
         
-            let dbLat = tuple.lat
-            let dbLong = tuple.long
-            let dbLocation = tuple.location
+            let dbLat = newLatCoord
+            let dbLong = newLongCoord
+            let dbLocation = newFavLoc
             
-            let newDBFavourite = SavedFavorites(latCoord: dbLat, longCoord: dbLong, location: dbLocation)
+            //print (dbLat)
+            //print (dbLong)
+            //print (dbLocation)
             
-            let databaseFavLoc : [String: String] = ["Latitude" : dbLat, "Longitude" : dbLong, "Location Name" : dbLocation]
+            username = "Lisa"
+            
+            //let databaseFavLoc = [dbLat : newLatCoord, dbLong : newLongCoord, dbLocation : newFavLoc] as [String : Any]
             
             var databaseRef: FIRDatabaseReference!
             
             databaseRef = FIRDatabase.database().reference()
             
-            databaseRef.child("UserFavorites").childByAutoId().setValue(databaseFavLoc)
+            databaseRef.child("Lisa").childByAutoId().setValue(["Latitude" : dbLat])
+            //databaseRef.child(username).childByAutoId().setValue(["Longitude" : dbLong])
+            //databaseRef.child(username).childByAutoId().setValue(["Location" : newFavLoc])
         }
             
             //Here, we need to send this information to iCloud. Send key in similar data structure.
