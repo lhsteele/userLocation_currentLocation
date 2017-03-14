@@ -17,10 +17,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var createAFavoriteLocation: UIButton!
 
-    //var coordinatesArray = [(lat: Double, long: Double)] ()
+    var coordinatesArray = [(lat: Double, long: Double)] ()
     //var storeValue = ""
-    //var latInt = Int()
-    //var longInt = Int()
+    var latInt = Int()
+    var longInt = Int()
     var latIntPassed = Int()
     var longIntPassed = Int()
     var temporaryString = ""
@@ -67,27 +67,32 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             
             let localValue: CLLocationCoordinate2D = location.coordinate
             
-            let latIntPassed = localValue.latitude
-            let longIntPassed = localValue.longitude
+            let latInt = localValue.latitude
+            let longInt = localValue.longitude
             
-            print (latIntPassed)
-            print (longIntPassed)
-            
-            
+            latIntPassed = Int(latInt)
+            longIntPassed = Int(longInt)
             
             /*
-            coordinatesArray.append((lat: lat, long: long))
+            coordinatesArray.append((lat: latInt, long: longInt))
             
             for coord in coordinatesArray {
                 
-                    let temporaryString = "\(coord.lat);\(coord.long)"
+                let latIntPassed = latInt
+                let longIntPassed = longInt
                 
-                    storeValue = temporaryString + ";"
+                print (latIntPassed)
+                print (longIntPassed)
             
             }
             */
+            
  
         }
+      
+        
+        print (latIntPassed)
+        print (longIntPassed)
         
         performSegue(withIdentifier: "saveLocationDetailSegue", sender: sender)
         

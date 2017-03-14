@@ -15,7 +15,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var locationCoordinates: UILabel!
     @IBOutlet var saveFavorite: UIButton!
     
-    //var locationName: SavedFavorites?
+    var locationName: SavedFavorites?
     var coordinatesPassed = ""
     var locationNameString = String()
     var newFavLoc = ""
@@ -24,11 +24,14 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     var newLatCoord = Int()
     var newLongCoord = Int()
     var username = ""
+    var dbLat = Int()
+    var dbLong = Int()
+    var dbLocation = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //locationCoordinates.text = coordinatesPassed
+        locationCoordinates.text = "\(latIntPassed);\(longIntPassed)"
         
         self.locationNameField.delegate = self
                 
@@ -78,17 +81,19 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         
         func addToFirebase() {
         
-            let dbLat = newLatCoord
-            let dbLong = newLongCoord
-            let dbLocation = newFavLoc
+            dbLat = newLatCoord
+            dbLong = newLongCoord
+            dbLocation = newFavLoc
             
-            //print (dbLat)
-            //print (dbLong)
-            //print (dbLocation)
+            print ("\("DB")\(dbLat)")
+            print ("\("DB")\(dbLong)")
+            print ("\("DB")\(dbLocation)")
             
             username = "Lisa"
             
-            //let databaseFavLoc = [dbLat : newLatCoord, dbLong : newLongCoord, dbLocation : newFavLoc] as [String : Any]
+            
+            
+            //let databaseFavLoc: [String : String] = ["Latitude": dbLat, "Longitude" : dbLong, "Location" : dbLocation]
             
             var databaseRef: FIRDatabaseReference!
             
