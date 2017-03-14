@@ -65,6 +65,31 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    func addToFirebase() {
+        
+        dbLat = newLatCoord
+        dbLong = newLongCoord
+        dbLocation = newFavLoc
+        
+        print ("\("DB")\(dbLat)")
+        print ("\("DB")\(dbLong)")
+        print ("\("DB")\(dbLocation)")
+        
+        username = "Lisa"
+        
+        
+        
+        //let databaseFavLoc: [String : String] = ["Latitude": dbLat, "Longitude" : dbLong, "Location" : dbLocation]
+        
+        var databaseRef: FIRDatabaseReference!
+        
+        databaseRef = FIRDatabase.database().reference()
+        
+        databaseRef.child(username).childByAutoId().setValue(["Latitude" : dbLat])
+        databaseRef.child(username).childByAutoId().setValue(["Longitude" : dbLong])
+        databaseRef.child(username).childByAutoId().setValue(["Location" : newFavLoc])
+    }
+   
     
     @IBAction func saveFavorite(_ sender: Any) {
         /*
@@ -79,32 +104,10 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         */
         
         
-        func addToFirebase() {
         
-            dbLat = newLatCoord
-            dbLong = newLongCoord
-            dbLocation = newFavLoc
-            
-            print ("\("DB")\(dbLat)")
-            print ("\("DB")\(dbLong)")
-            print ("\("DB")\(dbLocation)")
-            
-            username = "Lisa"
-            
-            
-            
-            //let databaseFavLoc: [String : String] = ["Latitude": dbLat, "Longitude" : dbLong, "Location" : dbLocation]
-            
-            var databaseRef: FIRDatabaseReference!
-            
-            databaseRef = FIRDatabase.database().reference()
-            
-            databaseRef.child("Lisa").childByAutoId().setValue(["Latitude" : dbLat])
-            //databaseRef.child(username).childByAutoId().setValue(["Longitude" : dbLong])
-            //databaseRef.child(username).childByAutoId().setValue(["Location" : newFavLoc])
-        }
-            
-            //Here, we need to send this information to iCloud. Send key in similar data structure.
+        //Here, we need to send this information to iCloud. Send key in similar data structure.
+        addToFirebase()
+        
         performSegue(withIdentifier: "FavoriteLocationTableSegue", sender: sender)
        
     }
