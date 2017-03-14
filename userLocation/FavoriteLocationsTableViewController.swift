@@ -16,12 +16,31 @@ class FavoriteLocationsTableViewController: UITableViewController {
     var listOfFavorites: [SavedFavorites] = []
     var components = ""
     var updatedListOfFavorites = ""
-    
+        
     override func viewDidLoad() {
         
         
         super.viewDidLoad()
         
+        
+        let databaseRef = FIRDatabase.database().reference()
+        
+        databaseRef.child("UserFavorites").queryOrderedByKey().observe(.value, with: {
+            snapshot in
+            
+            //let value = snapshot.value as? NSDictionary
+            
+            let latitude = (snapshot.value as? AnyObject)?["Latitude"] as? String
+            let longitude = (snapshot.value as? AnyObject)?["Longitude"] as? String
+            let location = (snapshot.value as? AnyObject)?["Location Name"] as? String
+            
+            print(latitude)
+            print(longitude)
+            print(location)
+        })
+        
+       
+        /*
         let defaults = UserDefaults.standard
         let favoriteLocations =  defaults.string(forKey: favoriteLocationKey)
         
@@ -35,46 +54,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
                 
                 addFavorite(tuple: singleLocation)
             }
-            
-            let databaseRef = FIRDatabase.database().reference()
-            
-            databaseRef.child("UserFavorites").queryOrderedByKey().observe(.value, with: {
-                snapshot in
-                
-                //let value = snapshot.value as? NSDictionary
-                
-                let latitude = (snapshot.value as? AnyObject)?["Latitude"] as? String
-                let longitude = (snapshot.value as? AnyObject)?["Longitude"] as? String
-                let location = (snapshot.value as? AnyObject)?["Location Name"] as? String
-                
-                print(latitude)
-                print(longitude)
-                print(location)
-                
-                self.listOfFavorites.insert(SavedFavorites(latCoord: latitude, longCoord: longitude, location: location), at: 0)
-                
-                
-            })
-            
-            /*
-            databaseRef.child("UserFavorites").queryOrderedByKey().observe(.childAdded, with: {
-                snapshot in
-                
-                let value = snapshot.value as? NSDictionary
-                
-                let latitude = (snapshot.value as? AnyObject)?["Latitude"] as? String
-                let longitude = (snapshot.value as? AnyObject)?["Longitude"] as? String
-                let location = (snapshot.value as? AnyObject)?["Location Name"] as? String
-                
-                print(latitude)
-                print(longitude)
-                print(location)
-                
-                self.listOfFavorites.insert(SavedFavorites(latCoord: latitude, longCoord: longitude, location: location), at: 0)
-            })
-            */
-        }
-        
+        */
         tableView.reloadData()
         
         let moveButton = UIBarButtonItem(title: "Re-order", style: .plain, target: self, action: #selector(FavoriteLocationsTableViewController.toggleEdit))
@@ -83,7 +63,8 @@ class FavoriteLocationsTableViewController: UITableViewController {
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(FavoriteLocationsTableViewController.addNewFavorite))
         navigationItem.rightBarButtonItem = addButton
     }
-    
+ 
+    /*
     func addFavorite(tuple: (lat: String, long:String, location: String)) {
         
         let newLatCoord = tuple.lat
@@ -92,7 +73,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
         
         let newFavourite = SavedFavorites(latCoord: newLatCoord, longCoord: newLongCoord, location: newLocation)
         
-        /*
+     
         let dbLat = newLatCoord
         let dbLong = newLongCoord
         let dbLocation = newLocation
@@ -104,7 +85,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
         databaseRef = FIRDatabase.database().reference()
         
         databaseRef.child("UserFavorites").childByAutoId().setValue(databaseFavLoc)
-        */
+     
   
         self.listOfFavorites.append(newFavourite)
       
@@ -112,8 +93,10 @@ class FavoriteLocationsTableViewController: UITableViewController {
         self.tableView.insertRows(at: [newIndexPath], with: .automatic)
         
     }
+    */
+  
     
-    
+    /*
     func resaveListOfFavorites() {
         //in this function, I need to convert the listOfFavorites back to a single string.
         //assign this to the variable updatedListOfFavorites, and this will be saved to userDefaults.
@@ -151,12 +134,13 @@ class FavoriteLocationsTableViewController: UITableViewController {
             i += 1
         }
         
-        let defaults = UserDefaults.standard
-        defaults.set(updatedListOfFavorites, forKey: favoriteLocationKey)
+        //let defaults = UserDefaults.standard
+        //defaults.set(updatedListOfFavorites, forKey: favoriteLocationKey)
         
-        //Zephyr.sync(keys: favoriteLocationKey)
         
     }
+    */
+  
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -176,7 +160,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
             self.listOfFavorites.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             
-            resaveListOfFavorites()
+            //resaveListOfFavorites()
         }
         tableView.reloadData()
     }
