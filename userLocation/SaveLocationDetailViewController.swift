@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import MapKit
 
 class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     
@@ -15,23 +16,21 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var locationCoordinates: UILabel!
     @IBOutlet var saveFavorite: UIButton!
     
-    var locationName: SavedFavorites?
-    var coordinatesPassed = ""
     var locationNameString = String()
     var newFavLoc = ""
-    var latIntPassed = Int()
-    var longIntPassed = Int()
-    var newLatCoord = Int()
-    var newLongCoord = Int()
+    var latCoordPassed = CLLocationDegrees()
+    var longCoordPassed = CLLocationDegrees()
+    var newLatCoord = CLLocationDegrees()
+    var newLongCoord = CLLocationDegrees()
     var username = ""
-    var dbLat = Int()
-    var dbLong = Int()
+    var dbLat = CLLocationDegrees()
+    var dbLong = CLLocationDegrees()
     var dbLocation = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        locationCoordinates.text = "\(latIntPassed);\(longIntPassed)"
+        locationCoordinates.text = "\(latCoordPassed);\(longCoordPassed)"
         
         self.locationNameField.delegate = self
                 
@@ -42,8 +41,8 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         if let text = locationNameField.text {
             locationNameString = "\(text)"
         }
-        newLatCoord = latIntPassed
-        newLongCoord = longIntPassed
+        newLatCoord = latCoordPassed
+        newLongCoord = longCoordPassed
         newFavLoc = locationNameString
         
         print (newLatCoord)
@@ -77,10 +76,6 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         
         username = "Lisa"
         
-        
-        
-        //let databaseFavLoc: [String : String] = ["Latitude": dbLat, "Longitude" : dbLong, "Location" : dbLocation]
-        
         var databaseRef: FIRDatabaseReference!
         
         databaseRef = FIRDatabase.database().reference()
@@ -92,20 +87,6 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
    
     
     @IBAction func saveFavorite(_ sender: Any) {
-        /*
-        let defaults = UserDefaults.standard
-        //defaults.removeObject(forKey: "NewFavoriteLocation")
-        
-        if let existingFavLoc = defaults.string(forKey: "NewFavoriteLocation") {
-            defaults.set(existingFavLoc + "+" + newFavLoc, forKey: "NewFavoriteLocation")
-        } else {
-            defaults.set(newFavLoc, forKey: "NewFavoriteLocation")
-        }
-        */
-        
-        
-        
-        //Here, we need to send this information to iCloud. Send key in similar data structure.
         addToFirebase()
         
         performSegue(withIdentifier: "FavoriteLocationTableSegue", sender: sender)

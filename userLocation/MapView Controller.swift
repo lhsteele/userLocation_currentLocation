@@ -17,12 +17,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var createAFavoriteLocation: UIButton!
 
-    var coordinatesArray = [(lat: Double, long: Double)] ()
-    //var storeValue = ""
-    var latInt = Int()
-    var longInt = Int()
-    var latIntPassed = Int()
-    var longIntPassed = Int()
+    var latCoord = CLLocationDegrees()
+    var longCoord = CLLocationDegrees()
+    var latCoordPassed = CLLocationDegrees()
+    var longCoordPassed = CLLocationDegrees()
     var temporaryString = ""
     
     
@@ -67,32 +65,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             
             let localValue: CLLocationCoordinate2D = location.coordinate
             
-            let latInt = localValue.latitude
-            let longInt = localValue.longitude
+            let latCoord = localValue.latitude
+            let longCoord = localValue.longitude
             
-            latIntPassed = Int(latInt)
-            longIntPassed = Int(longInt)
+            latCoordPassed = latCoord
+            longCoordPassed = longCoord
             
-            /*
-            coordinatesArray.append((lat: latInt, long: longInt))
-            
-            for coord in coordinatesArray {
-                
-                let latIntPassed = latInt
-                let longIntPassed = longInt
-                
-                print (latIntPassed)
-                print (longIntPassed)
-            
-            }
-            */
-            
- 
         }
       
         
-        print (latIntPassed)
-        print (longIntPassed)
+        print (latCoordPassed)
+        print (longCoordPassed)
         
         performSegue(withIdentifier: "saveLocationDetailSegue", sender: sender)
         
@@ -104,13 +87,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
             let pointer = segue.destination as! SaveLocationDetailViewController
             
+            print (latCoordPassed)
+            print (longCoordPassed)
             
-            print (latIntPassed)
-            print (longIntPassed)
-            
-            
-            pointer.latIntPassed = self.latIntPassed
-            pointer.longIntPassed = self.longIntPassed
+            pointer.latCoordPassed = self.latCoordPassed
+            pointer.longCoordPassed = self.longCoordPassed
            
             
         }

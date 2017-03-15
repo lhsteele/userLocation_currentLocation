@@ -16,6 +16,10 @@ class FavoriteLocationsTableViewController: UITableViewController {
     var listOfFavorites: [SavedFavorites] = []
     var components = ""
     var updatedListOfFavorites = ""
+    var username = ""
+    var retrievedLatitude = Int()
+    var retrievedLongitude = Int()
+    var retrievedLocation = ""
         
     override func viewDidLoad() {
         
@@ -25,18 +29,17 @@ class FavoriteLocationsTableViewController: UITableViewController {
         
         let databaseRef = FIRDatabase.database().reference()
         
-        databaseRef.child("UserFavorites").queryOrderedByKey().observe(.value, with: {
+        username = "Lisa"
+        
+        databaseRef.child(username).queryOrderedByKey().observe(.value, with: {
             snapshot in
             
-            //let value = snapshot.value as? NSDictionary
+            let value = snapshot.value as? [String: AnyObject]
             
-            let latitude = (snapshot.value as? AnyObject)?["Latitude"] as? String
-            let longitude = (snapshot.value as? AnyObject)?["Longitude"] as? String
-            let location = (snapshot.value as? AnyObject)?["Location Name"] as? String
+            let retrievedLatitude = value?["Latitude"]
+            let retrievedLongitude = value?["Longitude"]
+            let retrievedLocation = value?["Location"]
             
-            print(latitude)
-            print(longitude)
-            print(location)
         })
         
        
@@ -160,7 +163,6 @@ class FavoriteLocationsTableViewController: UITableViewController {
             self.listOfFavorites.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             
-            //resaveListOfFavorites()
         }
         tableView.reloadData()
     }
