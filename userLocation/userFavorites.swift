@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-
+/*
 class SavedFavorites: NSObject {
     var latCoord: String?
     var longCoord: String?
@@ -24,5 +24,6 @@ class SavedFavorites: NSObject {
         super.init()
     }
 }
+ */
 
     

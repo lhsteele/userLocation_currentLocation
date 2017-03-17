@@ -36,7 +36,8 @@ class FavoriteLocationsTableViewController: UITableViewController {
         databaseHandle = ref?.child(username).observe(.value, with: { (snapshot) in
             
             for item in snapshot.children {
-                if let dbLocation = snapshot.value(forKey: "Location") as? String {
+                if let item = snapshot.value as? NSDictionary {
+                    let dbLocation = value?[username] as? String ?? ""
                     print (dbLocation)
                     self.listOfFavorites.append(dbLocation)
                 }
