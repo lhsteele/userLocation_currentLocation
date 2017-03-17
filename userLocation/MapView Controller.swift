@@ -73,10 +73,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             
         }
       
-        
-        print (latCoordPassed)
-        print (longCoordPassed)
-        
         performSegue(withIdentifier: "saveLocationDetailSegue", sender: sender)
         
 
@@ -86,9 +82,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         if (segue.identifier == "saveLocationDetailSegue") {
 
             let pointer = segue.destination as! SaveLocationDetailViewController
-            
-            print (latCoordPassed)
-            print (longCoordPassed)
             
             pointer.latCoordPassed = self.latCoordPassed
             pointer.longCoordPassed = self.longCoordPassed

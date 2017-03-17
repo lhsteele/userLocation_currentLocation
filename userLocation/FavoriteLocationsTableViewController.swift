@@ -7,19 +7,22 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseDatabase
 
 let favoriteLocationKey = "NewFavoriteLocation"
 
 class FavoriteLocationsTableViewController: UITableViewController {
 
-    var listOfFavorites: [SavedFavorites] = []
+    //var listOfFavorites: [SavedFavorites] = []
+    var listOfFavorites: [String] = []
     var components = ""
     var updatedListOfFavorites = ""
     var username = ""
     var retrievedLatitude = Int()
     var retrievedLongitude = Int()
     var retrievedLocation = ""
+    var databaseHandle: FIRDatabaseHandle?
+    var ref: FIRDatabaseReference?
         
     override func viewDidLoad() {
         
@@ -31,6 +34,21 @@ class FavoriteLocationsTableViewController: UITableViewController {
         
         username = "Lisa"
         
+        databaseHandle = ref?.child(username).observe(.value, with: { (snapshot) in
+            let item = snapshot.value as? String
+            
+            if let retrievedItem = item {
+                print (retrievedItem)
+                
+                self.listOfFavorites.append(retrievedItem)
+                self.tableView.reloadData()
+            }
+            
+            print (self.listOfFavorites)
+            
+        })
+        
+        /*
         databaseRef.child(username).queryOrderedByKey().observe(.value, with: {
             snapshot in
             
@@ -40,7 +58,12 @@ class FavoriteLocationsTableViewController: UITableViewController {
             let retrievedLongitude = value?["Longitude"]
             let retrievedLocation = value?["Location"]
             
+            print (retrievedLatitude as Any)
+            print (retrievedLongitude as Any)
+            print (retrievedLocation as Any)
+            
         })
+        */
         
        
         /*
@@ -58,7 +81,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
                 addFavorite(tuple: singleLocation)
             }
         */
-        tableView.reloadData()
+        //tableView.reloadData()
         
         let moveButton = UIBarButtonItem(title: "Re-order", style: .plain, target: self, action: #selector(FavoriteLocationsTableViewController.toggleEdit))
         navigationItem.leftBarButtonItem = moveButton
@@ -148,13 +171,16 @@ class FavoriteLocationsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        
+        /*
         let favorite = self.listOfFavorites[indexPath.row]
     
         if let locationName = favorite.location {
             
             cell.textLabel?.text = locationName
         }
+        */
+        
+        cell.textLabel?.text = listOfFavorites[indexPath.row]
         return cell
     }
     

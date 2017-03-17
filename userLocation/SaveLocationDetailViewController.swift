@@ -45,9 +45,6 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         newLongCoord = longCoordPassed
         newFavLoc = locationNameString
         
-        print (newLatCoord)
-        print (newLongCoord)
-        print (newFavLoc)
     }
     
 
@@ -69,10 +66,6 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         dbLat = newLatCoord
         dbLong = newLongCoord
         dbLocation = newFavLoc
-        
-        print ("\("DB")\(dbLat)")
-        print ("\("DB")\(dbLong)")
-        print ("\("DB")\(dbLocation)")
         
         username = "Lisa"
         
