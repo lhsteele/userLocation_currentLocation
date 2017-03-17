@@ -14,12 +14,52 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var databaseHandle: FIRDatabaseHandle?
+    var ref: FIRDatabaseReference?
+    var username = ""
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         FIRApp.configure()
+        
+        let databaseRef = FIRDatabase.database().reference()
+        
+        username = "Lisa"
+        
+        //use ref property and safely unwrap here with if let
+        let databaseHandle = databaseRef.child("User").observe(.value, with: { (snapshot) in
+            
+            if let item = snapshot.value as? NSDictionary {
+                
+                print ("===")
+                print(item)
+                
+                let newRef = FIRDatabase.database().reference().queryOrdered(byChild: "Location")
+                
+                newRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                    if let dbLocation = item["LocationName"] as? String {
+                        
+                    }
+                })
+                /*
+                if let dbLocation = item["LocationName"] as? String {
+                    print(dbLocation)
+                        
+                        //self.listOfFavorites.append(dbLocation)
+                }
+                */
+            }
+                
+                //self.tableView.reloadData()
+
+            
+        })
+        
+    
+    
+
         
         return true
     }

@@ -29,24 +29,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
         
         super.viewDidLoad()
         
-        let databaseRef = FIRDatabase.database().reference()
-        
-        username = "Lisa"
-        
-        databaseHandle = ref?.child(username).observe(.value, with: { (snapshot) in
-            
-            for item in snapshot.children {
-                if let item = snapshot.value as? NSDictionary {
-                    let dbLocation = value?[username] as? String ?? ""
-                    print (dbLocation)
-                    self.listOfFavorites.append(dbLocation)
-                }
-                self.tableView.reloadData()
-            }
-        
-        })
-        
-        /*
+                /*
         databaseRef.child(username).queryOrderedByKey().observe(.value, with: {
             snapshot in
             
@@ -203,6 +186,13 @@ class FavoriteLocationsTableViewController: UITableViewController {
             _ = segue.destination as! ViewController
         }
     }
+    
+    /*
+    override func viewDidAppear(_ animated: Bool) {
+     
+    }
+    */
+  
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
