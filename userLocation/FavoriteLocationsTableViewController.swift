@@ -29,23 +29,20 @@ class FavoriteLocationsTableViewController: UITableViewController {
         
         super.viewDidLoad()
         
-        
         let databaseRef = FIRDatabase.database().reference()
         
         username = "Lisa"
         
         databaseHandle = ref?.child(username).observe(.value, with: { (snapshot) in
-            let item = snapshot.value as? String
             
-            if let retrievedItem = item {
-                print (retrievedItem)
-                
-                self.listOfFavorites.append(retrievedItem)
+            for item in snapshot.children {
+                if let dbLocation = snapshot.value(forKey: "Location") as? String {
+                    print (dbLocation)
+                    self.listOfFavorites.append(dbLocation)
+                }
                 self.tableView.reloadData()
             }
-            
-            print (self.listOfFavorites)
-            
+        
         })
         
         /*
