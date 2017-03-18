@@ -28,6 +28,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         username = "Lisa"
         
+        let locationRef = self.ref?.child(byAppendingPath: "Users")
+        
+        locationRef?.queryOrdered(byChild: "LocationName").observeSingleEvent(of: .value, with: { (snapshot) in
+            let snapshotValue = snapshot.value as? NSDictionary
+            if let dbLocation = snapshotValue?["LocationName"] as? String {
+                print (dbLocation)
+            }
+        })
+        
+        /*
         //use ref property and safely unwrap here with if let
         let databaseHandle = databaseRef.child("User").observe(.value, with: { (snapshot) in
             
@@ -36,27 +46,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print ("===")
                 print(item)
                 
-                let newRef = FIRDatabase.database().reference().queryOrdered(byChild: "Location")
                 
-                newRef.observeSingleEvent(of: .value, with: { (snapshot) in
-                    if let dbLocation = item["LocationName"] as? String {
-                        
-                    }
-                })
-                /*
-                if let dbLocation = item["LocationName"] as? String {
-                    print(dbLocation)
+                let newRef = FIRDatabase.database().reference()
+                
+                let dbLocation = newRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                    if let dbLocation = snapshot.value["LocationName"] as? [String: AnyObject] {
+                        print(dbLocation)
                         
                         //self.listOfFavorites.append(dbLocation)
-                }
-                */
-            }
+                    }
+                    
+                })
+                
+                
+            }       
+ 
                 
                 //self.tableView.reloadData()
 
             
         })
-        
+        */
     
     
 
