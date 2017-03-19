@@ -24,53 +24,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FIRApp.configure()
         
-        let databaseRef = FIRDatabase.database().reference()
+        let databaseRef = FIRDatabase.database().reference().child("Users").child("Username").child("Favorites").child("Location")
         
         username = "Lisa"
         
-        let locationRef = self.ref?.child(byAppendingPath: "Users")
-        
-        locationRef?.queryOrdered(byChild: "LocationName").observeSingleEvent(of: .value, with: { (snapshot) in
-            let snapshotValue = snapshot.value as? NSDictionary
-            if let dbLocation = snapshotValue?["LocationName"] as? String {
-                print (dbLocation)
+        //use ref property and safely unwrap here with if let
+        let databaseHandle = databaseRef.observe(.value, with: { (snapshot) in
+            if let item = snapshot.childSnapshot(forPath: "LocationName").value as? String {
+            print ("===")
+            print (item)
             }
         })
-        
-        /*
-        //use ref property and safely unwrap here with if let
-        let databaseHandle = databaseRef.child("User").observe(.value, with: { (snapshot) in
             
-            if let item = snapshot.value as? NSDictionary {
-                
-                print ("===")
-                print(item)
-                
-                
-                let newRef = FIRDatabase.database().reference()
-                
-                let dbLocation = newRef.observeSingleEvent(of: .value, with: { (snapshot) in
-                    if let dbLocation = snapshot.value["LocationName"] as? [String: AnyObject] {
-                        print(dbLocation)
-                        
-                        //self.listOfFavorites.append(dbLocation)
-                    }
-                    
-                })
-                
-                
-            }       
- 
-                
-                //self.tableView.reloadData()
-
-            
-        })
-        */
-    
-    
-
-        
         return true
     }
 
@@ -95,7 +60,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
+    
 }
 
