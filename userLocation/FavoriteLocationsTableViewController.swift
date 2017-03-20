@@ -29,40 +29,23 @@ class FavoriteLocationsTableViewController: UITableViewController {
         
         super.viewDidLoad()
         
-                /*
-        databaseRef.child(username).queryOrderedByKey().observe(.value, with: {
-            snapshot in
-            
-            let value = snapshot.value as? [String: AnyObject]
-            
-            let retrievedLatitude = value?["Latitude"]
-            let retrievedLongitude = value?["Longitude"]
-            let retrievedLocation = value?["Location"]
-            
-            print (retrievedLatitude as Any)
-            print (retrievedLongitude as Any)
-            print (retrievedLocation as Any)
-            
-        })
-        */
-        
-       
+        //This code works, however it only extracts the "LocationName" for the first "Location" child. Now I need to write a for loop (?) in order to print out all the "LocationName" keys for all the "Location" children.
         /*
-        let defaults = UserDefaults.standard
-        let favoriteLocations =  defaults.string(forKey: favoriteLocationKey)
-        
-        
-        if let components = favoriteLocations?.components(separatedBy: "+") {
-            
-            for component in components {
-                let locationComponents = component.components(separatedBy: ";")
-                
-                let singleLocation = (lat: locationComponents[0], long: locationComponents[1], location: locationComponents[2])
-                
-                addFavorite(tuple: singleLocation)
-            }
-        */
-        //tableView.reloadData()
+         FIRApp.configure()
+         
+         let databaseRef = FIRDatabase.database().reference().child("Users").child("Username").child("Favorites").child("Location")
+         
+         username = "Lisa"
+         
+         //use ref property and safely unwrap here with if let
+         let databaseHandle = databaseRef.observe(.value, with: { (snapshot) in
+         if let item = snapshot.childSnapshot(forPath: "LocationName").value as? String {
+         print ("===")
+         print (item)
+         }
+         })
+         */
+         //tableView.reloadData()
         
         let moveButton = UIBarButtonItem(title: "Re-order", style: .plain, target: self, action: #selector(FavoriteLocationsTableViewController.toggleEdit))
         navigationItem.leftBarButtonItem = moveButton

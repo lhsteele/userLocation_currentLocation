@@ -67,15 +67,15 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         dbLong = newLongCoord
         dbLocation = newFavLoc
         
-        username = "Lisa"
+        //username = "Lisa"
         
         var databaseRef: FIRDatabaseReference!
         
         databaseRef = FIRDatabase.database().reference()
         
-        databaseRef.child(username).childByAutoId().setValue(["Latitude" : dbLat])
-        databaseRef.child(username).childByAutoId().setValue(["Longitude" : dbLong])
-        databaseRef.child(username).childByAutoId().setValue(["Location" : newFavLoc])
+        databaseRef.child("Users/Username/Favorites/Location").childByAutoId().setValue(["Latitude" : dbLat])
+        databaseRef.child("Users/Username/Favorites/Location").childByAutoId().setValue(["Longitude" : dbLong])
+        databaseRef.child("Users/Username/Favorites/Location").childByAutoId().setValue(["Location" : newFavLoc])
     }
    
     
