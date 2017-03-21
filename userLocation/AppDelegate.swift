@@ -78,11 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     print("===")
 
                 }
-                    //if let dbLocation = .child("LocationName") as? String {
-                                
-                    //print ("===")
-                    //print (dbLocation)
-                    //}
+                
             }
             
             
