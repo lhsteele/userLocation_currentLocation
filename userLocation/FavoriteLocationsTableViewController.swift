@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import Firebase
 
 let favoriteLocationKey = "NewFavoriteLocation"
 
@@ -30,19 +31,17 @@ class FavoriteLocationsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         //This code works, however it only extracts the "LocationName" for the first "Location" child. Now I need to write a for loop (?) in order to print out all the "LocationName" keys for all the "Location" children.
-        /*
-         FIRApp.configure()
-         
+         /*
          let databaseRef = FIRDatabase.database().reference().child("Users").child("Username").child("Favorites").child("Location")
          
          username = "Lisa"
          
          //use ref property and safely unwrap here with if let
          let databaseHandle = databaseRef.observe(.value, with: { (snapshot) in
-         if let item = snapshot.childSnapshot(forPath: "LocationName").value as? String {
-         print ("===")
-         print (item)
-         }
+            if let item = snapshot.childSnapshot(forPath: "LocationName").value as? String {
+                print ("===")
+                print (item)
+            }
          })
          */
          //tableView.reloadData()

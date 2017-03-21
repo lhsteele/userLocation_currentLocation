@@ -24,23 +24,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FIRApp.configure()
         
-        let databaseRef = FIRDatabase.database().reference().child("Users").child("Username").child("Favorites")
-        username = "Lisa"
-        
+        /*
+        //This works to print one LocationName of one Location child.
         //use ref property and safely unwrap here with if let
-        let databaseHandle = databaseRef.observe(.value, with: { (snapshot) in
-            for item in snapshot.children {
-                
-                if let dbLocation = snapshot.childSnapshot(forPath: "LocationName") as? String {
+        let databaseRef = FIRDatabase.database().reference().child("Users").child("Username").child("Favorites").child("Location")
+        
+        username = "Lisa"
+         
+         //use ref property and safely unwrap here with if let
+         let databaseHandle = databaseRef.observe(.value, with: { (snapshot) in
+            if let item = snapshot.childSnapshot(forPath: "LocationName").value as? String {
+                print ("===")
+                print (item)
+            }
+         })
+        */
+ 
+        
+        
+        
+        let databaseRef = FIRDatabase.database().reference().child("Users").child("Username")
+        username = "Lisa"
+         
+        let databaseHandle = databaseRef.child("Favorites").observe(.value, with: { (snapshot) in
+            if let result = snapshot.key as? [FIRDataSnapshot] {
+                for child in result {
+                    if let dbLocation = snapshot.childSnapshot(forPath: "LocationName") as? String {
+                                
                     print ("===")
                     print (dbLocation)
+                    }
                 }
-                print(item)
-                
+            
             }
             
         })
-            
+        
+        
         return true
     }
   

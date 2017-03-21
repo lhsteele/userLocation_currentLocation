@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseDatabase
 import MapKit
 
 class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
@@ -78,10 +79,12 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         let childUpdates = ["/Favorites/\(key)" : location]
         databaseRef.updateChildValues(childUpdates)
         
-        
-        //databaseRef.child("Users/Username/Favorites").childByAutoId().setValue(["Latitude" : dbLat], ["Longitude" : dbLong], ["Location" : newFavLoc])
-        //databaseRef.child("Users/Username/Favorites").childByAutoId().setValue(["Longitude" : dbLong])
-        //databaseRef.child("Users/Username/Favorites").childByAutoId().setValue(["Location" : newFavLoc])
+        /*
+        This works for adding one key to one child.
+        databaseRef.child("Users/Username/Favorites").childByAutoId().setValue(["Latitude" : dbLat])
+        databaseRef.child("Users/Username/Favorites").childByAutoId().setValue(["Longitude" : dbLong])
+        databaseRef.child("Users/Username/Favorites").childByAutoId().setValue(["Location" : newFavLoc])
+        */
     }
    
     
