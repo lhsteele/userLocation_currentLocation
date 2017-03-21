@@ -17,8 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var databaseHandle: FIRDatabaseHandle?
     var ref: FIRDatabaseReference?
     var username = ""
-
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
@@ -41,25 +40,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         */
  
         
+        //** queryEqualToValue?
         
-        
-        let databaseRef = FIRDatabase.database().reference().child("Users").child("Username")
+        let databaseRef = FIRDatabase.database().reference().child("Users").child("Username").child("Favorites")
         username = "Lisa"
          
-        let databaseHandle = databaseRef.child("Favorites").observe(.value, with: { (snapshot) in
-            if let result = snapshot.key as? [FIRDataSnapshot] {
-                for child in result {
-                    if let dbLocation = snapshot.childSnapshot(forPath: "LocationName") as? String {
-                                
-                    print ("===")
-                    print (dbLocation)
+        let databaseHandle = databaseRef.observe(.value, with: { (snapshot) in
+            //going through the children in the above snapshot
+            for item in snapshot.children {
+                //each child in snapshot doesn't have a data type, so we're casting it to a snapshot in order to access the .children property in line 54
+                if let dbLocation = item as? FIRDataSnapshot {
+                    
+                    for item2 in dbLocation.children {
+                        //create SavedFavorites objects as empty
+                        //same as line 51 (.children by default contains AnyObjects, casting it to snapshot so we can access .value)
+                        if let pair = item2 as? FIRDataSnapshot {
+                            
+                            //need to cast AnyObjects to a specific data type
+                            if let location = pair.value as? String {
+                            //.key is printing out the "lat", "locationName", and "long"
+                            //print(pair.key)
+                            //here, populate location name for saved favorites object
+                            print(location)
+                            //casting to double to differentiate between the coordinates and the name
+                            } else if let value = pair.value as? Double {
+                                //to access which of the coordinates are lat and long
+                                let valueName = pair.key as? String
+                                // use "==" to compare the result to latitude, if so, populate latitude object
+                                //else populate the longitude object
+                                print(value)
+                            }
+                            
+                        }
+                        //append objects to the array.
+                        //use the array to populate table view.
                     }
+                    print("===")
+
                 }
-            
+                    //if let dbLocation = .child("LocationName") as? String {
+                                
+                    //print ("===")
+                    //print (dbLocation)
+                    //}
             }
             
+            
         })
-        
+ 
         
         return true
     }
