@@ -30,21 +30,63 @@ class FavoriteLocationsTableViewController: UITableViewController {
         
         super.viewDidLoad()
         
-        //This code works, however it only extracts the "LocationName" for the first "Location" child. Now I need to write a for loop (?) in order to print out all the "LocationName" keys for all the "Location" children.
-         /*
-         let databaseRef = FIRDatabase.database().reference().child("Users").child("Username").child("Favorites").child("Location")
-         
-         username = "Lisa"
-         
-         //use ref property and safely unwrap here with if let
-         let databaseHandle = databaseRef.observe(.value, with: { (snapshot) in
-            if let item = snapshot.childSnapshot(forPath: "LocationName").value as? String {
-                print ("===")
-                print (item)
+        let databaseRef = FIRDatabase.database().reference().child("Users").child("Username").child("Favorites")
+        username = "Lisa"
+        
+        let databaseHandle = databaseRef.observe(.value, with: { (snapshot) in
+            
+            for item in snapshot.children {
+                if let dbLocation = item as? FIRDataSnapshot {
+                    
+                    for item2 in dbLocation.children {
+                        
+                        var latCoordName: String?
+                        var latCoord: Double?
+                        var longCoordName: String?
+                        var longCoord: Double?
+                        var favoriteLocation: String?
+                        
+                        
+                        if let pair = item2 as? FIRDataSnapshot {
+                            
+                            
+                            if let location = pair.value as? String {
+                                if let favoriteLocation = location as? String {
+                                    print (favoriteLocation)
+                                }
+                            } else if let value = pair.value as? Double? {
+                                
+                                let valueName = pair.key as? String
+                                if valueName == "Latitude" {
+                                    if let latCoordName = valueName {
+                                        if let latCoord = value {
+                                            print ("\(latCoordName)\(latCoord)")
+                                        }
+                                    }
+                                } else {
+                                    if let longCoordName = valueName {
+                                        if let longCoord = value {
+                                            print ("\(longCoordName)\(longCoord)")
+                                        }
+                                    }
+                                }
+                                
+                            }
+                            
+                        }
+                        //append objects to the array.
+                        //use the array to populate table view.
+                    }
+                    print("===")
+                    
+                }
+                
             }
-         })
-         */
-         //tableView.reloadData()
+            
+            
+        })
+        
+        tableView.reloadData()
         
         let moveButton = UIBarButtonItem(title: "Re-order", style: .plain, target: self, action: #selector(FavoriteLocationsTableViewController.toggleEdit))
         navigationItem.leftBarButtonItem = moveButton
@@ -53,84 +95,6 @@ class FavoriteLocationsTableViewController: UITableViewController {
         navigationItem.rightBarButtonItem = addButton
     }
  
-    /*
-    func addFavorite(tuple: (lat: String, long:String, location: String)) {
-        
-        let newLatCoord = tuple.lat
-        let newLongCoord = tuple.long
-        let newLocation = tuple.location
-        
-        let newFavourite = SavedFavorites(latCoord: newLatCoord, longCoord: newLongCoord, location: newLocation)
-        
-     
-        let dbLat = newLatCoord
-        let dbLong = newLongCoord
-        let dbLocation = newLocation
-        
-        let databaseFavLoc : [String: String] = ["Latitude" : dbLat, "Longitude" : dbLong, "Location Name" : dbLocation]
-        
-        var databaseRef: FIRDatabaseReference!
-        
-        databaseRef = FIRDatabase.database().reference()
-        
-        databaseRef.child("UserFavorites").childByAutoId().setValue(databaseFavLoc)
-     
-  
-        self.listOfFavorites.append(newFavourite)
-      
-        let newIndexPath = IndexPath(row: self.listOfFavorites.count - 1, section: 0)
-        self.tableView.insertRows(at: [newIndexPath], with: .automatic)
-        
-    }
-    */
-  
-    
-    /*
-    func resaveListOfFavorites() {
-        //in this function, I need to convert the listOfFavorites back to a single string.
-        //assign this to the variable updatedListOfFavorites, and this will be saved to userDefaults.
-        
-        //print ("ListOfFavorites \(listOfFavorites)")
-        
-        var i = 0
-        
-        var updatedListOfFavorites = ""
-        
-        for favorite in listOfFavorites {
-            
-            //put all three constants in an if to safely unwrap. need to define updatedSingleLocation before the if as an empty string. Then reassign in the if.
-            
-            var updatedSingleLocation = ""
-            
-            if let updatedLatCoord = favorite.latCoord {
-                if let updatedLongCoord = favorite.longCoord {
-                    if let updatedLocation = favorite.location {
-                        updatedSingleLocation = "\(updatedLatCoord);\(updatedLongCoord);\(updatedLocation)"
-                    }
-                }
-            }
-            
-            //print ("UpdatedSingleLocation \(updatedSingleLocation)")
-            
-            //do this if in two stages: unwrap listOfFavorites.last first, then compare the result of unwrapping with updatedSingleLocation.
-            
-            if i != listOfFavorites.count - 1 {
-                updatedSingleLocation.append("+")
-            }
-            
-            updatedListOfFavorites.append(updatedSingleLocation)
-            
-            i += 1
-        }
-        
-        //let defaults = UserDefaults.standard
-        //defaults.set(updatedListOfFavorites, forKey: favoriteLocationKey)
-        
-        
-    }
-    */
-  
-    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
