@@ -70,26 +70,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 
                             //here, populate location name for saved favorites object
                                 if let favoriteLocation = location as? String {
-                                    print ("\"+++\(favoriteLocation)")
+                                    print (favoriteLocation)
                                 }
                             //casting to double to differentiate between the coordinates and the name
-                            } else if let value = pair.value as? Double {
+                            } else if let value = pair.value as? Double? {
                                 //to access which of the coordinates are lat and long
                                 let valueName = pair.key as? String
                                 // use "==" to compare the result to latitude, if so, populate latitude object
                                 //else populate the longitude object
-                                var latCoordName = ""
-                                var longCoordName = ""
-                                
                                 if valueName == "Latitude" {
-                                    latCoordName = valueName!
-                                    latCoord = value
-                                    print ("\(latCoordName)\(latCoord)")
+                                    if let latCoordName = valueName {
+                                        if let latCoord = value {
+                                            print ("\(latCoordName)\(latCoord)")
+                                        }
+                                    }
                                 } else {
-                                    longCoordName = valueName!
-                                    longCoordName = valueName!
-                                    longCoord = value
-                                    print ("\(longCoordName)\(longCoord)")
+                                    if let longCoordName = valueName {
+                                        if let longCoord = value {
+                                            print ("\(longCoordName)\(longCoord)")
+                                        }
+                                    }
                                 }
                                 //print(value)
                             }
