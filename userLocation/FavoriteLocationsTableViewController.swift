@@ -13,9 +13,8 @@ import Firebase
 let favoriteLocationKey = "NewFavoriteLocation"
 
 class FavoriteLocationsTableViewController: UITableViewController {
-
-    //var listOfFavorites: [SavedFavorites] = []
-    var listOfFavorites: [String] = []
+    
+    var listOfFavorites: [SavedFavorites] = []
     var components = ""
     var updatedListOfFavorites = ""
     var username = ""
@@ -29,34 +28,39 @@ class FavoriteLocationsTableViewController: UITableViewController {
         
         
         super.viewDidLoad()
-        
         let databaseRef = FIRDatabase.database().reference().child("Users").child("Username").child("Favorites")
         username = "Lisa"
         
         let databaseHandle = databaseRef.observe(.value, with: { (snapshot) in
             
             for item in snapshot.children {
+                
                 if let dbLocation = item as? FIRDataSnapshot {
                     
                     for item2 in dbLocation.children {
                         
-                        var latCoordName: String?
-                        var latCoord: Double?
-                        var longCoordName: String?
-                        var longCoord: Double?
-                        var favoriteLocation: String?
-                        
+                        /*
+                         var latCoordName: String?
+                         var latCoord: Double?
+                         var longCoordName: String?
+                         var longCoord: Double?
+                         var favoriteLocation: String?
+                         */
                         
                         if let pair = item2 as? FIRDataSnapshot {
                             
                             
                             if let location = pair.value as? String {
+                                
                                 if let favoriteLocation = location as? String {
                                     print (favoriteLocation)
+                                    self.listOfFavorites.append(favoriteLocation)
+                                    print ("\"===\(self.listOfFavorites)")
                                 }
                             } else if let value = pair.value as? Double? {
                                 
                                 let valueName = pair.key as? String
+                                
                                 if valueName == "Latitude" {
                                     if let latCoordName = valueName {
                                         if let latCoord = value {
@@ -70,11 +74,13 @@ class FavoriteLocationsTableViewController: UITableViewController {
                                         }
                                     }
                                 }
-                                
                             }
+                            //append objects to the array.
                             
                         }
-                        //append objects to the array.
+                        
+                        
+                        
                         //use the array to populate table view.
                     }
                     print("===")
@@ -107,7 +113,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
         }
         */
         
-        cell.textLabel?.text = listOfFavorites[indexPath.row]
+        //cell.textLabel?.text = listOfFavorites[indexPath.row]
         return cell
     }
     
