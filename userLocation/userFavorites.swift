@@ -9,21 +9,21 @@
 import UIKit
 import MapKit
 
-/*
+
 class SavedFavorites: NSObject {
     var latCoord: String?
     var longCoord: String?
-    var location: String?
+    var favoriteLocation: String?
     
     
-    init(latCoord: String? = nil, longCoord: String? = nil, location: String? = nil) {
-        self.location = location
+    init(latCoord: String? = nil, longCoord: String? = nil, favoriteLocation: String? = nil) {
+        self.favoriteLocation = favoriteLocation
         self.latCoord = latCoord
         self.longCoord = longCoord
         
         super.init()
     }
 }
- */
+
 
     

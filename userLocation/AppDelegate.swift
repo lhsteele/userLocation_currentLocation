@@ -52,7 +52,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if let dbLocation = item as? FIRDataSnapshot {
                     
                     for item2 in dbLocation.children {
+                        
                         //create SavedFavorites objects as empty
+                        var latCoord: String?
+                        var longCoord: String?
+                        var favoriteLocation: String?
+                        
                         //same as line 51 (.children by default contains AnyObjects, casting it to snapshot so we can access .value)
                         if let pair = item2 as? FIRDataSnapshot {
                             
@@ -60,8 +65,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             if let location = pair.value as? String {
                             //.key is printing out the "lat", "locationName", and "long"
                             //print(pair.key)
+                                
                             //here, populate location name for saved favorites object
-                            print(location)
+                                if let favoriteLocation = location as? String {
+                                    print ("\"+++\(favoriteLocation)")
+                                }
                             //casting to double to differentiate between the coordinates and the name
                             } else if let value = pair.value as? Double {
                                 //to access which of the coordinates are lat and long
