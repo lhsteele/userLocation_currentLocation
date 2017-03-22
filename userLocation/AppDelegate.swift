@@ -54,8 +54,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     for item2 in dbLocation.children {
                         
                         //create SavedFavorites objects as empty
-                        var latCoord: String?
-                        var longCoord: String?
+                        var latCoordName: String?
+                        var latCoord: Double?
+                        var longCoordName: String?
+                        var longCoord: Double?
                         var favoriteLocation: String?
                         
                         //same as line 51 (.children by default contains AnyObjects, casting it to snapshot so we can access .value)
@@ -76,7 +78,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 let valueName = pair.key as? String
                                 // use "==" to compare the result to latitude, if so, populate latitude object
                                 //else populate the longitude object
-                                print(value)
+                                var latCoordName = ""
+                                var longCoordName = ""
+                                
+                                if valueName == "Latitude" {
+                                    latCoordName = valueName!
+                                    latCoord = value
+                                    print ("\(latCoordName)\(latCoord)")
+                                } else {
+                                    longCoordName = valueName!
+                                    longCoordName = valueName!
+                                    longCoord = value
+                                    print ("\(longCoordName)\(longCoord)")
+                                }
+                                //print(value)
                             }
                             
                         }
