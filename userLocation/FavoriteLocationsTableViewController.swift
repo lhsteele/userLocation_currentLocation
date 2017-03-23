@@ -14,7 +14,6 @@ let favoriteLocationKey = "NewFavoriteLocation"
 
 class FavoriteLocationsTableViewController: UITableViewController {
     
-    
     var listOfFavorites: [String] = []
     var components = ""
     var updatedListOfFavorites = ""
@@ -24,7 +23,8 @@ class FavoriteLocationsTableViewController: UITableViewController {
     var retrievedLocation = ""
     var databaseHandle: FIRDatabaseHandle?
     var ref: FIRDatabaseReference?
-        
+    
+    
     override func viewDidLoad() {
         
         
@@ -48,7 +48,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
                         var favoriteLocation: String?
                         var latString: String?
                         var longString: String?
-  
+                        
                         
                         if let pair = item2 as? FIRDataSnapshot {
                             
@@ -67,7 +67,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
                                     if let latCoordName = valueName {
                                         if let latCoord = value {
                                             let latString = ("\(latCoordName)\(latCoord)")
-                                            self.listOfFavorites.append(latString)
+                                            //self.listOfFavorites.append(latString)
                                             //print (latString)
                                         }
                                     }
@@ -75,11 +75,18 @@ class FavoriteLocationsTableViewController: UITableViewController {
                                     if let longCoordName = valueName {
                                         if let longCoord = value {
                                             let longString = ("\(longCoordName)\(longCoord)")
-                                            self.listOfFavorites.append(longString)
+                                            //self.listOfFavorites.append(longString)
                                             //print (longString)
                                         }
                                     }
                                 }
+                                /*
+                                let interpolatedLocation = "\(self.latCoord)\(self.longCoord)\(self.favoriteLocation)"
+                                print (interpolatedLocation)
+                                let updatedSingleLocation = (lat: interpolatedLocation[0], long: interpolatedLocation[1], location: interpolatedLocation[2])
+                                let newFavorite = SavedFavorites(latCoordName : latCoord, longCoordName : longCoord, location : favoriteLocation)
+                                listOfFavorites.append(newFavorite)
+                                */
                             }
                             //append objects to the array.
                         }
@@ -103,20 +110,34 @@ class FavoriteLocationsTableViewController: UITableViewController {
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(FavoriteLocationsTableViewController.addNewFavorite))
         navigationItem.rightBarButtonItem = addButton
     }
- 
+    
+    /*
+    func addFavorite(tuple: (lat: Double, long: Double, location: String)) {
+        let newLatCoord = tuple.lat
+        let newLongCoord = tuple.long
+        let newLocation = tuple.location
+        
+        let newFavorite = SavedFavorites(latCoordName: newLatCoord, longCoordName: newLongCoord, location: newLocation)
+        
+        self.listOfFavorites.append(newFavorite)
+        
+        let newIndexPath = IndexPath(row: self.listOfFavorites.count -1, section: 0)
+        self.tableView.insertRows(at: [newIndexPath], with: .automatic)
+    }
+    */
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        /*
-        let favorite = self.listOfFavorites[indexPath.row]
-    
-        if let locationName = favorite.location {
-            
-            cell.textLabel?.text = locationName
-        }
-        */
         
-        //cell.textLabel?.text = listOfFavorites[indexPath.row]
+        //let favorite = self.listOfFavorites[indexPath.row]
+    
+        //if let locationName = favorite.location {
+            
+            cell.textLabel?.text = self.listOfFavorites[indexPath.row]
+        //}
+        
+        
+        cell.textLabel?.text = listOfFavorites[indexPath.row]
         return cell
     }
     

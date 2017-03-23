@@ -15,15 +15,15 @@ class SavedFavorites: NSObject {
     var latCoordName: String?
     var longCoord: Double?
     var longCoordName: String?
-    var favoriteLocation: String?
+    var location: String?
     
     
-    init(latCoord: Double? = nil, latCoordName: String? = nil, longCoord: Double? = nil, longCoordName: String? = nil, favoriteLocation: String? = nil) {
+    init(latCoord: Double? = nil, latCoordName: String? = nil, longCoord: Double? = nil, longCoordName: String? = nil, location: String? = nil) {
         self.latCoord = latCoord
         self.latCoordName = latCoordName
         self.longCoord = longCoord
         self.longCoordName = longCoordName
-        self.favoriteLocation = favoriteLocation
+        self.location = location
     
         super.init()
     }
