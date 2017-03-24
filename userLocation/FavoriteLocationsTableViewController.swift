@@ -14,7 +14,8 @@ let favoriteLocationKey = "NewFavoriteLocation"
 
 class FavoriteLocationsTableViewController: UITableViewController {
     
-    var listOfFavorites: [String] = []
+    var listOfFavorites: [SavedFavorites] = []
+    //var listOfFavorites: [String] = []
     var components = ""
     var updatedListOfFavorites = ""
     var username = ""
@@ -48,35 +49,36 @@ class FavoriteLocationsTableViewController: UITableViewController {
                         var favoriteLocation: String?
                         var latString: String?
                         var longString: String?
-                        
+                        var savedLatCoord: Double?
                         
                         if let pair = item2 as? FIRDataSnapshot {
                             
                             
-                            if let location = pair.value as? String {
+                            if let location = pair.value as? SavedFavorites {
                             
-                                if let favoriteLocation = location as? String {
+                                if let favoriteLocation = location as? SavedFavorites {
                                     self.listOfFavorites.append(favoriteLocation)
-                                    //print (favoriteLocation)
+                                    print (favoriteLocation)
                                 }
-                            } else if let value = pair.value as? Double? {
+                            } else if let value = pair.value as? SavedFavorites? {
                                 
-                                let valueName = pair.key as? String
+                                let valueName = pair.key as? SavedFavorites?
                                 
                                 if valueName == "Latitude" {
                                     if let latCoordName = valueName {
                                         if let latCoord = value {
-                                            let latString = ("\(latCoordName)\(latCoord)")
-                                            //self.listOfFavorites.append(latString)
-                                            //print (latString)
+                                            let latString = ("\(latCoordName) \(latCoord)")
+                                            let savedLatCoord = latCoord
+                                            self.listOfFavorites.append(latString)
+                                            print (latString)
                                         }
                                     }
                                 } else {
                                     if let longCoordName = valueName {
                                         if let longCoord = value {
-                                            let longString = ("\(longCoordName)\(longCoord)")
-                                            //self.listOfFavorites.append(longString)
-                                            //print (longString)
+                                            let longString = ("\(longCoordName) \(longCoord)")
+                                            self.listOfFavorites.append(longString)
+                                            print (longString)
                                         }
                                     }
                                 }
@@ -84,10 +86,12 @@ class FavoriteLocationsTableViewController: UITableViewController {
                                 let interpolatedLocation = "\(self.latCoord)\(self.longCoord)\(self.favoriteLocation)"
                                 print (interpolatedLocation)
                                 let updatedSingleLocation = (lat: interpolatedLocation[0], long: interpolatedLocation[1], location: interpolatedLocation[2])
-                                let newFavorite = SavedFavorites(latCoordName : latCoord, longCoordName : longCoord, location : favoriteLocation)
-                                listOfFavorites.append(newFavorite)
+  
+                                let newFavorite = SavedFavorites(latCoord : latCoord, longCoord : longCoord, location : favoriteLocation)
+                                
+                                self.listOfFavorites.append(newFavorite)
                                 */
-                            }
+                                }
                             //append objects to the array.
                         }
                         //use the array to populate table view.
@@ -98,7 +102,16 @@ class FavoriteLocationsTableViewController: UITableViewController {
                 
             }
             print("\"===\(self.listOfFavorites)")
-            
+            //print(self.listOfFavorites.latCoord)
+            /*
+            //I can't seem to access listOfFavorites.latCoord, etc, because it says value of type [SavedFavorites] has no member latCoord. Even though it does
+            //By doing the below, I'm trying to see if these values are being saved into listOfFavorites. It prints Optional(nil), so it isn't.
+            for favorite in self.listOfFavorites {
+                print (favorite.latCoord as? Double?)
+                print (favorite.longCoord as? Double?)
+                print (favorite.location as? String?)
+            }
+            */
         })
         
         
@@ -128,17 +141,16 @@ class FavoriteLocationsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        
-        //let favorite = self.listOfFavorites[indexPath.row]
+        /*
+        let favorite = self.listOfFavorites[indexPath.row]
     
-        //if let locationName = favorite.location {
+        if let locationName = favorite.location {
             
-            cell.textLabel?.text = self.listOfFavorites[indexPath.row]
-        //}
-        
-        
-        cell.textLabel?.text = listOfFavorites[indexPath.row]
+            //cell.textLabel?.text = self.listOfFavorites[indexPath.row]
+        }
+        */
         return cell
+  
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
