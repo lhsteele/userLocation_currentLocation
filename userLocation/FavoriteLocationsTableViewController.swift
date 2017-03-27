@@ -26,6 +26,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
     var ref: FIRDatabaseReference?
     
     
+    
     override func viewDidLoad() {
         
         
@@ -42,6 +43,8 @@ class FavoriteLocationsTableViewController: UITableViewController {
                     for item2 in dbLocation.children {
                         
                         
+                        /*
+                        I think initalizing these objects here is messing with the same initalized objects in the userFavorites class. However, because the scope of the favoriteLocation, lat Coord, and longCoord are so small, they are otherwise unaccessible.
                         var latCoordName: String?
                         var latCoord: Double?
                         var longCoordName: String?
@@ -50,48 +53,54 @@ class FavoriteLocationsTableViewController: UITableViewController {
                         var latString: String?
                         var longString: String?
                         var savedLatCoord: Double?
+                        */
+                        var updatedLocation = ""
+                        var updatedLat = Double()
+                        var updatedLong = Double()
+                        
+                        
                         
                         if let pair = item2 as? FIRDataSnapshot {
                             
                             
-                            if let location = pair.value as? SavedFavorites {
+                            if let location = pair.value as? String {
                             
-                                if let favoriteLocation = location as? SavedFavorites {
-                                    self.listOfFavorites.append(favoriteLocation)
-                                    print (favoriteLocation)
+                                if let favoriteLocation = location as? String {
+                                    //self.listOfFavorites.append(favoriteLocation)
+                                    let updatedLocation = SavedFavorites(location: favoriteLocation)
+                                    //print (favoriteLocation)
                                 }
-                            } else if let value = pair.value as? SavedFavorites? {
+                            } else if let value = pair.value as? Double? {
                                 
-                                let valueName = pair.key as? SavedFavorites?
+                                let valueName = pair.key as? String
                                 
                                 if valueName == "Latitude" {
                                     if let latCoordName = valueName {
                                         if let latCoord = value {
                                             let latString = ("\(latCoordName) \(latCoord)")
                                             let savedLatCoord = latCoord
-                                            self.listOfFavorites.append(latString)
-                                            print (latString)
+                                            //self.listOfFavorites.append(latString)
+                                            let updatedLat = SavedFavorites(latCoord: latCoord)
+                                            //print (latString)
                                         }
                                     }
                                 } else {
                                     if let longCoordName = valueName {
                                         if let longCoord = value {
                                             let longString = ("\(longCoordName) \(longCoord)")
-                                            self.listOfFavorites.append(longString)
-                                            print (longString)
+                                            //self.listOfFavorites.append(longString)
+                                            let updatedLong = SavedFavorites(longCoord: longCoord)
+                                            //print (longString)
                                         }
                                     }
                                 }
                                 /*
-                                let interpolatedLocation = "\(self.latCoord)\(self.longCoord)\(self.favoriteLocation)"
-                                print (interpolatedLocation)
-                                let updatedSingleLocation = (lat: interpolatedLocation[0], long: interpolatedLocation[1], location: interpolatedLocation[2])
-  
-                                let newFavorite = SavedFavorites(latCoord : latCoord, longCoord : longCoord, location : favoriteLocation)
-                                
+                                Tried to create a new object newFavorite, which is of type SavedFavorites, with variables declared outside the scope of the if statements, to avoid the error message 'SavedFavorites' has no member type ... But it is printing Optional(0.0), which means it's not saving properly, and it's still an optional. Can't use an if let on this statment as SavedFavorites is not an optional type.
+                                let newFavorite = SavedFavorites(latCoord: updatedLat, longCoord: updatedLong, location: updatedLocation)
+                                print(newFavorite.latCoord)
                                 self.listOfFavorites.append(newFavorite)
                                 */
-                                }
+                            }
                             //append objects to the array.
                         }
                         //use the array to populate table view.
@@ -101,7 +110,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
                 }
                 
             }
-            print("\"===\(self.listOfFavorites)")
+            //print("\"===\(self.listOfFavorites)")
             //print(self.listOfFavorites.latCoord)
             /*
             //I can't seem to access listOfFavorites.latCoord, etc, because it says value of type [SavedFavorites] has no member latCoord. Even though it does
