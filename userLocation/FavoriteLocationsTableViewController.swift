@@ -14,8 +14,8 @@ let favoriteLocationKey = "NewFavoriteLocation"
 
 class FavoriteLocationsTableViewController: UITableViewController {
     
-    var listOfFavorites: [SavedFavorites] = []
-    //var listOfFavorites: [String] = []
+    //var listOfFavorites: [SavedFavorites] = []
+    var listOfFavorites: [String] = []
     var components = ""
     var updatedListOfFavorites = ""
     var username = ""
@@ -31,6 +31,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
         
         
         super.viewDidLoad()
+        /*
         let databaseRef = FIRDatabase.database().reference().child("Users").child("Username").child("Favorites")
         username = "Lisa"
         
@@ -54,10 +55,11 @@ class FavoriteLocationsTableViewController: UITableViewController {
                         var longString: String?
                         var savedLatCoord: Double?
                         */
+                        /*
                         var updatedLocation = ""
                         var updatedLat = Double()
                         var updatedLong = Double()
-                        
+                        */
                         
                         
                         if let pair = item2 as? FIRDataSnapshot {
@@ -66,9 +68,9 @@ class FavoriteLocationsTableViewController: UITableViewController {
                             if let location = pair.value as? String {
                             
                                 if let favoriteLocation = location as? String {
-                                    //self.listOfFavorites.append(favoriteLocation)
-                                    let updatedLocation = SavedFavorites(location: favoriteLocation)
-                                    //print (favoriteLocation)
+                                    self.listOfFavorites.append(favoriteLocation)
+                                    //let updatedLocation = SavedFavorites(location: favoriteLocation)
+                                    print (favoriteLocation)
                                 }
                             } else if let value = pair.value as? Double? {
                                 
@@ -79,18 +81,18 @@ class FavoriteLocationsTableViewController: UITableViewController {
                                         if let latCoord = value {
                                             let latString = ("\(latCoordName) \(latCoord)")
                                             let savedLatCoord = latCoord
-                                            //self.listOfFavorites.append(latString)
-                                            let updatedLat = SavedFavorites(latCoord: latCoord)
-                                            //print (latString)
+                                            self.listOfFavorites.append(latString)
+                                            //let updatedLat = SavedFavorites(latCoord: latCoord)
+                                            print (latString)
                                         }
                                     }
                                 } else {
                                     if let longCoordName = valueName {
                                         if let longCoord = value {
                                             let longString = ("\(longCoordName) \(longCoord)")
-                                            //self.listOfFavorites.append(longString)
-                                            let updatedLong = SavedFavorites(longCoord: longCoord)
-                                            //print (longString)
+                                            self.listOfFavorites.append(longString)
+                                            //let updatedLong = SavedFavorites(longCoord: longCoord)
+                                            print (longString)
                                         }
                                     }
                                 }
@@ -110,7 +112,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
                 }
                 
             }
-            //print("\"===\(self.listOfFavorites)")
+            print("\"===\(self.listOfFavorites)")
             //print(self.listOfFavorites.latCoord)
             /*
             //I can't seem to access listOfFavorites.latCoord, etc, because it says value of type [SavedFavorites] has no member latCoord. Even though it does
@@ -122,6 +124,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
             }
             */
         })
+        */
         
         
         tableView.reloadData()
