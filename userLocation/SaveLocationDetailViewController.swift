@@ -65,11 +65,11 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         
         var databaseRef: FIRDatabaseReference!
         
-        databaseRef = FIRDatabase.database().reference().child("Users").child("Username")
+        databaseRef = FIRDatabase.database().reference()
         
-        let key = databaseRef.child("Favorites").childByAutoId().key
-        let location = ["Latitude": newLatCoord, "Longitude": newLongCoord, "LocationName": newFavLoc] as [String : Any]
-        let childUpdates = ["/Favorites/\(key)" : location]
+        let key = databaseRef.child("Locations").childByAutoId().key
+        let location = ["Latitude": newLatCoord, "Longitude": newLongCoord, "LocationName": newFavLoc, "Users": [2]] as [String : Any]
+        let childUpdates = ["/Locations/\(key)" : location]
         databaseRef.updateChildValues(childUpdates)
         
         

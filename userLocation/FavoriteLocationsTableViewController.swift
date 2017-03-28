@@ -15,15 +15,9 @@ let favoriteLocationKey = "NewFavoriteLocation"
 class FavoriteLocationsTableViewController: UITableViewController {
     
     var listOfFavorites: [SavedFavorites] = []
-    var components = ""
-    var updatedListOfFavorites = ""
     var username = ""
-    var retrievedLatitude = Int()
-    var retrievedLongitude = Int()
-    var retrievedLocation = ""
     var databaseHandle: FIRDatabaseHandle?
     var ref: FIRDatabaseReference?
-    
     
     
     override func viewDidLoad() {
@@ -40,7 +34,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
     
     
     func loadData () {
-        let databaseRef = FIRDatabase.database().reference().child("Users").child("Username").child("Favorites")
+        let databaseRef = FIRDatabase.database().reference().child("Locations")
         username = "Lisa"
     
         let databaseHandle = databaseRef.observe(.value, with: { (snapshot) in
@@ -50,12 +44,13 @@ class FavoriteLocationsTableViewController: UITableViewController {
                 var updatedLocation = ""
                 var updatedLat = Double()
                 var updatedLong = Double()
+                var updatedUser = Int()
+                var updatedUserArray = [Int] ()
                 
                 
                 if let dbLocation = item as? FIRDataSnapshot {
                     
                     for item2 in dbLocation.children {
-                        
                         
                         if let pair = item2 as? FIRDataSnapshot {
                             
@@ -65,51 +60,41 @@ class FavoriteLocationsTableViewController: UITableViewController {
                                 
                                 updatedLocation = location
                                 
+                                
                             } else if let value = pair.value as? Double {
                                 
                                 let valueName = pair.key
                                 
                                 if valueName == "Latitude" {
                                     updatedLat = value
-                                    
                                 } else {
                                     updatedLong = value
                                 }
+                            
+                            } else {
+                            
+                                if let value = pair.value as? Int {
                                 
-                                
+                                    updatedUser = value
+                                    print (updatedUser)
+                                }
                             }
-                            //append objects to the array.
+  
                         }
-                        //use the array to populate table view.
+
                     }
+                    
                 }
                 let newFavorite = SavedFavorites(latCoord: updatedLat, longCoord: updatedLong, location: updatedLocation)
                 self.listOfFavorites.append(newFavorite)
-                print(newFavorite.latCoord)
-                print(newFavorite.longCoord)
-                
-                print("===")
-                
+                updatedUserArray.append(updatedUser)
+                print("\"===\(updatedUserArray)")
             }
-            print("\"===\(self.listOfFavorites)")
+            //print("\"===\(self.listOfFavorites)")
             self.tableView.reloadData()
         })
     }
     
-    /*
-    func addFavorite(tuple: (lat: Double, long: Double, location: String)) {
-        let newLatCoord = tuple.lat
-        let newLongCoord = tuple.long
-        let newLocation = tuple.location
-        
-        let newFavorite = SavedFavorites(latCoordName: newLatCoord, longCoordName: newLongCoord, location: newLocation)
-        
-        self.listOfFavorites.append(newFavorite)
-        
-        let newIndexPath = IndexPath(row: self.listOfFavorites.count -1, section: 0)
-        self.tableView.insertRows(at: [newIndexPath], with: .automatic)
-    }
-    */
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
