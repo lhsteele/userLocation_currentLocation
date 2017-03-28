@@ -60,26 +60,26 @@ class FavoriteLocationsTableViewController: UITableViewController {
                                 
                                 updatedLocation = location
                                 
+                            } else if let value = pair.value as? Int {
                                 
-                            } else if let value = pair.value as? Double {
+                                updatedUser = value
                                 
-                                let valueName = pair.key
-                                
-                                if valueName == "Latitude" {
-                                    updatedLat = value
-                                } else {
-                                    updatedLong = value
-                                }
-                            
                             } else {
-                            
-                                if let value = pair.value as? Int {
                                 
-                                    updatedUser = value
-                                    print (updatedUser)
+                                if let value = pair.value as? Double {
+                                    
+                                    let valueName = pair.key
+                                    
+                                    if valueName == "Latitude" {
+                                        updatedLat = value
+                                    } else {
+                                        updatedLong = value
+                                    }
+                                    
                                 }
+                                
                             }
-  
+                                
                         }
 
                     }
