@@ -24,9 +24,6 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     var newLatCoord = CLLocationDegrees()
     var newLongCoord = CLLocationDegrees()
     var username = ""
-    var dbLat = CLLocationDegrees()
-    var dbLong = CLLocationDegrees()
-    var dbLocation = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,27 +61,18 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     
     func addToFirebase() {
         
-        dbLat = newLatCoord
-        dbLong = newLongCoord
-        dbLocation = newFavLoc
-        
-        //username = "Lisa"
+       //username = "Lisa"
         
         var databaseRef: FIRDatabaseReference!
         
         databaseRef = FIRDatabase.database().reference().child("Users").child("Username")
         
         let key = databaseRef.child("Favorites").childByAutoId().key
-        let location = ["Latitude": dbLat, "Longitude": dbLong, "LocationName": newFavLoc] as [String : Any]
+        let location = ["Latitude": newLatCoord, "Longitude": newLongCoord, "LocationName": newFavLoc] as [String : Any]
         let childUpdates = ["/Favorites/\(key)" : location]
         databaseRef.updateChildValues(childUpdates)
         
-        /*
-        This works for adding one key to one child.
-        databaseRef.child("Users/Username/Favorites").childByAutoId().setValue(["Latitude" : dbLat])
-        databaseRef.child("Users/Username/Favorites").childByAutoId().setValue(["Longitude" : dbLong])
-        databaseRef.child("Users/Username/Favorites").childByAutoId().setValue(["Location" : newFavLoc])
-        */
+        
     }
    
     
