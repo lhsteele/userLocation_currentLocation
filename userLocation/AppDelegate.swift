@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var listOfFavorites: [SavedFavorites] = []
     var window: UIWindow?
-    var databaseHandle: FIRDatabaseHandle?
+    //var databaseHandle: FIRDatabaseHandle?
     var ref: FIRDatabaseReference?
     var username = ""
     
@@ -23,41 +23,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         FIRApp.configure()
-     
-        func createUsersArray () {
-            let databaseRef2 = FIRDatabase.database().reference().child("Locations")//.childByAutoId()//.child("Users")
+        
+        createUsersArray()
+        
+        return true
+    }
+    
+    func createUsersArray () {
+        let databaseRef2 = FIRDatabase.database().reference().child("Locations")
+        
+        let databaseHandle = databaseRef2.observe(.childAdded, with: { snapshot in
+            var subscribedUser = Int()
+            var updatedUserArray = [Int] ()
             
-            let databaseHandle = databaseRef2.observe(.childAdded, with: { snapshot in
-                var subscribedUser = Int()
-                var updatedUserArray = [Int] ()
+            for item in snapshot.children {
+                //print (item)
                 
-                for item in snapshot.children {
-                    print (item)
+                if let user = item as? FIRDataSnapshot {
                     
-                    if let user = item as? FIRDataSnapshot {
+                    for item2 in user.children {
                         
-                        for item2 in user.children {
+                        if let userID = item2 as? FIRDataSnapshot {
                             
-                            if let userID = item2 as? FIRDataSnapshot {
-                                
-                                if let updatedUser = userID.value as? Int {
-                                    subscribedUser = updatedUser
-                                    print (subscribedUser)
-                                }
+                            if let updatedUser = userID.childSnapshot(forPath: "Users") as? Int {
+                                updatedUserArray = [updatedUser]
+                                print(updatedUserArray)
                             }
                         }
                     }
                 }
-                //updatedUserArray.append(subscribedUser)
-                //print("\"===\(updatedUserArray)")
-            })
-        }
-        
-        
-
-        
-        return true
+            }
+            //updatedUserArray.append(subscribedUser)
+            //print("\"===\(updatedUserArray)")
+        })
     }
+
   
     
 
