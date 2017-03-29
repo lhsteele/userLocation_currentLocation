@@ -16,7 +16,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
     
     var listOfFavorites: [SavedFavorites] = []
     var username = ""
-    var databaseHandle: FIRDatabaseHandle?
+    //var databaseHandle: FIRDatabaseHandle?
     var ref: FIRDatabaseReference?
     
     
@@ -25,7 +25,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
         
         super.viewDidLoad()
         
-        let moveButton = UIBarButtonItem(title: "Re-order", style: .plain, target: self, action: #selector(FavoriteLocationsTableViewController.toggleEdit))
+       let moveButton = UIBarButtonItem(title: "Re-order", style: .plain, target: self, action: #selector(FavoriteLocationsTableViewController.toggleEdit))
         navigationItem.leftBarButtonItem = moveButton
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(FavoriteLocationsTableViewController.addNewFavorite))
@@ -44,8 +44,8 @@ class FavoriteLocationsTableViewController: UITableViewController {
                 var updatedLocation = ""
                 var updatedLat = Double()
                 var updatedLong = Double()
-                var updatedUser = Int()
-                var updatedUserArray = [Int] ()
+                //var updatedUser = Int()
+                //var updatedUserArray = [Int] ()
                 
                 
                 if let dbLocation = item as? FIRDataSnapshot {
@@ -60,10 +60,6 @@ class FavoriteLocationsTableViewController: UITableViewController {
                                 
                                 updatedLocation = location
                                 
-                            } else if let value = pair.value as? Int {
-                                
-                                updatedUser = value
-                                
                             } else {
                                 
                                 if let value = pair.value as? Double {
@@ -75,25 +71,22 @@ class FavoriteLocationsTableViewController: UITableViewController {
                                     } else {
                                         updatedLong = value
                                     }
-                                    
                                 }
-                                
                             }
-                                
                         }
-
                     }
-                    
                 }
                 let newFavorite = SavedFavorites(latCoord: updatedLat, longCoord: updatedLong, location: updatedLocation)
                 self.listOfFavorites.append(newFavorite)
-                updatedUserArray.append(updatedUser)
-                print("\"===\(updatedUserArray)")
+                
+                //updatedUserArray.append(updatedUser)
+                //print("\"===\(updatedUserArray)")
             }
-            //print("\"===\(self.listOfFavorites)")
             self.tableView.reloadData()
         })
+        //createUsersArray()
     }
+    
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -132,7 +125,6 @@ class FavoriteLocationsTableViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         loadData()
-        
     }
     
   
