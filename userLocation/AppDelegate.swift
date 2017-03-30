@@ -33,26 +33,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let databaseRef2 = FIRDatabase.database().reference().child("Locations")
         
         let databaseHandle = databaseRef2.observe(.childAdded, with: { snapshot in
-            //var subscribedUser = Int()
-            //var updatedUserArray = [Int] ()
+            var subscribedUser = FIRDataSnapshot()
+            var updatedUserArray = [FIRDataSnapshot]()
             
             for item in snapshot.children {
-                //print (item)
                 
                 if let user = item as? FIRDataSnapshot {
                     
                     for item2 in user.children {
                         
                         if let userID = item2 as? FIRDataSnapshot {
-                            
-                            if let updatedUser = userID.childSnapshot(forPath: "Users") as? [String : []] {
-                                
-                                    print (updatedUser.value)
-                                //updatedUserArray = [updatedUser]
-                                //print(updatedUserArray)
-                            }
+                            subscribedUser = userID
+                            updatedUserArray.append(subscribedUser)
                         }
                     }
+                
+                print(updatedUserArray)
+                
                 }
             }
             //updatedUserArray.append(subscribedUser)
