@@ -25,7 +25,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
         
         super.viewDidLoad()
         
-       let moveButton = UIBarButtonItem(title: "Re-order", style: .plain, target: self, action: #selector(FavoriteLocationsTableViewController.toggleEdit))
+        let moveButton = UIBarButtonItem(title: "Re-order", style: .plain, target: self, action: #selector(FavoriteLocationsTableViewController.toggleEdit))
         navigationItem.leftBarButtonItem = moveButton
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(FavoriteLocationsTableViewController.addNewFavorite))
@@ -44,9 +44,6 @@ class FavoriteLocationsTableViewController: UITableViewController {
                 var updatedLocation = ""
                 var updatedLat = Double()
                 var updatedLong = Double()
-                //var updatedUser = Int()
-                //var updatedUserArray = [Int] ()
-                
                 
                 if let dbLocation = item as? FIRDataSnapshot {
                     
@@ -78,15 +75,36 @@ class FavoriteLocationsTableViewController: UITableViewController {
                 }
                 let newFavorite = SavedFavorites(latCoord: updatedLat, longCoord: updatedLong, location: updatedLocation)
                 self.listOfFavorites.append(newFavorite)
-                
-                //updatedUserArray.append(updatedUser)
-                //print("\"===\(updatedUserArray)")
             }
             self.tableView.reloadData()
         })
-        //createUsersArray()
+        createUsersArray()
     }
     
+    func createUsersArray () {
+        let databaseRef2 = FIRDatabase.database().reference().child("Locations")
+        
+        let databaseHandle = databaseRef2.observe(.childAdded, with: { snapshot in
+            var subscribedUser = FIRDataSnapshot()
+            var updatedUserArray = [FIRDataSnapshot]()
+            
+            for item in snapshot.children {
+                
+                if let user = item as? FIRDataSnapshot {
+                    
+                    for item2 in user.children {
+                        
+                        if let userID = item2 as? FIRDataSnapshot {
+                            subscribedUser = userID
+                        }
+                        updatedUserArray.append(subscribedUser)
+                    }
+                }
+            }
+            
+            print(updatedUserArray)
+        })
+    }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -125,6 +143,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         loadData()
+        //createUsersArray()
     }
     
   

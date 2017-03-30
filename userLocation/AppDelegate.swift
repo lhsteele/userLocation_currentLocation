@@ -13,54 +13,19 @@ import Firebase
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var listOfFavorites: [SavedFavorites] = []
     var window: UIWindow?
     //var databaseHandle: FIRDatabaseHandle?
     var ref: FIRDatabaseReference?
-    var username = ""
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         FIRApp.configure()
         
-        createUsersArray()
-        
         return true
     }
     
-    func createUsersArray () {
-        let databaseRef2 = FIRDatabase.database().reference().child("Locations")
-        
-        let databaseHandle = databaseRef2.observe(.childAdded, with: { snapshot in
-            var subscribedUser = FIRDataSnapshot()
-            var updatedUserArray = [FIRDataSnapshot]()
-            
-            for item in snapshot.children {
-                
-                if let user = item as? FIRDataSnapshot {
-                    
-                    for item2 in user.children {
-                        
-                        if let userID = item2 as? FIRDataSnapshot {
-                            subscribedUser = userID
-                            updatedUserArray.append(subscribedUser)
-                        }
-                    }
-                
-                print(updatedUserArray)
-                
-                }
-            }
-            //updatedUserArray.append(subscribedUser)
-            //print("\"===\(updatedUserArray)")
-        })
-    }
-
-  
-    
-
-    func applicationWillResignActive(_ application: UIApplication) {
+        func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
     }
