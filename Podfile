@@ -4,4 +4,5 @@ use_frameworks!
 target "userLocation" do
     pod 'Firebase/Core'
     pod 'Firebase/Database'
+    pod 'Firebase/Auth'
 end
