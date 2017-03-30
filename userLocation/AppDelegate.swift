@@ -45,9 +45,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         
                         if let userID = item2 as? FIRDataSnapshot {
                             
-                            if let updatedUser = userID.childSnapshot(forPath: "Users") as? FIRDataSnapshot {
+                            if let updatedUser = userID.childSnapshot(forPath: "Users") as? [String : []] {
                                 
-                                    print (updatedUser.child)
+                                    print (updatedUser.value)
                                 //updatedUserArray = [updatedUser]
                                 //print(updatedUserArray)
                             }
