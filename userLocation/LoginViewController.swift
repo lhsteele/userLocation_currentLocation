@@ -95,11 +95,10 @@ class LoginViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "saveOrCreateSegue" {
-            let destinationViewController = segue.destination as! SaveOrCreateViewController
+        if (segue.identifier == "saveOrCreateSegue") {
+            _ = segue.destination as! SaveOrCreateViewController
         }
     }
-
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         //dismiss the keyboard when the view is tapped on.
