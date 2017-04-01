@@ -12,13 +12,14 @@ import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet weak var signInToggle: UISegmentedControl!
+    @IBOutlet var signInToggle: UISegmentedControl!
     
-    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet var emailTextField: UITextField!
     
-    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet var passwordTextField: UITextField!
     
-    @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet var submitButton: UIButton!
+   
     
     
     var isSignIn: Bool = true
@@ -54,52 +55,49 @@ class LoginViewController: UIViewController {
     @IBAction func submitButtonTapped(_ sender: UIButton) {
         
         // TODO: Do some form validation on the email and password
-        
-        if let email = emailTextField.text, let pass = passwordTextField.text {
-            
+    
             // Check if it's sign in or register
-            if isSignIn {
+        if isSignIn {
                 // Sign in the user with Firebase
-                FIRAuth.auth()?.signIn(withEmail: email, password: pass, completion: { (user, error) in
-                    
-                    // Check that user isn't nil
-                    if let u = user {
-                        // User is found, go to home screen
-                        self.performSegue(withIdentifier: "saveOrCreateSegue", sender: self)
-                    }
-                    else {
-                        // Error: check error and show message
-                    }
-                    
-                })
-                
-            }
-            else {
+            userLogin()
+        } else {
                 // Register the user with Firebase
-                
-                FIRAuth.auth()?.createUser(withEmail: email, password: pass, completion: { (user, error) in
-                    
-                    // Check that user isn't nil
-                    if let u = user {
-                        // User is found, go to home screen
-                        self.performSegue(withIdentifier: "saveOrCreateSegue", sender: self)
-                    }
-                    else {
-                        // Error: check error and show message
-                    }
-                })
-                
-            }
-            
+            createAccount()
         }
+        
     }
-
+    
+    func createAccount() {
+        
+        FIRAuth.auth()?.createUser(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
+            if error != nil {
+                self.userLogin()
+            } else {
+                print ("User Created")
+                self.userLogin()
+            }
+        })
+        performSegue(withIdentifier: "saveOrCreateSegue", sender: self)
+    }
+    
+    func userLogin() {
+        FIRAuth.auth()?.signIn(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
+            if error != nil {
+                print ("Incorrect")
+            } else {
+                self.performSegue(withIdentifier: "saveOrCreateSegue", sender: self)
+            }
+        })
+    }
+    
+    /*
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "saveOrCreateSegue") {
             _ = segue.destination as! SaveOrCreateViewController
         }
     }
-    
+    */
+ 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         //dismiss the keyboard when the view is tapped on.
         emailTextField.resignFirstResponder()

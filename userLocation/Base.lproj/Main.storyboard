@@ -102,7 +102,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Dpl-xg-9vd">
-                                <rect key="frame" x="16" y="230" width="343" height="208"/>
+                                <rect key="frame" x="16" y="230.5" width="343" height="208"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="25p-nT-Bhd">
                                         <rect key="frame" x="107" y="0.0" width="129" height="29"/>
@@ -112,7 +112,7 @@
                                         </segments>
                                         <color key="tintColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <action selector="signInToggleChanged:" destination="4fS-mw-GIs" eventType="valueChanged" id="M9k-RW-nbD"/>
+                                            <action selector="signInToggleChanged:" destination="4fS-mw-GIs" eventType="valueChanged" id="I0X-gt-2Gm"/>
                                         </connections>
                                     </segmentedControl>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XNk-oM-Y8b">
@@ -125,7 +125,7 @@
                                         <rect key="frame" x="20" y="118" width="303" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ySi-4J-tfe">
                                         <rect key="frame" x="147" y="178" width="49" height="30"/>
@@ -133,7 +133,7 @@
                                             <color key="titleColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="submitButtonTapped:" destination="4fS-mw-GIs" eventType="touchUpInside" id="x5a-Hg-2jD"/>
+                                            <action selector="submitButtonTapped:" destination="4fS-mw-GIs" eventType="touchUpInside" id="qai-QU-aZv"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -157,10 +157,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="fST-yo-vQS"/>
                     <connections>
-                        <outlet property="emailTextField" destination="XNk-oM-Y8b" id="MLD-go-VqA"/>
-                        <outlet property="passwordTextField" destination="qCP-DS-nO7" id="OZa-bU-CBj"/>
-                        <outlet property="signInToggle" destination="25p-nT-Bhd" id="l2w-kZ-aRQ"/>
-                        <outlet property="submitButton" destination="ySi-4J-tfe" id="3fl-iJ-dXB"/>
+                        <outlet property="emailTextField" destination="XNk-oM-Y8b" id="C0P-kY-EEq"/>
+                        <outlet property="passwordTextField" destination="qCP-DS-nO7" id="qHI-ZE-sI4"/>
+                        <outlet property="signInToggle" destination="25p-nT-Bhd" id="OPZ-GB-RF6"/>
+                        <outlet property="submitButton" destination="ySi-4J-tfe" id="IbU-4W-txw"/>
                         <segue destination="4LV-33-gE8" kind="show" identifier="saveOrCreateSegue" id="gnM-bL-czz"/>
                     </connections>
                 </viewController>
