@@ -20,6 +20,7 @@ class LoginViewController: UIViewController {
     
     @IBOutlet var submitButton: UIButton!
    
+    @IBOutlet var signInLabel: UILabel!
     
     
     var isSignIn: Bool = true
@@ -43,9 +44,11 @@ class LoginViewController: UIViewController {
         
         //Check the bool and set the button text
         if isSignIn {
+            signInLabel.text = "Sign In"
             submitButton.setTitle ("Sign In", for: .normal)
         
         } else {
+            signInLabel.text = "Register"
             submitButton.setTitle ("Register", for: .normal)
             
         }
@@ -73,7 +76,6 @@ class LoginViewController: UIViewController {
             if error != nil {
                 self.userLogin()
             } else {
-                print ("User Created")
                 self.userLogin()
             }
         })
@@ -83,7 +85,7 @@ class LoginViewController: UIViewController {
     func userLogin() {
         FIRAuth.auth()?.signIn(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
             if error != nil {
-                print ("Incorrect")
+                self.signInLabel.text = "There has been an error. Please try again."
             } else {
                 self.performSegue(withIdentifier: "saveOrCreateSegue", sender: self)
             }
