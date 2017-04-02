@@ -22,6 +22,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
    
     @IBOutlet var signInLabel: UILabel!
     
+    let uid = String()
+    let email = String()
+    
     
     var isSignIn: Bool = true
 
@@ -63,9 +66,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func submitButtonTapped(_ sender: UIButton) {
         
-        // TODO: Do some form validation on the email and password
-    
-            // Check if it's sign in or register
+        // Check if it's sign in or register
         if isSignIn {
                 // Sign in the user with Firebase
             userLogin()
@@ -96,6 +97,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.userLogin()
             }
         })
+        getUserProfile()
+        
         performSegue(withIdentifier: "saveOrCreateSegue", sender: self)
     }
     
@@ -107,6 +110,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.performSegue(withIdentifier: "saveOrCreateSegue", sender: self)
             }
         })
+        getUserProfile()
     }
     
     func isEmailValid(emailAddressString: String) -> Bool {
@@ -150,10 +154,28 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     /*
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "saveOrCreateSegue") {
-            _ = segue.destination as! SaveOrCreateViewController
+            
+            let pointer = segue.destination as! SaveOrCreateViewController
+            
+            pointer.emailPassed = self.email
+            pointer.uidPassed = self.longCoordPassed
+            
+            
         }
     }
     */
+    
+    func getUserProfile() {
+        let user = FIRAuth.auth()?.currentUser
+        if let user = user {
+            let uid = user.uid
+            let email = user.email
+            //let password = user.password
+        }
+        print (uid)
+        print (email)
+    }
+    
     /*
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         //dismiss the keyboard when the view is tapped on.
