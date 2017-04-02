@@ -72,9 +72,20 @@ class LoginViewController: UIViewController {
     
     func createAccount() {
         
+        let validEmail = isEmailValid(emailAddressString: emailTextField.text!)
+        
+        
+        if validEmail {
+            print ("Email address is valid")
+        } else {
+            print ("Please enter a valid email address")
+            displayAlertMessage(messageToDisplay: "Please enter a valid email address")
+        }
+        
+        
         FIRAuth.auth()?.createUser(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
             if error != nil {
-                self.userLogin()
+                self.displayAlertMessage(messageToDisplay: "Please enter a valid email address.")
             } else {
                 self.userLogin()
             }
@@ -90,6 +101,44 @@ class LoginViewController: UIViewController {
                 self.performSegue(withIdentifier: "saveOrCreateSegue", sender: self)
             }
         })
+    }
+    
+    func isEmailValid(emailAddressString: String) -> Bool {
+        
+        var returnValue = true
+        let emailRegEx = "[A-Z0-9a-z.-_]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,3}"
+        
+        do {
+            let regex = try NSRegularExpression(pattern: emailRegEx)
+            let nsString = emailAddressString as NSString
+            let results = regex.matches(in: emailAddressString, range: NSRange(location: 0, length: nsString.length))
+            
+            if results.count == 0
+            {
+                returnValue = false
+            }
+            
+        } catch let error as NSError {
+            print("invalid regex: \(error.localizedDescription)")
+            returnValue = false
+        }
+        
+        return  returnValue
+    }
+    
+    func displayAlertMessage(messageToDisplay: String) {
+        let alertController = UIAlertController(title: "Error", message: messageToDisplay, preferredStyle: .alert)
+        
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+            
+            // Code in this block will trigger when OK button tapped.
+            print("Ok button tapped");
+            
+        }
+        
+        alertController.addAction(OKAction)
+        
+        self.present(alertController, animated: true, completion:nil)
     }
     
     /*
