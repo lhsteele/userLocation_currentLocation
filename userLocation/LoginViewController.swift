@@ -96,8 +96,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             } else {
                 self.userLogin()
             }
+            
+            let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+            let values = ["Email": self.emailTextField.text, "Password": self.passwordTextField.text]
+            ref.child("Users").childByAutoId().updateChildValues(values) { (err, ref) in
+                
+                if err != nil {
+                    print ("Error saving user")
+                    return
+                }
+                print ("Saved user successfully")
+            }
+            
         })
-        getUserProfile()
+        //getUserProfile()
+        
         
         performSegue(withIdentifier: "saveOrCreateSegue", sender: self)
     }
@@ -175,6 +188,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         print (uid)
         print (email)
     }
+    
     
     /*
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
