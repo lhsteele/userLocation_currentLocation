@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var signInToggle: UISegmentedControl!
     
@@ -29,8 +29,14 @@ class LoginViewController: UIViewController {
         
         super.viewDidLoad()
         
-
-        // Do any additional setup after loading the view.
+        emailTextField.delegate = self
+        emailTextField.tag = 0
+        emailTextField.returnKeyType = UIReturnKeyType.done
+        
+        passwordTextField.delegate = self
+        passwordTextField.tag = 1
+        passwordTextField.returnKeyType = UIReturnKeyType.done
+        
     }
 
     override func didReceiveMemoryWarning() {
