@@ -61,11 +61,11 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dji-Rc-pjm" id="q8g-mx-hro">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Home" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vIo-T0-sed">
-                                            <rect key="frame" x="15" y="0.0" width="345" height="43"/>
+                                            <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -240,6 +240,9 @@
                                 <state key="normal" title="Create a Link">
                                     <color key="titleColor" red="0.75404505079999995" green="0.19092937700000001" blue="0.2921221906" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="createNewLink:" destination="4LV-33-gE8" eventType="touchUpInside" id="PPC-bC-wDp"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aE1-cV-XEI">
                                 <rect key="frame" x="71" y="189" width="233" height="30"/>
@@ -248,10 +251,18 @@
                                 <state key="normal" title="Save a Favorite Location">
                                     <color key="titleColor" red="0.75404505079999995" green="0.19092937700000001" blue="0.2921221906" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="saveNewFavorite:" destination="4LV-33-gE8" eventType="touchUpInside" id="D02-zz-1VO"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="createALink" destination="cSa-am-Jpn" id="8g2-O5-qiD"/>
+                        <outlet property="saveFavoriteButton" destination="aE1-cV-XEI" id="6mA-Yd-uxS"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="MapViewSegue" id="qhz-zp-l24"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JeO-C3-d6n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -350,7 +361,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="V6G-XS-Ac6"/>
         <segue reference="hht-FS-v94"/>
-        <segue reference="DeU-J5-9EH"/>
     </inferredMetricsTieBreakers>
 </document>

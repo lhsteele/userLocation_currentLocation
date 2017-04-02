@@ -9,6 +9,11 @@
 import UIKit
 
 class SaveOrCreateViewController: UIViewController {
+    
+    @IBOutlet var saveFavoriteButton: UIButton!
+    
+    @IBOutlet var createALink: UIButton!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,15 +26,12 @@ class SaveOrCreateViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func saveNewFavorite(_ sender: Any) {
+        performSegue(withIdentifier: "MapViewSegue", sender: sender)
+        
     }
-    */
-
+    
+    @IBAction func createNewLink(_ sender: Any) {
+    }
+    
 }

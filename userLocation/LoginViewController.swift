@@ -148,11 +148,25 @@ class LoginViewController: UIViewController {
         }
     }
     */
- 
+    /*
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         //dismiss the keyboard when the view is tapped on.
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
+    }
+    */
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == self.emailTextField, textField == self.passwordTextField {
+            self.emailTextField.text = textField.text!
+            self.passwordTextField.text = textField.text!
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        return true
     }
     
 }

@@ -31,6 +31,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         locationCoordinates.text = "\(latCoordPassed);\(longCoordPassed)"
         
         self.locationNameField.delegate = self
+        
                 
     }
     
