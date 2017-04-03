@@ -25,6 +25,8 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     var newLongCoord = CLLocationDegrees()
     var username = ""
     var handle: FIRAuthStateDidChangeListenerHandle?
+    var userID = String()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,7 +72,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         databaseRef = FIRDatabase.database().reference()
         
         let key = databaseRef.child("Locations").childByAutoId().key
-        let location = ["Latitude": newLatCoord, "Longitude": newLongCoord, "LocationName": newFavLoc, "Users": [2]] as [String : Any]
+        let location = ["Latitude": newLatCoord, "Longitude": newLongCoord, "LocationName": newFavLoc, "Users": [userID]] as [String : Any]
         let childUpdates = ["/Locations/\(key)" : location]
         databaseRef.updateChildValues(childUpdates)
         

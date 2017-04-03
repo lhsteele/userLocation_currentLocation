@@ -24,6 +24,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var longCoordPassed = CLLocationDegrees()
     var temporaryString = ""
     var handle: FIRAuthStateDidChangeListenerHandle?
+    var userID = String()
+    
     
     
     let manager = CLLocationManager ()
@@ -86,6 +88,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             
             pointer.latCoordPassed = self.latCoordPassed
             pointer.longCoordPassed = self.longCoordPassed
+            pointer.userID = self.userID
            
             
         }

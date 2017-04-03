@@ -16,6 +16,8 @@ class SaveOrCreateViewController: UIViewController {
     @IBOutlet var createALink: UIButton!
     
     var handle: FIRAuthStateDidChangeListenerHandle?
+    var userID = String()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +45,17 @@ class SaveOrCreateViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "MapViewSegue") {
+            
+            let pointer = segue.destination as! ViewController
+            
+            pointer.userID = self.userID
+            
+            
+        }
     }
 
         

@@ -22,8 +22,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
    
     @IBOutlet var signInLabel: UILabel!
     
-    //let uid = String()
-    //let email = String()
+    var userID = String()
+    var userEmail = String()
     var handle: FIRAuthStateDidChangeListenerHandle?
     
     var isSignIn: Bool = true
@@ -166,19 +166,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.present(alertController, animated: true, completion:nil)
     }
     
-    /*
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "saveOrCreateSegue") {
             
             let pointer = segue.destination as! SaveOrCreateViewController
             
-            pointer.emailPassed = self.email
-            pointer.uidPassed = self.longCoordPassed
+            pointer.userID = self.userID
             
             
         }
     }
-    */
+    
     
     /*
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -222,6 +221,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if let user = user {
             let uid =  user.uid
             let email = user.email!
+            userID = uid
+            userEmail = email
+            
             print (uid)
             print (email as Any)
         }
