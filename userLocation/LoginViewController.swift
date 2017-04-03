@@ -200,11 +200,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    /*
+    
     func appDidEnterBackground(_application: UIApplication) {
         try! FIRAuth.auth()!.signOut()
     }
-    */
+    
     
     override func viewWillAppear(_ animated: Bool) {
         handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
