@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Firebase
 
 
 
@@ -22,7 +23,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var latCoordPassed = CLLocationDegrees()
     var longCoordPassed = CLLocationDegrees()
     var temporaryString = ""
-    
+    var handle: FIRAuthStateDidChangeListenerHandle?
     
     
     let manager = CLLocationManager ()
@@ -89,6 +90,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+            
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+    }
+
     
 }
 

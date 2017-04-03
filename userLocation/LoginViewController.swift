@@ -24,7 +24,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     let uid = String()
     let email = String()
-    
+    var handle: FIRAuthStateDidChangeListenerHandle?
     
     var isSignIn: Bool = true
 
@@ -99,18 +99,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             
             let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
             let values = ["Email": self.emailTextField.text, "Password": self.passwordTextField.text]
-            ref.child("Users").childByAutoId().updateChildValues(values) { (err, ref) in
+            if let userID = FIRAuth.auth()?.currentUser?.uid {
+                ref.child("Users").child(userID).updateChildValues(values) { (err, ref) in
                 
-                if err != nil {
-                    print ("Error saving user")
-                    return
+                    if err != nil {
+                        print ("Error saving user")
+                        return
+                    }
+                    print ("Saved user successfully")
                 }
-                print ("Saved user successfully")
             }
             
         })
-        //getUserProfile()
-        
         
         performSegue(withIdentifier: "saveOrCreateSegue", sender: self)
     }
@@ -123,7 +123,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.performSegue(withIdentifier: "saveOrCreateSegue", sender: self)
             }
         })
-        getUserProfile()
+        
     }
     
     func isEmailValid(emailAddressString: String) -> Bool {
@@ -178,18 +178,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     */
     
-    func getUserProfile() {
-        let user = FIRAuth.auth()?.currentUser
-        if let user = user {
-            let uid = user.uid
-            let email = user.email
-            //let password = user.password
-        }
-        print (uid)
-        print (email)
-    }
-    
-    
     /*
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         //dismiss the keyboard when the view is tapped on.
@@ -211,4 +199,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    func appDidEnterBackground(_application: UIApplication) {
+        try! FIRAuth.auth()!.signOut()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+            
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+    }
 }

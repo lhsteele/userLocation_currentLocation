@@ -18,7 +18,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
     var username = ""
     //var databaseHandle: FIRDatabaseHandle?
     var ref: FIRDatabaseReference?
-    
+    var handle: FIRAuthStateDidChangeListenerHandle?
     
     override func viewDidLoad() {
         
@@ -150,8 +150,15 @@ class FavoriteLocationsTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+        }
         
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

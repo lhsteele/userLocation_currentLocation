@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SaveOrCreateViewController: UIViewController {
     
@@ -14,6 +15,7 @@ class SaveOrCreateViewController: UIViewController {
     
     @IBOutlet var createALink: UIButton!
     
+    var handle: FIRAuthStateDidChangeListenerHandle?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,5 +35,15 @@ class SaveOrCreateViewController: UIViewController {
     @IBAction func createNewLink(_ sender: Any) {
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+            
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+    }
+
         
 }

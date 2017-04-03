@@ -24,6 +24,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     var newLatCoord = CLLocationDegrees()
     var newLongCoord = CLLocationDegrees()
     var username = ""
+    var handle: FIRAuthStateDidChangeListenerHandle?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,6 +95,17 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+            
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+    }
+
 }
 
     
