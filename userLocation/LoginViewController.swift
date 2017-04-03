@@ -22,8 +22,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
    
     @IBOutlet var signInLabel: UILabel!
     
-    let uid = String()
-    let email = String()
+    //let uid = String()
+    //let email = String()
     var handle: FIRAuthStateDidChangeListenerHandle?
     
     var isSignIn: Bool = true
@@ -74,6 +74,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 // Register the user with Firebase
             createAccount()
         }
+        
+        getUserInfo()
         
     }
     
@@ -199,9 +201,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    /*
     func appDidEnterBackground(_application: UIApplication) {
         try! FIRAuth.auth()!.signOut()
     }
+    */
     
     override func viewWillAppear(_ animated: Bool) {
         handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
@@ -211,5 +215,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+    }
+    
+    func getUserInfo() {
+        let user = FIRAuth.auth()?.currentUser
+        if let user = user {
+            let uid =  user.uid
+            let email = user.email!
+            print (uid)
+            print (email as Any)
+        }
     }
 }
