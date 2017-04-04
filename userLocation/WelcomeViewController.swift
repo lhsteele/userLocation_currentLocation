@@ -8,12 +8,13 @@
 
 import UIKit
 
-class WelcomeViewController: UIViewController {
+class WelcomeViewController: UIViewController, UIGestureRecognizerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        let gestureRec = UITapGestureRecognizer(target: self, action: #selector (self.tapAction (_:)))
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,15 +22,16 @@ class WelcomeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if (segue.identifier == "LoginSegue") {
+            
+            let pointer = segue.destination as! LoginViewController
+        }
     }
-    */
+    
+    func tapAction(_ sender: UITapGestureRecognizer) {
+        performSegue(withIdentifier: "LoginSegue", sender: self)
+    }
+    
 
 }

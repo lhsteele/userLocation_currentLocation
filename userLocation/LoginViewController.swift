@@ -115,7 +115,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             
         })
         
-        performSegue(withIdentifier: "saveOrCreateSegue", sender: self)
+        performSegue(withIdentifier: "FavoriteLocationsTableSegue", sender: self)
     }
     
     func userLogin() {

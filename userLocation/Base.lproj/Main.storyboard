@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="gtg-Z4-3m4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="4fS-mw-GIs">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Add Location-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
@@ -37,6 +37,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Add Location" id="euR-bT-9vK"/>
                     <navigationItem key="navigationItem" id="ykX-CS-U2g"/>
                     <connections>
                         <outlet property="createAFavoriteLocation" destination="5vh-wZ-Dsu" id="EPQ-DQ-Tcl"/>
@@ -46,9 +47,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2151" y="885"/>
+            <point key="canvasLocation" x="3054" y="839"/>
         </scene>
-        <!--Favorite Locations Table View Controller-->
+        <!--Favorites-->
         <scene sceneID="Bf6-in-On2">
             <objects>
                 <tableViewController id="8vQ-W8-wwu" customClass="FavoriteLocationsTableViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
@@ -80,6 +81,7 @@
                             <outlet property="delegate" destination="8vQ-W8-wwu" id="zva-sA-ioE"/>
                         </connections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="Favorites" id="kMV-2w-hnO"/>
                     <navigationItem key="navigationItem" id="B61-2n-S1P"/>
                     <connections>
                         <segue destination="4LV-33-gE8" kind="show" identifier="SaveOrCreateSegue" id="KMi-hg-pFQ"/>
@@ -87,7 +89,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pX4-EA-J4z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1279" y="124"/>
+            <point key="canvasLocation" x="2174" y="124"/>
         </scene>
         <!--Welcome View Controller-->
         <scene sceneID="l3R-zt-VQi">
@@ -111,16 +113,17 @@
                         </subviews>
                         <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" id="Qng-lg-hXO"/>
                     <navigationItem key="navigationItem" id="WQP-Ie-HSp"/>
                     <connections>
-                        <segue destination="4fS-mw-GIs" kind="show" identifier="LoginSegue" id="QJf-z7-e4p"/>
+                        <segue destination="4fS-mw-GIs" kind="show" identifier="LoginSegue" id="XgK-3L-LN7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ElV-Pt-qIR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="448.80000000000001" y="-588.75562218890559"/>
+            <point key="canvasLocation" x="1388" y="-609"/>
         </scene>
-        <!--Login View Controller-->
+        <!--Item-->
         <scene sceneID="wMg-Zx-xbr">
             <objects>
                 <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="4fS-mw-GIs" customClass="LoginViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
@@ -194,6 +197,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="Dpl-xg-9vd" secondAttribute="trailing" id="wm8-H1-hQD"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" tag="1" title="Item" id="Wja-uN-0qL"/>
                     <navigationItem key="navigationItem" id="LDD-cu-SgA"/>
                     <connections>
                         <outlet property="emailTextField" destination="XNk-oM-Y8b" id="C0P-kY-EEq"/>
@@ -201,12 +205,12 @@
                         <outlet property="signInLabel" destination="yVe-sX-aYB" id="bjH-Yd-AKu"/>
                         <outlet property="signInToggle" destination="25p-nT-Bhd" id="OPZ-GB-RF6"/>
                         <outlet property="submitButton" destination="ySi-4J-tfe" id="IbU-4W-txw"/>
-                        <segue destination="8vQ-W8-wwu" kind="show" identifier="FavoriteLocationsTableSegue" id="gmB-3w-n0p"/>
+                        <segue destination="0QE-3y-ksz" kind="show" identifier="FavoriteLocationsTableSegue" id="gmB-3w-n0p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UBC-N5-MS1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="450" y="124"/>
+            <point key="canvasLocation" x="1388" y="123.68815592203899"/>
         </scene>
         <!--Save Or Create View Controller-->
         <scene sceneID="zsa-u5-Vn3">
@@ -253,7 +257,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JeO-C3-d6n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2151" y="124"/>
+            <point key="canvasLocation" x="3055" y="124"/>
         </scene>
         <!--Save Location Detail View Controller-->
         <scene sceneID="NYj-pq-Pap">
@@ -303,33 +307,34 @@
                         <outlet property="locationCoordinates" destination="FEf-9O-2Ju" id="kAY-Bl-KCK"/>
                         <outlet property="locationNameField" destination="QU3-IV-h1n" id="YWu-6z-2Qw"/>
                         <outlet property="saveFavorite" destination="tG5-RV-zxw" id="JCr-Ev-yxV"/>
-                        <segue destination="8vQ-W8-wwu" kind="show" identifier="NewFavLocationSegue" id="pU9-gV-YXU"/>
+                        <segue destination="0QE-3y-ksz" kind="show" identifier="NewFavLocationSegue" id="pU9-gV-YXU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nwq-Iv-jDY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3071" y="885"/>
+            <point key="canvasLocation" x="2174" y="839"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Hzg-94-WzA">
+        <!--Tab Bar Controller-->
+        <scene sceneID="gAD-Nk-5DT">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Zj2-nm-w9S" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="0QE-3y-ksz" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fak-4a-kSK">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="vI8-kG-4jJ">
                         <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
                     <connections>
-                        <segue destination="gtg-Z4-3m4" kind="relationship" relationship="rootViewController" id="a69-b6-Owe"/>
+                        <segue destination="8vQ-W8-wwu" kind="relationship" relationship="viewControllers" id="sbh-tO-Thh"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="bjZ-Oe-McZ"/>
                     </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5wC-oV-8iV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NSK-Zp-goP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-418" y="-588"/>
+            <point key="canvasLocation" x="2174" y="-609"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="bjZ-Oe-McZ"/>
         <segue reference="gmB-3w-n0p"/>
     </inferredMetricsTieBreakers>
 </document>
