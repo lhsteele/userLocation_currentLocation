@@ -110,7 +110,7 @@
                                             <segment title="Sign In"/>
                                             <segment title="Register"/>
                                         </segments>
-                                        <color key="tintColor" red="0.75404505076142136" green="0.190929376983968" blue="0.29212219056498712" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="tintColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="signInToggleChanged:" destination="4fS-mw-GIs" eventType="valueChanged" id="I0X-gt-2Gm"/>
                                         </connections>
@@ -118,7 +118,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign In" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yVe-sX-aYB">
                                         <rect key="frame" x="20" y="58" width="303" height="12"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                        <color key="textColor" red="0.75404505079999995" green="0.19092937700000001" blue="0.2921221906" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XNk-oM-Y8b">
@@ -136,7 +136,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ySi-4J-tfe">
                                         <rect key="frame" x="147" y="220" width="49" height="30"/>
                                         <state key="normal" title="Submit">
-                                            <color key="titleColor" red="0.75404505079999995" green="0.19092937700000001" blue="0.2921221906" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="submitButtonTapped:" destination="4fS-mw-GIs" eventType="touchUpInside" id="qai-QU-aZv"/>
@@ -238,7 +238,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <state key="normal" title="Create a Link">
-                                    <color key="titleColor" red="0.75404505079999995" green="0.19092937700000001" blue="0.2921221906" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="createNewLink:" destination="4LV-33-gE8" eventType="touchUpInside" id="PPC-bC-wDp"/>
@@ -249,7 +249,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <state key="normal" title="Save a Favorite Location">
-                                    <color key="titleColor" red="0.75404505079999995" green="0.19092937700000001" blue="0.2921221906" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="saveNewFavorite:" destination="4LV-33-gE8" eventType="touchUpInside" id="D02-zz-1VO"/>
