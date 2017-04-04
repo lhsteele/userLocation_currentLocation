@@ -100,7 +100,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }
             
             let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
-            let values = ["Email": self.emailTextField.text, "Password": self.passwordTextField.text]
+            let values = ["Email": self.emailTextField.text]
+            //Don't need to update passwords, keeps it from being printed in database
             if let userID = FIRAuth.auth()?.currentUser?.uid {
                 ref.child("Users").child(userID).updateChildValues(values) { (err, ref) in
                 
@@ -122,7 +123,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             if error != nil {
                 self.signInLabel.text = "There has been an error. Please try again."
             } else {
-                self.performSegue(withIdentifier: "saveOrCreateSegue", sender: self)
+                self.performSegue(withIdentifier: "FavoriteLocationsTableSegue", sender: self)
             }
         })
         
@@ -168,9 +169,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "saveOrCreateSegue") {
+        if (segue.identifier == "FavoriteLocationsTableSegue") {
             
-            let pointer = segue.destination as! SaveOrCreateViewController
+            let pointer = segue.destination as! FavoriteLocationsTableViewController
             
             pointer.userID = self.userID
             

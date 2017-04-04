@@ -19,6 +19,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
     //var databaseHandle: FIRDatabaseHandle?
     var ref: FIRDatabaseReference?
     var handle: FIRAuthStateDidChangeListenerHandle?
+    var userID = String()
     
     override func viewDidLoad() {
         
@@ -131,12 +132,12 @@ class FavoriteLocationsTableViewController: UITableViewController {
 
     
     func addNewFavorite(_ sender: Any?) {
-        performSegue(withIdentifier: "AddNewFavoriteSegue", sender: sender)
+        performSegue(withIdentifier: "SaveOrCreateSegue", sender: sender)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "AddNewFavoriteSegue") {
-            _ = segue.destination as! ViewController
+        if (segue.identifier == "SaveOrCreateSegue") {
+            _ = segue.destination as! SaveOrCreateViewController
         }
     }
     

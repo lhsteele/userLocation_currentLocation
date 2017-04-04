@@ -83,12 +83,12 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     @IBAction func saveFavorite(_ sender: Any) {
         addToFirebase()
         
-        performSegue(withIdentifier: "FavoriteLocationTableSegue", sender: sender)
+        performSegue(withIdentifier: "NewFavLocationSegue", sender: sender)
        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "FavoriteLocationTableSegue") {
+        if (segue.identifier == "NewFavLocationSegue") {
             _ = segue.destination as! FavoriteLocationsTableViewController
             
         }
