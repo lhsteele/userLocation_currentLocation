@@ -23,8 +23,14 @@ class FavoriteLocationsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         
-        
         super.viewDidLoad()
+        
+        /*
+        let saveLocVC = storyboard?.instantiateViewController(withIdentifier: "SaveLocationDetailViewController") as! SaveLocationDetailViewController
+        self.addChildViewController(saveLocVC)
+        self.view.addSubview(saveLocVC.view)
+        */
+        
         
         let moveButton = UIBarButtonItem(title: "Re-order", style: .plain, target: self, action: #selector(FavoriteLocationsTableViewController.toggleEdit))
         navigationItem.leftBarButtonItem = moveButton
@@ -132,12 +138,12 @@ class FavoriteLocationsTableViewController: UITableViewController {
 
     
     func addNewFavorite(_ sender: Any?) {
-        performSegue(withIdentifier: "SaveOrCreateSegue", sender: sender)
+        performSegue(withIdentifier: "MapViewSegue", sender: sender)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "SaveOrCreateSegue") {
-            _ = segue.destination as! SaveOrCreateViewController
+        if (segue.identifier == "MapViewSegue") {
+            _ = segue.destination as! ViewController
         }
     }
     
@@ -202,4 +208,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
         return false
     }
     
+    
 }
+ 
+ 

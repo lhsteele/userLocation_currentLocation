@@ -13,7 +13,7 @@ import Firebase
 
 
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate, UITabBarControllerDelegate {
     
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var createAFavoriteLocation: UIButton!
@@ -25,7 +25,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var temporaryString = ""
     var handle: FIRAuthStateDidChangeListenerHandle?
     var userID = String()
-    
     
     
     let manager = CLLocationManager ()
@@ -60,9 +59,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         manager.requestWhenInUseAuthorization()        
         manager.startUpdatingLocation()
         
+        if let mapVC = storyboard?.instantiateViewController(withIdentifier: "MapViewController") {
+            self.addChildViewController(mapVC)
+            self.view.addSubview(mapVC.view)
+        }
+        
     }
     
-    @IBAction func saveUserFavorite(_ sender: Any) {
+    @IBAction func saveFavoriteLocation(_ sender: Any) {
         if let location = manager.location {
             
             
@@ -75,11 +79,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             longCoordPassed = longCoord
             
         }
-      
-        performSegue(withIdentifier: "SaveLocationDetailSegue", sender: sender)
         
 
     }
+    
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "SaveLocationDetailSegue") {
