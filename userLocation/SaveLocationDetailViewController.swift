@@ -89,7 +89,8 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "NewFavLocationSegue") {
-            _ = segue.destination as! FavoriteLocationsTableViewController
+            let tabCtrl = segue.destination as! UITabBarController
+            _ = tabCtrl.viewControllers![0] as! FavoriteLocationsTableViewController
             
         }
     }

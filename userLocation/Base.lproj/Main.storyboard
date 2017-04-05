@@ -206,6 +206,7 @@
                         <outlet property="signInToggle" destination="25p-nT-Bhd" id="OPZ-GB-RF6"/>
                         <outlet property="submitButton" destination="ySi-4J-tfe" id="IbU-4W-txw"/>
                         <segue destination="0QE-3y-ksz" kind="show" identifier="FavoriteLocationsTableSegue" id="gmB-3w-n0p"/>
+                        <segue destination="8vQ-W8-wwu" kind="show" identifier="FavoriteLocationsTableSegue" id="TnO-rV-ujT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UBC-N5-MS1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -317,9 +318,10 @@
         <!--Tab Bar Controller-->
         <scene sceneID="gAD-Nk-5DT">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="0QE-3y-ksz" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBarController" automaticallyAdjustsScrollViewInsets="NO" id="0QE-3y-ksz" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="vI8-kG-4jJ">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
@@ -336,5 +338,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="bjZ-Oe-McZ"/>
         <segue reference="gmB-3w-n0p"/>
+        <segue reference="TnO-rV-ujT"/>
     </inferredMetricsTieBreakers>
 </document>

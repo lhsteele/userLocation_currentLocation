@@ -76,13 +76,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             
         }
       
-        performSegue(withIdentifier: "saveLocationDetailSegue", sender: sender)
+        performSegue(withIdentifier: "SaveLocationDetailSegue", sender: sender)
         
 
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "saveLocationDetailSegue") {
+        if (segue.identifier == "SaveLocationDetailSegue") {
 
             let pointer = segue.destination as! SaveLocationDetailViewController
             

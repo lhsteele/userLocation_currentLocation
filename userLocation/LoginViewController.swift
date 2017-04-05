@@ -77,6 +77,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         getUserInfo()
         
+        var tabBarController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
+        
+        var appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        appDelegate.window?.rootViewController = tabBarController
+        
     }
     
     func createAccount() {
@@ -123,7 +129,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             if error != nil {
                 self.signInLabel.text = "There has been an error. Please try again."
             } else {
-                self.performSegue(withIdentifier: "FavoriteLocationsTableSegue", sender: self)
+                //self.performSegue(withIdentifier: "FavoriteLocationsTableSegue", sender: self)
             }
         })
         
@@ -171,7 +177,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "FavoriteLocationsTableSegue") {
             
-            let pointer = segue.destination as! FavoriteLocationsTableViewController
+            let tabCtrl = segue.destination as! UITabBarController
+            
+            let pointer = tabCtrl.viewControllers![0] as! FavoriteLocationsTableViewController
             
             pointer.userID = self.userID
             
