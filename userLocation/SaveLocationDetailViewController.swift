@@ -35,6 +35,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         
         self.locationNameField.delegate = self
         locationNameField.returnKeyType = UIReturnKeyType.done
+    
                 
     }
     
