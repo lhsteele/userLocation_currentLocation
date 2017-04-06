@@ -10,10 +10,12 @@ import UIKit
 
 class WelcomeViewController: UIViewController, UIGestureRecognizerDelegate {
 
+    @IBOutlet var goButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let gestureRec = UITapGestureRecognizer(target: self, action: #selector (self.tapAction (_:)))
+//        let gestureRec = UITapGestureRecognizer(target: self, action: #selector (self.tapAction (_:)))
         
     }
 
@@ -22,16 +24,19 @@ class WelcomeViewController: UIViewController, UIGestureRecognizerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "LoginSegue") {
-            
-            let pointer = segue.destination as! LoginViewController
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if (segue.identifier == "LoginSegue") {
+//            
+//            let pointer = segue.destination as! LoginViewController
+//        }
+//    }
     
-    func tapAction(_ sender: UITapGestureRecognizer) {
+//    func tapAction(_ sender: UITapGestureRecognizer) {
+//        performSegue(withIdentifier: "LoginSegue", sender: self)
+//    }
+
+    @IBAction func goToLogin(_ sender: Any) {
         performSegue(withIdentifier: "LoginSegue", sender: self)
     }
-    
 
 }
