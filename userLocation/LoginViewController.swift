@@ -18,12 +18,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var passwordTextField: UITextField!
     
+    @IBOutlet var usernameTextField: UITextField!
+    
     @IBOutlet var submitButton: UIButton!
    
     @IBOutlet var signInLabel: UILabel!
     
     var userID = String()
     var userEmail = String()
+    var username = String()
     var handle: FIRAuthStateDidChangeListenerHandle?
     
     var isSignIn: Bool = true
@@ -39,6 +42,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.delegate = self
         passwordTextField.tag = 1
         passwordTextField.returnKeyType = UIReturnKeyType.done
+        
+        usernameTextField.delegate = self
+        usernameTextField.tag = 2
+        usernameTextField.returnKeyType = UIReturnKeyType.done
         
     }
 
@@ -77,9 +84,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         getUserInfo()
         
-        var tabBarController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
+        let tabBarController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
         
-        var appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         appDelegate.window?.rootViewController = tabBarController
         
@@ -106,7 +113,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }
             
             let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
-            let values = ["Email": self.emailTextField.text]
+            let values = ["Email": self.emailTextField.text, "Username": self.usernameTextField.text]
             //Don't need to update passwords, keeps it from being printed in database
             if let userID = FIRAuth.auth()?.currentUser?.uid {
                 ref.child("Users").child(userID).updateChildValues(values) { (err, ref) in
@@ -197,15 +204,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     */
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField == self.emailTextField, textField == self.passwordTextField {
+        if textField == self.emailTextField, textField == self.passwordTextField, textField == self.usernameTextField {
             self.emailTextField.text = textField.text!
             self.passwordTextField.text = textField.text!
+            self.usernameTextField.text = textField.text!
         }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
+        usernameTextField.resignFirstResponder()
         return true
     }
     
@@ -233,8 +242,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             userID = uid
             userEmail = email
             
-            print (uid)
-            print (email as Any)
+            if let displayName = user.displayName {
+                username = displayName
+            }
+            
         }
     }
 }

@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Add Location-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
@@ -37,7 +37,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Add Location" id="euR-bT-9vK"/>
+                    <tabBarItem key="tabBarItem" systemItem="more" id="euR-bT-9vK"/>
                     <navigationItem key="navigationItem" id="ykX-CS-U2g"/>
                     <connections>
                         <outlet property="createAFavoriteLocation" destination="5vh-wZ-Dsu" id="EPQ-DQ-Tcl"/>
@@ -47,9 +47,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3054" y="839"/>
+            <point key="canvasLocation" x="850" y="170"/>
         </scene>
-        <!--Favorites-->
+        <!--Favorite Locations Table View Controller-->
         <scene sceneID="Bf6-in-On2">
             <objects>
                 <tableViewController id="8vQ-W8-wwu" customClass="FavoriteLocationsTableViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
@@ -81,7 +81,7 @@
                             <outlet property="delegate" destination="8vQ-W8-wwu" id="zva-sA-ioE"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Favorites" id="kMV-2w-hnO"/>
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="kMV-2w-hnO"/>
                     <navigationItem key="navigationItem" id="B61-2n-S1P"/>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="MapViewSegue" id="jPh-cy-NMZ"/>
@@ -89,7 +89,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pX4-EA-J4z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2174" y="124"/>
+            <point key="canvasLocation" x="1694" y="170"/>
         </scene>
         <!--Welcome View Controller-->
         <scene sceneID="l3R-zt-VQi">
@@ -131,7 +131,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ElV-Pt-qIR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1388" y="-591.45427286356824"/>
+            <point key="canvasLocation" x="1694" y="-592"/>
         </scene>
         <!--Item-->
         <scene sceneID="wMg-Zx-xbr">
@@ -146,7 +146,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Dpl-xg-9vd">
-                                <rect key="frame" x="16" y="209" width="343" height="250"/>
+                                <rect key="frame" x="16" y="179" width="343" height="310"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="25p-nT-Bhd">
                                         <rect key="frame" x="107" y="0.0" width="129" height="29"/>
@@ -177,8 +177,14 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2ai-0L-4ef">
+                                        <rect key="frame" x="20" y="220" width="303" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ySi-4J-tfe">
-                                        <rect key="frame" x="147" y="220" width="49" height="30"/>
+                                        <rect key="frame" x="147" y="280" width="49" height="30"/>
                                         <state key="normal" title="Submit">
                                             <color key="titleColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -189,9 +195,11 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="XNk-oM-Y8b" firstAttribute="leading" secondItem="Dpl-xg-9vd" secondAttribute="leading" constant="20" id="CJU-x5-kee"/>
+                                    <constraint firstAttribute="trailing" secondItem="2ai-0L-4ef" secondAttribute="trailing" constant="20" id="Caf-xh-77o"/>
                                     <constraint firstItem="qCP-DS-nO7" firstAttribute="leading" secondItem="Dpl-xg-9vd" secondAttribute="leading" constant="20" id="O1M-Qc-pc8"/>
                                     <constraint firstAttribute="trailing" secondItem="XNk-oM-Y8b" secondAttribute="trailing" constant="20" id="UIS-Gy-GCD"/>
                                     <constraint firstItem="XNk-oM-Y8b" firstAttribute="leading" secondItem="Dpl-xg-9vd" secondAttribute="leading" constant="20" id="b0d-Fc-ymi"/>
+                                    <constraint firstItem="2ai-0L-4ef" firstAttribute="leading" secondItem="Dpl-xg-9vd" secondAttribute="leading" constant="20" id="bBl-kU-miI"/>
                                     <constraint firstAttribute="trailing" secondItem="yVe-sX-aYB" secondAttribute="trailing" constant="20" id="lcE-eS-5qn"/>
                                     <constraint firstAttribute="trailing" secondItem="qCP-DS-nO7" secondAttribute="trailing" constant="20" id="rkl-Rn-bTI"/>
                                     <constraint firstAttribute="trailing" secondItem="XNk-oM-Y8b" secondAttribute="trailing" constant="20" id="ucy-60-rae"/>
@@ -215,59 +223,14 @@
                         <outlet property="signInLabel" destination="yVe-sX-aYB" id="bjH-Yd-AKu"/>
                         <outlet property="signInToggle" destination="25p-nT-Bhd" id="OPZ-GB-RF6"/>
                         <outlet property="submitButton" destination="ySi-4J-tfe" id="IbU-4W-txw"/>
+                        <outlet property="usernameTextField" destination="2ai-0L-4ef" id="m2F-Bg-pbJ"/>
                         <segue destination="0QE-3y-ksz" kind="show" identifier="FavoriteLocationsTableSegue" id="gmB-3w-n0p"/>
                         <segue destination="8vQ-W8-wwu" kind="show" identifier="FavoriteLocationsTableSegue" id="TnO-rV-ujT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UBC-N5-MS1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1388" y="123.68815592203899"/>
-        </scene>
-        <!--Save Or Create View Controller-->
-        <scene sceneID="zsa-u5-Vn3">
-            <objects>
-                <viewController storyboardIdentifier="SaveOrCreateViewController" id="4LV-33-gE8" customClass="SaveOrCreateViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="1VR-T2-7Ky"/>
-                        <viewControllerLayoutGuide type="bottom" id="Q5M-TD-IbJ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="6ig-5Z-nJf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cSa-am-Jpn">
-                                <rect key="frame" x="124" y="258" width="126" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                <state key="normal" title="Create a Link">
-                                    <color key="titleColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="createNewLink:" destination="4LV-33-gE8" eventType="touchUpInside" id="PPC-bC-wDp"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aE1-cV-XEI">
-                                <rect key="frame" x="71" y="189" width="233" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                <state key="normal" title="Save a Favorite Location">
-                                    <color key="titleColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="saveNewFavorite:" destination="4LV-33-gE8" eventType="touchUpInside" id="D02-zz-1VO"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    </view>
-                    <connections>
-                        <outlet property="createALink" destination="cSa-am-Jpn" id="8g2-O5-qiD"/>
-                        <outlet property="saveFavoriteButton" destination="aE1-cV-XEI" id="6mA-Yd-uxS"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JeO-C3-d6n" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3055" y="124"/>
+            <point key="canvasLocation" x="2586" y="-592"/>
         </scene>
         <!--Save Location Detail View Controller-->
         <scene sceneID="NYj-pq-Pap">
@@ -322,7 +285,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nwq-Iv-jDY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2174" y="839"/>
+            <point key="canvasLocation" x="849" y="967"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="gAD-Nk-5DT">
@@ -341,12 +304,12 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NSK-Zp-goP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2174" y="-604"/>
+            <point key="canvasLocation" x="2585" y="170"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ili-tb-Gqa">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hXe-zm-VK7" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="hXe-zm-VK7" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="Qng-lg-hXO"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="C0w-05-4Ot">
@@ -360,12 +323,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ydR-Zp-gYP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="463" y="-591"/>
+            <point key="canvasLocation" x="851" y="-592"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="gmB-3w-n0p"/>
-        <segue reference="sbh-tO-Thh"/>
-        <segue reference="msF-tl-xen"/>
+        <segue reference="TnO-rV-ujT"/>
+        <segue reference="jPh-cy-NMZ"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -38,7 +38,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
         let databaseRef = FIRDatabase.database().reference().child("Locations")
         username = "Lisa"
     
-        let databaseHandle = databaseRef.observe(.value, with: { (snapshot) in
+        _ = databaseRef.observe(.value, with: { (snapshot) in
             
             for item in snapshot.children {
                 
@@ -85,7 +85,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
     func createUsersArray () {
         let databaseRef2 = FIRDatabase.database().reference().child("Locations")
         
-        let databaseHandle = databaseRef2.observe(.childAdded, with: { snapshot in
+        _ = databaseRef2.observe(.childAdded, with: { snapshot in
             var subscribedUser = FIRDataSnapshot()
             var updatedUserArray = [FIRDataSnapshot]()
             
@@ -132,12 +132,12 @@ class FavoriteLocationsTableViewController: UITableViewController {
 
     
     func addNewFavorite(_ sender: Any?) {
-        performSegue(withIdentifier: "SaveOrCreateSegue", sender: sender)
+        performSegue(withIdentifier: "MapViewSegue", sender: sender)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "SaveOrCreateSegue") {
-            _ = segue.destination as! SaveOrCreateViewController
+            _ = segue.destination as! ViewController
         }
     }
     

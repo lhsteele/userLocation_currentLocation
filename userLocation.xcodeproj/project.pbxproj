@@ -20,7 +20,6 @@
 		EF8F84801E25A33A00C32EBA /* userFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8F847F1E25A33A00C32EBA /* userFavorites.swift */; };
 		EFDE1A591E3A9403002D1589 /* FavoriteLocationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDE1A581E3A9403002D1589 /* FavoriteLocationsTableViewController.swift */; };
 		EFF6AB0D1E8EF2FF00366DB2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF6AB0C1E8EF2FF00366DB2 /* LoginViewController.swift */; };
-		EFF6AB0F1E8F13F500366DB2 /* SaveOrCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF6AB0E1E8F13F500366DB2 /* SaveOrCreateViewController.swift */; };
 		EFF6AB111E8F5F4F00366DB2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EFF6AB101E8F5F4F00366DB2 /* GoogleService-Info.plist */; };
 		EFFB04E31E2E8BD40071D961 /* SaveLocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFB04E21E2E8BD40071D961 /* SaveLocationDetailViewController.swift */; };
 /* End PBXBuildFile section */
@@ -65,7 +64,6 @@
 		EF8F847F1E25A33A00C32EBA /* userFavorites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userFavorites.swift; sourceTree = "<group>"; };
 		EFDE1A581E3A9403002D1589 /* FavoriteLocationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteLocationsTableViewController.swift; sourceTree = "<group>"; };
 		EFF6AB0C1E8EF2FF00366DB2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		EFF6AB0E1E8F13F500366DB2 /* SaveOrCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveOrCreateViewController.swift; sourceTree = "<group>"; };
 		EFF6AB101E8F5F4F00366DB2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EFFB04E21E2E8BD40071D961 /* SaveLocationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveLocationDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -136,7 +134,6 @@
 				EF8765131E9454EE0078E3E5 /* WelcomeViewController.swift */,
 				EFF6AB0C1E8EF2FF00366DB2 /* LoginViewController.swift */,
 				EFDE1A581E3A9403002D1589 /* FavoriteLocationsTableViewController.swift */,
-				EFF6AB0E1E8F13F500366DB2 /* SaveOrCreateViewController.swift */,
 				EF3821561E2415DF00032F42 /* MapView Controller.swift */,
 				EFFB04E21E2E8BD40071D961 /* SaveLocationDetailViewController.swift */,
 				EF8F847F1E25A33A00C32EBA /* userFavorites.swift */,
@@ -374,7 +371,6 @@
 				EFDE1A591E3A9403002D1589 /* FavoriteLocationsTableViewController.swift in Sources */,
 				EFFB04E31E2E8BD40071D961 /* SaveLocationDetailViewController.swift in Sources */,
 				EF3821571E2415DF00032F42 /* MapView Controller.swift in Sources */,
-				EFF6AB0F1E8F13F500366DB2 /* SaveOrCreateViewController.swift in Sources */,
 				EF3821551E2415DF00032F42 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
