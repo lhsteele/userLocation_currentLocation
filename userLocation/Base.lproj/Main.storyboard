@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Add Location-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="MapViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -31,25 +31,25 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Create a Favorite Location"/>
                                 <connections>
-                                    <action selector="saveFavoriteLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cxb-Wt-QUY"/>
+                                    <action selector="saveUserFavorite:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MFY-HB-ogT"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="more" id="euR-bT-9vK"/>
+                    <tabBarItem key="tabBarItem" title="Add Location" id="euR-bT-9vK"/>
                     <navigationItem key="navigationItem" id="ykX-CS-U2g"/>
                     <connections>
-                        <outlet property="createAFavoriteLocation" destination="5vh-wZ-Dsu" id="drX-80-w6T"/>
+                        <outlet property="createAFavoriteLocation" destination="5vh-wZ-Dsu" id="EPQ-DQ-Tcl"/>
                         <outlet property="map" destination="dg0-d2-acE" id="Ssm-V4-yEi"/>
                         <segue destination="1fE-IW-njT" kind="show" identifier="SaveLocationDetailSegue" id="Nxp-0U-HqP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3113" y="839"/>
+            <point key="canvasLocation" x="3054" y="839"/>
         </scene>
-        <!--Favorite Locations Table View Controller-->
+        <!--Favorites-->
         <scene sceneID="Bf6-in-On2">
             <objects>
                 <tableViewController id="8vQ-W8-wwu" customClass="FavoriteLocationsTableViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
@@ -81,14 +81,15 @@
                             <outlet property="delegate" destination="8vQ-W8-wwu" id="zva-sA-ioE"/>
                         </connections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="Favorites" id="kMV-2w-hnO"/>
                     <navigationItem key="navigationItem" id="B61-2n-S1P"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="MapViewSegue" id="hrP-ps-zXI"/>
+                        <segue destination="4LV-33-gE8" kind="show" identifier="SaveOrCreateSegue" id="KMi-hg-pFQ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pX4-EA-J4z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3112.8000000000002" y="123.68815592203899"/>
+            <point key="canvasLocation" x="2174" y="124"/>
         </scene>
         <!--Welcome View Controller-->
         <scene sceneID="l3R-zt-VQi">
@@ -205,17 +206,64 @@
                         <outlet property="signInToggle" destination="25p-nT-Bhd" id="OPZ-GB-RF6"/>
                         <outlet property="submitButton" destination="ySi-4J-tfe" id="IbU-4W-txw"/>
                         <segue destination="0QE-3y-ksz" kind="show" identifier="FavoriteLocationsTableSegue" id="gmB-3w-n0p"/>
-                        <segue destination="iDO-IU-zsd" kind="show" identifier="FavoriteLocationsTableSegue" id="TnO-rV-ujT"/>
+                        <segue destination="8vQ-W8-wwu" kind="show" identifier="FavoriteLocationsTableSegue" id="TnO-rV-ujT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UBC-N5-MS1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1388" y="123.68815592203899"/>
         </scene>
+        <!--Save Or Create View Controller-->
+        <scene sceneID="zsa-u5-Vn3">
+            <objects>
+                <viewController storyboardIdentifier="SaveOrCreateViewController" id="4LV-33-gE8" customClass="SaveOrCreateViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1VR-T2-7Ky"/>
+                        <viewControllerLayoutGuide type="bottom" id="Q5M-TD-IbJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6ig-5Z-nJf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cSa-am-Jpn">
+                                <rect key="frame" x="124" y="258" width="126" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <state key="normal" title="Create a Link">
+                                    <color key="titleColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="createNewLink:" destination="4LV-33-gE8" eventType="touchUpInside" id="PPC-bC-wDp"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aE1-cV-XEI">
+                                <rect key="frame" x="71" y="189" width="233" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <state key="normal" title="Save a Favorite Location">
+                                    <color key="titleColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveNewFavorite:" destination="4LV-33-gE8" eventType="touchUpInside" id="D02-zz-1VO"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <connections>
+                        <outlet property="createALink" destination="cSa-am-Jpn" id="8g2-O5-qiD"/>
+                        <outlet property="saveFavoriteButton" destination="aE1-cV-XEI" id="6mA-Yd-uxS"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="MapViewSegue" id="RlE-u8-DU1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JeO-C3-d6n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3055" y="124"/>
+        </scene>
         <!--Save Location Detail View Controller-->
         <scene sceneID="NYj-pq-Pap">
             <objects>
-                <viewController storyboardIdentifier="SaveLocationDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1fE-IW-njT" customClass="SaveLocationDetailViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="1fE-IW-njT" customClass="SaveLocationDetailViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tGL-wn-hl8"/>
                         <viewControllerLayoutGuide type="bottom" id="uxn-5g-1YL"/>
@@ -278,7 +326,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="iDO-IU-zsd" kind="relationship" relationship="viewControllers" id="sbh-tO-Thh"/>
+                        <segue destination="8vQ-W8-wwu" kind="relationship" relationship="viewControllers" id="sbh-tO-Thh"/>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="bjZ-Oe-McZ"/>
                     </connections>
                 </tabBarController>
@@ -286,29 +334,10 @@
             </objects>
             <point key="canvasLocation" x="2174" y="-609"/>
         </scene>
-        <!--Favorites-->
-        <scene sceneID="K81-UY-7Pf">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iDO-IU-zsd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Favorites" id="kMV-2w-hnO"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MiL-Ab-R48">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="8vQ-W8-wwu" kind="relationship" relationship="rootViewController" id="dNa-02-cVK"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GjE-6t-gwY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2173.5999999999999" y="123.68815592203899"/>
-        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="sbh-tO-Thh"/>
-        <segue reference="pU9-gV-YXU"/>
-        <segue reference="hrP-ps-zXI"/>
+        <segue reference="bjZ-Oe-McZ"/>
+        <segue reference="gmB-3w-n0p"/>
+        <segue reference="TnO-rV-ujT"/>
     </inferredMetricsTieBreakers>
 </document>

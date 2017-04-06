@@ -83,7 +83,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     @IBAction func saveFavorite(_ sender: Any) {
         addToFirebase()
         
-        //performSegue(withIdentifier: "NewFavLocationSegue", sender: sender)
+        performSegue(withIdentifier: "NewFavLocationSegue", sender: sender)
        
     }
     
