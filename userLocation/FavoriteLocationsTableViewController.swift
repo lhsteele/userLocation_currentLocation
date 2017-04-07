@@ -24,6 +24,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     var latCoordPassed = CLLocationDegrees()
     var longCoordPassed = CLLocationDegrees()
     var test = "segue working"
+    var passedFireUserID = String()
     
     override func viewDidLoad() {
         

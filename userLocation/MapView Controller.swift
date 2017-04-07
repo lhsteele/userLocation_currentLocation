@@ -88,7 +88,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITabBarDeleg
             
             pointer.latCoordPassed = self.latCoordPassed
             pointer.longCoordPassed = self.longCoordPassed
-            //pointer.passedFireUserID = self.passedFireUserID
+            pointer.passedFireUserID = self.passedFireUserID
         }
     }
     
@@ -97,7 +97,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITabBarDeleg
         }
         
         let passedUserID:FavoriteLocationsTableViewController = self.tabBarController?.viewControllers![0] as! FavoriteLocationsTableViewController
-        let passedFireUserID = passedUserID.fireUserID
+        passedFireUserID = passedUserID.fireUserID
         print ("UID passed")
         print (passedFireUserID)
     }
