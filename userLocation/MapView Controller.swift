@@ -13,7 +13,7 @@ import Firebase
 
 
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate, UITabBarDelegate {
     
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var createAFavoriteLocation: UIButton!
@@ -24,7 +24,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var longCoordPassed = CLLocationDegrees()
     var temporaryString = ""
     var handle: FIRAuthStateDidChangeListenerHandle?
-    var fireUserID = String()
+    //var fireUserID = String()
+    var test = String()
+    var passedFireUserID = String()
     
     
     
@@ -59,8 +61,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()        
         manager.startUpdatingLocation()
-        
-        print (fireUserID)
     }
     
     @IBAction func saveUserFavorite(_ sender: Any) {
@@ -78,7 +78,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
       
         performSegue(withIdentifier: "SaveLocationDetailSegue", sender: self)
-        print (fireUserID)
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -88,14 +88,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             
             pointer.latCoordPassed = self.latCoordPassed
             pointer.longCoordPassed = self.longCoordPassed
-            pointer.fireUserID = self.fireUserID
+            //pointer.passedFireUserID = self.passedFireUserID
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
-            
         }
+        
+        let passedUserID:FavoriteLocationsTableViewController = self.tabBarController?.viewControllers![0] as! FavoriteLocationsTableViewController
+        let passedFireUserID = passedUserID.fireUserID
+        print ("UID passed")
+        print (passedFireUserID)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

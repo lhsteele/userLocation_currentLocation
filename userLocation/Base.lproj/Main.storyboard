@@ -291,6 +291,7 @@
             <objects>
                 <tabBarController storyboardIdentifier="tabBarController" automaticallyAdjustsScrollViewInsets="NO" id="0QE-3y-ksz" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Wec-tR-PYm"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="vI8-kG-4jJ">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>

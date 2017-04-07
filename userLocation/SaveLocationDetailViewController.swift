@@ -26,7 +26,8 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     var username = ""
     var handle: FIRAuthStateDidChangeListenerHandle?
     var fireUserID = String()
-    
+    var passedFireUserID = String()
+    var finalFireID = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +36,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         
         self.locationNameField.delegate = self
         locationNameField.returnKeyType = UIReturnKeyType.done
-        
+        print ("Now on Detail")
     }
     
     
@@ -72,7 +73,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         databaseRef = FIRDatabase.database().reference()
         
         let key = databaseRef.child("Locations").childByAutoId().key
-        let location = ["Latitude": newLatCoord, "Longitude": newLongCoord, "LocationName": newFavLoc, "Users": [fireUserID]] as [String : Any]
+        let location = ["Latitude": newLatCoord, "Longitude": newLongCoord, "LocationName": newFavLoc, "Users": [passedFireUserID]] as [String : Any]
         let childUpdates = ["/Locations/\(key)" : location]
         databaseRef.updateChildValues(childUpdates)
         
@@ -83,10 +84,10 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     @IBAction func saveFavorite(_ sender: Any) {
         addToFirebase()
         
-        performSegue(withIdentifier: "NewFavLocationSegue", sender: self)
+        //performSegue(withIdentifier: "NewFavLocationSegue", sender: self)
        
     }
-    
+    /*
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "NewFavLocationSegue") {
             let pointer = segue.destination as! FavoriteLocationsTableViewController
@@ -96,6 +97,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
             pointer.fireUserID = self.fireUserID
         }
     }
+    */
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -103,8 +105,15 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
-            
         }
+        
+        let passedUserID2:ViewController = self.tabBarController?.viewControllers![0] as! ViewController
+        let finalFireID = passedUserID2.passedFireUserID
+        
+        print (passedFireUserID)
+        
+        print ("Final UID passed")
+        print (finalFireID)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

@@ -23,6 +23,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     var fireUserID = String()
     var latCoordPassed = CLLocationDegrees()
     var longCoordPassed = CLLocationDegrees()
+    var test = "segue working"
     
     override func viewDidLoad() {
         
@@ -30,12 +31,13 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         super.viewDidLoad()
         
         
+        /*
         let moveButton = UIBarButtonItem(title: "Re-order", style: .plain, target: self, action: #selector(FavoriteLocationsTableViewController.toggleEdit))
         navigationItem.leftBarButtonItem = moveButton
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(FavoriteLocationsTableViewController.addNewFavorite))
         navigationItem.rightBarButtonItem = addButton
-  
+        */
         
     }
     
@@ -114,14 +116,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     }
     
     
-    func tabBarController(_ tabBar: UITabBarController, didSelect item: UITabBarItem) {
-    
-        performSegue(withIdentifier: "MapViewSegue", sender: "Add Location" )
-        print (fireUserID)
-        
-    }
-    
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
@@ -142,29 +136,39 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         tableView.reloadData()
     }
     
-    
+    /*
     func addNewFavorite(_ sender: Any?) {
         performSegue(withIdentifier: "MapViewSegue", sender: sender)
     }
+    */
     
-    
-    
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "MapViewSegue") {
-        
-            let pointer = segue.destination as! ViewController
-            
-            pointer.fireUserID = self.fireUserID
+    /*
+    func tabBarController(_ tabBar: UITabBarController, didSelect item: UITabBarItem) {
+        if (item.tag == 2) {
+            performSegue(withIdentifier: "MapViewSegue", sender: tabBarItem )
+            print ("tab bar clicked")
         }
         
     }
-  
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "MapViewSegue") {
+        
+            let tabCtrl = segue.destination as! UITabBarController
+            let pointer = tabCtrl.viewControllers![0] as! ViewController
+        
+            pointer.fireUserID = self.fireUserID
+            
+        }
+        
+    }
+    */
     
     
     override func viewDidAppear(_ animated: Bool) {
         loadData()
         //createUsersArray()
+        
     }
     
   
@@ -173,7 +177,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         super.viewWillAppear(animated)
         handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
         }
-        
+    
     }
     
     override func viewWillDisappear(_ animated: Bool) {
