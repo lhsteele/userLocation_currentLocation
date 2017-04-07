@@ -60,7 +60,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         manager.requestWhenInUseAuthorization()        
         manager.startUpdatingLocation()
         
-        //print (fireUserID)
+        print (fireUserID)
     }
     
     @IBAction func saveUserFavorite(_ sender: Any) {
