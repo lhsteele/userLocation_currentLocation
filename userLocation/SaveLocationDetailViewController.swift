@@ -35,8 +35,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         
         self.locationNameField.delegate = self
         locationNameField.returnKeyType = UIReturnKeyType.done
-    
-                
+        
     }
     
     
@@ -84,7 +83,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     @IBAction func saveFavorite(_ sender: Any) {
         addToFirebase()
         
-        performSegue(withIdentifier: "NewFavLocationSegue", sender: sender)
+        //performSegue(withIdentifier: "NewFavLocationSegue", sender: self)
        
     }
     

@@ -37,7 +37,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Add Location" id="euR-bT-9vK"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="Add Location" id="euR-bT-9vK"/>
                     <navigationItem key="navigationItem" id="ykX-CS-U2g"/>
                     <connections>
                         <outlet property="createAFavoriteLocation" destination="5vh-wZ-Dsu" id="EPQ-DQ-Tcl"/>
@@ -81,7 +81,7 @@
                             <outlet property="delegate" destination="8vQ-W8-wwu" id="zva-sA-ioE"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" systemItem="favorites" id="kMV-2w-hnO"/>
+                    <tabBarItem key="tabBarItem" tag="1" systemItem="favorites" id="kMV-2w-hnO"/>
                     <navigationItem key="navigationItem" id="B61-2n-S1P"/>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="MapViewSegue" id="jPh-cy-NMZ"/>
@@ -298,7 +298,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="8vQ-W8-wwu" kind="relationship" relationship="viewControllers" id="sbh-tO-Thh"/>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="msF-tl-xen"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="yDk-ar-VUp"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NSK-Zp-goP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -326,7 +326,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="msF-tl-xen"/>
-        <segue reference="Dyh-Zb-tAV"/>
+        <segue reference="yDk-ar-VUp"/>
+        <segue reference="sbh-tO-Thh"/>
     </inferredMetricsTieBreakers>
 </document>

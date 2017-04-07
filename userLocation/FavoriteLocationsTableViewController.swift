@@ -13,7 +13,7 @@ import Firebase
 
 let favoriteLocationKey = "NewFavoriteLocation"
 
-class FavoriteLocationsTableViewController: UITableViewController, CLLocationManagerDelegate {
+class FavoriteLocationsTableViewController: UITableViewController, CLLocationManagerDelegate, UITabBarDelegate {
     
     var listOfFavorites: [SavedFavorites] = []
     var username = ""
@@ -29,11 +29,13 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         
         super.viewDidLoad()
         
+        /*
         let moveButton = UIBarButtonItem(title: "Re-order", style: .plain, target: self, action: #selector(FavoriteLocationsTableViewController.toggleEdit))
         navigationItem.leftBarButtonItem = moveButton
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(FavoriteLocationsTableViewController.addNewFavorite))
         navigationItem.rightBarButtonItem = addButton
+        */
         
     }
     
@@ -78,7 +80,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                         }
                     }
                 }
-                let newFavorite = SavedFavorites(latCoord: updatedLat, longCoord: updatedLong, location: updatedLocation)
+                let newFavorite = SavedFavorites(latCoord: updatedLat, longCoord: updatedLong, location: updatedLocation, userID: self.fireUserID)
                 self.listOfFavorites.append(newFavorite)
             }
             self.tableView.reloadData()
@@ -112,6 +114,14 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     }
     
     
+    func tabBarController(_ tabBar: UITabBarController, didSelect item: UITabBarItem) {
+    
+        performSegue(withIdentifier: "MapViewSegue", sender: "Add Location" )
+        print (fireUserID)
+        
+    }
+    
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
@@ -132,12 +142,13 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         tableView.reloadData()
     }
     
-    
-
-    
+    /*
     func addNewFavorite(_ sender: Any?) {
         performSegue(withIdentifier: "MapViewSegue", sender: sender)
     }
+    */
+    
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "MapViewSegue") {
@@ -146,7 +157,9 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             
             pointer.fireUserID = self.fireUserID
         }
+        
     }
+  
     
     
     override func viewDidAppear(_ animated: Bool) {

@@ -60,8 +60,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         manager.requestWhenInUseAuthorization()        
         manager.startUpdatingLocation()
         
-        print (fireUserID)
-        
+        //print (fireUserID)
     }
     
     @IBAction func saveUserFavorite(_ sender: Any) {
@@ -78,9 +77,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             
         }
       
-        performSegue(withIdentifier: "SaveLocationDetailSegue", sender: sender)
-        
-
+        performSegue(withIdentifier: "SaveLocationDetailSegue", sender: self)
+        print (fireUserID)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -91,8 +89,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             pointer.latCoordPassed = self.latCoordPassed
             pointer.longCoordPassed = self.longCoordPassed
             pointer.fireUserID = self.fireUserID
-           
-            
         }
     }
     

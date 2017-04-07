@@ -8,17 +8,20 @@
 
 import UIKit
 import MapKit
+import Firebase
 
 
 class SavedFavorites: NSObject {
     var latCoord: Double
     var longCoord: Double
     var location: String
+    var userID: String
     
-    init(latCoord: Double, longCoord: Double, location: String) {
+    init(latCoord: Double, longCoord: Double, location: String, userID: String) {
         self.latCoord = latCoord
         self.longCoord = longCoord
         self.location = location
+        self.userID = userID
     
         super.init()
     }
