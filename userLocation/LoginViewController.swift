@@ -24,7 +24,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
    
     @IBOutlet var signInLabel: UILabel!
     
-    var userID = String()
+    var fireUserID = String()
     var userEmail = String()
     var username = String()
     var handle: FIRAuthStateDidChangeListenerHandle?
@@ -90,6 +90,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         appDelegate.window?.rootViewController = tabBarController
         
+        
+        performSegue(withIdentifier: "FavoriteLocationsTableSegue", sender: submitButton)
+        
     }
     
     func createAccount() {
@@ -98,9 +101,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         
         if validEmail {
-            print ("Email address is valid")
+            //print ("Email address is valid")
         } else {
-            print ("Please enter a valid email address")
+            //print ("Please enter a valid email address")
             displayAlertMessage(messageToDisplay: "Please enter a valid email address")
         }
         
@@ -119,16 +122,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 ref.child("Users").child(userID).updateChildValues(values) { (err, ref) in
                 
                     if err != nil {
-                        print ("Error saving user")
+                        //print ("Error saving user")
                         return
                     }
-                    print ("Saved user successfully")
+                    //print ("Saved user successfully")
                 }
             }
             
         })
         
-        performSegue(withIdentifier: "FavoriteLocationsTableSegue", sender: self)
     }
     
     func userLogin() {
@@ -158,7 +160,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }
             
         } catch let error as NSError {
-            print("invalid regex: \(error.localizedDescription)")
+            //print("invalid regex: \(error.localizedDescription)")
             returnValue = false
         }
         
@@ -171,7 +173,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
             
             // Code in this block will trigger when OK button tapped.
-            print("Ok button tapped");
+            //print("Ok button tapped");
             
         }
         
@@ -185,12 +187,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if (segue.identifier == "FavoriteLocationsTableSegue") {
             
             let tabCtrl = segue.destination as! UITabBarController
-            
             let pointer = tabCtrl.viewControllers![0] as! FavoriteLocationsTableViewController
             
-            pointer.userID = self.userID
-            
-            
+            //let pointer = segue.destination as! FavoriteLocationsTableViewController
+           
+            pointer.fireUserID = self.fireUserID
         }
     }
     
@@ -239,7 +240,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if let user = user {
             let uid =  user.uid
             let email = user.email!
-            userID = uid
+            fireUserID = uid
             userEmail = email
             
             if let displayName = user.displayName {

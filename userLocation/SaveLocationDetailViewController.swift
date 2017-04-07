@@ -25,7 +25,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     var newLongCoord = CLLocationDegrees()
     var username = ""
     var handle: FIRAuthStateDidChangeListenerHandle?
-    var userID = String()
+    var fireUserID = String()
     
     
     override func viewDidLoad() {
@@ -73,7 +73,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         databaseRef = FIRDatabase.database().reference()
         
         let key = databaseRef.child("Locations").childByAutoId().key
-        let location = ["Latitude": newLatCoord, "Longitude": newLongCoord, "LocationName": newFavLoc, "Users": [userID]] as [String : Any]
+        let location = ["Latitude": newLatCoord, "Longitude": newLongCoord, "LocationName": newFavLoc, "Users": [fireUserID]] as [String : Any]
         let childUpdates = ["/Locations/\(key)" : location]
         databaseRef.updateChildValues(childUpdates)
         
@@ -90,9 +90,11 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "NewFavLocationSegue") {
-            let tabCtrl = segue.destination as! UITabBarController
-            _ = tabCtrl.viewControllers![0] as! FavoriteLocationsTableViewController
+            let pointer = segue.destination as! FavoriteLocationsTableViewController
             
+            pointer.latCoordPassed = self.latCoordPassed
+            pointer.longCoordPassed = self.longCoordPassed
+            pointer.fireUserID = self.fireUserID
         }
     }
     

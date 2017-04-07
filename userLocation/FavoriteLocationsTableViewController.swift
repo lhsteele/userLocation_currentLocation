@@ -7,19 +7,22 @@
 //
 
 import UIKit
+import MapKit
 import FirebaseDatabase
 import Firebase
 
 let favoriteLocationKey = "NewFavoriteLocation"
 
-class FavoriteLocationsTableViewController: UITableViewController {
+class FavoriteLocationsTableViewController: UITableViewController, CLLocationManagerDelegate {
     
     var listOfFavorites: [SavedFavorites] = []
     var username = ""
     //var databaseHandle: FIRDatabaseHandle?
     var ref: FIRDatabaseReference?
     var handle: FIRAuthStateDidChangeListenerHandle?
-    var userID = String()
+    var fireUserID = String()
+    var latCoordPassed = CLLocationDegrees()
+    var longCoordPassed = CLLocationDegrees()
     
     override func viewDidLoad() {
         
@@ -31,6 +34,7 @@ class FavoriteLocationsTableViewController: UITableViewController {
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(FavoriteLocationsTableViewController.addNewFavorite))
         navigationItem.rightBarButtonItem = addButton
+        
     }
     
     
@@ -136,8 +140,11 @@ class FavoriteLocationsTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "SaveOrCreateSegue") {
-            _ = segue.destination as! ViewController
+        if (segue.identifier == "MapViewSegue") {
+        
+            let pointer = segue.destination as! ViewController
+            
+            pointer.fireUserID = self.fireUserID
         }
     }
     

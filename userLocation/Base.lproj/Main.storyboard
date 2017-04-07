@@ -62,11 +62,11 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dji-Rc-pjm" id="q8g-mx-hro">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Home" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vIo-T0-sed">
-                                            <rect key="frame" x="15" y="0.0" width="345" height="43"/>
+                                            <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -225,7 +225,6 @@
                         <outlet property="submitButton" destination="ySi-4J-tfe" id="IbU-4W-txw"/>
                         <outlet property="usernameTextField" destination="2ai-0L-4ef" id="m2F-Bg-pbJ"/>
                         <segue destination="0QE-3y-ksz" kind="show" identifier="FavoriteLocationsTableSegue" id="gmB-3w-n0p"/>
-                        <segue destination="8vQ-W8-wwu" kind="show" identifier="FavoriteLocationsTableSegue" id="TnO-rV-ujT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UBC-N5-MS1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -280,7 +279,7 @@
                         <outlet property="locationCoordinates" destination="FEf-9O-2Ju" id="kAY-Bl-KCK"/>
                         <outlet property="locationNameField" destination="QU3-IV-h1n" id="YWu-6z-2Qw"/>
                         <outlet property="saveFavorite" destination="tG5-RV-zxw" id="JCr-Ev-yxV"/>
-                        <segue destination="0QE-3y-ksz" kind="show" identifier="NewFavLocationSegue" id="pU9-gV-YXU"/>
+                        <segue destination="8vQ-W8-wwu" kind="show" identifier="NewFavLocationSegue" id="Dyh-Zb-tAV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nwq-Iv-jDY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -328,7 +327,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="msF-tl-xen"/>
-        <segue reference="pU9-gV-YXU"/>
-        <segue reference="sbh-tO-Thh"/>
+        <segue reference="Dyh-Zb-tAV"/>
     </inferredMetricsTieBreakers>
 </document>

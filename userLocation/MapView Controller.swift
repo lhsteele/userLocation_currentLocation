@@ -24,7 +24,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var longCoordPassed = CLLocationDegrees()
     var temporaryString = ""
     var handle: FIRAuthStateDidChangeListenerHandle?
-    var userID = String()
+    var fireUserID = String()
     
     
     
@@ -60,6 +60,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         manager.requestWhenInUseAuthorization()        
         manager.startUpdatingLocation()
         
+        print (fireUserID)
+        
     }
     
     @IBAction func saveUserFavorite(_ sender: Any) {
@@ -88,7 +90,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             
             pointer.latCoordPassed = self.latCoordPassed
             pointer.longCoordPassed = self.longCoordPassed
-            pointer.userID = self.userID
+            pointer.fireUserID = self.fireUserID
            
             
         }
