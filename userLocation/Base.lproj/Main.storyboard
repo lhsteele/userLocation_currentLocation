@@ -52,7 +52,7 @@
         <!--Favorite Locations Table View Controller-->
         <scene sceneID="Bf6-in-On2">
             <objects>
-                <tableViewController id="8vQ-W8-wwu" customClass="FavoriteLocationsTableViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FavoritesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8vQ-W8-wwu" customClass="FavoriteLocationsTableViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="EBi-Zd-QvF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -309,10 +309,10 @@
         <!--Navigation Controller-->
         <scene sceneID="Ili-tb-Gqa">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="hXe-zm-VK7" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Navigation Controller" automaticallyAdjustsScrollViewInsets="NO" id="hXe-zm-VK7" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="Qng-lg-hXO"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="C0w-05-4Ot">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="C0w-05-4Ot">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -324,7 +324,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="jPh-cy-NMZ"/>
         <segue reference="sbh-tO-Thh"/>
+        <segue reference="jPh-cy-NMZ"/>
     </inferredMetricsTieBreakers>
 </document>

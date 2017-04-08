@@ -93,6 +93,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         performSegue(withIdentifier: "FavoriteLocationsTableSegue", sender: submitButton)
         
+        let vc = storyboard?.instantiateViewController(withIdentifier: "FavoritesViewController") as! FavoriteLocationsTableViewController
+        let navigationController = UINavigationController(rootViewController: vc)
+        self.present(navigationController, animated: true, completion: nil)
+        
     }
     
     func createAccount() {
@@ -192,6 +196,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             //let pointer = segue.destination as! FavoriteLocationsTableViewController
            
             pointer.fireUserID = self.fireUserID
+            
         }
 
     }
