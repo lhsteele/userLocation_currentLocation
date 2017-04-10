@@ -34,19 +34,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         
         super.viewDidLoad()
         
-        /*
-        let logoutButton = UIBarButtonItem(barButtonSystemItem: .logout, target: self, action:
-            #selector(FavoriteLocationsTableViewController.logout))
-        navigationItem.rightBarButtonItem = logoutButton
-  
-        let moveButton = UIBarButtonItem(title: "Re-order", style: .plain, target: self, action: #selector(FavoriteLocationsTableViewController.toggleEdit))
-        navigationItem.leftBarButtonItem = moveButton
-        
-        
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(FavoriteLocationsTableViewController.addNewFavorite))
-        navigationItem.rightBarButtonItem = addButton
-        */
-        
     }
     
     

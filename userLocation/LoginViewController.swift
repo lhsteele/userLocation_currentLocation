@@ -35,6 +35,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         super.viewDidLoad()
         
+        self.tabBarController?.tabBar.isHidden = true
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
         emailTextField.delegate = self
         emailTextField.tag = 0
         emailTextField.returnKeyType = UIReturnKeyType.done
@@ -89,9 +92,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         appDelegate.window?.rootViewController = tabBarController
-        
-        
+    
         performSegue(withIdentifier: "FavoriteLocationsTableSegue", sender: submitButton)
+        
         
         let vc = storyboard?.instantiateViewController(withIdentifier: "FavoritesViewController") as! FavoriteLocationsTableViewController
         let navigationController = UINavigationController(rootViewController: vc)
@@ -190,17 +193,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "FavoriteLocationsTableSegue") {
             
-            let tabCtrl = segue.destination as! UITabBarController
-            let pointer = tabCtrl.viewControllers![0] as! FavoriteLocationsTableViewController
+            //let tabCtrl = segue.destination as! UITabBarController
+            //let pointer = tabCtrl.viewControllers![0] as! FavoriteLocationsTableViewController
             
-            //let pointer = segue.destination as! FavoriteLocationsTableViewController
+            let pointer = segue.destination as! FavoriteLocationsTableViewController
            
             pointer.fireUserID = self.fireUserID
             
         }
 
     }
-    
     
     /*
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

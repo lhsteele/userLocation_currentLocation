@@ -32,6 +32,8 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
         locationCoordinates.text = "\(latCoordPassed);\(longCoordPassed)"
         
         self.locationNameField.delegate = self
