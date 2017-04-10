@@ -49,7 +49,7 @@
             </objects>
             <point key="canvasLocation" x="850" y="170"/>
         </scene>
-        <!--Favorite Locations Table View Controller-->
+        <!--Favorite Locations-->
         <scene sceneID="Bf6-in-On2">
             <objects>
                 <tableViewController storyboardIdentifier="FavoritesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8vQ-W8-wwu" customClass="FavoriteLocationsTableViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
@@ -62,11 +62,11 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dji-Rc-pjm" id="q8g-mx-hro">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Home" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vIo-T0-sed">
-                                            <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                            <rect key="frame" x="15" y="0.0" width="345" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -82,9 +82,21 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" tag="1" systemItem="favorites" id="kMV-2w-hnO"/>
-                    <navigationItem key="navigationItem" id="B61-2n-S1P"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Favorite Locations" id="S6j-az-jdU">
+                        <barButtonItem key="rightBarButtonItem" title="Logout" style="plain" id="c2a-Vm-coc">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="logoutUser:" destination="8vQ-W8-wwu" id="5fU-ZB-oFu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="logoutButton" destination="c2a-Vm-coc" id="YoL-yA-BIa"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="MapViewSegue" id="jPh-cy-NMZ"/>
+                        <segue destination="4fS-mw-GIs" kind="show" identifier="LogoutSegue" id="Uoh-cI-OeZ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pX4-EA-J4z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -312,7 +324,7 @@
                 <navigationController storyboardIdentifier="Navigation Controller" automaticallyAdjustsScrollViewInsets="NO" id="hXe-zm-VK7" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="Qng-lg-hXO"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="C0w-05-4Ot">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="C0w-05-4Ot">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -325,6 +337,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="sbh-tO-Thh"/>
-        <segue reference="jPh-cy-NMZ"/>
+        <segue reference="Uoh-cI-OeZ"/>
+        <segue reference="yDk-ar-VUp"/>
     </inferredMetricsTieBreakers>
 </document>

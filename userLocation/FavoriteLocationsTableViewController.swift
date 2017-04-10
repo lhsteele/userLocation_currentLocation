@@ -26,6 +26,9 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     var test = "segue working"
     var passedFireUserID = String()
     
+    @IBOutlet var logoutButton: UIBarButtonItem!
+    
+    
     override func viewDidLoad() {
         
         
@@ -169,14 +172,25 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     }
     */
     
+    @IBAction func logoutUser(_ sender: Any) {
+        let firebaseAuth = FIRAuth.auth()
+        
+        do {
+            try firebaseAuth?.signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+        
+        performSegue(withIdentifier: "LogoutSegue", sender: logoutButton)
+    }
+    
+    
     
     override func viewDidAppear(_ animated: Bool) {
         loadData()
         //createUsersArray()
         
     }
-    
-  
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
