@@ -140,8 +140,8 @@
 				EF3821581E2415DF00032F42 /* Main.storyboard */,
 				EFF6AB101E8F5F4F00366DB2 /* GoogleService-Info.plist */,
 				EF38215B1E2415DF00032F42 /* Assets.xcassets */,
-				EF38215D1E2415DF00032F42 /* LaunchScreen.storyboard */,
 				EF3821601E2415DF00032F42 /* Info.plist */,
+				EF38215D1E2415DF00032F42 /* LaunchScreen.storyboard */,
 			);
 			path = userLocation;
 			sourceTree = "<group>";

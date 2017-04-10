@@ -15,7 +15,7 @@ class WelcomeViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tabBarController?.tabBar.isHidden = true
+        //self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         
 //        let gestureRec = UITapGestureRecognizer(target: self, action: #selector (self.tapAction (_:)))

@@ -35,7 +35,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         super.viewDidLoad()
         
-        self.tabBarController?.tabBar.isHidden = true
+        //self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         
         emailTextField.delegate = self
@@ -204,6 +204,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     }
     
+    func getUserInfo() {
+        let user = FIRAuth.auth()?.currentUser
+        if let user = user {
+            let uid =  user.uid
+            let email = user.email!
+            fireUserID = uid
+            userEmail = email
+            
+            if let displayName = user.displayName {
+                username = displayName
+            }
+            
+        }
+    }
+
+    
     /*
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         //dismiss the keyboard when the view is tapped on.
@@ -243,18 +259,4 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         FIRAuth.auth()?.removeStateDidChangeListener(handle!)
     }
     
-    func getUserInfo() {
-        let user = FIRAuth.auth()?.currentUser
-        if let user = user {
-            let uid =  user.uid
-            let email = user.email!
-            fireUserID = uid
-            userEmail = email
-            
-            if let displayName = user.displayName {
-                username = displayName
-            }
-            
-        }
-    }
 }
