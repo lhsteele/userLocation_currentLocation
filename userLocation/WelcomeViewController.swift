@@ -39,6 +39,8 @@ class WelcomeViewController: UIViewController, UIGestureRecognizerDelegate {
 //    }
 
     @IBAction func goToLogin(_ sender: Any) {
+        
+        
         performSegue(withIdentifier: "LoginSegue", sender: self)
     }
 

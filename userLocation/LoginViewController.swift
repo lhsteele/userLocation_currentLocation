@@ -86,20 +86,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         
         getUserInfo()
-        
-        let tabBarController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
+        /*
+        lines 91 - 95 will segue to the Favorites view, but without the navbar. line 97 will make the view load twice. Don't need this extra call for segue.
+        let favoritesView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FavoritesViewController") as UIViewController
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
-        appDelegate.window?.rootViewController = tabBarController
-    
+        appDelegate.window?.rootViewController = favoritesView
+ 
         performSegue(withIdentifier: "FavoriteLocationsTableSegue", sender: submitButton)
-        
+        */
         
         let vc = storyboard?.instantiateViewController(withIdentifier: "FavoritesViewController") as! FavoriteLocationsTableViewController
         let navigationController = UINavigationController(rootViewController: vc)
         self.present(navigationController, animated: true, completion: nil)
-        
     }
     
     func createAccount() {

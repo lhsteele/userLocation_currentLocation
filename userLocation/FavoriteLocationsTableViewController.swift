@@ -30,9 +30,11 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
     
     override func viewDidLoad() {
-        
-        
+    
         super.viewDidLoad()
+        
+        self.tabBarController?.tabBar.isHidden = false
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         
     }
     
