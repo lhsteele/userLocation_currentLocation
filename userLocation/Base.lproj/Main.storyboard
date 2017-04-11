@@ -42,7 +42,7 @@
                     <connections>
                         <outlet property="createAFavoriteLocation" destination="5vh-wZ-Dsu" id="EPQ-DQ-Tcl"/>
                         <outlet property="map" destination="dg0-d2-acE" id="Ssm-V4-yEi"/>
-                        <segue destination="1fE-IW-njT" kind="show" identifier="SaveLocationDetailSegue" id="Nxp-0U-HqP"/>
+                        <segue destination="1fE-IW-njT" kind="show" identifier="SaveLocationDetailSegue" id="gc5-UK-cdB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -101,8 +101,8 @@
                     <connections>
                         <outlet property="addButton" destination="Ygt-rs-TzW" id="MBE-dE-aoA"/>
                         <outlet property="logoutButton" destination="c2a-Vm-coc" id="YoL-yA-BIa"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="MapViewSegue" id="jPh-cy-NMZ"/>
-                        <segue destination="4fS-mw-GIs" kind="show" identifier="LogoutSegue" id="JYo-n5-cHB"/>
+                        <segue destination="4fS-mw-GIs" kind="show" identifier="LogoutSegue" id="hUz-we-aed"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="MapViewSegue" id="p8w-qr-Hm1"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pX4-EA-J4z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -133,8 +133,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="WQP-Ie-HSp"/>
                     <connections>
-                        <segue destination="4fS-mw-GIs" kind="show" identifier="LoginSegue" id="XgK-3L-LN7"/>
-                        <segue destination="8vQ-W8-wwu" kind="show" identifier="UserLoggedInSegue" id="xCY-jK-ars"/>
+                        <segue destination="4fS-mw-GIs" kind="show" identifier="LoginSegue" id="FbZ-EK-1jY"/>
+                        <segue destination="8vQ-W8-wwu" kind="show" identifier="UserLoggedInSegue" id="IU2-DW-LoN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ElV-Pt-qIR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -232,7 +232,7 @@
                         <outlet property="signInToggle" destination="25p-nT-Bhd" id="OPZ-GB-RF6"/>
                         <outlet property="submitButton" destination="ySi-4J-tfe" id="IbU-4W-txw"/>
                         <outlet property="usernameTextField" destination="2ai-0L-4ef" id="m2F-Bg-pbJ"/>
-                        <segue destination="8vQ-W8-wwu" kind="show" identifier="FavoriteLocationsTableSegue" id="vuz-rM-1sl"/>
+                        <segue destination="8vQ-W8-wwu" kind="show" identifier="FavoriteLocationsTableSegue" id="GUW-PM-UeP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UBC-N5-MS1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -287,7 +287,7 @@
                         <outlet property="locationCoordinates" destination="FEf-9O-2Ju" id="kAY-Bl-KCK"/>
                         <outlet property="locationNameField" destination="QU3-IV-h1n" id="YWu-6z-2Qw"/>
                         <outlet property="saveFavorite" destination="tG5-RV-zxw" id="JCr-Ev-yxV"/>
-                        <segue destination="8vQ-W8-wwu" kind="show" identifier="NewFavLocationSegue" id="Dyh-Zb-tAV"/>
+                        <segue destination="8vQ-W8-wwu" kind="show" identifier="NewFavLocationSegue" id="zct-xe-Nlu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nwq-Iv-jDY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -315,7 +315,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="xCY-jK-ars"/>
-        <segue reference="XgK-3L-LN7"/>
+        <segue reference="zct-xe-Nlu"/>
+        <segue reference="hUz-we-aed"/>
     </inferredMetricsTieBreakers>
 </document>

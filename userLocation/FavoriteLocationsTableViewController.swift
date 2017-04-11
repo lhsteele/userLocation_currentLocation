@@ -34,8 +34,9 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         super.viewDidLoad()
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        
-        print (fireUserID)
+        print ("view did load")
+        loadData()
+        //print (fireUserID)
     }
     
     
@@ -160,17 +161,17 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
     
     override func viewDidAppear(_ animated: Bool) {
-        
+        print ("view did appear")
         //createUsersArray()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadData()
         handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
         }
-    
+        print("view will appear")
+        //loadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
