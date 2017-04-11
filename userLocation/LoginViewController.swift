@@ -35,7 +35,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         super.viewDidLoad()
         
-        //self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         
         emailTextField.delegate = self
@@ -86,20 +85,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         
         getUserInfo()
-        /*
-        lines 91 - 95 will segue to the Favorites view, but without the navbar. line 97 will make the view load twice. Don't need this extra call for segue.
-        let favoritesView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FavoritesViewController") as UIViewController
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        appDelegate.window?.rootViewController = favoritesView
- 
         performSegue(withIdentifier: "FavoriteLocationsTableSegue", sender: submitButton)
-        */
         
-        let vc = storyboard?.instantiateViewController(withIdentifier: "FavoritesViewController") as! FavoriteLocationsTableViewController
-        let navigationController = UINavigationController(rootViewController: vc)
-        self.present(navigationController, animated: true, completion: nil)
     }
     
     func createAccount() {
@@ -193,15 +181,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "FavoriteLocationsTableSegue") {
             
-            //let tabCtrl = segue.destination as! UITabBarController
-            //let pointer = tabCtrl.viewControllers![0] as! FavoriteLocationsTableViewController
-            
             let pointer = segue.destination as! FavoriteLocationsTableViewController
            
             pointer.fireUserID = self.fireUserID
             
         }
-
     }
     
     func getUserInfo() {

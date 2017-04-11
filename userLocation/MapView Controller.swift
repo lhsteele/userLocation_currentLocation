@@ -24,7 +24,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITabBarDeleg
     var longCoordPassed = CLLocationDegrees()
     var temporaryString = ""
     var handle: FIRAuthStateDidChangeListenerHandle?
-    //var fireUserID = String()
+    var fireUserID = String()
     var test = String()
     var passedFireUserID = String()
     
@@ -89,18 +89,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITabBarDeleg
             
             pointer.latCoordPassed = self.latCoordPassed
             pointer.longCoordPassed = self.longCoordPassed
-            pointer.passedFireUserID = self.passedFireUserID
+            pointer.fireUserID = self.fireUserID
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
         }
-        
+        /*
         let passedUserID:FavoriteLocationsTableViewController = self.tabBarController?.viewControllers![0] as! FavoriteLocationsTableViewController
         passedFireUserID = passedUserID.fireUserID
         print ("UID passed")
         print (passedFireUserID)
+        */
     }
     
     override func viewWillDisappear(_ animated: Bool) {

@@ -25,7 +25,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     var newLongCoord = CLLocationDegrees()
     var username = ""
     var handle: FIRAuthStateDidChangeListenerHandle?
-    var passedFireUserID = String()
+    var fireUserID = String()
     
     
     
@@ -38,9 +38,6 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         
         self.locationNameField.delegate = self
         locationNameField.returnKeyType = UIReturnKeyType.done
-        print ("Now on Detail")
-        print (longCoordPassed)
-        print (passedFireUserID)
     }
     
     
@@ -77,7 +74,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         databaseRef = FIRDatabase.database().reference()
         
         let key = databaseRef.child("Locations").childByAutoId().key
-        let location = ["Latitude": newLatCoord, "Longitude": newLongCoord, "LocationName": newFavLoc, "Users": [passedFireUserID]] as [String : Any]
+        let location = ["Latitude": newLatCoord, "Longitude": newLongCoord, "LocationName": newFavLoc, "Users": [fireUserID]] as [String : Any]
         let childUpdates = ["/Locations/\(key)" : location]
         databaseRef.updateChildValues(childUpdates)
         
@@ -98,7 +95,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
             
             pointer.latCoordPassed = self.latCoordPassed
             pointer.longCoordPassed = self.longCoordPassed
-            pointer.passedFireUserID = self.passedFireUserID
+            pointer.fireUserID = self.fireUserID
         }
     }
     

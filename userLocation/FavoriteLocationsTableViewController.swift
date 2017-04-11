@@ -23,19 +23,17 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     var fireUserID = String()
     var latCoordPassed = CLLocationDegrees()
     var longCoordPassed = CLLocationDegrees()
-    var test = "segue working"
-    var passedFireUserID = String()
+    
     
     @IBOutlet var logoutButton: UIBarButtonItem!
+    @IBOutlet var addButton: UIBarButtonItem!
     
     
     override func viewDidLoad() {
     
         super.viewDidLoad()
         
-        self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        
     }
     
     
@@ -133,33 +131,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         tableView.reloadData()
     }
     
-    /*
-    func addNewFavorite(_ sender: Any?) {
-        performSegue(withIdentifier: "MapViewSegue", sender: sender)
-    }
-    */
-    
-    /*
-    func tabBarController(_ tabBar: UITabBarController, didSelect item: UITabBarItem) {
-        if (item.tag == 2) {
-            performSegue(withIdentifier: "MapViewSegue", sender: tabBarItem )
-            print ("tab bar clicked")
-        }
-        
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "MapViewSegue") {
-        
-            let tabCtrl = segue.destination as! UITabBarController
-            let pointer = tabCtrl.viewControllers![0] as! ViewController
-        
-            pointer.fireUserID = self.fireUserID
-            
-        }
-        
-    }
-    */
     
     @IBAction func logoutUser(_ sender: Any) {
         let firebaseAuth = FIRAuth.auth()
@@ -173,6 +144,17 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         performSegue(withIdentifier: "LogoutSegue", sender: logoutButton)
     }
     
+    @IBAction func addNewLocation(_ sender: Any) {
+        performSegue(withIdentifier: "MapViewSegue", sender: addButton)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "MapViewSegue") {
+            let pointer = segue.destination as! ViewController
+            pointer.fireUserID = self.fireUserID
+        }
+    }
     
     
     override func viewDidAppear(_ animated: Bool) {
