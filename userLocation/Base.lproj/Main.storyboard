@@ -102,7 +102,7 @@
                         <outlet property="addButton" destination="Ygt-rs-TzW" id="MBE-dE-aoA"/>
                         <outlet property="logoutButton" destination="c2a-Vm-coc" id="YoL-yA-BIa"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="MapViewSegue" id="jPh-cy-NMZ"/>
-                        <segue destination="4fS-mw-GIs" kind="show" identifier="LogoutSegue" id="Uoh-cI-OeZ"/>
+                        <segue destination="4fS-mw-GIs" kind="show" identifier="LogoutSegue" id="JYo-n5-cHB"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pX4-EA-J4z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -128,24 +128,13 @@
                                 <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YuS-ck-nOt">
-                                <rect key="frame" x="164" y="384" width="46" height="39"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Go">
-                                    <color key="titleColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="goToLogin:" destination="gtg-Z4-3m4" eventType="touchUpInside" id="WhY-7s-BBC"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="WQP-Ie-HSp"/>
                     <connections>
-                        <outlet property="goButton" destination="YuS-ck-nOt" id="8Gx-Yn-itV"/>
                         <segue destination="4fS-mw-GIs" kind="show" identifier="LoginSegue" id="XgK-3L-LN7"/>
-                        <segue destination="8vQ-W8-wwu" kind="show" identifier="UserSignedInSegue" id="CMx-z1-3kW"/>
+                        <segue destination="8vQ-W8-wwu" kind="show" identifier="UserLoggedInSegue" id="xCY-jK-ars"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ElV-Pt-qIR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -243,7 +232,7 @@
                         <outlet property="signInToggle" destination="25p-nT-Bhd" id="OPZ-GB-RF6"/>
                         <outlet property="submitButton" destination="ySi-4J-tfe" id="IbU-4W-txw"/>
                         <outlet property="usernameTextField" destination="2ai-0L-4ef" id="m2F-Bg-pbJ"/>
-                        <segue destination="8vQ-W8-wwu" kind="show" identifier="FavoriteLocationsTableSegue" id="cFa-vX-v96"/>
+                        <segue destination="8vQ-W8-wwu" kind="show" identifier="FavoriteLocationsTableSegue" id="vuz-rM-1sl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UBC-N5-MS1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -326,7 +315,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="CMx-z1-3kW"/>
+        <segue reference="xCY-jK-ars"/>
         <segue reference="XgK-3L-LN7"/>
     </inferredMetricsTieBreakers>
 </document>

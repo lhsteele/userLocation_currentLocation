@@ -11,7 +11,6 @@ import FirebaseAuth
 
 class WelcomeViewController: UIViewController, UIGestureRecognizerDelegate {
 
-    @IBOutlet var goButton: UIButton!
     var fireUserID = String()
     var userEmail = String()
     var username = String()
@@ -21,23 +20,12 @@ class WelcomeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         
-//        let gestureRec = UITapGestureRecognizer(target: self, action: #selector (self.tapAction (_:)))
-        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-/*
-    @IBAction func goToLogin(_ sender: Any) {
         
-        
-        performSegue(withIdentifier: "LoginSegue", sender: self)
     }
- */
     
     func getUserInfo() {
         let user = FIRAuth.auth()?.currentUser
@@ -55,7 +43,7 @@ class WelcomeViewController: UIViewController, UIGestureRecognizerDelegate {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "UserSignedInSegue") {
+        if (segue.identifier == "UserLoggedInSegue") {
             
             let pointer = segue.destination as! FavoriteLocationsTableViewController
             
@@ -68,12 +56,12 @@ class WelcomeViewController: UIViewController, UIGestureRecognizerDelegate {
         FIRAuth.auth()?.addStateDidChangeListener({ (auth, user) in
             if let user = user {
                 self.getUserInfo()
-                print (self.fireUserID)
-                self.performSegue(withIdentifier: "UserSignedInSegue", sender: self)
+                self.performSegue(withIdentifier: "UserLoggedInSegue", sender: self)
             } else {
                 self.performSegue(withIdentifier: "LoginSegue", sender: self)
             }
         })
+        
     }
 
 }
