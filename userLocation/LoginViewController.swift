@@ -86,8 +86,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         getUserInfo()
         
-        performSegue(withIdentifier: "FavoriteLocationsTableSegue", sender: submitButton)
         
+
     }
     
     func createAccount() {
@@ -99,15 +99,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             //print ("Email address is valid")
         } else {
             //print ("Please enter a valid email address")
-            displayAlertMessage(messageToDisplay: "Please enter a valid email address")
+            displayAlertMessage(messageToDisplay: "This email address is invalid or already in use.")
         }
         
         
         FIRAuth.auth()?.createUser(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
             if error != nil {
-                self.displayAlertMessage(messageToDisplay: "Please enter a valid email address.")
+                self.displayAlertMessage(messageToDisplay: "This email address is invalid or already in use.")
             } else {
                 self.userLogin()
+                self.performSegue(withIdentifier: "FavoriteLocationsTableSegue", sender: self.submitButton)
             }
             
             let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
@@ -133,7 +134,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             if error != nil {
                 self.signInLabel.text = "There has been an error. Please try again."
             } else {
-                //self.performSegue(withIdentifier: "FavoriteLocationsTableSegue", sender: self)
+                self.performSegue(withIdentifier: "FavoriteLocationsTableSegue", sender: self.submitButton)
             }
         })
         
