@@ -113,6 +113,7 @@
                         <outlet property="logoutButton" destination="c2a-Vm-coc" id="YoL-yA-BIa"/>
                         <segue destination="4fS-mw-GIs" kind="show" identifier="LogoutSegue" id="hUz-we-aed"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="MapViewSegue" id="p8w-qr-Hm1"/>
+                        <segue destination="Wh7-Cd-sly" kind="show" identifier="ReauthenticationSegue" id="tX9-J2-yO8"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pX4-EA-J4z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -248,6 +249,64 @@
             </objects>
             <point key="canvasLocation" x="5402.3999999999996" y="-592.35382308845578"/>
         </scene>
+        <!--Reauthenticate View Controller-->
+        <scene sceneID="dd6-5Y-CMH">
+            <objects>
+                <viewController id="Wh7-Cd-sly" customClass="ReauthenticateViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7SN-7g-tJ2"/>
+                        <viewControllerLayoutGuide type="bottom" id="5nN-ek-2JQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BMq-mC-OMG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AJs-qF-h8L">
+                                <rect key="frame" x="36" y="172" width="303" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cDf-CN-Zxe">
+                                <rect key="frame" x="36" y="230" width="303" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="In order to delete your account,                           re-authentication is required." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d8Y-OT-T3B">
+                                <rect key="frame" x="36" y="82" width="303" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z9v-UV-Grg">
+                                <rect key="frame" x="163" y="318" width="49" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="reauthDeleteUser:" destination="Wh7-Cd-sly" eventType="touchUpInside" id="S27-z4-40y"/>
+                                    <action selector="submitButtonTapped:" destination="4fS-mw-GIs" eventType="touchUpInside" id="X6x-VB-OZD"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <connections>
+                        <outlet property="reauthEmailTextField" destination="AJs-qF-h8L" id="cLq-w7-jr0"/>
+                        <outlet property="reauthPasswordTextField" destination="cDf-CN-Zxe" id="74l-a6-OOg"/>
+                        <outlet property="reauthSubmitButton" destination="z9v-UV-Grg" id="YOo-33-UY2"/>
+                        <segue destination="gtg-Z4-3m4" kind="show" identifier="userDeletedExitSegue" id="cNG-Z4-Igd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9wf-ML-Zaw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5402.3999999999996" y="115.59220389805098"/>
+        </scene>
         <!--Save Location Detail View Controller-->
         <scene sceneID="NYj-pq-Pap">
             <objects>
@@ -323,7 +382,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="zct-xe-Nlu"/>
         <segue reference="hUz-we-aed"/>
+        <segue reference="GUW-PM-UeP"/>
+        <segue reference="cNG-Z4-Igd"/>
     </inferredMetricsTieBreakers>
 </document>

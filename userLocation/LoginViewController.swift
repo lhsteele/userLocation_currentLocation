@@ -27,6 +27,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     var fireUserID = String()
     var userEmail = String()
     var username = String()
+    var userPassword = String()
     var handle: FIRAuthStateDidChangeListenerHandle?
     
     var isSignIn: Bool = true
@@ -187,7 +188,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             let pointer = segue.destination as! FavoriteLocationsTableViewController
            
             pointer.fireUserID = self.fireUserID
-            
+            pointer.userEmail = self.userEmail
+            pointer.userPassword = self.userPassword
         }
     }
     
@@ -198,6 +200,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             let email = user.email!
             fireUserID = uid
             userEmail = email
+            userPassword = passwordTextField.text!
             
             if let displayName = user.displayName {
                 username = displayName

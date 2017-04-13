@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B3DBC097CCB1F72F6897DCAE /* Pods_userLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6AD688DCCE6AB9651D6E88E /* Pods_userLocation.framework */; };
+		EF0A2B481EA013CE006709C3 /* ReauthenticateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0A2B471EA013CE006709C3 /* ReauthenticateViewController.swift */; };
 		EF3821551E2415DF00032F42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3821541E2415DF00032F42 /* AppDelegate.swift */; };
 		EF3821571E2415DF00032F42 /* MapView Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3821561E2415DF00032F42 /* MapView Controller.swift */; };
 		EF38215A1E2415DF00032F42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF3821581E2415DF00032F42 /* Main.storyboard */; };
@@ -45,6 +46,7 @@
 		12774A7F2F95FB7186F6D3E7 /* Pods-userLocation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-userLocation.release.xcconfig"; path = "Pods/Target Support Files/Pods-userLocation/Pods-userLocation.release.xcconfig"; sourceTree = "<group>"; };
 		C1CAFDC212A7668C352A7C16 /* Pods-userLocation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-userLocation.debug.xcconfig"; path = "Pods/Target Support Files/Pods-userLocation/Pods-userLocation.debug.xcconfig"; sourceTree = "<group>"; };
 		C6AD688DCCE6AB9651D6E88E /* Pods_userLocation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_userLocation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF0A2B471EA013CE006709C3 /* ReauthenticateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReauthenticateViewController.swift; sourceTree = "<group>"; };
 		EF3821511E2415DF00032F42 /* userLocation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = userLocation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF3821541E2415DF00032F42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF3821561E2415DF00032F42 /* MapView Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapView Controller.swift"; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				EFDE1A581E3A9403002D1589 /* FavoriteLocationsTableViewController.swift */,
 				EF3821561E2415DF00032F42 /* MapView Controller.swift */,
 				EFFB04E21E2E8BD40071D961 /* SaveLocationDetailViewController.swift */,
+				EF0A2B471EA013CE006709C3 /* ReauthenticateViewController.swift */,
 				EF8F847F1E25A33A00C32EBA /* userFavorites.swift */,
 				EF3821581E2415DF00032F42 /* Main.storyboard */,
 				EFF6AB101E8F5F4F00366DB2 /* GoogleService-Info.plist */,
@@ -367,6 +370,7 @@
 			files = (
 				EFF6AB0D1E8EF2FF00366DB2 /* LoginViewController.swift in Sources */,
 				EF8765141E9454EE0078E3E5 /* WelcomeViewController.swift in Sources */,
+				EF0A2B481EA013CE006709C3 /* ReauthenticateViewController.swift in Sources */,
 				EF8F84801E25A33A00C32EBA /* userFavorites.swift in Sources */,
 				EFDE1A591E3A9403002D1589 /* FavoriteLocationsTableViewController.swift in Sources */,
 				EFFB04E31E2E8BD40071D961 /* SaveLocationDetailViewController.swift in Sources */,

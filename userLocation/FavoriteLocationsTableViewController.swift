@@ -23,6 +23,8 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     var fireUserID = String()
     var latCoordPassed = CLLocationDegrees()
     var longCoordPassed = CLLocationDegrees()
+    var userEmail = String()
+    var userPassword = String()
     
     
     
@@ -158,43 +160,16 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     @IBAction func deleteAccount(_ sender: Any) {
         let user = FIRAuth.auth()?.currentUser
         
-        user?.delete(completion: { (error) in
-            if error != nil {
-                self.displayReauthMessage(messageToDisplay: "Account must be re-authenticated to delete.")
-                self.reauthenticateToDelete()
-            } else {
-                self.displayAccountDeletedMessage(messageToDisplay: "Account has been successfully deleted.")
-            }
-        })
-    }
- 
-    func reauthenticateToDelete() {
-        let user = FIRAuth.auth()?.currentUser
-        var credential: FIRAuthCredential?
-    
-        user?.reauthenticate(with: credential!) { error in
+        user?.delete { error in
             if let error = error {
-                self.displayAlertMessage(messageToDisplay: "Unable to delete account due to re-authentication failure. Please try again.")
+                self.displayReauthMessage(messageToDisplay: "Account must be re-authenticated to delete.")
             } else {
+                print ("deleted")
                 self.displayAccountDeletedMessage(messageToDisplay: "Account has been successfully deleted.")
             }
         }
     }
  
-    func displayAlertMessage(messageToDisplay: String) {
-        let alertController = UIAlertController(title: "Error", message: messageToDisplay, preferredStyle: .alert)
-        
-        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
-            
-            // Code in this block will trigger when OK button tapped.
-            //print("Ok button tapped");
-            
-        }
-        
-        alertController.addAction(OKAction)
-        
-        self.present(alertController, animated: true, completion:nil)
-    }
     
     func displayAccountDeletedMessage(messageToDisplay: String) {
         let deleteAlertController = UIAlertController(title: "Success", message: messageToDisplay, preferredStyle: .alert)
@@ -213,7 +188,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         let reauthAlertController = UIAlertController(title: "Error", message: messageToDisplay, preferredStyle: .alert)
         
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
-            self.performSegue(withIdentifier: "LogoutSegue", sender: self)
+            self.performSegue(withIdentifier: "ReauthenticationSegue", sender: self)
         }
         
         reauthAlertController.addAction(OKAction)
