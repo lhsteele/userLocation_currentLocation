@@ -47,6 +47,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITabBarDeleg
         
         self.map.showsUserLocation = true
         
+        print ("Map\(fireUserID)")
+        
     }
     
     

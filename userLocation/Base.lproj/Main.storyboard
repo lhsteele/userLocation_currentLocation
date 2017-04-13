@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Add Location-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
@@ -37,7 +37,6 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="2" title="Add Location" id="euR-bT-9vK"/>
                     <navigationItem key="navigationItem" id="ykX-CS-U2g"/>
                     <connections>
                         <outlet property="createAFavoriteLocation" destination="5vh-wZ-Dsu" id="EPQ-DQ-Tcl"/>
@@ -57,16 +56,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="027-7v-lze">
+                            <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <state key="normal" title="Delete Account">
+                                <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="deleteAccount:" destination="8vQ-W8-wwu" eventType="touchUpInside" id="R8d-aX-QGZ"/>
+                            </connections>
+                        </button>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="vIo-T0-sed" style="IBUITableViewCellStyleDefault" id="dji-Rc-pjm">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dji-Rc-pjm" id="q8g-mx-hro">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Home" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vIo-T0-sed">
-                                            <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                            <rect key="frame" x="15" y="0.0" width="345" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -81,7 +91,6 @@
                             <outlet property="delegate" destination="8vQ-W8-wwu" id="zva-sA-ioE"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" tag="1" systemItem="favorites" id="zR4-2t-cM5"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Favorite Locations" id="S6j-az-jdU">
                         <barButtonItem key="leftBarButtonItem" title="Logout" style="plain" id="c2a-Vm-coc">
@@ -100,6 +109,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="addButton" destination="Ygt-rs-TzW" id="MBE-dE-aoA"/>
+                        <outlet property="deleteAccountButton" destination="027-7v-lze" id="3F7-jr-Oqx"/>
                         <outlet property="logoutButton" destination="c2a-Vm-coc" id="YoL-yA-BIa"/>
                         <segue destination="4fS-mw-GIs" kind="show" identifier="LogoutSegue" id="hUz-we-aed"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="MapViewSegue" id="p8w-qr-Hm1"/>
@@ -141,7 +151,7 @@
             </objects>
             <point key="canvasLocation" x="4511.1999999999998" y="-592.35382308845578"/>
         </scene>
-        <!--Item-->
+        <!--Login View Controller-->
         <scene sceneID="wMg-Zx-xbr">
             <objects>
                 <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="4fS-mw-GIs" customClass="LoginViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
@@ -223,7 +233,6 @@
                             <constraint firstAttribute="trailingMargin" secondItem="Dpl-xg-9vd" secondAttribute="trailing" id="wm8-H1-hQD"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="1" title="Item" id="Wja-uN-0qL"/>
                     <navigationItem key="navigationItem" id="LDD-cu-SgA"/>
                     <connections>
                         <outlet property="emailTextField" destination="XNk-oM-Y8b" id="C0P-kY-EEq"/>
@@ -294,11 +303,10 @@
             </objects>
             <point key="canvasLocation" x="3572" y="903"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="Ib5-DM-M5N">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aPT-tG-0Rr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="kLd-fH-93u"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="s5f-jl-oFs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

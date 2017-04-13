@@ -49,6 +49,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         usernameTextField.tag = 2
         usernameTextField.returnKeyType = UIReturnKeyType.done
         
+        print ("login\(fireUserID)")
+        
     }
 
     override func didReceiveMemoryWarning() {

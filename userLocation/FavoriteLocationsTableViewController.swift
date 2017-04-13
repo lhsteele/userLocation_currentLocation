@@ -25,8 +25,11 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     var longCoordPassed = CLLocationDegrees()
     
     
+    
     @IBOutlet var logoutButton: UIBarButtonItem!
     @IBOutlet var addButton: UIBarButtonItem!
+    @IBOutlet var deleteAccountButton: UIButton!
+    
     
     
     override func viewDidLoad() {
@@ -36,7 +39,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         print ("view did load")
         loadData()
-        //print (fireUserID)
+        print ("favorites\(fireUserID)")
     }
     
     
@@ -151,6 +154,73 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         performSegue(withIdentifier: "MapViewSegue", sender: addButton)
         
     }
+    
+    @IBAction func deleteAccount(_ sender: Any) {
+        let user = FIRAuth.auth()?.currentUser
+        
+        user?.delete(completion: { (error) in
+            if error != nil {
+                self.displayReauthMessage(messageToDisplay: "Account must be re-authenticated to delete.")
+                self.reauthenticateToDelete()
+            } else {
+                self.displayAccountDeletedMessage(messageToDisplay: "Account has been successfully deleted.")
+            }
+        })
+    }
+ 
+    func reauthenticateToDelete() {
+        let user = FIRAuth.auth()?.currentUser
+        var credential: FIRAuthCredential?
+    
+        user?.reauthenticate(with: credential!) { error in
+            if let error = error {
+                self.displayAlertMessage(messageToDisplay: "Unable to delete account due to re-authentication failure. Please try again.")
+            } else {
+                self.displayAccountDeletedMessage(messageToDisplay: "Account has been successfully deleted.")
+            }
+        }
+    }
+ 
+    func displayAlertMessage(messageToDisplay: String) {
+        let alertController = UIAlertController(title: "Error", message: messageToDisplay, preferredStyle: .alert)
+        
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+            
+            // Code in this block will trigger when OK button tapped.
+            //print("Ok button tapped");
+            
+        }
+        
+        alertController.addAction(OKAction)
+        
+        self.present(alertController, animated: true, completion:nil)
+    }
+    
+    func displayAccountDeletedMessage(messageToDisplay: String) {
+        let deleteAlertController = UIAlertController(title: "Success", message: messageToDisplay, preferredStyle: .alert)
+        
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action: UIAlertAction!) in
+            self.performSegue(withIdentifier: "LogoutSegue", sender: self.deleteAccountButton)
+        }
+        
+        deleteAlertController.addAction(OKAction)
+        
+        self.present(deleteAlertController, animated: true, completion: nil)
+        
+    }
+    
+    func displayReauthMessage(messageToDisplay: String) {
+        let reauthAlertController = UIAlertController(title: "Error", message: messageToDisplay, preferredStyle: .alert)
+        
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+            self.performSegue(withIdentifier: "LogoutSegue", sender: self)
+        }
+        
+        reauthAlertController.addAction(OKAction)
+        
+        self.present(reauthAlertController, animated: true, completion:nil)
+    }
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "MapViewSegue") {
