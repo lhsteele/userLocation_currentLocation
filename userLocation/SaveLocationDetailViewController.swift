@@ -38,8 +38,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         
         self.locationNameField.delegate = self
         locationNameField.returnKeyType = UIReturnKeyType.done
-        
-        print ("save loc\(fireUserID)")
+    
     }
     
     
@@ -68,8 +67,6 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     }
     
     func addToFirebase() {
-        
-       //username = "Lisa"
         
         var databaseRef: FIRDatabaseReference!
         

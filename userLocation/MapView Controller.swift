@@ -47,8 +47,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITabBarDeleg
         
         self.map.showsUserLocation = true
         
-        print ("Map\(fireUserID)")
-        
     }
     
     
@@ -64,8 +62,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITabBarDeleg
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()        
         manager.startUpdatingLocation()
-        
-        print (fireUserID)
+     
     }
     
     @IBAction func saveUserFavorite(_ sender: Any) {
@@ -100,12 +97,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITabBarDeleg
     override func viewWillAppear(_ animated: Bool) {
         handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
         }
-        /*
-        let passedUserID:FavoriteLocationsTableViewController = self.tabBarController?.viewControllers![0] as! FavoriteLocationsTableViewController
-        passedFireUserID = passedUserID.fireUserID
-        print ("UID passed")
-        print (passedFireUserID)
-        */
+       
     }
     
     override func viewWillDisappear(_ animated: Bool) {

@@ -39,15 +39,12 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         super.viewDidLoad()
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        print ("view did load")
-        loadData()
-        print ("favorites\(fireUserID)")
+        
     }
     
     
     func loadData () {
         let databaseRef = FIRDatabase.database().reference().child("Locations")
-        username = "Lisa"
     
         _ = databaseRef.observe(.value, with: { (snapshot) in
             
@@ -114,7 +111,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                 }
             }
             
-            print(updatedUserArray)
+            //print(updatedUserArray)
         })
     }
     
@@ -164,7 +161,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             if let error = error {
                 self.displayReauthMessage(messageToDisplay: "Account must be re-authenticated to delete.")
             } else {
-                print ("deleted")
+                self.performSegue(withIdentifier: "UserDeletedExitSegue", sender: self.deleteAccountButton)
                 self.displayAccountDeletedMessage(messageToDisplay: "Account has been successfully deleted.")
             }
         }
@@ -175,7 +172,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         let deleteAlertController = UIAlertController(title: "Success", message: messageToDisplay, preferredStyle: .alert)
         
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action: UIAlertAction!) in
-            self.performSegue(withIdentifier: "LogoutSegue", sender: self.deleteAccountButton)
         }
         
         deleteAlertController.addAction(OKAction)
@@ -206,8 +202,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
     
     override func viewDidAppear(_ animated: Bool) {
-        print ("view did appear")
-        //createUsersArray()
+        loadData()
         
     }
     
@@ -215,8 +210,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         super.viewWillAppear(animated)
         handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
         }
-        print("view will appear")
-        //loadData()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

@@ -39,18 +39,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         
         emailTextField.delegate = self
-        emailTextField.tag = 0
+        //emailTextField.tag = 0
         emailTextField.returnKeyType = UIReturnKeyType.done
         
         passwordTextField.delegate = self
-        passwordTextField.tag = 1
+        //passwordTextField.tag = 1
         passwordTextField.returnKeyType = UIReturnKeyType.done
         
         usernameTextField.delegate = self
-        usernameTextField.tag = 2
+        //usernameTextField.tag = 2
         usernameTextField.returnKeyType = UIReturnKeyType.done
-        
-        print ("login\(fireUserID)")
         
     }
 
@@ -121,10 +119,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 ref.child("Users").child(userID).updateChildValues(values) { (err, ref) in
                 
                     if err != nil {
-                        //print ("Error saving user")
                         return
                     }
-                    //print ("Saved user successfully")
                 }
             }
             
@@ -170,10 +166,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let alertController = UIAlertController(title: "Error", message: messageToDisplay, preferredStyle: .alert)
         
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
-            
-            // Code in this block will trigger when OK button tapped.
-            //print("Ok button tapped");
-            
+
         }
         
         alertController.addAction(OKAction)

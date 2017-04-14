@@ -114,6 +114,7 @@
                         <segue destination="4fS-mw-GIs" kind="show" identifier="LogoutSegue" id="hUz-we-aed"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="MapViewSegue" id="p8w-qr-Hm1"/>
                         <segue destination="Wh7-Cd-sly" kind="show" identifier="ReauthenticationSegue" id="tX9-J2-yO8"/>
+                        <segue destination="e7m-4j-9jD" kind="show" identifier="UserDeletedExitSegue" id="oPy-Na-4ik"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pX4-EA-J4z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -300,12 +301,39 @@
                         <outlet property="reauthEmailTextField" destination="AJs-qF-h8L" id="cLq-w7-jr0"/>
                         <outlet property="reauthPasswordTextField" destination="cDf-CN-Zxe" id="74l-a6-OOg"/>
                         <outlet property="reauthSubmitButton" destination="z9v-UV-Grg" id="YOo-33-UY2"/>
-                        <segue destination="gtg-Z4-3m4" kind="show" identifier="userDeletedExitSegue" id="cNG-Z4-Igd"/>
+                        <segue destination="e7m-4j-9jD" kind="show" identifier="UserDeletedExitSegue" id="I2I-hj-bpm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9wf-ML-Zaw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5402.3999999999996" y="115.59220389805098"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="vaW-tB-fba">
+            <objects>
+                <viewController id="e7m-4j-9jD" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UcV-YN-zGk"/>
+                        <viewControllerLayoutGuide type="bottom" id="xfy-OE-dh5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CJ6-RK-yZq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sorry to see you go!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVj-KF-yC4">
+                                <rect key="frame" x="74" y="323" width="227" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gta-kD-bTA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6253.6000000000004" y="115.59220389805098"/>
         </scene>
         <!--Save Location Detail View Controller-->
         <scene sceneID="NYj-pq-Pap">
@@ -382,8 +410,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="hUz-we-aed"/>
         <segue reference="GUW-PM-UeP"/>
-        <segue reference="cNG-Z4-Igd"/>
+        <segue reference="hUz-we-aed"/>
+        <segue reference="oPy-Na-4ik"/>
     </inferredMetricsTieBreakers>
 </document>

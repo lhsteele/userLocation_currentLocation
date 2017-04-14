@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-class ReauthenticateViewController: UIViewController {
+class ReauthenticateViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var reauthEmailTextField: UITextField!
     @IBOutlet var reauthPasswordTextField: UITextField!
@@ -17,13 +17,19 @@ class ReauthenticateViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        reauthEmailTextField.delegate = self
+        reauthEmailTextField.returnKeyType = UIReturnKeyType.done
+        
+        reauthPasswordTextField.delegate = self
+        reauthPasswordTextField.returnKeyType = UIReturnKeyType.done
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
     
     
@@ -78,13 +84,19 @@ class ReauthenticateViewController: UIViewController {
         let deleteAlertController = UIAlertController(title: "Success", message: messageToDisplay, preferredStyle: .alert)
         
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action: UIAlertAction!) in
-            self.performSegue(withIdentifier: "userDeletedExitSegue", sender: self)
+            self.performSegue(withIdentifier: "UserDeletedExitSegue", sender: self)
         }
         
         deleteAlertController.addAction(OKAction)
         
         self.present(deleteAlertController, animated: true, completion: nil)
         
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        reauthEmailTextField.resignFirstResponder()
+        reauthPasswordTextField.resignFirstResponder()
+        return true
     }
 
 }
