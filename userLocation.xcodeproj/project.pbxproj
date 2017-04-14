@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B3DBC097CCB1F72F6897DCAE /* Pods_userLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6AD688DCCE6AB9651D6E88E /* Pods_userLocation.framework */; };
 		EF0A2B481EA013CE006709C3 /* ReauthenticateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0A2B471EA013CE006709C3 /* ReauthenticateViewController.swift */; };
+		EF0ECD151EA175D200902441 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0ECD141EA175D200902441 /* SettingsTableViewController.swift */; };
 		EF3821551E2415DF00032F42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3821541E2415DF00032F42 /* AppDelegate.swift */; };
 		EF3821571E2415DF00032F42 /* MapView Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3821561E2415DF00032F42 /* MapView Controller.swift */; };
 		EF38215A1E2415DF00032F42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF3821581E2415DF00032F42 /* Main.storyboard */; };
@@ -47,6 +48,7 @@
 		C1CAFDC212A7668C352A7C16 /* Pods-userLocation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-userLocation.debug.xcconfig"; path = "Pods/Target Support Files/Pods-userLocation/Pods-userLocation.debug.xcconfig"; sourceTree = "<group>"; };
 		C6AD688DCCE6AB9651D6E88E /* Pods_userLocation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_userLocation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF0A2B471EA013CE006709C3 /* ReauthenticateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReauthenticateViewController.swift; sourceTree = "<group>"; };
+		EF0ECD141EA175D200902441 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		EF3821511E2415DF00032F42 /* userLocation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = userLocation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF3821541E2415DF00032F42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF3821561E2415DF00032F42 /* MapView Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapView Controller.swift"; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				EF3821561E2415DF00032F42 /* MapView Controller.swift */,
 				EFFB04E21E2E8BD40071D961 /* SaveLocationDetailViewController.swift */,
 				EF0A2B471EA013CE006709C3 /* ReauthenticateViewController.swift */,
+				EF0ECD141EA175D200902441 /* SettingsTableViewController.swift */,
 				EF8F847F1E25A33A00C32EBA /* userFavorites.swift */,
 				EF3821581E2415DF00032F42 /* Main.storyboard */,
 				EFF6AB101E8F5F4F00366DB2 /* GoogleService-Info.plist */,
@@ -376,6 +379,7 @@
 				EFFB04E31E2E8BD40071D961 /* SaveLocationDetailViewController.swift in Sources */,
 				EF3821571E2415DF00032F42 /* MapView Controller.swift in Sources */,
 				EF3821551E2415DF00032F42 /* AppDelegate.swift in Sources */,
+				EF0ECD151EA175D200902441 /* SettingsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

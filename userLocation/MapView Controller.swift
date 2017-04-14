@@ -62,6 +62,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITabBarDeleg
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()        
         manager.startUpdatingLocation()
+        
+        print ("MapView\(fireUserID)")
      
     }
     

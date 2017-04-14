@@ -59,12 +59,12 @@
                         <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="027-7v-lze">
                             <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                            <state key="normal" title="Delete Account">
-                                <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
+                            <state key="normal" title="Add New Location">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="deleteAccount:" destination="8vQ-W8-wwu" eventType="touchUpInside" id="R8d-aX-QGZ"/>
+                                <action selector="addNewLocation:" destination="8vQ-W8-wwu" eventType="touchUpInside" id="ixO-Rp-Icg"/>
                             </connections>
                         </button>
                         <prototypes>
@@ -99,22 +99,23 @@
                                 <action selector="logoutUser:" destination="8vQ-W8-wwu" id="5fU-ZB-oFu"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ygt-rs-TzW">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="Ygt-rs-TzW">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="addNewLocation:" destination="8vQ-W8-wwu" id="KFT-lP-OFg"/>
+                                <action selector="goToSettings:" destination="8vQ-W8-wwu" id="Je1-Qj-zPc"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="addButton" destination="Ygt-rs-TzW" id="MBE-dE-aoA"/>
-                        <outlet property="deleteAccountButton" destination="027-7v-lze" id="3F7-jr-Oqx"/>
+                        <outlet property="addLocationButton" destination="027-7v-lze" id="Km0-1N-gxW"/>
                         <outlet property="logoutButton" destination="c2a-Vm-coc" id="YoL-yA-BIa"/>
+                        <outlet property="settingsButton" destination="Ygt-rs-TzW" id="rh6-dP-8Nd"/>
                         <segue destination="4fS-mw-GIs" kind="show" identifier="LogoutSegue" id="hUz-we-aed"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="MapViewSegue" id="p8w-qr-Hm1"/>
                         <segue destination="Wh7-Cd-sly" kind="show" identifier="ReauthenticationSegue" id="tX9-J2-yO8"/>
                         <segue destination="e7m-4j-9jD" kind="show" identifier="UserDeletedExitSegue" id="oPy-Na-4ik"/>
+                        <segue destination="CsW-Pa-AJx" kind="show" identifier="SettingsSegue" id="HEm-QN-C6g"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pX4-EA-J4z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -307,6 +308,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9wf-ML-Zaw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5402.3999999999996" y="115.59220389805098"/>
+        </scene>
+        <!--Settings Table View Controller-->
+        <scene sceneID="MWt-rK-Jan">
+            <objects>
+                <tableViewController id="CsW-Pa-AJx" customClass="SettingsTableViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="LXV-ax-Duw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="s3D-he-ar0">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="s3D-he-ar0" id="W2o-9f-HSg">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="CsW-Pa-AJx" id="pST-jP-beV"/>
+                            <outlet property="delegate" destination="CsW-Pa-AJx" id="YXb-Dt-aK1"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kUf-Pu-fAU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5402" y="903"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="vaW-tB-fba">

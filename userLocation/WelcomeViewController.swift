@@ -50,6 +50,7 @@ class WelcomeViewController: UIViewController, UIGestureRecognizerDelegate {
             pointer.fireUserID = self.fireUserID
             
         }
+        print ("logged in\(self.fireUserID)")
     }
     
     override func viewWillAppear(_ animated: Bool) {

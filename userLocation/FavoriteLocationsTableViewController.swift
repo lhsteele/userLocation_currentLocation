@@ -29,8 +29,8 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
     
     @IBOutlet var logoutButton: UIBarButtonItem!
-    @IBOutlet var addButton: UIBarButtonItem!
-    @IBOutlet var deleteAccountButton: UIButton!
+    @IBOutlet var settingsButton: UIBarButtonItem!
+    @IBOutlet var addLocationButton: UIButton!
     
     
     
@@ -39,6 +39,8 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         super.viewDidLoad()
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        print ("favorites\(fireUserID)")
         
     }
     
@@ -150,10 +152,16 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     }
     
     @IBAction func addNewLocation(_ sender: Any) {
-        performSegue(withIdentifier: "MapViewSegue", sender: addButton)
-        
+        performSegue(withIdentifier: "MapViewSegue", sender: addLocationButton)
+        print (fireUserID)
+    }
+
+    
+    @IBAction func goToSettings(_ sender: Any) {
+        performSegue(withIdentifier: "SettingsSegue", sender: settingsButton)
     }
     
+    /*
     @IBAction func deleteAccount(_ sender: Any) {
         let user = FIRAuth.auth()?.currentUser
         
@@ -191,6 +199,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         
         self.present(reauthAlertController, animated: true, completion:nil)
     }
+    */
 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
