@@ -44,14 +44,13 @@ class ReauthenticateViewController: UIViewController, UITextFieldDelegate {
         
         user?.reauthenticate(with: credential) { error in
             if let error = error {
-                print ("error")
                 self.displayAlertMessage(messageToDisplay: "Unable to delete account due to re-authentication failure. Please try again.")
             } else {
-                print ("reauthenticated")
                 self.deleteAccount()
             }
         }
     }
+    
     
     func deleteAccount () {
         let user = FIRAuth.auth()?.currentUser
@@ -65,14 +64,11 @@ class ReauthenticateViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    
     func displayAlertMessage(messageToDisplay: String) {
         let alertController = UIAlertController(title: "Error", message: messageToDisplay, preferredStyle: .alert)
         
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
-            
-            // Code in this block will trigger when OK button tapped.
-            //print("Ok button tapped");
-            
         }
         
         alertController.addAction(OKAction)
@@ -92,6 +88,19 @@ class ReauthenticateViewController: UIViewController, UITextFieldDelegate {
         self.present(deleteAlertController, animated: true, completion: nil)
         
     }
+    
+    func displayReauthMessage(messageToDisplay: String) {
+        let reauthAlertController = UIAlertController(title: "Error", message: messageToDisplay, preferredStyle: .alert)
+        
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+            self.performSegue(withIdentifier: "ReauthenticationSegue", sender: self)
+        }
+        
+        reauthAlertController.addAction(OKAction)
+        
+        self.present(reauthAlertController, animated: true, completion:nil)
+    }
+
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         reauthEmailTextField.resignFirstResponder()

@@ -384,6 +384,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Wh7-Cd-sly" kind="show" id="dny-1l-l33"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -506,6 +509,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="hUz-we-aed"/>
         <segue reference="uuF-om-tct"/>
+        <segue reference="dny-1l-l33"/>
         <segue reference="oPy-Na-4ik"/>
     </inferredMetricsTieBreakers>
 </document>
