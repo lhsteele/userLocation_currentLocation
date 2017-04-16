@@ -26,7 +26,8 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     var username = ""
     var handle: FIRAuthStateDidChangeListenerHandle?
     var fireUserID = String()
-    
+    var key = String()
+    //var favoriteLocationsArray = [String]()
     
     
     override func viewDidLoad() {
@@ -74,17 +75,32 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         
         databaseRef = FIRDatabase.database().reference()
         
-        let key = databaseRef.child("Locations").childByAutoId().key
+        key = databaseRef.child("Locations").childByAutoId().key
         let location = ["Latitude": newLatCoord, "Longitude": newLongCoord, "LocationName": newFavLoc, "Users": [fireUserID]] as [String : Any]
         let childUpdates = ["/Locations/\(key)" : location]
         databaseRef.updateChildValues(childUpdates)
         
+        print (key)
+    }
+    
+    func  addLocationToUser() {
+        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+        let values = ["Favorite Locations" : [key]]
+        if let userID = FIRAuth.auth()?.currentUser?.uid {
+            ref.child("Users").child(userID).updateChildValues(values) { (err, ref) in
+                
+                if err != nil {
+                    return
+                }
+            }
+        }
         
     }
    
     
     @IBAction func saveFavorite(_ sender: Any) {
         addToFirebase()
+        addLocationToUser()
         
         performSegue(withIdentifier: "NewFavLocationSegue", sender: self)
        
