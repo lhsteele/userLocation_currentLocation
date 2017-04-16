@@ -14,6 +14,7 @@ class WelcomeViewController: UIViewController, UIGestureRecognizerDelegate {
     var fireUserID = String()
     var userEmail = String()
     var username = String()
+    var handle: FIRAuthStateDidChangeListenerHandle?
     
     override func viewDidLoad() {
         super.viewDidLoad()

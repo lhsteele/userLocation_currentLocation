@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SettingsTableViewController: UITableViewController {
 
     @IBOutlet var backButton: UIBarButtonItem!
-    
+    var handle: FIRAuthStateDidChangeListenerHandle?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,14 @@ class SettingsTableViewController: UITableViewController {
         performSegue(withIdentifier: "BackToFavorites", sender: backButton)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+        }
+        
+    }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+    }
     
 }

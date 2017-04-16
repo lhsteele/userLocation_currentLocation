@@ -14,6 +14,7 @@ class ReauthenticateViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var reauthEmailTextField: UITextField!
     @IBOutlet var reauthPasswordTextField: UITextField!
     @IBOutlet var reauthSubmitButton: UIButton!
+    var handle: FIRAuthStateDidChangeListenerHandle?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,6 +107,16 @@ class ReauthenticateViewController: UIViewController, UITextFieldDelegate {
         reauthEmailTextField.resignFirstResponder()
         reauthPasswordTextField.resignFirstResponder()
         return true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+        }
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        FIRAuth.auth()?.removeStateDidChangeListener(handle!)
     }
 
 }
