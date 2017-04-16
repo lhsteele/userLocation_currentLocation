@@ -83,6 +83,19 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         print (key)
     }
     
+    func addLocationToUser() {
+        
+        var databaseRef: FIRDatabaseReference!
+        
+        databaseRef = FIRDatabase.database().reference()
+        
+        let userKey = databaseRef.child("Users").child("FavoriteLocations").childByAutoId().key
+        //let favorite = [userKey : key]
+        let childUpdates = ["/Users/\(userKey)" : key]
+        databaseRef.updateChildValues(childUpdates)
+    }
+    
+    /*
     func  addLocationToUser() {
         let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
         let values = ["Favorite Locations" : [key]]
@@ -96,6 +109,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         }
         
     }
+    */
    
     
     @IBAction func saveFavorite(_ sender: Any) {

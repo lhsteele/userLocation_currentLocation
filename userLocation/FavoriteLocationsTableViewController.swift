@@ -25,7 +25,8 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     var longCoordPassed = CLLocationDegrees()
     var userEmail = String()
     var userPassword = String()
-    
+    var currentUserFavoritesArray = [String]()
+    var favoriteLocations = String()
     
     
     @IBOutlet var logoutButton: UIBarButtonItem!
@@ -44,6 +45,31 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         
     }
     
+    func loadLocationKeys() {
+        let databaseRef = FIRDatabase.database().reference().child("Users")
+        
+        _ = databaseRef.observe(.value, with: { (snapshot) in
+            
+            for item in snapshot.children {
+            
+                if let favLoc = item as? FIRDataSnapshot {
+                    
+                    for item2 in favLoc.children {
+                        
+                        if let pair = item2 as? FIRDataSnapshot {
+                            
+                            if let list = pair.value as? String {
+                                self.favoriteLocations = list
+                            }
+                        }
+                    }
+                }
+            }
+        })
+        self.currentUserFavoritesArray.append(favoriteLocations)
+        print ("===")
+        print(currentUserFavoritesArray)
+    }
     
     func loadData () {
         let databaseRef = FIRDatabase.database().reference().child("Locations")
@@ -176,6 +202,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadData()
+        loadLocationKeys()
         handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
         }
         
