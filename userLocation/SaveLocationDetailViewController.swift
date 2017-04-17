@@ -72,18 +72,21 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     
     func addToFirebase() {
         var databaseRef = FIRDatabase.database().reference()
+        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
         
         key = databaseRef.child("Locations").childByAutoId().key
         let location = ["Latitude": newLatCoord, "Longitude": newLongCoord, "LocationName": newFavLoc, "Users": [fireUserID]] as [String : Any]
         let childUpdates = ["/Locations/\(key)" : location]
         databaseRef.updateChildValues(childUpdates)
         
+        
         if let userID = FIRAuth.auth()?.currentUser?.uid {
-            let userKey = databaseRef.child("Users").child(userID).child("FavoriteLocations").key
-            let listOfLocations = ["Location ID" : key]
+            var userKey = ref.child("Users").child(userID).child("FavoriteLocations")
+            let listOfLocations = ["LocationID" : key]
             let updates = ["/Users/\(userKey)" : listOfLocations]
             userKey.updateChildValues(updates)
         }
+        
     }
     
     
