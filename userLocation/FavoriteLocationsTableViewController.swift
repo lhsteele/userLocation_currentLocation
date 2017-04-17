@@ -45,6 +45,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         
     }
     
+    /*
     func loadLocationKeys() {
         let databaseRef = FIRDatabase.database().reference().child("Users")
         
@@ -70,7 +71,8 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         print ("===")
         print(currentUserFavoritesArray)
     }
-    
+    */
+  
     func loadData () {
         let databaseRef = FIRDatabase.database().reference().child("Locations")
     
@@ -202,7 +204,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadData()
-        loadLocationKeys()
+        //loadLocationKeys()
         handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
         }
         

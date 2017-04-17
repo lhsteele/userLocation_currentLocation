@@ -27,7 +27,8 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     var handle: FIRAuthStateDidChangeListenerHandle?
     var fireUserID = String()
     var key = String()
-    //var favoriteLocationsArray = [String]()
+    var favoriteLocationsArray = [String]()
+    
     
     
     override func viewDidLoad() {
@@ -70,51 +71,52 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     }
     
     func addToFirebase() {
-        
-        var databaseRef: FIRDatabaseReference!
-        
-        databaseRef = FIRDatabase.database().reference()
+        var databaseRef = FIRDatabase.database().reference()
         
         key = databaseRef.child("Locations").childByAutoId().key
         let location = ["Latitude": newLatCoord, "Longitude": newLongCoord, "LocationName": newFavLoc, "Users": [fireUserID]] as [String : Any]
         let childUpdates = ["/Locations/\(key)" : location]
         databaseRef.updateChildValues(childUpdates)
         
-        print (key)
+        if let userID = FIRAuth.auth()?.currentUser?.uid {
+            let userKey = databaseRef.child("Users").child(userID).child("FavoriteLocations").key
+            let listOfLocations = ["Location ID" : key]
+            let updates = ["/Users/\(userKey)" : listOfLocations]
+            userKey.updateChildValues(updates)
+        }
     }
     
-    func addLocationToUser() {
-        
-        var databaseRef: FIRDatabaseReference!
-        
-        databaseRef = FIRDatabase.database().reference()
-        
-        let userKey = databaseRef.child("Users").child("FavoriteLocations").childByAutoId().key
-        //let favorite = [userKey : key]
-        let childUpdates = ["/Users/\(userKey)" : key]
-        databaseRef.updateChildValues(childUpdates)
-    }
     
     /*
-    func  addLocationToUser() {
-        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
-        let values = ["Favorite Locations" : [key]]
-        if let userID = FIRAuth.auth()?.currentUser?.uid {
-            ref.child("Users").child(userID).updateChildValues(values) { (err, ref) in
+    func createUsersLocationArray () {
+        let databaseRef2 = FIRDatabase.database().reference().child("Users").child("FavoriteLocations")
+        
+        _ = databaseRef2.observe(.childAdded, with: { snapshot in
+            var subscribedUser = FIRDataSnapshot()
+            var updatedUserArray = [FIRDataSnapshot]()
+            
+            for item in snapshot.children {
                 
-                if err != nil {
-                    return
+                if let user = item as? FIRDataSnapshot {
+                    
+                    for item2 in user.children {
+                        
+                        if let userID = item2 as? FIRDataSnapshot {
+                            subscribedUser = userID
+                        }
+                        updatedUserArray.append(subscribedUser)
+                    }
                 }
             }
-        }
-        
+            
+            //print(updatedUserArray)
+        })
     }
     */
    
     
     @IBAction func saveFavorite(_ sender: Any) {
         addToFirebase()
-        addLocationToUser()
         
         performSegue(withIdentifier: "NewFavLocationSegue", sender: self)
        
