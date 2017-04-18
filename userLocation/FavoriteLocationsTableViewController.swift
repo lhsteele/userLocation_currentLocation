@@ -15,10 +15,10 @@ let favoriteLocationKey = "NewFavoriteLocation"
 
 class FavoriteLocationsTableViewController: UITableViewController, CLLocationManagerDelegate, UITabBarDelegate, UINavigationBarDelegate {
     
-    //var listOfFavorites: [SavedFavorites] = []
+    var listOfFavorites: [SavedFavorites] = []
     var listOfCreatedLocations = [String]()
+    var locationID = ""
     var username = ""
-    //var databaseHandle: FIRDatabaseHandle?
     var ref: FIRDatabaseReference?
     var handle: FIRAuthStateDidChangeListenerHandle?
     var fireUserID = String()
@@ -28,7 +28,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     var userPassword = String()
     var currentUserFavoritesArray = [String]()
     var favoriteLocations = String()
-    var locationID = String()
     
     
     @IBOutlet var logoutButton: UIBarButtonItem!
@@ -40,47 +39,25 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     override func viewDidLoad() {
     
         super.viewDidLoad()
-        
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        //addLocationButton.frame = CGRect(x: 0, y: 0, width: 0, height: 50)
+        addLocationButton.layer.borderColor = UIColor(red: 128/255, green: 128/255, blue: 0/255, alpha: 1).cgColor
+        addLocationButton.layer.borderWidth = 3
+        addLocationButton.layer.cornerRadius = 10
         
         print ("favorites\(fireUserID)")
         
         loadFavorites()
+        //print ("loadFavsRun")
+        //print (listOfCreatedLocations)
+        
+        //loadData()
         
         
     }
     
-    /*
-    func loadLocationKeys() {
-        let databaseRef = FIRDatabase.database().reference().child("Users")
-        
-        _ = databaseRef.observe(.value, with: { (snapshot) in
-            
-            for item in snapshot.children {
-            
-                if let favLoc = item as? FIRDataSnapshot {
-                    
-                    for item2 in favLoc.children {
-                        
-                        if let pair = item2 as? FIRDataSnapshot {
-                            
-                            if let list = pair.value as? String {
-                                self.favoriteLocations = list
-                            }
-                        }
-                    }
-                }
-            }
-        })
-        self.currentUserFavoritesArray.append(favoriteLocations)
-        print ("===")
-        print(currentUserFavoritesArray)
-    }
-    */
-  
     func loadFavorites() {
         let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
-        //let databaseRef = FIRDatabase.database().reference().child("Users")
         
         if let userID = FIRAuth.auth()?.currentUser?.uid {
             
@@ -91,74 +68,76 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                 let createdLocations = snapshot.children
                     
                     for item in createdLocations {
-                        
+                    
                         if let pair = item as? FIRDataSnapshot {
                             if let locID = pair.value as? String {
                                 self.locationID = locID
-                                print ("locationID")
-                                print (self.locationID)
                             }
                         }
+                        
+                        //print ("locationID")
+                        //print (self.locationID)
                         self.listOfCreatedLocations.append(self.locationID)
+
                     }
-                print (self.listOfCreatedLocations)
+                //print (self.listOfCreatedLocations)
+                self.loadData()
             })
+            
         }
+        
     }
     
-    //func loadData() {
-        
-    //}
- 
-    /*
-    func loadData () {
-        let databaseRef = FIRDatabase.database().reference().child("Locations")
     
-        _ = databaseRef.observe(.value, with: { (snapshot) in
+    func loadData () {
+        for item in listOfCreatedLocations {
             
-            for item in snapshot.children {
-                
-                var updatedLocation = ""
-                var updatedLat = Double()
-                var updatedLong = Double()
-                
-                if let dbLocation = item as? FIRDataSnapshot {
+            let databaseRef = FIRDatabase.database().reference().child("Locations")
+            _ = databaseRef.queryEqual(toValue: item).observe(.value, with: { (snapshot) in
+                print (snapshot)
+                for item2 in snapshot.children {
+                    print (item2)
+                    var updatedLocation = ""
+                    var updatedLat = Double()
+                    var updatedLong = Double()
                     
-                    for item2 in dbLocation.children {
+                    if let dbLocation = item2 as? FIRDataSnapshot {
                         
-                        if let pair = item2 as? FIRDataSnapshot {
+                        for item2 in dbLocation.children {
                             
-                            //'always suceeds' error means an unnecessary level of casting.
-                            
-                            if let location = pair.value as? String {
+                            if let pair = item2 as? FIRDataSnapshot {
                                 
-                                updatedLocation = location
+                                //'always suceeds' error means an unnecessary level of casting.
                                 
-                            } else {
-                                
-                                if let value = pair.value as? Double {
+                                if let location = pair.value as? String {
                                     
-                                    let valueName = pair.key
+                                    updatedLocation = location
                                     
-                                    if valueName == "Latitude" {
-                                        updatedLat = value
-                                    } else {
-                                        updatedLong = value
+                                } else {
+                                    
+                                    if let value = pair.value as? Double {
+                                        
+                                        let valueName = pair.key
+                                        
+                                        if valueName == "Latitude" {
+                                            updatedLat = value
+                                        } else {
+                                            updatedLong = value
+                                        }
                                     }
                                 }
                             }
                         }
                     }
+                    let newFavorite = SavedFavorites(latCoord: updatedLat, longCoord: updatedLong, location: updatedLocation, userID: self.fireUserID)
+                    self.listOfFavorites.append(newFavorite)
                 }
-                let newFavorite = SavedFavorites(latCoord: updatedLat, longCoord: updatedLong, location: updatedLocation, userID: self.fireUserID)
-                self.listOfFavorites.append(newFavorite)
-            }
-            self.tableView.reloadData()
-        })
-        createUsersArray()
+                self.tableView.reloadData()
+            })
+        }
+        //createUsersArray()
     }
-    */
-  
+
     
     func createUsersArray () {
         let databaseRef2 = FIRDatabase.database().reference().child("Locations")
@@ -185,7 +164,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         })
     }
     
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
@@ -243,7 +222,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadData()()
+        //loadData()
         //loadLocationKeys()
         handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
         }
@@ -295,5 +274,5 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return false
     }
- */
+ 
 }
