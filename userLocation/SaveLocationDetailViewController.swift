@@ -26,7 +26,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     var username = ""
     var handle: FIRAuthStateDidChangeListenerHandle?
     var fireUserID = String()
-    var key = String()
+    var locationAutoKey = String()
     var favoriteLocationsArray = [String]()
     
     
@@ -72,19 +72,22 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     
     func addToFirebase() {
         var databaseRef = FIRDatabase.database().reference()
-        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
         
-        key = databaseRef.child("Locations").childByAutoId().key
+        locationAutoKey = databaseRef.child("Locations").childByAutoId().key
+        print (locationAutoKey)
         let location = ["Latitude": newLatCoord, "Longitude": newLongCoord, "LocationName": newFavLoc, "Users": [fireUserID]] as [String : Any]
-        let childUpdates = ["/Locations/\(key)" : location]
+        let childUpdates = ["/Locations/\(locationAutoKey)" : location]
         databaseRef.updateChildValues(childUpdates)
-        
-        
+       
+        addLocToUser()
+    }
+    
+    func addLocToUser() {
+        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
         if let userID = FIRAuth.auth()?.currentUser?.uid {
-            var userKey = ref.child("Users").child(userID).child("FavoriteLocations")
-            let listOfLocations = ["LocationID" : key]
-            let updates = ["/Users/\(userKey)" : listOfLocations]
-            userKey.updateChildValues(updates)
+            var locationKey = ref.child("Users").child(userID).child("CreatedLocations")
+            let updates = [locationKey.childByAutoId().key : locationAutoKey]
+            locationKey.updateChildValues(updates)
         }
         
     }
