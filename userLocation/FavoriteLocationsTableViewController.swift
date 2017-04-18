@@ -15,7 +15,8 @@ let favoriteLocationKey = "NewFavoriteLocation"
 
 class FavoriteLocationsTableViewController: UITableViewController, CLLocationManagerDelegate, UITabBarDelegate, UINavigationBarDelegate {
     
-    var listOfFavorites: [SavedFavorites] = []
+    //var listOfFavorites: [SavedFavorites] = []
+    var listOfCreatedLocations = [String]()
     var username = ""
     //var databaseHandle: FIRDatabaseHandle?
     var ref: FIRDatabaseReference?
@@ -73,6 +74,32 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     }
     */
   
+    func loadFavorites() {
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+        if let userID = FIRAuth.auth()?.currentUser?.uid {
+            var locationID = String()
+            _ = databaseRef.observe(.childAdded, with: { snapshot in
+                var listOfCreatedLocations = FIRDataSnapshot()
+                for item in snapshot.children {
+                    
+                    if let pair = item as? FIRDataSnapshot {
+                        if let locID = pair.value as? String {
+                            locationID = locID
+                        }
+                    }
+                }
+                
+            })
+            listOfCreatedLocations.append(locationID)
+        }
+        print (listOfCreatedLocations)
+    }
+    
+    func loadData() {
+        
+    }
+ 
+    /*
     func loadData () {
         let databaseRef = FIRDatabase.database().reference().child("Locations")
     
@@ -119,6 +146,8 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         })
         createUsersArray()
     }
+    */
+  
     
     func createUsersArray () {
         let databaseRef2 = FIRDatabase.database().reference().child("Locations")
@@ -203,7 +232,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadData()
+        loadData()()
         //loadLocationKeys()
         handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
         }

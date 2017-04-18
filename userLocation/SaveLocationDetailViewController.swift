@@ -71,7 +71,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     }
     
     func addToFirebase() {
-        var databaseRef = FIRDatabase.database().reference()
+        let databaseRef = FIRDatabase.database().reference()
         
         locationAutoKey = databaseRef.child("Locations").childByAutoId().key
         print (locationAutoKey)
@@ -85,40 +85,13 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     func addLocToUser() {
         let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
         if let userID = FIRAuth.auth()?.currentUser?.uid {
-            var locationKey = ref.child("Users").child(userID).child("CreatedLocations")
+            let locationKey = ref.child("Users").child(userID).child("CreatedLocations")
             let updates = [locationKey.childByAutoId().key : locationAutoKey]
             locationKey.updateChildValues(updates)
         }
         
     }
     
-    
-    /*
-    func createUsersLocationArray () {
-        let databaseRef2 = FIRDatabase.database().reference().child("Users").child("FavoriteLocations")
-        
-        _ = databaseRef2.observe(.childAdded, with: { snapshot in
-            var subscribedUser = FIRDataSnapshot()
-            var updatedUserArray = [FIRDataSnapshot]()
-            
-            for item in snapshot.children {
-                
-                if let user = item as? FIRDataSnapshot {
-                    
-                    for item2 in user.children {
-                        
-                        if let userID = item2 as? FIRDataSnapshot {
-                            subscribedUser = userID
-                        }
-                        updatedUserArray.append(subscribedUser)
-                    }
-                }
-            }
-            
-            //print(updatedUserArray)
-        })
-    }
-    */
    
     
     @IBAction func saveFavorite(_ sender: Any) {
