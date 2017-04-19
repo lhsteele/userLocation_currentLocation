@@ -91,8 +91,9 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
     func loadData () {
         for item in listOfCreatedLocations {
-            
-            let databaseRef = FIRDatabase.database().reference().child("Locations")
+            print ("item")
+            print (item)
+            let databaseRef = FIRDatabase.database().reference().child("Locations").queryOrderedByKey()
             _ = databaseRef.queryEqual(toValue: item).observe(.value, with: { (snapshot) in
                 print (snapshot)
                 for item2 in snapshot.children {
