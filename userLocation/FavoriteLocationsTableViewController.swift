@@ -40,19 +40,13 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        //addLocationButton.frame = CGRect(x: 0, y: 0, width: 0, height: 50)
+
         addLocationButton.layer.borderColor = UIColor(red: 128/255, green: 128/255, blue: 0/255, alpha: 1).cgColor
         addLocationButton.layer.borderWidth = 3
         addLocationButton.layer.cornerRadius = 10
         
-        print ("favorites\(fireUserID)")
         
         loadFavorites()
-        //print ("loadFavsRun")
-        //print (listOfCreatedLocations)
-        
-        //loadData()
-        
         
     }
     
@@ -91,13 +85,12 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
     func loadData () {
         for item in listOfCreatedLocations {
-            print ("item")
-            print (item)
+            
             let databaseRef = FIRDatabase.database().reference().child("Locations").queryOrderedByKey()
             _ = databaseRef.queryEqual(toValue: item).observe(.value, with: { (snapshot) in
-                print (snapshot)
+                
                 for item2 in snapshot.children {
-                    print (item2)
+                    
                     var updatedLocation = ""
                     var updatedLat = Double()
                     var updatedLong = Double()
