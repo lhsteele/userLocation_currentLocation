@@ -36,6 +36,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
     
     
+    
     override func viewDidLoad() {
     
         super.viewDidLoad()
@@ -196,7 +197,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         performSegue(withIdentifier: "MapViewSegue", sender: addLocationButton)
         print (fireUserID)
     }
-
+    
     
     @IBAction func goToSettings(_ sender: Any) {
         performSegue(withIdentifier: "SettingsSegue", sender: settingsButton)
