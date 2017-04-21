@@ -28,6 +28,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     var userPassword = String()
     var currentUserFavoritesArray = [String]()
     var favoriteLocations = String()
+    var locationIDDictionary: [String:String] = [:]
     
     
     @IBOutlet var logoutButton: UIBarButtonItem!
@@ -70,15 +71,16 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                             }
                         }
                         
-                        //print ("locationID")
-                        //print (self.locationID)
                         self.listOfCreatedLocations.append(self.locationID)
 
                     }
-                //print (self.listOfCreatedLocations)
+                //Here I'm trying to create a dictionary to which I can refer later, when trying to delete an entry. However, this data only lives within this closure.
+                self.locationIDDictionary[userID] = self.locationID
+                
                 self.loadData()
             })
-            
+            //If I try to print the dictionary here, it just gives me an empty dictionary.
+            print (self.locationIDDictionary)
         }
         
     }
@@ -101,8 +103,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                         for item2 in dbLocation.children {
                             
                             if let pair = item2 as? FIRDataSnapshot {
-                                
-                                //'always suceeds' error means an unnecessary level of casting.
                                 
                                 if let location = pair.value as? String {
                                     
@@ -130,7 +130,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                 self.tableView.reloadData()
             })
         }
-        //createUsersArray()
     }
 
     
@@ -155,7 +154,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                 }
             }
             
-            //print(updatedUserArray)
         })
     }
     
@@ -170,15 +168,49 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         return cell
   
     }
+   
+    /*
+    func deleteFromFirebase() {
+        guard let uid = FIRAuth.auth()?.currentUser?.uid else {
+            return
+        }
+        let deletionRef = FIRDatabase.database().reference().child("Users").child(uid).child("CreatedLocations")
+        deletionRef.observeSingleEvent(of: .childRemoved, with: { (snapshot) in
+            deletionRef.removeValue(completionBlock: { (error, ref) in
+                if error != nil {
+                    print ("Failed to delete message", error)
+                    return
+                }
+            })
+        })
+    }
+    */
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+
         if editingStyle == .delete {
-            self.listOfFavorites.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            guard let uid = FIRAuth.auth()?.currentUser?.uid else {
+                return
+            }
             
+            self.listOfFavorites.remove(at: indexPath.row)
+            
+            let userFavToDelete = listOfCreatedLocations[indexPath.row]
+            print (userFavToDelete)
+            let deletionRef = FIRDatabase.database().reference().child("Users").child(uid).child("CreatedLocations").child(userFavToDelete).removeValue(completionBlock: { (error, ref) in
+                if error != nil {
+                    print ("Was not able to delete entry")
+                    return
+                }
+            })
+            
+            self.listOfCreatedLocations.remove(at: indexPath.row)
+           
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
         tableView.reloadData()
     }
+    
     
     
     @IBAction func logoutUser(_ sender: Any) {

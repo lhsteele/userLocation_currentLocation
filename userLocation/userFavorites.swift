@@ -17,6 +17,7 @@ class SavedFavorites: NSObject {
     var location: String
     var userID: String
     
+    
     init(latCoord: Double, longCoord: Double, location: String, userID: String) {
         self.latCoord = latCoord
         self.longCoord = longCoord
@@ -25,7 +26,5 @@ class SavedFavorites: NSObject {
     
         super.init()
     }
-}
-
-
     
+}
