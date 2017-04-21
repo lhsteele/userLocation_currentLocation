@@ -196,13 +196,33 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             self.listOfFavorites.remove(at: indexPath.row)
             
             let userFavToDelete = listOfCreatedLocations[indexPath.row]
+            
+            let deletionRef = FIRDatabase.database().reference().child("Users").child(uid).child("CreatedLocations").child(userFavToDelete)
+            print (deletionRef)
+            
+            deletionRef.removeValue(completionBlock: { (error, ref) in
+                if error != nil {
+                    print ("There has been an error")
+                }
+            })
+                /*
+                deletionRef.queryEqual(toValue: userFavToDelete).removeValue(completionBlock: { (error, ref) in
+                        if error != nil {
+                            print ("There has been an error")
+                        }
+                })
+                */
+            
+            /*
+            let userFavToDelete = listOfCreatedLocations[indexPath.row]
             print (userFavToDelete)
-            let deletionRef = FIRDatabase.database().reference().child("Users").child(uid).child("CreatedLocations").child(userFavToDelete).removeValue(completionBlock: { (error, ref) in
+            let deletionRef = FIRDatabase.database().reference().child("Users").child(uid).child("CreatedLocations").(userFavToDelete).removeValue(completionBlock: { (error, ref) in
                 if error != nil {
                     print ("Was not able to delete entry")
                     return
                 }
             })
+            */
             
             self.listOfCreatedLocations.remove(at: indexPath.row)
            
