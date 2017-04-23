@@ -198,10 +198,12 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             let userFavToDelete = listOfCreatedLocations[indexPath.row] as String
             
             let deletionRef = FIRDatabase.database().reference().child("Users").child(uid).child("CreatedLocations")
-            let keyToDelete = deletionRef.queryEqual(toValue: userFavToDelete)
-            print (keyToDelete)
+          
+            //let keyToDelete = deletionRef.child(userFavToDelete)
+            //print (deletionRef)
+            //deletionRef.removeValue()
             
-            deletionRef.child(byAppendingPath: ("Users/\(uid)/\CreatedLocations/\(keyToDelete)").removeValue()
+            //deletionRef.child(byAppendingPath: ("Users/\(uid)/\CreatedLocations/\(keyToDelete)").removeValue()
             
             /*
             let keyToDelete = userFavToDelete
