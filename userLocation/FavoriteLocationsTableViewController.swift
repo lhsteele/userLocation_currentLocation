@@ -199,21 +199,17 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             
             let deletionRef = FIRDatabase.database().reference().child("Users").child(uid).child("CreatedLocations")
             let keyToDelete = deletionRef.queryEqual(toValue: userFavToDelete)
+            print (keyToDelete)
             
-            keyToDelete.observeSingleEvent(of: .value, with: { (snapshot) in
-                if snapshot.exists() {
-                    for item in snapshot.children {
-                        if let pair = item as? FIRDataSnapshot {
-                            if let locPair = pair.value  {
-                                if locPair == keyToDelete {
-                                    locPair.removeValue()
-                                }
-                            }
-                            
-                        }
-                    }
-                }
+            deletionRef.child(byAppendingPath: ("Users/\(uid)/\CreatedLocations/\(keyToDelete)").removeValue()
+            
+            /*
+            let keyToDelete = userFavToDelete
+            let deletionRef = FIRDatabase.database().reference().child("Users").child(uid).child("CreatedLocations")
+            deletionRef.queryEqual(toValue: userFavToDelete).observe(.value, with: { (snapshot) in
+                print (snapshot)
             })
+  */
             
             
             
