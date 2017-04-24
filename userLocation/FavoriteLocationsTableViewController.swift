@@ -200,8 +200,16 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             let deletionRef = FIRDatabase.database().reference().child("Users").child(uid).child("CreatedLocations")
           
             let keyToDelete = deletionRef.child(userFavToDelete)
-            //print (deletionRef)
+            print (keyToDelete)
             keyToDelete.removeValue()
+            
+            /*
+            keyToDelete.removeValue(completionBlock: { (error, ref) in
+                if error != nil {
+                    print ("Not deleted")
+                }
+            })
+            */
             
             //deletionRef.child(byAppendingPath: ("Users/\(uid)/\CreatedLocations/\(keyToDelete)").removeValue()
             
@@ -219,7 +227,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             deletionRef.observeSingleEvent(of: .value, with: { (snapshot) in
                 if snapshot.exists() {
                     for item in snapshot.children {
-                        if (item as AnyObject).value as String == use›rFavToDelete {
+                        if (item as AnyObject).value as String == userFavToDelete {
                             (item as AnyObject).key.parent?.removeValue()
                         }
                         
