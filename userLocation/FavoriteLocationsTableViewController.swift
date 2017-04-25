@@ -60,7 +60,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             let locationKey = ref.child("Users").child(userID).child("CreatedLocations")
             locationKey.observe(.value, with: { (snapshot) in
                 
-                
                 let createdLocations = snapshot.children
                     
                     for item in createdLocations {
@@ -188,16 +187,24 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             let userFavToDelete = listOfCreatedLocations[indexPath.row] as String
             
             let deletionRef = FIRDatabase.database().reference().child("Users").child(uid).child("CreatedLocations")
-          
-            let keyToDelete = deletionRef.child(userFavToDelete)
-            print (keyToDelete)
-            keyToDelete.removeValue()
+            //let queryRef = deletionRef.queryEqual(toValue: userFavToDelete)
+            //need to get the key for this value. THis is the value, not the key.
+            // might need to loop through all value to find the one I want to delete.
+            
+            deletionRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                for snap in snapshot.children {
+                    let keySnap = snap as! FIRDataSnapshot
+                    if keySnap.value as! String == userFavToDelete {
+                        keySnap.ref.removeValue()
+                    }
+                }
+            })
             
             self.listOfCreatedLocations.remove(at: indexPath.row)
            
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
-        tableView.reloadData()
+        //tableView.reloadData()
     }
     
     
