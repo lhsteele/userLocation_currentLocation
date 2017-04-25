@@ -109,6 +109,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.displayAlertMessage(messageToDisplay: "This email address is invalid or already in use.")
             } else {
                 self.userLogin()
+                self.getUserInfo()
                 self.performSegue(withIdentifier: "FavoriteLocationsTableSegue", sender: self.submitButton)
             }
             
@@ -133,6 +134,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             if error != nil {
                 self.signInLabel.text = "There has been an error. Please try again."
             } else {
+                self.getUserInfo()
                 self.performSegue(withIdentifier: "FavoriteLocationsTableSegue", sender: self.submitButton)
             }
         })

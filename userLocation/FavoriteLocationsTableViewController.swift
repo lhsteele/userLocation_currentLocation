@@ -169,23 +169,13 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
   
     }
    
+       
     /*
-    func deleteFromFirebase() {
-        guard let uid = FIRAuth.auth()?.currentUser?.uid else {
-            return
-        }
-        let deletionRef = FIRDatabase.database().reference().child("Users").child(uid).child("CreatedLocations")
-        deletionRef.observeSingleEvent(of: .childRemoved, with: { (snapshot) in
-            deletionRef.removeValue(completionBlock: { (error, ref) in
-                if error != nil {
-                    print ("Failed to delete message", error)
-                    return
-                }
-            })
-        })
-    }
-    */
+    According to FB docs, I should be able to just use .removeValue, or .setValue(nil). Have been working mostly with .removeValue, but neither work.
+    Have tried writing a separate deleteFromFirebase function, but most SO posts suggest to put it in with the Table View cell deletion.
+    Have also tried observeSingleEvent(of: .childRemoved) and that doesn't work either.
     
+    */
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 
         if editingStyle == .delete {
@@ -202,65 +192,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             let keyToDelete = deletionRef.child(userFavToDelete)
             print (keyToDelete)
             keyToDelete.removeValue()
-            
-            /*
-            keyToDelete.removeValue(completionBlock: { (error, ref) in
-                if error != nil {
-                    print ("Not deleted")
-                }
-            })
-            */
-            
-            //deletionRef.child(byAppendingPath: ("Users/\(uid)/\CreatedLocations/\(keyToDelete)").removeValue()
-            
-            /*
-            let keyToDelete = userFavToDelete
-            let deletionRef = FIRDatabase.database().reference().child("Users").child(uid).child("CreatedLocations")
-            deletionRef.queryEqual(toValue: userFavToDelete).observe(.value, with: { (snapshot) in
-                print (snapshot)
-            })
-  */
-            
-            
-            
-            /*
-            deletionRef.observeSingleEvent(of: .value, with: { (snapshot) in
-                if snapshot.exists() {
-                    for item in snapshot.children {
-                        if (item as AnyObject).value as String == userFavToDelete {
-                            (item as AnyObject).key.parent?.removeValue()
-                        }
-                        
-                    }
-                }
-            })
-            */
-            
-            /*
-            ref.child(deletionRef).removeValue(completionBlock: { (error, ref) in
-                if error != nil {
-                    print ("There has been an error")
-                }
-            })
-            */
-                /*
-                deletionRef.queryEqual(toValue: userFavToDelete).removeValue(completionBlock: { (error, ref) in
-                        if error != nil {
-                            print ("There has been an error")
-                        }
-                })
-                */
-            
-            /*
-            let userFavToDelete = listOfCreatedLocations[indexPath.row]
-            print (userFavToDelete)
-            let deletionRef = FIRDatabase.database().reference().child("Users").child(uid).child("CreatedLocations").(userFavToDelete).removeValue(completionBlock: { (error, ref) in
-                if error != nil {
-                    print ("Was not able to delete entry")
-                    return
-                }
-            })
-            */
             
             self.listOfCreatedLocations.remove(at: indexPath.row)
            
