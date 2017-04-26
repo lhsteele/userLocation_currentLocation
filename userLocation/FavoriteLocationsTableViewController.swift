@@ -57,26 +57,26 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         if let userID = FIRAuth.auth()?.currentUser?.uid {
             
             let locationKey = ref.child("Users").child(userID).child("CreatedLocations")
-            locationKey.observe(.value, with: { (snapshot) in
-                
+            
+            locationKey.observeSingleEvent(of: .value, with: { (snapshot) in
                 let createdLocations = snapshot.children
-                    
-                    for item in createdLocations {
-                    
-                        if let pair = item as? FIRDataSnapshot {
-                            if let locID = pair.value as? String {
-                                self.locationID = locID
-                            }
-                        }
-                        
-                        self.listOfCreatedLocations.append(self.locationID)
-
-                    }
-                //Here I'm trying to create a dictionary to which I can refer later, when trying to delete an entry. However, this data only lives within this closure.
-                //self.locationIDDictionary[userID] = self.locationID
                 
+                for item in createdLocations {
+                    
+                    if let pair = item as? FIRDataSnapshot {
+                        if let locID = pair.value as? String {
+                            self.locationID = locID
+                        }
+                    }
+                    
+                    self.listOfCreatedLocations.append(self.locationID)
+                    
+                }
                 self.loadData()
             })
+            //Here I'm trying to create a dictionary to which I can refer later, when trying to delete an entry. However, this data only lives within this closure.
+            //self.locationIDDictionary[userID] = self.locationID
+           
             //If I try to print the dictionary here, it just gives me an empty dictionary.
             //print (self.locationIDDictionary)
         }
