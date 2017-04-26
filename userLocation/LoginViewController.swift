@@ -156,7 +156,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 returnValue = false
             }
             
-        } catch let error as NSError {
+        } catch _ as NSError {
             //print("invalid regex: \(error.localizedDescription)")
             returnValue = false
         }

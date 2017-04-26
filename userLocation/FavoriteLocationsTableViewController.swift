@@ -28,6 +28,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     var userPassword = String()
     var currentUserFavoritesArray = [String]()
     var favoriteLocations = String()
+    var userFavToDelete = String()
     
     
     @IBOutlet var logoutButton: UIBarButtonItem!
@@ -176,18 +177,20 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             
             self.listOfFavorites.remove(at: indexPath.row)
             
-            let userFavToDelete = listOfCreatedLocations[indexPath.row] as String
+            userFavToDelete = listOfCreatedLocations[indexPath.row] as String
             
             let deletionRef = FIRDatabase.database().reference().child("Users").child(uid).child("CreatedLocations")
             
             deletionRef.observeSingleEvent(of: .value, with: { (snapshot) in
                 for snap in snapshot.children {
                     let keySnap = snap as! FIRDataSnapshot
-                    if keySnap.value as! String == userFavToDelete {
+                    if keySnap.value as! String == self.userFavToDelete {
                         keySnap.ref.removeValue()
                     }
                 }
             })
+            
+            deleteFromLocationsDB()
             
             self.listOfCreatedLocations.remove(at: indexPath.row)
            
@@ -196,6 +199,16 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         //tableView.reloadData()
     }
     
+    
+    func deleteFromLocationsDB() {
+        let locDeletionRef = FIRDatabase.database().reference().child("Locations")
+        let locToDeleteRef = locDeletionRef.child(userFavToDelete)
+        locToDeleteRef.removeValue()
+    }
+    
+    func deleteFromSubscribedLocations() {
+        
+    }
     
     
     @IBAction func logoutUser(_ sender: Any) {
