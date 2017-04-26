@@ -28,7 +28,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     var userPassword = String()
     var currentUserFavoritesArray = [String]()
     var favoriteLocations = String()
-    var locationIDDictionary: [String:String] = [:]
     
     
     @IBOutlet var logoutButton: UIBarButtonItem!
@@ -74,12 +73,12 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
 
                     }
                 //Here I'm trying to create a dictionary to which I can refer later, when trying to delete an entry. However, this data only lives within this closure.
-                self.locationIDDictionary[userID] = self.locationID
+                //self.locationIDDictionary[userID] = self.locationID
                 
                 self.loadData()
             })
             //If I try to print the dictionary here, it just gives me an empty dictionary.
-            print (self.locationIDDictionary)
+            //print (self.locationIDDictionary)
         }
         
     }
@@ -168,13 +167,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
   
     }
    
-       
-    /*
-    According to FB docs, I should be able to just use .removeValue, or .setValue(nil). Have been working mostly with .removeValue, but neither work.
-    Have tried writing a separate deleteFromFirebase function, but most SO posts suggest to put it in with the Table View cell deletion.
-    Have also tried observeSingleEvent(of: .childRemoved) and that doesn't work either.
-    
-    */
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 
         if editingStyle == .delete {
@@ -187,9 +179,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             let userFavToDelete = listOfCreatedLocations[indexPath.row] as String
             
             let deletionRef = FIRDatabase.database().reference().child("Users").child(uid).child("CreatedLocations")
-            //let queryRef = deletionRef.queryEqual(toValue: userFavToDelete)
-            //need to get the key for this value. THis is the value, not the key.
-            // might need to loop through all value to find the one I want to delete.
             
             deletionRef.observeSingleEvent(of: .value, with: { (snapshot) in
                 for snap in snapshot.children {
@@ -245,16 +234,12 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        /*
         handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
         }
-        */
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        //FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+        FIRAuth.auth()?.removeStateDidChangeListener(handle!)
     }
     
     
