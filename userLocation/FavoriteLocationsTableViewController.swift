@@ -245,15 +245,16 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //loadData()
-        //loadLocationKeys()
+
+        /*
         handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
         }
+        */
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+        //FIRAuth.auth()?.removeStateDidChangeListener(handle!)
     }
     
     

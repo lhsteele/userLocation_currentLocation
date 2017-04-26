@@ -55,15 +55,13 @@ class WelcomeViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        FIRAuth.auth()?.addStateDidChangeListener({ (auth, user) in
-            if let user = user {
-                self.getUserInfo()
-                self.performSegue(withIdentifier: "UserLoggedInSegue", sender: self)
-            } else {
-                self.performSegue(withIdentifier: "LoginSegue", sender: self)
-            }
-        })
         
+        if let _ = FIRAuth.auth()?.currentUser {
+            self.getUserInfo()
+            self.performSegue(withIdentifier: "UserLoggedInSegue", sender: self)
+        } else {
+            self.performSegue(withIdentifier: "LoginSegue", sender: self)
+        }
     }
 
 }
