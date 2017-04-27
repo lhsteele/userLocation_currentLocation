@@ -46,7 +46,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3572" y="116"/>
+            <point key="canvasLocation" x="4511" y="173"/>
         </scene>
         <!--Favorite Locations-->
         <scene sceneID="Bf6-in-On2">
@@ -79,11 +79,11 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dji-Rc-pjm" id="q8g-mx-hro">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Home" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vIo-T0-sed">
-                                            <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                            <rect key="frame" x="15" y="0.0" width="345" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -123,11 +123,12 @@
                         <segue destination="Wh7-Cd-sly" kind="show" identifier="ReauthenticationSegue" id="tX9-J2-yO8"/>
                         <segue destination="e7m-4j-9jD" kind="show" identifier="UserDeletedExitSegue" id="oPy-Na-4ik"/>
                         <segue destination="CsW-Pa-AJx" kind="show" identifier="SettingsSegue" id="HEm-QN-C6g"/>
+                        <segue destination="fbu-6W-fHY" kind="show" identifier="ShareLocationSegue" id="X6m-dw-UvP"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pX4-EA-J4z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4509.6000000000004" y="115.59220389805098"/>
+            <point key="canvasLocation" x="5367" y="174"/>
         </scene>
         <!--Welcome View Controller-->
         <scene sceneID="l3R-zt-VQi">
@@ -314,7 +315,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9wf-ML-Zaw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5402.3999999999996" y="115.59220389805098"/>
+            <point key="canvasLocation" x="6279" y="172"/>
         </scene>
         <!--Settings Table View Controller-->
         <scene sceneID="MWt-rK-Jan">
@@ -345,11 +346,11 @@
                                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="s3D-he-ar0" id="W2o-9f-HSg">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EYJ-uh-o2R">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                                     <nil key="textColor"/>
@@ -362,11 +363,11 @@
                                         <rect key="frame" x="0.0" y="88" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nl6-Vj-rxk" id="XR0-1q-4yR">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jnw-uP-pLo">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                                     <nil key="textColor"/>
@@ -379,11 +380,11 @@
                                         <rect key="frame" x="0.0" y="132" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="R4J-zv-9pA" id="3nz-nm-sAm">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Delete Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7sj-Me-lPs">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -410,7 +411,25 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kUf-Pu-fAU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5402" y="903"/>
+            <point key="canvasLocation" x="5402" y="1012"/>
+        </scene>
+        <!--Share Location View Controller-->
+        <scene sceneID="uzI-HJ-y03">
+            <objects>
+                <viewController id="fbu-6W-fHY" customClass="ShareLocationViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8Vg-QY-SfH"/>
+                        <viewControllerLayoutGuide type="bottom" id="4VI-1S-7gz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lGe-jT-8tc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gqv-He-QrM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6278" y="1012"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="vaW-tB-fba">
@@ -437,7 +456,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gta-kD-bTA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6253.6000000000004" y="115.59220389805098"/>
+            <point key="canvasLocation" x="7143" y="172"/>
         </scene>
         <!--Save Location Detail View Controller-->
         <scene sceneID="NYj-pq-Pap">
@@ -492,7 +511,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nwq-Iv-jDY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3572" y="903"/>
+            <point key="canvasLocation" x="4510" y="1012"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ib5-DM-M5N">
@@ -514,9 +533,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="GUW-PM-UeP"/>
-        <segue reference="hUz-we-aed"/>
+        <segue reference="uuF-om-tct"/>
         <segue reference="tX9-J2-yO8"/>
-        <segue reference="I2I-hj-bpm"/>
+        <segue reference="hUz-we-aed"/>
+        <segue reference="oPy-Na-4ik"/>
     </inferredMetricsTieBreakers>
 </document>

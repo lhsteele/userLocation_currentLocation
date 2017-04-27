@@ -29,6 +29,8 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     var currentUserFavoritesArray = [String]()
     var favoriteLocations = String()
     var userFavToDelete = String()
+    var locationToShare = String()
+    
     
     
     @IBOutlet var logoutButton: UIBarButtonItem!
@@ -168,42 +170,10 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
   
     }
    
-    /*
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-
-        if editingStyle == .delete {
-            guard let uid = FIRAuth.auth()?.currentUser?.uid else {
-                return
-            }
-            
-            self.listOfFavorites.remove(at: indexPath.row)
-            
-            userFavToDelete = listOfCreatedLocations[indexPath.row] as String
-            
-            let deletionRef = FIRDatabase.database().reference().child("Users").child(uid).child("CreatedLocations")
-            
-            deletionRef.observeSingleEvent(of: .value, with: { (snapshot) in
-                for snap in snapshot.children {
-                    let keySnap = snap as! FIRDataSnapshot
-                    if keySnap.value as! String == self.userFavToDelete {
-                        keySnap.ref.removeValue()
-                    }
-                }
-            })
-            
-            deleteFromLocationsDB()
-            
-            self.listOfCreatedLocations.remove(at: indexPath.row)
-           
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        }
-        //tableView.reloadData()
-    }
-    */
-    
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let share = UITableViewRowAction(style: .normal, title: "Share") { (action, indexPath) in
-            print ("share button tapped")
+            self.locationToShare = self.listOfCreatedLocations[indexPath.row] as String
+            self.performSegue(withIdentifier: "ShareLocationSegue", sender: Any.self)
         }
         
         share.backgroundColor = UIColor.darkGray
@@ -239,10 +209,9 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     }
     
     
-    
-    
     func deleteFromLocationsDB() {
         let locDeletionRef = FIRDatabase.database().reference().child("Locations")
+        
         let locToDeleteRef = locDeletionRef.child(userFavToDelete)
         locToDeleteRef.removeValue()
     }
@@ -279,8 +248,11 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             let pointer = segue.destination as! ViewController
             pointer.fireUserID = self.fireUserID
         }
+        if (segue.identifier == "ShareLocationSegue") {
+            let pointer = segue.destination as! ShareLocationViewController
+            pointer.locationToShare = self.locationToShare
+        }
     }
-    
     
     override func viewDidAppear(_ animated: Bool) {
         
