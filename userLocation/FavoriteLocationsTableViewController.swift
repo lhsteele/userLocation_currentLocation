@@ -168,6 +168,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
   
     }
    
+    /*
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 
         if editingStyle == .delete {
@@ -198,6 +199,46 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         }
         //tableView.reloadData()
     }
+    */
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let share = UITableViewRowAction(style: .normal, title: "Share") { (action, indexPath) in
+            print ("share button tapped")
+        }
+        
+        share.backgroundColor = UIColor.darkGray
+        
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            
+                guard let uid = FIRAuth.auth()?.currentUser?.uid else {
+                    return
+                }
+                
+                self.listOfFavorites.remove(at: indexPath.row)
+                
+                self.userFavToDelete = self.listOfCreatedLocations[indexPath.row] as String
+                
+                let deletionRef = FIRDatabase.database().reference().child("Users").child(uid).child("CreatedLocations")
+                
+                deletionRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                    for snap in snapshot.children {
+                        let keySnap = snap as! FIRDataSnapshot
+                        if keySnap.value as! String == self.userFavToDelete {
+                            keySnap.ref.removeValue()
+                        }
+                    }
+                })
+                
+                self.deleteFromLocationsDB()
+                
+                self.listOfCreatedLocations.remove(at: indexPath.row)
+                
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+        return [share, delete]
+    }
+    
+    
     
     
     func deleteFromLocationsDB() {
