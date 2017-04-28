@@ -424,12 +424,44 @@
                     <view key="view" contentMode="scaleToFill" id="lGe-jT-8tc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qCD-zM-RkH">
+                                <rect key="frame" x="36" y="194" width="303" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please enter the email address of the user you would like to share this location with." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPE-2A-vlW">
+                                <rect key="frame" x="36" y="54" width="303" height="92"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sVa-Bq-7Ux">
+                                <rect key="frame" x="163" y="292" width="49" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="reauthDeleteUser:" destination="Wh7-Cd-sly" eventType="touchUpInside" id="WFG-30-3R3"/>
+                                    <action selector="shareLocation:" destination="fbu-6W-fHY" eventType="touchUpInside" id="Snl-d5-LAl"/>
+                                    <action selector="submitButtonTapped:" destination="4fS-mw-GIs" eventType="touchUpInside" id="luR-e9-E1s"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="shareLocEmailTextField" destination="qCD-zM-RkH" id="D0M-A7-RV7"/>
+                        <outlet property="shareLocSubmitButton" destination="sVa-Bq-7Ux" id="4xb-9J-s9N"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gqv-He-QrM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6278" y="1012"/>
+            <point key="canvasLocation" x="6277.6000000000004" y="1011.544227886057"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="vaW-tB-fba">
@@ -533,9 +565,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="uuF-om-tct"/>
         <segue reference="tX9-J2-yO8"/>
+        <segue reference="uuF-om-tct"/>
         <segue reference="hUz-we-aed"/>
-        <segue reference="oPy-Na-4ik"/>
+        <segue reference="I2I-hj-bpm"/>
     </inferredMetricsTieBreakers>
 </document>
