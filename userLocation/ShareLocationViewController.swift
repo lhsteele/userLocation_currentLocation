@@ -44,7 +44,9 @@ class ShareLocationViewController: UIViewController {
                     if let email = snap as? FIRDataSnapshot {
                         if let userEmail = email.value as? String {
                             if userEmail == self.emailToCheck {
-                                print ("found\(userEmail)")
+                                self.displaySuccessAlertMessage(messageToDisplay: "This location will be shared with \(self.emailToCheck)")
+                            } else {
+                                self.displayErrorAlertMessage(messageToDisplay: "This is not a registered email address. Please try again.")
                             }
                         }
                     }
@@ -53,27 +55,7 @@ class ShareLocationViewController: UIViewController {
         })
     }
 
-            /*
-            let registeredUsers = snapshot.children
-            
-                for user in registeredUsers {
-                    if let userReg = user as? FIRDataSnapshot {
-                        print (userReg)
-                        if let userEmailExists = userReg.value as? String {
-                            print (userEmailExists)
-                        }
-                    }
-                }
-            })
-        */
-        
-        //if registeredUserRef.value == emailToCheck {
-            //print ("userFound")
-        //}
-        //let userFound = registeredUserRef.queryOrderedByKey().queryEqual(toValue: emailToCheck)
-        //if userFound
-        
-        /*
+         /*
         let addRef = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
         if userFound != nil {
             let locationKey = addRef.child("SharedLocations").child(emailToCheck).child("Location")
@@ -93,4 +75,29 @@ func addLocToUser() {
     
 }
  */
+    
+    func displaySuccessAlertMessage(messageToDisplay: String) {
+        let alertController = UIAlertController(title: "Success", message: messageToDisplay, preferredStyle: .alert)
+        
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+            self.performSegue(withIdentifier: "BackToFavorites", sender: self)
+        }
+        
+        alertController.addAction(OKAction)
+        
+        self.present(alertController, animated: true, completion:nil)
+    }
+    
+    func displayErrorAlertMessage(messageToDisplay: String) {
+        let alertController = UIAlertController(title: "Error", message: messageToDisplay, preferredStyle: .alert)
+        
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+        }
+        
+        alertController.addAction(OKAction)
+        
+        self.present(alertController, animated: true, completion:nil)
+    }
+
+
 }
