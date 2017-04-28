@@ -30,26 +30,46 @@ class ShareLocationViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    /*
+    
     @IBAction func shareLocation(_ sender: Any) {
         emailToCheck = shareLocEmailTextField.text!
-        print (emailToCheck)
-        let registeredUserRef = FIRDatabase.database().reference()
-        registeredUserRef.child("Users").queryOrderedByKey().child("Email").queryEqual(toValue: emailToCheck).observeSingleEvent(of: .value, with: { (snapshot) in
-            let emails = snapshot.children
-            print (snapshot)
-            
-            for item in emails {
-                if let item2 = item as? FIRDataSnapshot {
-                    if let email = item2.value as? String {
-                        print (email)
-
+        
+        let registeredUserRef = FIRDatabase.database().reference().child("Emails")
+        
+        registeredUserRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.exists() {
+                print (snapshot)
+                let listOfEmails = snapshot.children
+                for snap in listOfEmails {
+                    if let email = snap as? FIRDataSnapshot {
+                        if let userEmail = email.value as? String {
+                            if userEmail == self.emailToCheck {
+                                print ("found\(userEmail)")
+                            }
+                        }
                     }
                 }
             }
-            
         })
+    }
+
+            /*
+            let registeredUsers = snapshot.children
+            
+                for user in registeredUsers {
+                    if let userReg = user as? FIRDataSnapshot {
+                        print (userReg)
+                        if let userEmailExists = userReg.value as? String {
+                            print (userEmailExists)
+                        }
+                    }
+                }
+            })
         */
+        
+        //if registeredUserRef.value == emailToCheck {
+            //print ("userFound")
+        //}
         //let userFound = registeredUserRef.queryOrderedByKey().queryEqual(toValue: emailToCheck)
         //if userFound
         
@@ -61,10 +81,6 @@ class ShareLocationViewController: UIViewController {
             locationKey.updateChildValues(updates)
         }
         */
-    }
-    
-
-
 
 /*
 func addLocToUser() {
@@ -77,3 +93,4 @@ func addLocToUser() {
     
 }
  */
+}
