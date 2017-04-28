@@ -97,7 +97,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         
         if validEmail {
-            //print ("Email address is valid")
+    
         } else {
             //print ("Please enter a valid email address")
             displayAlertMessage(messageToDisplay: "This email address is invalid or already in use.")
@@ -110,6 +110,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             } else {
                 self.userLogin()
                 self.getUserInfo()
+                self.saveEmail()
                 self.performSegue(withIdentifier: "FavoriteLocationsTableSegue", sender: self.submitButton)
             }
             
@@ -200,10 +201,26 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             if let displayName = user.displayName {
                 username = displayName
             }
-            
+           
         }
     }
-
+    
+    func saveEmail() {
+        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+        print ("saveEmailRun")
+        if let userID = FIRAuth.auth()?.currentUser?.uid {
+            print (userID)
+            let value = [userID : userEmail]
+            print (value)
+            ref.child("Emails").updateChildValues(value) { (err, ref) in
+                
+                if err != nil {
+                    return
+                }
+            }
+        }
+    }
+    
     
     /*
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

@@ -30,6 +30,7 @@ class ShareLocationViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    /*
     @IBAction func shareLocation(_ sender: Any) {
         emailToCheck = shareLocEmailTextField.text!
         print (emailToCheck)
@@ -48,7 +49,7 @@ class ShareLocationViewController: UIViewController {
             }
             
         })
-        
+        */
         //let userFound = registeredUserRef.queryOrderedByKey().queryEqual(toValue: emailToCheck)
         //if userFound
         
@@ -63,7 +64,7 @@ class ShareLocationViewController: UIViewController {
     }
     
 
-}
+
 
 /*
 func addLocToUser() {
