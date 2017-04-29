@@ -16,6 +16,7 @@ class ShareLocationViewController: UIViewController {
     
     var emailToCheck = String()
     var locationToShare = String()
+    var fireUserID = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +46,7 @@ class ShareLocationViewController: UIViewController {
                         if let userEmail = email.value as? String {
                             if userEmail == self.emailToCheck {
                                 self.displaySuccessAlertMessage(messageToDisplay: "This location will be shared with \(self.emailToCheck)")
+                                self.shareLocWithUser()
                             } else {
                                 self.displayErrorAlertMessage(messageToDisplay: "This is not a registered email address. Please try again.")
                             }
@@ -54,8 +56,16 @@ class ShareLocationViewController: UIViewController {
             }
         })
     }
-
-         /*
+    
+    func shareLocWithUser() {
+        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+        let shareRef = ref.child("SharedLocations").child(fireUserID)
+        print (locationToShare)
+        let updates = [shareRef.childByAutoId().key : locationToShare]
+        shareRef.updateChildValues(updates)
+    }
+    
+    /*
         let addRef = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
         if userFound != nil {
             let locationKey = addRef.child("SharedLocations").child(emailToCheck).child("Location")

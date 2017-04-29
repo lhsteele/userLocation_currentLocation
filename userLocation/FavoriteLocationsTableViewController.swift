@@ -30,6 +30,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     var favoriteLocations = String()
     var userFavToDelete = String()
     var locationToShare = String()
+    var locationNameString = String()
     
     
     
@@ -251,6 +252,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         if (segue.identifier == "ShareLocationSegue") {
             let pointer = segue.destination as! ShareLocationViewController
             pointer.locationToShare = self.locationToShare
+            pointer.fireUserID = self.fireUserID
         }
     }
     
