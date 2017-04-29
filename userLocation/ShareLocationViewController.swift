@@ -37,19 +37,21 @@ class ShareLocationViewController: UIViewController {
         
         let registeredUserRef = FIRDatabase.database().reference().child("Emails")
         
-        registeredUserRef.observeSingleEvent(of: .value, with: { (snapshot) in
+        registeredUserRef.queryOrderedByKey().observe(.value, with: { (snapshot) in
             if snapshot.exists() {
                 print (snapshot)
                 let listOfEmails = snapshot.children
                 for snap in listOfEmails {
                     if let email = snap as? FIRDataSnapshot {
                         if let userEmail = email.value as? String {
+                            print (userEmail)
+                            print (self.emailToCheck)
                             if userEmail == self.emailToCheck {
                                 self.displaySuccessAlertMessage(messageToDisplay: "This location will be shared with \(self.emailToCheck)")
                                 self.shareLocWithUser()
-                            } else {
-                                self.displayErrorAlertMessage(messageToDisplay: "This is not a registered email address. Please try again.")
-                            }
+                            } //else {
+                            //self.displayErrorAlertMessage(messageToDisplay: "This is not a registered email address. Please try again.")
+                            //}
                         }
                     }
                 }
@@ -65,27 +67,7 @@ class ShareLocationViewController: UIViewController {
         shareRef.updateChildValues(updates)
     }
     
-    /*
-        let addRef = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
-        if userFound != nil {
-            let locationKey = addRef.child("SharedLocations").child(emailToCheck).child("Location")
-            let updates = [locationKey.child("Location") : locationToShare]
-            locationKey.updateChildValues(updates)
-        }
-        */
-
-/*
-func addLocToUser() {
-    let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
-    if let userID = FIRAuth.auth()?.currentUser?.uid {
-        let locationKey = ref.child("Users").child(userID).child("CreatedLocations")
-        let updates = [locationKey.childByAutoId().key : locationAutoKey]
-        locationKey.updateChildValues(updates)
-    }
-    
-}
- */
-    
+        
     func displaySuccessAlertMessage(messageToDisplay: String) {
         let alertController = UIAlertController(title: "Success", message: messageToDisplay, preferredStyle: .alert)
         
