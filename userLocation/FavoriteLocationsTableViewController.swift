@@ -17,6 +17,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
     var listOfFavorites: [SavedFavorites] = []
     var listOfCreatedLocations = [String]()
+    var listOfSharedLocations = [String]()
     var locationID = ""
     var username = ""
     var ref: FIRDatabaseReference?
@@ -77,6 +78,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                     
                 }
                 self.loadData()
+                self.loadSharedData()
             })
             //Here I'm trying to create a dictionary to which I can refer later, when trying to delete an entry. However, this data only lives within this closure.
             //self.locationIDDictionary[userID] = self.locationID
@@ -85,6 +87,29 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             //print (self.locationIDDictionary)
         }
         
+    }
+    
+    func loadSharedLocations() {
+        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+        
+        if let userID = FIRAuth.auth()?.currentUser?.uid {
+            
+            let locationKey = ref.child("SharedLocations").child(userID)
+            
+            locationKey.observeSingleEvent(of: .value, with: { (snapshot) in
+                let sharedLocations = snapshot.children
+                
+                for item in sharedLocations {
+                    if let pair = item as? FIRDataSnapshot {
+                        if let locID = pair.value as? String {
+                            self.locationID = locID
+                        }
+                    }
+                }
+                
+                self.listOfSharedLocations.append(self.locationID)
+            })
+        }
     }
     
     
@@ -133,6 +158,53 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             })
         }
     }
+    
+    func loadSharedData () {
+        for item in listOfSharedLocations {
+            
+            let databaseRef = FIRDatabase.database().reference().child("Locations").queryOrderedByKey()
+            _ = databaseRef.queryEqual(toValue: item).observe(.value, with: { (snapshot) in
+                
+                for item2 in snapshot.children {
+                    
+                    var updatedLocation = ""
+                    var updatedLat = Double()
+                    var updatedLong = Double()
+                    
+                    if let dbLocation = item2 as? FIRDataSnapshot {
+                        
+                        for item2 in dbLocation.children {
+                            
+                            if let pair = item2 as? FIRDataSnapshot {
+                                
+                                if let location = pair.value as? String {
+                                    
+                                    updatedLocation = location
+                                    
+                                } else {
+                                    
+                                    if let value = pair.value as? Double {
+                                        
+                                        let valueName = pair.key
+                                        
+                                        if valueName == "Latitude" {
+                                            updatedLat = value
+                                        } else {
+                                            updatedLong = value
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    let newFavorite = SavedFavorites(latCoord: updatedLat, longCoord: updatedLong, location: updatedLocation, userID: self.fireUserID)
+                    self.listOfFavorites.append(newFavorite)
+                }
+                self.tableView.reloadData()
+            })
+        }
+    }
+
 
     
     func createUsersArray () {

@@ -17,11 +17,13 @@ class ShareLocationViewController: UIViewController {
     var emailToCheck = String()
     var locationToShare = String()
     var fireUserID = String()
+    var sharedEmailsUserID = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print ("ShareLocVC\(locationToShare)")
+        //print ("ShareLocVC\(locationToShare)")
+        
 
         // Do any additional setup after loading the view.
     }
@@ -34,37 +36,58 @@ class ShareLocationViewController: UIViewController {
     
     @IBAction func shareLocation(_ sender: Any) {
         emailToCheck = shareLocEmailTextField.text!
+        findEmailsUserID()
         
         let registeredUserRef = FIRDatabase.database().reference().child("Emails")
         
         registeredUserRef.queryOrderedByKey().observe(.value, with: { (snapshot) in
             if snapshot.exists() {
-                print (snapshot)
+                //print (snapshot)
                 let listOfEmails = snapshot.children
                 for snap in listOfEmails {
                     if let email = snap as? FIRDataSnapshot {
                         if let userEmail = email.value as? String {
-                            print (userEmail)
-                            print (self.emailToCheck)
+                            //print (userEmail)
+                            //print (self.emailToCheck)
                             if userEmail == self.emailToCheck {
                                 self.displaySuccessAlertMessage(messageToDisplay: "This location will be shared with \(self.emailToCheck)")
-                                self.shareLocWithUser()
+                                //self.shareLocWithUser()
                             } //else {
                             //self.displayErrorAlertMessage(messageToDisplay: "This is not a registered email address. Please try again.")
                             //}
                         }
                     }
                 }
-            }
+            } 
         })
     }
     
     func shareLocWithUser() {
         let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
-        let shareRef = ref.child("SharedLocations").child(fireUserID)
-        print (locationToShare)
+        let shareRef = ref.child("SharedLocations").child(sharedEmailsUserID)
         let updates = [shareRef.childByAutoId().key : locationToShare]
         shareRef.updateChildValues(updates)
+    }
+    
+    func findEmailsUserID() {
+        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+        ref.child("Emails").queryOrderedByKey().observe(.value, with: { (snapshot) in
+            if snapshot.exists() {
+                
+                let listOfEmails = snapshot.children
+                for snap in listOfEmails {
+                    if let email = snap as? FIRDataSnapshot {
+                        if let userEmail = email.value as? String, let userKey = email.key as? String {
+                            if userEmail == self.emailToCheck {
+                            self.sharedEmailsUserID = userKey
+                            //print (self.sharedEmailsUserID)
+                            }
+                        }
+                    }
+                }
+            }
+            self.shareLocWithUser()
+        })
     }
     
         
