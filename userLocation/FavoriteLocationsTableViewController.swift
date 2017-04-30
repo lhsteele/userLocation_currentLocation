@@ -17,6 +17,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
     var listOfFavorites: [SavedFavorites] = []
     var listOfCreatedLocations = [String]()
+    var listOfSharedFavorites: [SavedFavorites] = []
     var listOfSharedLocations = [String]()
     var locationID = ""
     var username = ""
@@ -53,6 +54,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         
         
         loadFavorites()
+        loadSharedData()
         
     }
     
@@ -78,7 +80,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                     
                 }
                 self.loadData()
-                self.loadSharedData()
+                print (self.listOfSharedLocations)
             })
             //Here I'm trying to create a dictionary to which I can refer later, when trying to delete an entry. However, this data only lives within this closure.
             //self.locationIDDictionary[userID] = self.locationID
@@ -97,6 +99,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             let locationKey = ref.child("SharedLocations").child(userID)
             
             locationKey.observeSingleEvent(of: .value, with: { (snapshot) in
+                
                 let sharedLocations = snapshot.children
                 
                 for item in sharedLocations {
@@ -160,6 +163,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     }
     
     func loadSharedData () {
+        print ("loadSharedDataRun")
         for item in listOfSharedLocations {
             
             let databaseRef = FIRDatabase.database().reference().child("Locations").queryOrderedByKey()
@@ -198,7 +202,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                         }
                     }
                     let newFavorite = SavedFavorites(latCoord: updatedLat, longCoord: updatedLong, location: updatedLocation, userID: self.fireUserID)
-                    self.listOfFavorites.append(newFavorite)
+                    self.listOfSharedFavorites.append(newFavorite)
                 }
                 self.tableView.reloadData()
             })
