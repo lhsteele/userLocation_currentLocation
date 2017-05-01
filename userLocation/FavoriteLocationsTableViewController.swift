@@ -17,8 +17,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
     var listOfFavorites: [SavedFavorites] = []
     var listOfCreatedLocations = [String]()
-    var listOfSharedFavorites: [SavedFavorites] = []
-    var listOfSharedLocations = [String]()
     var locationID = ""
     var username = ""
     var ref: FIRDatabaseReference?
@@ -36,6 +34,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
     
     
+    @IBOutlet var sharedLocationsButton: UIBarButtonItem!
     @IBOutlet var settingsButton: UIBarButtonItem!
     @IBOutlet var addLocationButton: UIButton!
     
@@ -51,10 +50,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         addLocationButton.layer.borderWidth = 3
         addLocationButton.layer.cornerRadius = 10
         
-        
         loadFavorites()
-        loadSharedData()
-        
     }
     
     func loadFavorites() {
@@ -79,7 +75,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                     
                 }
                 self.loadData()
-                print (self.listOfSharedLocations)
             })
             //Here I'm trying to create a dictionary to which I can refer later, when trying to delete an entry. However, this data only lives within this closure.
             //self.locationIDDictionary[userID] = self.locationID
@@ -88,30 +83,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             //print (self.locationIDDictionary)
         }
         
-    }
-    
-    func loadSharedLocations() {
-        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
-        
-        if let userID = FIRAuth.auth()?.currentUser?.uid {
-            
-            let locationKey = ref.child("SharedLocations").child(userID)
-            
-            locationKey.observeSingleEvent(of: .value, with: { (snapshot) in
-                
-                let sharedLocations = snapshot.children
-                
-                for item in sharedLocations {
-                    if let pair = item as? FIRDataSnapshot {
-                        if let locID = pair.value as? String {
-                            self.locationID = locID
-                        }
-                    }
-                }
-                
-                self.listOfSharedLocations.append(self.locationID)
-            })
-        }
     }
     
     
@@ -161,54 +132,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         }
     }
     
-    func loadSharedData () {
-        print ("loadSharedDataRun")
-        for item in listOfSharedLocations {
-            
-            let databaseRef = FIRDatabase.database().reference().child("Locations").queryOrderedByKey()
-            _ = databaseRef.queryEqual(toValue: item).observe(.value, with: { (snapshot) in
-                
-                for item2 in snapshot.children {
-                    
-                    var updatedLocation = ""
-                    var updatedLat = Double()
-                    var updatedLong = Double()
-                    
-                    if let dbLocation = item2 as? FIRDataSnapshot {
-                        
-                        for item2 in dbLocation.children {
-                            
-                            if let pair = item2 as? FIRDataSnapshot {
-                                
-                                if let location = pair.value as? String {
-                                    
-                                    updatedLocation = location
-                                    
-                                } else {
-                                    
-                                    if let value = pair.value as? Double {
-                                        
-                                        let valueName = pair.key
-                                        
-                                        if valueName == "Latitude" {
-                                            updatedLat = value
-                                        } else {
-                                            updatedLong = value
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    let newFavorite = SavedFavorites(latCoord: updatedLat, longCoord: updatedLong, location: updatedLocation, userID: self.fireUserID)
-                    self.listOfSharedFavorites.append(newFavorite)
-                }
-                self.tableView.reloadData()
-            })
-        }
-    }
-
-
     
     func createUsersArray () {
         let databaseRef2 = FIRDatabase.database().reference().child("Locations")
@@ -306,6 +229,10 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         performSegue(withIdentifier: "SettingsSegue", sender: settingsButton)
     }
     
+    @IBAction func goToSharedLocations(_ sender: Any) {
+        performSegue(withIdentifier: "SharedLocationsSegue", sender: sharedLocationsButton)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "MapViewSegue") {
             let pointer = segue.destination as! ViewController
@@ -314,6 +241,10 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         if (segue.identifier == "ShareLocationSegue") {
             let pointer = segue.destination as! ShareLocationViewController
             pointer.locationToShare = self.locationToShare
+            pointer.fireUserID = self.fireUserID
+        }
+        if (segue.identifier == "SharedLocationsSegue") {
+            let pointer = segue.destination as! SharedLocationsTableViewController
             pointer.fireUserID = self.fireUserID
         }
     }
