@@ -13,7 +13,7 @@ import Firebase
 
 let favoriteLocationKey = "NewFavoriteLocation"
 
-class FavoriteLocationsTableViewController: UITableViewController, CLLocationManagerDelegate, UITabBarDelegate, UINavigationBarDelegate {
+class FavoriteLocationsTableViewController: UITableViewController, CLLocationManagerDelegate, UINavigationBarDelegate {
     
     var listOfFavorites: [SavedFavorites] = []
     var listOfCreatedLocations = [String]()
@@ -36,7 +36,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
     
     
-    @IBOutlet var logoutButton: UIBarButtonItem!
     @IBOutlet var settingsButton: UIBarButtonItem!
     @IBOutlet var addLocationButton: UIButton!
     
@@ -295,19 +294,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
     func deleteFromSubscribedLocations() {
         
-    }
-    
-    
-    @IBAction func logoutUser(_ sender: Any) {
-        let firebaseAuth = FIRAuth.auth()
-        
-        do {
-            try firebaseAuth?.signOut()
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
-        }
-        
-        performSegue(withIdentifier: "LogoutSegue", sender: logoutButton)
     }
     
     @IBAction func addNewLocation(_ sender: Any) {

@@ -12,6 +12,7 @@ import FirebaseAuth
 class SettingsTableViewController: UITableViewController {
 
     @IBOutlet var backButton: UIBarButtonItem!
+    @IBOutlet var logoutButton: UITableViewCell!
     var handle: FIRAuthStateDidChangeListenerHandle?
     
     override func viewDidLoad() {
@@ -29,6 +30,21 @@ class SettingsTableViewController: UITableViewController {
     @IBAction func backToFavorites(_ sender: Any) {
         performSegue(withIdentifier: "BackToFavorites", sender: backButton)
     }
+    
 
-   
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let indexPath = tableView.indexPathForSelectedRow!
+        let currentCell = tableView.cellForRow(at: indexPath)! as UITableViewCell
+        
+        let firebaseAuth = FIRAuth.auth()
+        
+        do {
+            try firebaseAuth?.signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+        
+        performSegue(withIdentifier: "LogoutSegue", sender: logoutButton)
+
+    }
 }
