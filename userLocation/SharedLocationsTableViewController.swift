@@ -18,9 +18,12 @@ class SharedLocationsTableViewController: UITableViewController {
     var locationID = ""
     var userFavToDelete = String()
 
+    @IBOutlet var backButton: UIBarButtonItem!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
 
         loadSharedLocations()
         print ("sharedLocationsTVC\(fireUserID)")
@@ -165,6 +168,9 @@ class SharedLocationsTableViewController: UITableViewController {
         locToDeleteRef.removeValue()
     }
     
+    @IBAction func backToFavorites(_ sender: Any) {
+        performSegue(withIdentifier: "BackToFavoritesSegue", sender: backButton)
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

@@ -267,9 +267,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="seW-S7-UvV">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <items>
+                                <navigationItem title="Shared Locations" id="wGk-By-PK3">
+                                    <barButtonItem key="leftBarButtonItem" title="Back" id="2fX-Rw-vwg">
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="backToFavorites:" destination="awe-kW-kFK" id="JLO-Oo-Iqb"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </navigationItem>
+                            </items>
+                        </navigationBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="BI3-Li-FEm">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BI3-Li-FEm" id="8NS-4n-6BJ">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -283,6 +297,10 @@
                             <outlet property="delegate" destination="awe-kW-kFK" id="NiK-Zn-35x"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="backButton" destination="2fX-Rw-vwg" id="f0A-pO-zmx"/>
+                        <segue destination="8vQ-W8-wwu" kind="show" identifier="BackToFavoritesSegue" id="oHB-73-aMh"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pos-Xe-lfm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -615,8 +633,8 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="FbZ-EK-1jY"/>
-        <segue reference="IU2-DW-LoN"/>
+        <segue reference="oHB-73-aMh"/>
         <segue reference="oPy-Na-4ik"/>
-        <segue reference="dny-1l-l33"/>
+        <segue reference="tX9-J2-yO8"/>
     </inferredMetricsTieBreakers>
 </document>
