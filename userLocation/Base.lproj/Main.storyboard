@@ -100,6 +100,9 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Favorite Locations" id="S6j-az-jdU">
+                        <barButtonItem key="leftBarButtonItem" title="Shared" id="Hnf-B5-vEL">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="Ygt-rs-TzW">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
