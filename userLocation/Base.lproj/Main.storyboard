@@ -482,9 +482,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="Wh7-Cd-sly" kind="show" identifier="ReauthenticateSegue" id="dny-1l-l33"/>
-                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -496,6 +493,7 @@
                         <outlet property="logoutButton" destination="FSE-LY-KjL" id="225-Sp-bBf"/>
                         <segue destination="8vQ-W8-wwu" kind="show" identifier="BackToFavorites" id="uuF-om-tct"/>
                         <segue destination="4fS-mw-GIs" kind="show" identifier="LogoutSegue" id="dfE-Na-D61"/>
+                        <segue destination="Wh7-Cd-sly" kind="show" identifier="ReauthenticateSegue" id="cWw-05-A8f"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kUf-Pu-fAU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -674,7 +672,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="uuF-om-tct"/>
         <segue reference="dfE-Na-D61"/>
-        <segue reference="dny-1l-l33"/>
+        <segue reference="cWw-05-A8f"/>
         <segue reference="oPy-Na-4ik"/>
     </inferredMetricsTieBreakers>
 </document>
