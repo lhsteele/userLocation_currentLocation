@@ -58,7 +58,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         super.viewDidLoad()
         
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        //self.navigationController?.setNavigationBarHidden(true, animated: true)
         
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest

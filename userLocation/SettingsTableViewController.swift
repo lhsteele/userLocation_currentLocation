@@ -37,8 +37,8 @@ class SettingsTableViewController: UITableViewController {
     
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let indexPath = tableView.indexPathForSelectedRow!
-        let currentCell = tableView.cellForRow(at: indexPath)! as UITableViewCell
+        //indexPath data type has two values, section and row 
+        //use a switch case statement to assign a function to each case/index number.
         
         let firebaseAuth = FIRAuth.auth()
         
