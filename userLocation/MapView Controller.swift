@@ -13,7 +13,7 @@ import Firebase
 
 
 
-class ViewController: UIViewController, CLLocationManagerDelegate, UITabBarDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var createAFavoriteLocation: UIButton!
@@ -27,6 +27,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITabBarDeleg
     var fireUserID = String()
     var test = String()
     var passedFireUserID = String()
+    var listOfSharedFavorites: [SavedFavorites] = []
+    var locationID = ""
     
     
     
@@ -94,6 +96,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITabBarDeleg
             pointer.longCoordPassed = self.longCoordPassed
             pointer.fireUserID = self.fireUserID
         }
+    }
+    
+    func showSharedFavLocation() {
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -160,6 +160,14 @@ class SharedLocationsTableViewController: UITableViewController {
         return [delete]
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let indexPath = tableView.indexPathForSelectedRow!
+        let currentCell = tableView.cellForRow(at: indexPath)! as UITableViewCell
+        
+        performSegue(withIdentifier: "ShowSharedLocationSegue", sender: self)
+        
+    }
+    
     
     func deleteFromLocationsDB() {
         let locDeletionRef = FIRDatabase.database().reference().child("Locations")
@@ -170,6 +178,15 @@ class SharedLocationsTableViewController: UITableViewController {
     
     @IBAction func backToFavorites(_ sender: Any) {
         performSegue(withIdentifier: "BackToFavoritesSegue", sender: backButton)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "ShowSharedLocationSegue") {
+            let pointer = segue.destination as! SharedLocationsMapViewController
+            
+            pointer.locationID = self.locationID
+            pointer.fireUserID = self.fireUserID
+        }
     }
     /*
     // Override to support conditional editing of the table view.

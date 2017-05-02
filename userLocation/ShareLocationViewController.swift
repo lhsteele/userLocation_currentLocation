@@ -38,17 +38,29 @@ class ShareLocationViewController: UIViewController {
         emailToCheck = shareLocEmailTextField.text!
         findEmailsUserID()
         
+        let validEmail = isEmailValid(emailAddressString: emailToCheck)
+        
+        
+        if validEmail {
+            print ("validEmail")
+        } else {
+            displayErrorAlertMessage(messageToDisplay: "This email address is invalid or already in use.")
+        }
+        
         let registeredUserRef = FIRDatabase.database().reference().child("Emails")
         
         registeredUserRef.queryOrderedByKey().observe(.value, with: { (snapshot) in
+            
             if snapshot.exists() {
+                
                 //print (snapshot)
                 let listOfEmails = snapshot.children
+                
                 for snap in listOfEmails {
                     if let email = snap as? FIRDataSnapshot {
                         if let userEmail = email.value as? String {
-                            //print (userEmail)
-                            //print (self.emailToCheck)
+                            print (userEmail)
+                            print (self.emailToCheck)
                             if userEmail == self.emailToCheck {
                                 self.displaySuccessAlertMessage(messageToDisplay: "This location will be shared with \(self.emailToCheck)")
                                 //self.shareLocWithUser()
@@ -113,6 +125,28 @@ class ShareLocationViewController: UIViewController {
         
         self.present(alertController, animated: true, completion:nil)
     }
-
+    
+    func isEmailValid(emailAddressString: String) -> Bool {
+        
+        var returnValue = true
+        let emailRegEx = "[A-Z0-9a-z.-_]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,3}"
+        
+        do {
+            let regex = try NSRegularExpression(pattern: emailRegEx)
+            let nsString = emailAddressString as NSString
+            let results = regex.matches(in: emailAddressString, range: NSRange(location: 0, length: nsString.length))
+            
+            if results.count == 0
+            {
+                returnValue = false
+            }
+            
+        } catch _ as NSError {
+            //print("invalid regex: \(error.localizedDescription)")
+            returnValue = false
+        }
+        
+        return  returnValue
+    }
 
 }

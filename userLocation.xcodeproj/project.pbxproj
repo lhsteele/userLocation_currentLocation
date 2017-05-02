@@ -22,6 +22,7 @@
 		EF7DCC491EB29AD400D70194 /* ShareLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7DCC481EB29AD400D70194 /* ShareLocationViewController.swift */; };
 		EF8765141E9454EE0078E3E5 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8765131E9454EE0078E3E5 /* WelcomeViewController.swift */; };
 		EF8F84801E25A33A00C32EBA /* userFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8F847F1E25A33A00C32EBA /* userFavorites.swift */; };
+		EFC5267F1EB8FF61006E33AD /* SharedLocationsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC5267E1EB8FF61006E33AD /* SharedLocationsMapViewController.swift */; };
 		EFDE1A591E3A9403002D1589 /* FavoriteLocationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDE1A581E3A9403002D1589 /* FavoriteLocationsTableViewController.swift */; };
 		EFF6AB0D1E8EF2FF00366DB2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF6AB0C1E8EF2FF00366DB2 /* LoginViewController.swift */; };
 		EFF6AB111E8F5F4F00366DB2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EFF6AB101E8F5F4F00366DB2 /* GoogleService-Info.plist */; };
@@ -70,6 +71,7 @@
 		EF7DCC481EB29AD400D70194 /* ShareLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareLocationViewController.swift; sourceTree = "<group>"; };
 		EF8765131E9454EE0078E3E5 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		EF8F847F1E25A33A00C32EBA /* userFavorites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userFavorites.swift; sourceTree = "<group>"; };
+		EFC5267E1EB8FF61006E33AD /* SharedLocationsMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedLocationsMapViewController.swift; sourceTree = "<group>"; };
 		EFDE1A581E3A9403002D1589 /* FavoriteLocationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteLocationsTableViewController.swift; sourceTree = "<group>"; };
 		EFF6AB0C1E8EF2FF00366DB2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EFF6AB101E8F5F4F00366DB2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -143,17 +145,18 @@
 				EFF6AB0C1E8EF2FF00366DB2 /* LoginViewController.swift */,
 				EFDE1A581E3A9403002D1589 /* FavoriteLocationsTableViewController.swift */,
 				EF72ABD31EB7CFEC003386CB /* SharedLocationsTableViewController.swift */,
+				EFC5267E1EB8FF61006E33AD /* SharedLocationsMapViewController.swift */,
 				EF3821561E2415DF00032F42 /* MapView Controller.swift */,
 				EFFB04E21E2E8BD40071D961 /* SaveLocationDetailViewController.swift */,
 				EF0A2B471EA013CE006709C3 /* ReauthenticateViewController.swift */,
 				EF0ECD141EA175D200902441 /* SettingsTableViewController.swift */,
 				EF7DCC481EB29AD400D70194 /* ShareLocationViewController.swift */,
 				EF8F847F1E25A33A00C32EBA /* userFavorites.swift */,
+				EF38215D1E2415DF00032F42 /* LaunchScreen.storyboard */,
 				EF3821581E2415DF00032F42 /* Main.storyboard */,
 				EFF6AB101E8F5F4F00366DB2 /* GoogleService-Info.plist */,
 				EF38215B1E2415DF00032F42 /* Assets.xcassets */,
 				EF3821601E2415DF00032F42 /* Info.plist */,
-				EF38215D1E2415DF00032F42 /* LaunchScreen.storyboard */,
 			);
 			path = userLocation;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF72ABD41EB7CFEC003386CB /* SharedLocationsTableViewController.swift in Sources */,
+				EFC5267F1EB8FF61006E33AD /* SharedLocationsMapViewController.swift in Sources */,
 				EFF6AB0D1E8EF2FF00366DB2 /* LoginViewController.swift in Sources */,
 				EF8765141E9454EE0078E3E5 /* WelcomeViewController.swift in Sources */,
 				EF0A2B481EA013CE006709C3 /* ReauthenticateViewController.swift in Sources */,

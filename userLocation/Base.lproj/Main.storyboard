@@ -286,7 +286,7 @@
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BI3-Li-FEm" id="8NS-4n-6BJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -300,11 +300,37 @@
                     <connections>
                         <outlet property="backButton" destination="2fX-Rw-vwg" id="f0A-pO-zmx"/>
                         <segue destination="8vQ-W8-wwu" kind="show" identifier="BackToFavoritesSegue" id="oHB-73-aMh"/>
+                        <segue destination="ENY-hk-8CC" kind="show" identifier="ShowSharedLocationSegue" id="8eY-bk-Z6g"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pos-Xe-lfm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6278" y="-592"/>
+        </scene>
+        <!--Shared Locations Map View Controller-->
+        <scene sceneID="eYs-JD-ya2">
+            <objects>
+                <viewController id="ENY-hk-8CC" customClass="SharedLocationsMapViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iPM-c3-ntQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="MXP-tU-YI0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Xjg-52-irc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="BJq-NI-3Pc">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VvO-V7-GPg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7141.6000000000004" y="-592.35382308845578"/>
         </scene>
         <!--Reauthenticate View Controller-->
         <scene sceneID="dd6-5Y-CMH">
@@ -630,11 +656,28 @@
             </objects>
             <point key="canvasLocation" x="3572" y="-592.35382308845578"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="Xbt-fD-vr5">
+            <objects>
+                <viewController id="Tqq-XC-Lw7" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vDv-rb-nnG"/>
+                        <viewControllerLayoutGuide type="bottom" id="KWx-hx-XZr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WEP-D9-awU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Km5-RA-VqM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="FbZ-EK-1jY"/>
         <segue reference="oHB-73-aMh"/>
-        <segue reference="oPy-Na-4ik"/>
         <segue reference="tX9-J2-yO8"/>
+        <segue reference="oPy-Na-4ik"/>
+        <segue reference="FbZ-EK-1jY"/>
     </inferredMetricsTieBreakers>
 </document>
