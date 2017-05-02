@@ -17,6 +17,7 @@ class SettingsTableViewController: UITableViewController {
 
     @IBOutlet var backButton: UIBarButtonItem!
     @IBOutlet var logoutButton: UITableViewCell!
+    @IBOutlet var deleteAccountButton: UITableViewCell!
     var handle: FIRAuthStateDidChangeListenerHandle?
     
     override func viewDidLoad() {
@@ -39,16 +40,28 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //indexPath data type has two values, section and row 
         //use a switch case statement to assign a function to each case/index number.
-        
-        let firebaseAuth = FIRAuth.auth()
-        
-        do {
-            try firebaseAuth?.signOut()
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
+        switch indexPath.row {
+        case 0:
+            print("no case yet")
+        case 1:
+            print("no case yet")
+        case 2:
+            let firebaseAuth = FIRAuth.auth()
+            
+            do {
+                try firebaseAuth?.signOut()
+            } catch let signOutError as NSError {
+                print ("Error signing out: %@", signOutError)
+            }
+            
+            performSegue(withIdentifier: "LogoutSegue", sender: logoutButton)
+        case 3:
+            performSegue(withIdentifier: "ReauthenticateSegue", sender: deleteAccountButton)
+        default:
+            ()
         }
         
-        performSegue(withIdentifier: "LogoutSegue", sender: logoutButton)
+        
 
     }
     

@@ -483,20 +483,17 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="Wh7-Cd-sly" kind="show" id="dny-1l-l33"/>
+                                            <segue destination="Wh7-Cd-sly" kind="show" identifier="ReauthenticateSegue" id="dny-1l-l33"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="CsW-Pa-AJx" id="pST-jP-beV"/>
-                            <outlet property="delegate" destination="CsW-Pa-AJx" id="YXb-Dt-aK1"/>
-                        </connections>
                     </tableView>
                     <connections>
                         <outlet property="backButton" destination="W83-YO-WSd" id="SGh-iT-0Zh"/>
-                        <outlet property="logoutButton" destination="FSE-LY-KjL" id="kQG-2p-axc"/>
+                        <outlet property="deleteAccountButton" destination="R4J-zv-9pA" id="BUl-Mx-Gdc"/>
+                        <outlet property="logoutButton" destination="FSE-LY-KjL" id="225-Sp-bBf"/>
                         <segue destination="8vQ-W8-wwu" kind="show" identifier="BackToFavorites" id="uuF-om-tct"/>
                         <segue destination="4fS-mw-GIs" kind="show" identifier="LogoutSegue" id="dfE-Na-D61"/>
                     </connections>
@@ -675,9 +672,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="oHB-73-aMh"/>
-        <segue reference="tX9-J2-yO8"/>
+        <segue reference="uuF-om-tct"/>
+        <segue reference="dfE-Na-D61"/>
+        <segue reference="dny-1l-l33"/>
         <segue reference="oPy-Na-4ik"/>
-        <segue reference="FbZ-EK-1jY"/>
     </inferredMetricsTieBreakers>
 </document>

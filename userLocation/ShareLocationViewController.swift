@@ -52,33 +52,12 @@ class ShareLocationViewController: UIViewController {
         
         registeredUserRef.queryOrderedByKey().observe(.value, with: { (snapshot) in
             
-//            if snapshot.exists() {
-//                
-//                //print (snapshot)
-//                let listOfEmails = snapshot.children
-//                
-//                var emailFound = false
-//                
-//                for snap in listOfEmails {
-//                    if let email = snap as? FIRDataSnapshot {
-//                        if let userEmail = email.value as? String {
-//                            print (userEmail)
-//                            print (self.emailToCheck)
-//                            if userEmail == self.emailToCheck {
-//                                self.displaySuccessAlertMessage(messageToDisplay: "This location will be shared with \(self.emailToCheck)")
-//                                emailFound = true
-//                            }
-//                        }
-//                    }
-//                }
-//                if !emailFound {
-//                    self.displayErrorAlertMessage(messageToDisplay: "This is not a registered email address. Please try again.")
-//                }
-//            }
             if snapshot.exists() {
                 
                 //print (snapshot)
                 let listOfEmails = snapshot.children
+                
+                var emailFound = false
                 
                 for snap in listOfEmails {
                     if let email = snap as? FIRDataSnapshot {
@@ -87,14 +66,16 @@ class ShareLocationViewController: UIViewController {
                             print (self.emailToCheck)
                             if userEmail == self.emailToCheck {
                                 self.displaySuccessAlertMessage(messageToDisplay: "This location will be shared with \(self.emailToCheck)")
-                                return
+                                emailFound = true
                             }
                         }
                     }
                 }
-                self.displayErrorAlertMessage(messageToDisplay: "This is not a registered email address. Please try again.")
+                if !emailFound {
+                    self.displayErrorAlertMessage(messageToDisplay: "This is not a registered email address. Please try again.")
+                }
             }
-
+            
         })
     }
     
