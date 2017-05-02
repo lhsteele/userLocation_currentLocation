@@ -10,6 +10,10 @@ import UIKit
 import FirebaseAuth
 
 class SettingsTableViewController: UITableViewController {
+    
+    var userEmail = String()
+    var userPassword = String()
+    var fireUserID = String()
 
     @IBOutlet var backButton: UIBarButtonItem!
     @IBOutlet var logoutButton: UITableViewCell!
@@ -47,4 +51,28 @@ class SettingsTableViewController: UITableViewController {
         performSegue(withIdentifier: "LogoutSegue", sender: logoutButton)
 
     }
+    
+    func updateEmail() {
+        let currentUser = FIRAuth.auth()?.currentUser
+        
+        currentUser?.updateEmail(userEmail, completion: { (error) in
+            if let error = error {
+                print (error)
+            } //else {
+                //currentUser?.updatePassword(self.userPassword, completion: { (error) in
+                    //if let error = error {
+                        
+                    //} else {
+                        print ("Sucess")
+                    //}
+                //})
+            //}
+        })
+    }
+    
+    /*
+    func changePassword() {
+        let credential = FIREmailPasswordAuthProvider.credential(withEmail: <#T##String#>, password: <#T##String#>)
+    }
+    */
 }

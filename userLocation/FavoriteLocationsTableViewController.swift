@@ -247,6 +247,12 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             let pointer = segue.destination as! SharedLocationsTableViewController
             pointer.fireUserID = self.fireUserID
         }
+        if (segue.identifier == "SettingsSegue") {
+            let pointer = segue.destination as! SettingsTableViewController
+            pointer.fireUserID = self.fireUserID
+            pointer.userEmail = self.userEmail
+            pointer.userPassword = self.userPassword
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
