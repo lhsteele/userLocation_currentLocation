@@ -19,8 +19,8 @@ class SharedLocationsMapViewController: UIViewController, CLLocationManagerDeleg
     var locationID = ""
     var fireUserID = String()
     var locationName = String()
-    var locationLat = Double()
-    var locationLong = Double()
+    var locationLat = CLLocationDegrees()
+    var locationLong = CLLocationDegrees()
     
     
     override func viewDidLoad() {
@@ -67,17 +67,20 @@ class SharedLocationsMapViewController: UIViewController, CLLocationManagerDeleg
                         if let pair = item2 as? FIRDataSnapshot {
                             if let location = pair.value as? String {
                                 sharedLocation = location
-                                print (sharedLocation)
+                                self.locationName = sharedLocation
                             } else {
                                 if let value = pair.value as? Double {
                                     let valueName = dbLocation.key
                                     
                                     if valueName == "Latitude" {
                                         sharedLat = value
-                                        print (sharedLat)
+                                        print ("SMV\(sharedLat)")
+                                        self.locationLat = sharedLat as CLLocationDegrees
+                                        print ("SMV\(self.locationLat)")
                                     } else {
                                         sharedLong = value
-                                        print (sharedLong)
+                                        print ("SMV\(sharedLong)")
+                                        self.locationLong = sharedLong as CLLocationDegrees
                                     }
                                 }
                             }
@@ -86,14 +89,12 @@ class SharedLocationsMapViewController: UIViewController, CLLocationManagerDeleg
                         
                     }
                 }
-                sharedLocation = self.locationName
-                sharedLat = self.locationLat
-                sharedLong = self.locationLong
+                var sharedLocToMap = CLLocationCoordinate2DMake(self.locationLat, self.locationLong)
+                print (sharedLocToMap)
             }
             
         })
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

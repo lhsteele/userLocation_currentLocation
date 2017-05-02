@@ -85,8 +85,10 @@ class SharedLocationsTableViewController: UITableViewController {
                                         
                                         if valueName == "Latitude" {
                                             updatedLat = value
+                                            print ("SLTV\(updatedLat)")
                                         } else {
                                             updatedLong = value
+                                            print ("SLTV\(updatedLong)")
                                         }
                                     }
                                 }
