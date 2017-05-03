@@ -62,35 +62,33 @@ class SharedLocationsMapViewController: UIViewController, CLLocationManagerDeleg
                 
                 if let dbLocation = item as? FIRDataSnapshot {
                     print (dbLocation)
-                    for item2 in dbLocation.children {
+                    for item in dbLocation.children {
                         
-                        if let pair = item2 as? FIRDataSnapshot {
+                        if let pair = item as? FIRDataSnapshot {
                             if let location = pair.value as? String {
                                 sharedLocation = location
-                                self.locationName = sharedLocation
                             } else {
                                 if let value = pair.value as? Double {
-                                    let valueName = dbLocation.key
+                                    let valueName = pair.key
                                     
                                     if valueName == "Latitude" {
+                                        
                                         sharedLat = value
-                                        print ("SMV\(sharedLat)")
                                         self.locationLat = sharedLat as CLLocationDegrees
-                                        print ("SMV\(self.locationLat)")
+                                        print (self.locationLat)
                                     } else {
-                                        sharedLong = value
-                                        print ("SMV\(sharedLong)")
+                                        sharedLong = value as CLLocationDegrees
                                         self.locationLong = sharedLong as CLLocationDegrees
                                     }
                                 }
                             }
 
                         }
-                        
                     }
+                    var sharedLocToMap = CLLocationCoordinate2D(latitude: self.locationLat, longitude: self.locationLong)
+                    print (sharedLocToMap)
                 }
-                var sharedLocToMap = CLLocationCoordinate2DMake(self.locationLat, self.locationLong)
-                print (sharedLocToMap)
+                
             }
             
         })
