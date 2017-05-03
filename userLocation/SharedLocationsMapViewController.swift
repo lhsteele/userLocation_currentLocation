@@ -12,7 +12,7 @@ import CoreLocation
 import Firebase
 
 
-class SharedLocationsMapViewController: UIViewController, CLLocationManagerDelegate {
+class SharedLocationsMapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
     
     var listOfSharedFavorites: [SavedFavorites] = []
@@ -21,35 +21,49 @@ class SharedLocationsMapViewController: UIViewController, CLLocationManagerDeleg
     var locationName = String()
     var locationLat = CLLocationDegrees()
     var locationLong = CLLocationDegrees()
+    var sharedLocToMap = CLLocationCoordinate2D()
+    var annotation = MKPointAnnotation()
     
+    @IBOutlet var sharedLocMap: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print (locationID)
         
         getLocationCoordinates()
+        
+        var span = MKCoordinateSpanMake(0.01, 0.01)
+        var region = MKCoordinateRegionMake(sharedLocToMap, span)
+        
+        sharedLocMap.setRegion(region, animated: true)
+        
+        var annotation = MKPointAnnotation()
+        
+        annotation.coordinate = sharedLocToMap
+        annotation.title = ""
+        
+        sharedLocMap.addAnnotation(annotation)
 
-        // Do any additional setup after loading the view.
     }
     
     /*
-    let manager = CLLocationManager
+    let manager = CLLocationManager()
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         manager.stopUpdatingLocation()
         
-        let location = locations[0]
+        //let location = locations[0]
         
         let span: MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
         
-        let sharedFavLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
+        let region: MKCoordinateRegion = MKCoordinateRegionMake(sharedLocToMap, span)
         
-        let region: MKCoordinateRegion = MKCoordinateRegionMake(sharedFavLocation, span)
+        sharedLocMap.setRegion(region, animated: true)
         
-        map.setRegion(region, animated: true)
-        
-        self.map.showsUserLocation = true
+        self.sharedLocMap.showsUserLocation = true
     }
     */
+   
+    
     
     func getLocationCoordinates() {
         let databaseRef = FIRDatabase.database().reference().child("Locations").queryOrderedByKey()
@@ -74,19 +88,19 @@ class SharedLocationsMapViewController: UIViewController, CLLocationManagerDeleg
                                     if valueName == "Latitude" {
                                         
                                         sharedLat = value
-                                        self.locationLat = sharedLat as CLLocationDegrees
+                                        self.locationLat = sharedLat //as CLLocationDegrees
                                         print (self.locationLat)
                                     } else {
                                         sharedLong = value as CLLocationDegrees
-                                        self.locationLong = sharedLong as CLLocationDegrees
+                                        self.locationLong = sharedLong //as CLLocationDegrees
                                     }
                                 }
                             }
 
                         }
                     }
-                    var sharedLocToMap = CLLocationCoordinate2D(latitude: self.locationLat, longitude: self.locationLong)
-                    print (sharedLocToMap)
+                    sharedLocToMap = (latitude: self.locationLat, longitude: self.locationLong)
+                    print (self.sharedLocToMap)
                 }
                 
             }
