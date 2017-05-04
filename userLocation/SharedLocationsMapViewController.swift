@@ -30,19 +30,27 @@ class SharedLocationsMapViewController: UIViewController, CLLocationManagerDeleg
         super.viewDidLoad()
         print (locationID)
         
-        getLocationCoordinates()
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         
-        var span = MKCoordinateSpanMake(0.01, 0.01)
-        var region = MKCoordinateRegionMake(sharedLocToMap, span)
+        getLocationCoordinates()
+        //showMap()
+        
+    }
+    
+    func showMap() {
+        let span = MKCoordinateSpanMake(0.5, 0.5)
+        let region = MKCoordinateRegionMake(sharedLocToMap, span)
         
         sharedLocMap.setRegion(region, animated: true)
         
-        var annotation = MKPointAnnotation()
+        let annotation = MKPointAnnotation()
         
         annotation.coordinate = sharedLocToMap
+        print (sharedLocToMap)
         annotation.title = ""
         
         sharedLocMap.addAnnotation(annotation)
+        sharedLocMap.showAnnotations([annotation], animated: true)
 
     }
     
@@ -75,7 +83,7 @@ class SharedLocationsMapViewController: UIViewController, CLLocationManagerDeleg
                 var sharedLong = Double()
                 
                 if let dbLocation = item as? FIRDataSnapshot {
-                    print (dbLocation)
+                    
                     for item in dbLocation.children {
                         
                         if let pair = item as? FIRDataSnapshot {
@@ -87,24 +95,24 @@ class SharedLocationsMapViewController: UIViewController, CLLocationManagerDeleg
                                     
                                     if valueName == "Latitude" {
                                         
-                                        sharedLat = value
-                                        self.locationLat = sharedLat //as CLLocationDegrees
-                                        print (self.locationLat)
+                                        sharedLat = value as CLLocationDegrees
+                                        self.locationLat = sharedLat as CLLocationDegrees
+                                        
                                     } else {
                                         sharedLong = value as CLLocationDegrees
-                                        self.locationLong = sharedLong //as CLLocationDegrees
+                                        self.locationLong = sharedLong as CLLocationDegrees
                                     }
                                 }
                             }
 
                         }
                     }
-                    sharedLocToMap = (latitude: self.locationLat, longitude: self.locationLong)
-                    print (self.sharedLocToMap)
+                    let sharedCoordinate = CLLocationCoordinate2DMake(self.locationLat, self.locationLong)
+                    self.sharedLocToMap = sharedCoordinate
                 }
                 
             }
-            
+            self.showMap()
         })
     }
     
