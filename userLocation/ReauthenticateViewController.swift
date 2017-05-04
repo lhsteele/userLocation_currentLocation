@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import Firebase
 
 class ReauthenticateViewController: UIViewController, UITextFieldDelegate {
     
@@ -48,6 +49,7 @@ class ReauthenticateViewController: UIViewController, UITextFieldDelegate {
                 self.displayAlertMessage(messageToDisplay: "Unable to delete account due to re-authentication failure. Please try again.")
             } else {
                 self.deleteAccount()
+                self.deleteFromDB()
             }
         }
     }
@@ -64,6 +66,20 @@ class ReauthenticateViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
+    
+    func deleteFromDB() {
+        if let userToDeleteID = FIRAuth.auth()?.currentUser?.uid {
+            let deleteRef = FIRDatabase.database().reference().child("Emails")
+            let deleteFromEmailNode = deleteRef.child(userToDeleteID)
+            deleteFromEmailNode.removeValue()
+
+            let deleteRef2 = FIRDatabase.database().reference().child("Users")
+            let deleteFromUsersNode = deleteRef2.child(userToDeleteID)
+            deleteFromUsersNode.removeValue()
+        }
+        
+    }
+    
     
     
     func displayAlertMessage(messageToDisplay: String) {

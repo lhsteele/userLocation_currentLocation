@@ -215,9 +215,11 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         locToDeleteRef.removeValue()
     }
     
+    /*
     func deleteFromSubscribedLocations() {
         
     }
+    */
     
     @IBAction func addNewLocation(_ sender: Any) {
         performSegue(withIdentifier: "MapViewSegue", sender: addLocationButton)
