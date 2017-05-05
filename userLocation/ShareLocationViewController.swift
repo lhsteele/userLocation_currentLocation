@@ -72,7 +72,7 @@ class ShareLocationViewController: UIViewController {
                     }
                 }
                 if !emailFound {
-                    self.displayErrorAlertMessage(messageToDisplay: "This is not a registered email address. Please try again.")
+                    self.displayErrorAlertMessage(messageToDisplay: "This is not a registered email address. Would you like to share the app?")
                 }
             }
             
@@ -116,7 +116,6 @@ class ShareLocationViewController: UIViewController {
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
             self.performSegue(withIdentifier: "BackToFavorites", sender: self)
         }
-        
         alertController.addAction(OKAction)
         
         self.present(alertController, animated: true, completion:nil)
@@ -125,10 +124,15 @@ class ShareLocationViewController: UIViewController {
     func displayErrorAlertMessage(messageToDisplay: String) {
         let alertController = UIAlertController(title: "Error", message: messageToDisplay, preferredStyle: .alert)
         
-        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (action:UIAlertAction!) in
         }
+        alertController.addAction(cancelAction)
         
-        alertController.addAction(OKAction)
+        
+        let shareAction = UIAlertAction(title: "Share", style: .default) { (action:UIAlertAction) in
+            print ("share button tapped")
+        }
+        alertController.addAction(shareAction)
         
         self.present(alertController, animated: true, completion:nil)
     }
