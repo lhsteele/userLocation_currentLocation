@@ -18,6 +18,7 @@ class SettingsTableViewController: UITableViewController {
     
 
     
+    @IBOutlet var changeEmailButton: UITableViewCell!
     @IBOutlet var updateEmailButton: UIView!
     @IBOutlet var backButton: UIBarButtonItem!
     @IBOutlet var logoutButton: UITableViewCell!
@@ -46,9 +47,10 @@ class SettingsTableViewController: UITableViewController {
         //use a switch case statement to assign a function to each case/index number.
         switch indexPath.row {
         case 0:
-            performSegue(withIdentifier: "ReauthToUpdateEmailSegue", sender: updateEmailButton)
+            print("not working")
+            //performSegue(withIdentifier: "ReauthToUpdateEmailSegue", sender: updateEmailButton)
         case 1:
-            print("no case yet")
+            performSegue(withIdentifier: "ReauthToChangePasswordSegue", sender: changeEmailButton)
         case 2:
             let firebaseAuth = FIRAuth.auth()
             

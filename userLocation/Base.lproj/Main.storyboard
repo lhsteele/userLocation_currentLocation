@@ -379,6 +379,65 @@
             </objects>
             <point key="canvasLocation" x="6277.6000000000004" y="170.46476761619192"/>
         </scene>
+        <!--Change Password Reauth View Controller-->
+        <scene sceneID="FK6-eg-gjx">
+            <objects>
+                <viewController id="iuV-tU-uEz" customClass="ChangePasswordReauthViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uhd-I0-qqT"/>
+                        <viewControllerLayoutGuide type="bottom" id="7K1-7E-zmP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="p9R-vO-xgQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="In order to change your password,                           re-authentication is required." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqO-GX-tg7">
+                                <rect key="frame" x="36" y="94" width="303" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ur2-cU-2eE">
+                                <rect key="frame" x="36" y="172" width="303" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qsP-ak-DBu">
+                                <rect key="frame" x="36" y="240" width="303" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tWw-L4-fVQ">
+                                <rect key="frame" x="163" y="318" width="49" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="reauthDeleteUser:" destination="Wh7-Cd-sly" eventType="touchUpInside" id="KkK-0a-Kag"/>
+                                    <action selector="reauthToChangePassword:" destination="iuV-tU-uEz" eventType="touchUpInside" id="4yF-D1-MhH"/>
+                                    <action selector="submitButtonTapped:" destination="4fS-mw-GIs" eventType="touchUpInside" id="GJt-a6-Xha"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <connections>
+                        <outlet property="reauthEmailTextField" destination="Ur2-cU-2eE" id="YRW-7l-NaV"/>
+                        <outlet property="reauthPasswordTextField" destination="qsP-ak-DBu" id="Ukq-gP-Xwx"/>
+                        <outlet property="submitButton" destination="tWw-L4-fVQ" id="REM-AR-dYB"/>
+                        <segue destination="fBl-MB-HM5" kind="show" identifier="NewPasswordSegue" id="1CM-3e-XFk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pyX-xC-hOw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3625" y="1834"/>
+        </scene>
         <!--Update Email Reauth View Controller-->
         <scene sceneID="CiL-7o-i1t">
             <objects>
@@ -436,6 +495,51 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4LO-i3-c11" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4510" y="1834"/>
+        </scene>
+        <!--New Password View Controller-->
+        <scene sceneID="e2f-JN-6cb">
+            <objects>
+                <viewController id="fBl-MB-HM5" customClass="NewPasswordViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="AgJ-8O-u3D"/>
+                        <viewControllerLayoutGuide type="bottom" id="tqb-mq-3CX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZfU-MG-Nmc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please enter your new password:" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ytL-uv-Jnl">
+                                <rect key="frame" x="36" y="90" width="303" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MXA-OV-8tF">
+                                <rect key="frame" x="36" y="168" width="303" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZOL-Hw-wbE">
+                                <rect key="frame" x="163" y="236" width="49" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="reauthDeleteUser:" destination="Wh7-Cd-sly" eventType="touchUpInside" id="p0X-fk-Yqj"/>
+                                    <action selector="submitButtonTapped:" destination="4fS-mw-GIs" eventType="touchUpInside" id="K6g-NW-dTB"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kB9-mH-1Ux" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3625" y="2561"/>
         </scene>
         <!--Update Email View Controller-->
         <scene sceneID="J9N-Zo-AMy">
@@ -639,6 +743,7 @@
                     </tableView>
                     <connections>
                         <outlet property="backButton" destination="W83-YO-WSd" id="SGh-iT-0Zh"/>
+                        <outlet property="changeEmailButton" destination="nl6-Vj-rxk" id="782-uM-tId"/>
                         <outlet property="deleteAccountButton" destination="R4J-zv-9pA" id="BUl-Mx-Gdc"/>
                         <outlet property="logoutButton" destination="FSE-LY-KjL" id="au1-eI-YXE"/>
                         <outlet property="updateEmailButton" destination="W2o-9f-HSg" id="eCg-Z1-EVX"/>
@@ -646,6 +751,7 @@
                         <segue destination="4fS-mw-GIs" kind="show" identifier="LogoutSegue" id="dfE-Na-D61"/>
                         <segue destination="Wh7-Cd-sly" kind="show" identifier="ReauthenticateSegue" id="cWw-05-A8f"/>
                         <segue destination="9XQ-9z-uUW" kind="show" identifier="ReauthToUpdateEmailSegue" id="Rdv-u3-8qS"/>
+                        <segue destination="iuV-tU-uEz" kind="show" identifier="ReauthToChangePasswordSegue" id="lgB-g7-04T"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kUf-Pu-fAU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -743,19 +849,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QU3-IV-h1n">
-                                <rect key="frame" x="16" y="189" width="343" height="30"/>
+                                <rect key="frame" x="16" y="145" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save a favorite location:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOp-Cc-tZR">
-                                <rect key="frame" x="16" y="98" width="343" height="21"/>
+                                <rect key="frame" x="16" y="54" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coordinates" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FEf-9O-2Ju">
-                                <rect key="frame" x="16" y="249" width="343" height="21"/>
+                                <rect key="frame" x="16" y="205" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
