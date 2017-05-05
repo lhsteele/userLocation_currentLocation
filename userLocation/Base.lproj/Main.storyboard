@@ -22,13 +22,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dg0-d2-acE">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dg0-d2-acE">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5vh-wZ-Dsu">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5vh-wZ-Dsu">
                                 <rect key="frame" x="98" y="550" width="179" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Create a Favorite Location"/>
                                 <connections>
                                     <action selector="saveUserFavorite:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MFY-HB-ogT"/>
@@ -36,6 +34,14 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="dg0-d2-acE" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="L0z-8l-D4f"/>
+                            <constraint firstItem="dg0-d2-acE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="VWy-BX-glQ"/>
+                            <constraint firstItem="dg0-d2-acE" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Xm5-Ae-6dQ"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="5vh-wZ-Dsu" secondAttribute="bottom" constant="87" id="ogb-R3-ReD"/>
+                            <constraint firstAttribute="trailing" secondItem="dg0-d2-acE" secondAttribute="trailing" id="s52-bP-rwL"/>
+                            <constraint firstItem="dg0-d2-acE" firstAttribute="centerX" secondItem="5vh-wZ-Dsu" secondAttribute="centerX" id="wEA-1C-5Ri"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ykX-CS-U2g"/>
                     <connections>
@@ -60,9 +66,11 @@
                             <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ei-Q0-6df">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ei-Q0-6df">
                                     <rect key="frame" x="144" y="7" width="86" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="86" id="nLj-s3-mk4"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <state key="normal" title="Add Location">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -73,6 +81,11 @@
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="9Ei-Q0-6df" firstAttribute="centerX" secondItem="xiK-CG-Ew7" secondAttribute="centerX" id="24S-lW-n4G"/>
+                                <constraint firstItem="9Ei-Q0-6df" firstAttribute="top" secondItem="xiK-CG-Ew7" secondAttribute="top" constant="7" id="DOG-lO-tMo"/>
+                                <constraint firstItem="9Ei-Q0-6df" firstAttribute="centerY" secondItem="xiK-CG-Ew7" secondAttribute="centerY" id="TkX-K6-7rA"/>
+                            </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="vIo-T0-sed" style="IBUITableViewCellStyleDefault" id="dji-Rc-pjm">
@@ -319,12 +332,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="BJq-NI-3Pc">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="BJq-NI-3Pc">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BJq-NI-3Pc" firstAttribute="top" secondItem="Xjg-52-irc" secondAttribute="top" id="BPR-iZ-Rsj"/>
+                            <constraint firstItem="BJq-NI-3Pc" firstAttribute="bottom" secondItem="MXP-tU-YI0" secondAttribute="top" id="OBo-gh-tgQ"/>
+                            <constraint firstItem="BJq-NI-3Pc" firstAttribute="leading" secondItem="Xjg-52-irc" secondAttribute="leading" id="g5t-w4-0cG"/>
+                            <constraint firstAttribute="trailing" secondItem="BJq-NI-3Pc" secondAttribute="trailing" id="tsR-j1-oY7"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="sharedLocMap" destination="BJq-NI-3Pc" id="Cww-EA-t2W"/>
@@ -592,30 +610,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QU3-IV-h1n">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QU3-IV-h1n">
                                 <rect key="frame" x="16" y="189" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Save a favorite location:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOp-Cc-tZR">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save a favorite location:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOp-Cc-tZR">
                                 <rect key="frame" x="16" y="98" width="343" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Coordinates" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FEf-9O-2Ju">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coordinates" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FEf-9O-2Ju">
                                 <rect key="frame" x="16" y="249" width="343" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tG5-RV-zxw">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tG5-RV-zxw">
                                 <rect key="frame" x="84" y="548" width="206" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Save Favorite"/>
                                 <connections>
                                     <action selector="saveFavorite:" destination="1fE-IW-njT" eventType="touchUpInside" id="aFr-jG-7nI"/>
@@ -623,6 +637,20 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KOp-Cc-tZR" firstAttribute="leading" secondItem="CWw-kd-Soz" secondAttribute="leadingMargin" id="AfO-gG-RFF"/>
+                            <constraint firstItem="FEf-9O-2Ju" firstAttribute="centerX" secondItem="tG5-RV-zxw" secondAttribute="centerX" id="DeW-ZB-yZ4"/>
+                            <constraint firstItem="KOp-Cc-tZR" firstAttribute="top" secondItem="tGL-wn-hl8" secondAttribute="bottom" constant="34" id="E2e-V9-3gs"/>
+                            <constraint firstItem="FEf-9O-2Ju" firstAttribute="top" secondItem="QU3-IV-h1n" secondAttribute="bottom" constant="30" id="WFd-d2-W8h"/>
+                            <constraint firstItem="KOp-Cc-tZR" firstAttribute="trailing" secondItem="QU3-IV-h1n" secondAttribute="trailing" id="dnm-CX-zZm"/>
+                            <constraint firstItem="tG5-RV-zxw" firstAttribute="leading" secondItem="CWw-kd-Soz" secondAttribute="leadingMargin" constant="68" id="h66-3A-pOO"/>
+                            <constraint firstItem="QU3-IV-h1n" firstAttribute="trailing" secondItem="FEf-9O-2Ju" secondAttribute="trailing" id="oUJ-Mp-ynt"/>
+                            <constraint firstItem="uxn-5g-1YL" firstAttribute="top" secondItem="tG5-RV-zxw" secondAttribute="bottom" constant="89" id="rJe-Vo-nun"/>
+                            <constraint firstItem="KOp-Cc-tZR" firstAttribute="leading" secondItem="QU3-IV-h1n" secondAttribute="leading" id="sCn-GQ-BjG"/>
+                            <constraint firstItem="QU3-IV-h1n" firstAttribute="top" secondItem="KOp-Cc-tZR" secondAttribute="bottom" constant="70" id="tS0-D2-yGf"/>
+                            <constraint firstItem="KOp-Cc-tZR" firstAttribute="trailing" secondItem="CWw-kd-Soz" secondAttribute="trailingMargin" id="vLS-qo-4ID"/>
+                            <constraint firstItem="QU3-IV-h1n" firstAttribute="leading" secondItem="FEf-9O-2Ju" secondAttribute="leading" id="zir-B0-Ibq"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="locationCoordinates" destination="FEf-9O-2Ju" id="kAY-Bl-KCK"/>
@@ -672,9 +700,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="oPy-Na-4ik"/>
-        <segue reference="GUW-PM-UeP"/>
         <segue reference="dfE-Na-D61"/>
-        <segue reference="cWw-05-A8f"/>
+        <segue reference="zct-xe-Nlu"/>
+        <segue reference="oPy-Na-4ik"/>
+        <segue reference="tX9-J2-yO8"/>
     </inferredMetricsTieBreakers>
 </document>
