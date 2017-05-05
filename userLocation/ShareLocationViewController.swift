@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseDatabase
 
-class ShareLocationViewController: UIViewController {
+class ShareLocationViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var shareLocEmailTextField: UITextField!
     @IBOutlet var shareLocSubmitButton: UIButton!
@@ -21,9 +21,9 @@ class ShareLocationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //print ("ShareLocVC\(locationToShare)")
-        
+        shareLocEmailTextField.delegate = self
+        //usernameTextField.tag = 2
+        shareLocEmailTextField.returnKeyType = UIReturnKeyType.done
 
         // Do any additional setup after loading the view.
     }
@@ -162,6 +162,19 @@ class ShareLocationViewController: UIViewController {
         }
         
         return  returnValue
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == self.shareLocEmailTextField {
+            self.shareLocEmailTextField.text = textField.text!
+            
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        shareLocEmailTextField.resignFirstResponder()
+        
+        return true
     }
 
 }
