@@ -131,6 +131,10 @@ class ShareLocationViewController: UIViewController {
         
         let shareAction = UIAlertAction(title: "Share", style: .default) { (action:UIAlertAction) in
             print ("share button tapped")
+            let activityVC = UIActivityViewController(activityItems: ["input app store address here?"], applicationActivities: nil)
+            activityVC.popoverPresentationController?.sourceView = self.view
+            
+            self.present(activityVC, animated: true, completion: nil)
         }
         alertController.addAction(shareAction)
         
