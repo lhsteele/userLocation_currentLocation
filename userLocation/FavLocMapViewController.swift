@@ -1,67 +1,65 @@
 //
-//  SharedLocationsMapViewController.swift
+//  FavLocMapViewController.swift
 //  userLocation
 //
-//  Created by Lisa Steele on 5/2/17.
+//  Created by Lisa Steele on 5/5/17.
 //  Copyright © 2017 Lisa Steele. All rights reserved.
 //
 
 import UIKit
 import MapKit
-import CoreLocation
 import Firebase
 
-
-class SharedLocationsMapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
-
+class FavLocMapViewController: UIViewController {
     
-    var listOfSharedFavorites: [SavedFavorites] = []
     var locationID = ""
-    var fireUserID = String()
-    var locationName = String()
     var locationLat = CLLocationDegrees()
     var locationLong = CLLocationDegrees()
-    var sharedLocToMap = CLLocationCoordinate2D()
+    var favLocToMap = CLLocationCoordinate2D()
     var annotation = MKPointAnnotation()
-    
-    @IBOutlet var sharedLocMap: MKMapView!
+
+    @IBOutlet var favLocMap: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print (locationID)
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
         getLocationCoordinates()
-        
+
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
     func showMap() {
         let span = MKCoordinateSpanMake(0.5, 0.5)
-        let region = MKCoordinateRegionMake(sharedLocToMap, span)
+        let region = MKCoordinateRegionMake(favLocToMap, span)
         
-        sharedLocMap.setRegion(region, animated: true)
+        favLocMap.setRegion(region, animated: true)
         
         let annotation = MKPointAnnotation()
         
-        annotation.coordinate = sharedLocToMap
-        print (sharedLocToMap)
+        annotation.coordinate = favLocToMap
+        print (favLocToMap)
         annotation.title = ""
         
-        sharedLocMap.addAnnotation(annotation)
-        sharedLocMap.showAnnotations([annotation], animated: true)
-
+        favLocMap.addAnnotation(annotation)
+        favLocMap.showAnnotations([annotation], animated: true)
+        
     }
     
-        
+    
     func getLocationCoordinates() {
         let databaseRef = FIRDatabase.database().reference().child("Locations").queryOrderedByKey()
         
         _ = databaseRef.queryEqual(toValue: locationID).observe(.value, with: { (snapshot) in
             for item in snapshot.children {
-                var sharedLocation = ""
-                var sharedLat = Double()
-                var sharedLong = Double()
+                var favLocation = ""
+                var favLat = Double()
+                var favLong = Double()
                 
                 if let dbLocation = item as? FIRDataSnapshot {
                     
@@ -69,39 +67,33 @@ class SharedLocationsMapViewController: UIViewController, CLLocationManagerDeleg
                         
                         if let pair = item as? FIRDataSnapshot {
                             if let location = pair.value as? String {
-                                sharedLocation = location
+                                favLocation = location
                             } else {
                                 if let value = pair.value as? Double {
                                     let valueName = pair.key
                                     
                                     if valueName == "Latitude" {
                                         
-                                        sharedLat = value as CLLocationDegrees
-                                        self.locationLat = sharedLat as CLLocationDegrees
+                                        favLat = value as CLLocationDegrees
+                                        self.locationLat = favLat as CLLocationDegrees
                                         
                                     } else {
-                                        sharedLong = value as CLLocationDegrees
-                                        self.locationLong = sharedLong as CLLocationDegrees
+                                        favLong = value as CLLocationDegrees
+                                        self.locationLong = favLong as CLLocationDegrees
                                     }
                                 }
                             }
-
+                            
                         }
                     }
-                    let sharedCoordinate = CLLocationCoordinate2DMake(self.locationLat, self.locationLong)
-                    self.sharedLocToMap = sharedCoordinate
+                    let favCoordinate = CLLocationCoordinate2DMake(self.locationLat, self.locationLong)
+                    self.favLocToMap = favCoordinate
                 }
                 
             }
             self.showMap()
         })
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 
-
+    
 }

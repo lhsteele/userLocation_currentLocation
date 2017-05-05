@@ -221,6 +221,14 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     }
     */
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let indexPath = tableView.indexPathForSelectedRow!
+        let currentCell = tableView.cellForRow(at: indexPath)! as UITableViewCell
+        
+        performSegue(withIdentifier: "FavLocMapViewSegue", sender: self)
+        
+    }
+    
     @IBAction func addNewLocation(_ sender: Any) {
         performSegue(withIdentifier: "MapViewSegue", sender: addLocationButton)
         print (fireUserID)
@@ -254,6 +262,10 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             pointer.fireUserID = self.fireUserID
             pointer.userEmail = self.userEmail
             pointer.userPassword = self.userPassword
+        }
+        if (segue.identifier == "FavLocMapViewSegue") {
+            let pointer = segue.destination as! FavLocMapViewController
+            pointer.locationID = self.locationID
         }
     }
     

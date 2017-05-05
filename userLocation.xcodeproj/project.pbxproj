@@ -18,6 +18,7 @@
 		EF38216A1E2415DF00032F42 /* userLocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3821691E2415DF00032F42 /* userLocationTests.swift */; };
 		EF3821751E2415DF00032F42 /* userLocationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3821741E2415DF00032F42 /* userLocationUITests.swift */; };
 		EF3821841E24162A00032F42 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3821831E24162A00032F42 /* CoreLocation.framework */; };
+		EF63100B1EBCEFE300A7CC84 /* FavLocMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF63100A1EBCEFE300A7CC84 /* FavLocMapViewController.swift */; };
 		EF72ABD41EB7CFEC003386CB /* SharedLocationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF72ABD31EB7CFEC003386CB /* SharedLocationsTableViewController.swift */; };
 		EF7DCC491EB29AD400D70194 /* ShareLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7DCC481EB29AD400D70194 /* ShareLocationViewController.swift */; };
 		EF8765141E9454EE0078E3E5 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8765131E9454EE0078E3E5 /* WelcomeViewController.swift */; };
@@ -67,6 +68,7 @@
 		EF3821761E2415DF00032F42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF3821831E24162A00032F42 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		EF5A9AED1E51618500650937 /* userLocation.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = userLocation.entitlements; sourceTree = "<group>"; };
+		EF63100A1EBCEFE300A7CC84 /* FavLocMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavLocMapViewController.swift; sourceTree = "<group>"; };
 		EF72ABD31EB7CFEC003386CB /* SharedLocationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedLocationsTableViewController.swift; sourceTree = "<group>"; };
 		EF7DCC481EB29AD400D70194 /* ShareLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareLocationViewController.swift; sourceTree = "<group>"; };
 		EF8765131E9454EE0078E3E5 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				EF8765131E9454EE0078E3E5 /* WelcomeViewController.swift */,
 				EFF6AB0C1E8EF2FF00366DB2 /* LoginViewController.swift */,
 				EFDE1A581E3A9403002D1589 /* FavoriteLocationsTableViewController.swift */,
+				EF63100A1EBCEFE300A7CC84 /* FavLocMapViewController.swift */,
 				EF72ABD31EB7CFEC003386CB /* SharedLocationsTableViewController.swift */,
 				EFC5267E1EB8FF61006E33AD /* SharedLocationsMapViewController.swift */,
 				EF3821561E2415DF00032F42 /* MapView Controller.swift */,
@@ -382,6 +385,7 @@
 			files = (
 				EF72ABD41EB7CFEC003386CB /* SharedLocationsTableViewController.swift in Sources */,
 				EFC5267F1EB8FF61006E33AD /* SharedLocationsMapViewController.swift in Sources */,
+				EF63100B1EBCEFE300A7CC84 /* FavLocMapViewController.swift in Sources */,
 				EFF6AB0D1E8EF2FF00366DB2 /* LoginViewController.swift in Sources */,
 				EF8765141E9454EE0078E3E5 /* WelcomeViewController.swift in Sources */,
 				EF0A2B481EA013CE006709C3 /* ReauthenticateViewController.swift in Sources */,
@@ -552,7 +556,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "XC-com-lisahsteele-userLocation";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -571,7 +575,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "XC-com-lisahsteele-userLocation";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
