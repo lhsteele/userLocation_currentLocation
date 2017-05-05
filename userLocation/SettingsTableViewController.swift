@@ -18,8 +18,9 @@ class SettingsTableViewController: UITableViewController {
     
 
     
-    @IBOutlet var changeEmailButton: UITableViewCell!
-    @IBOutlet var updateEmailButton: UIView!
+    
+    @IBOutlet var updateEmailButton: UITableViewCell!
+    @IBOutlet var changePasswordButton: UITableViewCell!
     @IBOutlet var backButton: UIBarButtonItem!
     @IBOutlet var logoutButton: UITableViewCell!
     @IBOutlet var deleteAccountButton: UITableViewCell!
@@ -48,9 +49,9 @@ class SettingsTableViewController: UITableViewController {
         switch indexPath.row {
         case 0:
             print("not working")
-            //performSegue(withIdentifier: "ReauthToUpdateEmailSegue", sender: updateEmailButton)
+            performSegue(withIdentifier: "ReauthToUpdateEmailSegue", sender: updateEmailButton)
         case 1:
-            performSegue(withIdentifier: "ReauthToChangePasswordSegue", sender: changeEmailButton)
+            performSegue(withIdentifier: "ReauthToChangePasswordSegue", sender: changePasswordButton)
         case 2:
             let firebaseAuth = FIRAuth.auth()
             

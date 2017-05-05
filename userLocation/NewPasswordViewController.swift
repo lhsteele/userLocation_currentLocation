@@ -18,7 +18,10 @@ class NewPasswordViewController: UIViewController, UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        newPasswordTextField.delegate = self
+        newPasswordTextField.returnKeyType = UIReturnKeyType.done
     }
 
     override func didReceiveMemoryWarning() {

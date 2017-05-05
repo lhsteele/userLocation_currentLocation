@@ -749,10 +749,10 @@
                     </tableView>
                     <connections>
                         <outlet property="backButton" destination="W83-YO-WSd" id="SGh-iT-0Zh"/>
-                        <outlet property="changeEmailButton" destination="nl6-Vj-rxk" id="782-uM-tId"/>
+                        <outlet property="changePasswordButton" destination="nl6-Vj-rxk" id="YZv-CE-vXK"/>
                         <outlet property="deleteAccountButton" destination="R4J-zv-9pA" id="BUl-Mx-Gdc"/>
                         <outlet property="logoutButton" destination="FSE-LY-KjL" id="au1-eI-YXE"/>
-                        <outlet property="updateEmailButton" destination="W2o-9f-HSg" id="eCg-Z1-EVX"/>
+                        <outlet property="updateEmailButton" destination="s3D-he-ar0" id="Tz5-xK-0hb"/>
                         <segue destination="8vQ-W8-wwu" kind="show" identifier="BackToFavorites" id="uuF-om-tct"/>
                         <segue destination="4fS-mw-GIs" kind="show" identifier="LogoutSegue" id="dfE-Na-D61"/>
                         <segue destination="Wh7-Cd-sly" kind="show" identifier="ReauthenticateSegue" id="cWw-05-A8f"/>
@@ -944,7 +944,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="R4Y-j0-YUS"/>
+        <segue reference="dfE-Na-D61"/>
         <segue reference="uuF-om-tct"/>
         <segue reference="cWw-05-A8f"/>
     </inferredMetricsTieBreakers>

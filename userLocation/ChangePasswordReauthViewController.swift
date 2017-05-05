@@ -19,6 +19,8 @@ class ChangePasswordReauthViewController: UIViewController, UITextFieldDelegate 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
 
         reauthEmailTextField.delegate = self
         reauthEmailTextField.returnKeyType = UIReturnKeyType.done
