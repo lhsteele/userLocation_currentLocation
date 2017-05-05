@@ -531,11 +531,17 @@
                                 <connections>
                                     <action selector="reauthDeleteUser:" destination="Wh7-Cd-sly" eventType="touchUpInside" id="p0X-fk-Yqj"/>
                                     <action selector="submitButtonTapped:" destination="4fS-mw-GIs" eventType="touchUpInside" id="K6g-NW-dTB"/>
+                                    <action selector="submitToChangePassword:" destination="fBl-MB-HM5" eventType="touchUpInside" id="Ib8-Wc-ewp"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="newPasswordTextField" destination="MXA-OV-8tF" id="H5c-nV-HO2"/>
+                        <outlet property="submitButton" destination="ZOL-Hw-wbE" id="usO-Ta-EVJ"/>
+                        <segue destination="4fS-mw-GIs" kind="show" identifier="PasswordChangedLoginSegue" id="R4Y-j0-YUS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kB9-mH-1Ux" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -938,7 +944,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="dfE-Na-D61"/>
+        <segue reference="R4Y-j0-YUS"/>
         <segue reference="uuF-om-tct"/>
         <segue reference="cWw-05-A8f"/>
     </inferredMetricsTieBreakers>
