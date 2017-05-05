@@ -15,6 +15,10 @@ class SettingsTableViewController: UITableViewController {
     var userPassword = String()
     var fireUserID = String()
 
+    
+
+    
+    @IBOutlet var updateEmailButton: UIView!
     @IBOutlet var backButton: UIBarButtonItem!
     @IBOutlet var logoutButton: UITableViewCell!
     @IBOutlet var deleteAccountButton: UITableViewCell!
@@ -42,7 +46,7 @@ class SettingsTableViewController: UITableViewController {
         //use a switch case statement to assign a function to each case/index number.
         switch indexPath.row {
         case 0:
-            print("no case yet")
+            performSegue(withIdentifier: "ReauthToUpdateEmailSegue", sender: updateEmailButton)
         case 1:
             print("no case yet")
         case 2:
@@ -65,27 +69,4 @@ class SettingsTableViewController: UITableViewController {
 
     }
     
-    func updateEmail() {
-        let currentUser = FIRAuth.auth()?.currentUser
-        
-        currentUser?.updateEmail(userEmail, completion: { (error) in
-            if let error = error {
-                print (error)
-            } //else {
-                //currentUser?.updatePassword(self.userPassword, completion: { (error) in
-                    //if let error = error {
-                        
-                    //} else {
-                        print ("Sucess")
-                    //}
-                //})
-            //}
-        })
-    }
-    
-    /*
-    func changePassword() {
-        let credential = FIREmailPasswordAuthProvider.credential(withEmail: <#T##String#>, password: <#T##String#>)
-    }
-    */
 }
