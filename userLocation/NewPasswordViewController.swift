@@ -37,7 +37,7 @@ class NewPasswordViewController: UIViewController, UITextFieldDelegate{
     func changePassword() {
         let user = FIRAuth.auth()?.currentUser
         user?.updatePassword(newPasswordTextField.text!, completion: { (error) in
-            if let error = error {
+            if error != nil {
                 self.displayAlertMessage(messageToDisplay: "There has been an error updating your password. Please try again.")
             } else {
                 self.displaySuccessAlertMessage(messageToDisplay: "Your password has been successfully changed. Please login with your new password.")

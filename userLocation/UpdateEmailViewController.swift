@@ -7,13 +7,22 @@
 //
 
 import UIKit
+import Firebase
 
-class UpdateEmailViewController: UIViewController {
+class UpdateEmailViewController: UIViewController, UITextFieldDelegate {
+    
+    
+    @IBOutlet var newEmailTextField: UITextField!
+    @IBOutlet var submitButton: UIButton!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        newEmailTextField.delegate = self
+        newEmailTextField.returnKeyType = UIReturnKeyType.done
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,15 +30,47 @@ class UpdateEmailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func submitToUpdateEmail(_ sender: Any) {
+        updateEmail()
     }
-    */
+    
+    func updateEmail() {
+        let user = FIRAuth.auth()?.currentUser
+        user?.updateEmail(newEmailTextField.text!, completion: { (error) in
+            if error != nil {
+                self.displayAlertMessage(messageToDisplay: "There has been an error changing your email address. Please try again.")
+            } else {
+                self.displaySucessAlertMessage(messageToDisplay: "Your email has been successfully updated. Please login with your new email address.")
+            }
+        })
+    }
+    
+    func displayAlertMessage(messageToDisplay: String) {
+        let alertController = UIAlertController(title: "Error", message: messageToDisplay, preferredStyle: .alert)
+        
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action: UIAlertAction!) in
+        }
+        
+        alertController.addAction(OKAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func displaySucessAlertMessage(messageToDisplay: String) {
+        let alertController = UIAlertController(title: "Success", message: messageToDisplay, preferredStyle: .alert)
+        
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action: UIAlertAction!) in
+            self.performSegue(withIdentifier: "emailUpdatedReturnToLoginSegue", sender: self)
+        }
+        
+        alertController.addAction(OKAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        newEmailTextField.resignFirstResponder()
+        return true
+    }
 
 }
