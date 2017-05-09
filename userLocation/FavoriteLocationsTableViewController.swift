@@ -50,6 +50,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         addLocationButton.layer.borderWidth = 3
         addLocationButton.layer.cornerRadius = 10
         
+        
         loadFavorites()
     }
     
