@@ -15,10 +15,7 @@ class SettingsTableViewController: UITableViewController {
     var userPassword = String()
     var fireUserID = String()
 
-    
 
-    
-    
     @IBOutlet var updateEmailButton: UITableViewCell!
     @IBOutlet var changePasswordButton: UITableViewCell!
     @IBOutlet var backButton: UIBarButtonItem!
