@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class UpdateEmailReauthViewController: UIViewController {
+class UpdateEmailReauthViewController: UIViewController, UITextFieldDelegate {
 
    
     @IBOutlet var reauthToUpdatePasswordTextField: UITextField!
@@ -19,8 +19,14 @@ class UpdateEmailReauthViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        reauthToUpdateEmailTextField.delegate = self
+        reauthToUpdateEmailTextField.returnKeyType = UIReturnKeyType.done
+        
+        reauthToUpdatePasswordTextField.delegate = self
+        reauthToUpdatePasswordTextField.returnKeyType = UIReturnKeyType.done
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,15 +34,22 @@ class UpdateEmailReauthViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func reauthToUpdateEmail(_ sender: Any) {
+        reauthenticateToUpdateEmail()
+    }
+    
+    
+    
     func reauthenticateToUpdateEmail() {
         let user = FIRAuth.auth()?.currentUser
-        var credential = FIREmailPasswordAuthProvider.credential(withEmail: reauthToUpdateEmailTextField.text!, password: reauthToUpdatePasswordTextField.text!)
+        let credential = FIREmailPasswordAuthProvider.credential(withEmail: reauthToUpdateEmailTextField.text!, password: reauthToUpdatePasswordTextField.text!)
         
         user?.reauthenticate(with: credential) { error in
-            if let error = error {
+            if error != nil {
                 self.displayAlertMessage(messageToDisplay: "Re-authentication failure. Please check credentials and try again.")
             } else {
-                self.performSegue(withIdentifier: "UpdateEmailSeuge", sender: self.submitButton)
+                self.performSegue(withIdentifier: "UpdateEmailSegue", sender: self.submitButton)
+                
             }
         }
     }
@@ -50,6 +63,12 @@ class UpdateEmailReauthViewController: UIViewController {
         alertController.addAction(OKAction)
         
         self.present(alertController, animated: true, completion:nil)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        reauthToUpdateEmailTextField.resignFirstResponder()
+        reauthToUpdatePasswordTextField.resignFirstResponder()
+        return true
     }
 
 }

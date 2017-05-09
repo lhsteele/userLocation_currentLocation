@@ -478,6 +478,7 @@
                                 </state>
                                 <connections>
                                     <action selector="reauthDeleteUser:" destination="Wh7-Cd-sly" eventType="touchUpInside" id="WDz-mv-njJ"/>
+                                    <action selector="reauthToUpdateEmail:" destination="9XQ-9z-uUW" eventType="touchUpInside" id="zBO-oR-RSj"/>
                                     <action selector="submitButtonTapped:" destination="4fS-mw-GIs" eventType="touchUpInside" id="b12-Gs-y2p"/>
                                 </connections>
                             </button>
