@@ -11,8 +11,9 @@ import Firebase
 
 class UpdateEmailReauthViewController: UIViewController {
 
-    @IBOutlet var reauthToUpdateEmailTextField: UITextField!
+   
     @IBOutlet var reauthToUpdatePasswordTextField: UITextField!
+    @IBOutlet var reauthToUpdateEmailTextField: UITextField!
     @IBOutlet var submitButton: UIButton!
     
     
