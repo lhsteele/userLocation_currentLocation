@@ -111,6 +111,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.userLogin()
                 self.getUserInfo()
                 self.saveEmail()
+                self.saveUsername()
                 self.performSegue(withIdentifier: "FavoriteLocationsTableSegue", sender: self.submitButton)
             }
             
@@ -196,23 +197,34 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             let email = user.email!
             fireUserID = uid
             userEmail = email
+            username = usernameTextField.text!
             userPassword = passwordTextField.text!
             
-            if let displayName = user.displayName {
-                username = displayName
-            }
-           
         }
     }
     
     func saveEmail() {
         let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
-        print ("saveEmailRun")
+        //print ("saveEmailRun")
         if let userID = FIRAuth.auth()?.currentUser?.uid {
-            print (userID)
+            //print (userID)
             let value = [userID : userEmail]
-            print (value)
+            //print (value)
             ref.child("Emails").updateChildValues(value) { (err, ref) in
+                
+                if err != nil {
+                    return
+                }
+            }
+        }
+    }
+    
+    func saveUsername() {
+        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+        if let userID = FIRAuth.auth()?.currentUser?.uid {
+            print (username)
+            let value = [userID : username]
+            ref.child("Usernames").updateChildValues(value) { (err, ref) in
                 
                 if err != nil {
                     return

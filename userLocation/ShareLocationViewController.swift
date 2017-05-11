@@ -109,6 +109,20 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
         })
     }
     
+    /*
+    func findEmailsUsername() {
+        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+        ref.child("Emails")
+    }
+ 
+    
+    func saveSubscribedUserToLoc() {
+        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+        let saveRef = ref.child("SubscribedUsers").child(locationToShare)
+        let updates = [sharedEmailsUserID : ]
+        saveRef.updateChildValues(updates)
+    }
+    */
         
     func displaySuccessAlertMessage(messageToDisplay: String) {
         let alertController = UIAlertController(title: "Success", message: messageToDisplay, preferredStyle: .alert)
