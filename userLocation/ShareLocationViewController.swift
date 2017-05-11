@@ -18,6 +18,7 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
     var locationToShare = String()
     var fireUserID = String()
     var sharedEmailsUserID = String()
+    var username = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,7 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
     @IBAction func shareLocation(_ sender: Any) {
         emailToCheck = shareLocEmailTextField.text!
         findEmailsUserID()
+        findEmailsUsername()
         
         let validEmail = isEmailValid(emailAddressString: emailToCheck)
         
@@ -109,20 +111,39 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
         })
     }
     
-    /*
+    
     func findEmailsUsername() {
         let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
-        ref.child("Emails")
+        ref.child("Usernames").queryOrderedByKey().observe(.value, with: { (snapshot) in
+            if snapshot.exists() {
+                
+                let listOfUserIDs = snapshot.children
+                
+                for snap in listOfUserIDs {
+                    if let displayName = snap as? FIRDataSnapshot {
+                        
+                        if let userID = displayName.key as? String {
+                            if userID == self.emailToCheck {
+                                let username = displayName.value as? String
+                                self.saveSubscribedUserToLoc()
+                                return
+                            }
+                        }
+                    }
+                    
+                }
+            }
+        })
     }
  
     
     func saveSubscribedUserToLoc() {
         let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
         let saveRef = ref.child("SubscribedUsers").child(locationToShare)
-        let updates = [sharedEmailsUserID : ]
+        let updates = [sharedEmailsUserID : username]
         saveRef.updateChildValues(updates)
     }
-    */
+    
         
     func displaySuccessAlertMessage(messageToDisplay: String) {
         let alertController = UIAlertController(title: "Success", message: messageToDisplay, preferredStyle: .alert)
