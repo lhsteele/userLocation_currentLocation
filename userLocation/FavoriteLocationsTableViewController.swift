@@ -178,6 +178,10 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         
         share.backgroundColor = UIColor.darkGray
         
+        let startJourney = UITableViewRowAction(style: .normal, title: "Start Journey") { (action, indexPath) in
+            self.performSegue(withIdentifier: "MapViewSegue", sender: Any.self)
+        }
+        
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             
                 guard let uid = FIRAuth.auth()?.currentUser?.uid else {
@@ -205,7 +209,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                 
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
-        return [share, delete]
+        return [share, startJourney, delete]
     }
     
     
