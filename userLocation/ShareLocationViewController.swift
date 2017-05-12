@@ -44,7 +44,7 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
         
         
         if validEmail {
-            print ("validEmail")
+            //print ("validEmail")
         } else {
             displayErrorAlertMessage(messageToDisplay: "This email address is invalid or already in use.")
             return
@@ -64,8 +64,8 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
                 for snap in listOfEmails {
                     if let email = snap as? FIRDataSnapshot {
                         if let userEmail = email.value as? String {
-                            print (userEmail)
-                            print (self.emailToCheck)
+                            //print (userEmail)
+                            //print (self.emailToCheck)
                             if userEmail == self.emailToCheck {
                                 self.displaySuccessAlertMessage(messageToDisplay: "This location will be shared with \(self.emailToCheck)")
                                 emailFound = true
@@ -123,26 +123,36 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
                     if let displayName = snap as? FIRDataSnapshot {
                         
                         if let userID = displayName.key as? String {
-                            if userID == self.emailToCheck {
-                                let username = displayName.value as? String
-                                self.saveSubscribedUserToLoc()
-                                return
+                            print (userID)
+                            if userID == self.sharedEmailsUserID {
+                                if let username = displayName.value as? String {
+                                    print (username)
+                                    let saveRef = ref.child("SubscribedUsers").child(self.locationToShare)
+                                    let updates = [username : self.sharedEmailsUserID]
+                                    saveRef.updateChildValues(updates)
+                                    return
+                                }
+                                
                             }
                         }
                     }
                     
                 }
+                
             }
         })
     }
  
-    
+    /*
+    I tried putting the below function inside the innermost if let bracket (where I find the username), and also further down the chain - however, it doesn't recognize the username variable this way. It's an empty variable. I don't think the way I've done it is the best way to do it, and also not how I did it for the previous findEmailsUserID function. Why doesn't this work here?
     func saveSubscribedUserToLoc() {
+        print ("username\(username)")
         let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
         let saveRef = ref.child("SubscribedUsers").child(locationToShare)
-        let updates = [sharedEmailsUserID : username]
+        let updates = [username : sharedEmailsUserID]
         saveRef.updateChildValues(updates)
     }
+    */
     
         
     func displaySuccessAlertMessage(messageToDisplay: String) {
