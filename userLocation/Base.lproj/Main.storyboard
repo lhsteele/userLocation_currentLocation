@@ -137,6 +137,7 @@
                         <segue destination="fbu-6W-fHY" kind="show" identifier="ShareLocationSegue" id="X6m-dw-UvP"/>
                         <segue destination="awe-kW-kFK" kind="show" identifier="SharedLocationsSegue" id="WDn-RK-9jb"/>
                         <segue destination="Krg-GJ-ehI" kind="show" identifier="FavLocMapViewSegue" id="gq1-7V-UZe"/>
+                        <segue destination="b21-sT-Dqv" kind="show" identifier="StartJourneySegue" id="Yrl-wJ-WI2"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pX4-EA-J4z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -377,6 +378,33 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zjs-Rv-uqn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6277.6000000000004" y="170.46476761619192"/>
+        </scene>
+        <!--Start Journey Map View Controller-->
+        <scene sceneID="EF5-Yf-TZU">
+            <objects>
+                <viewController id="b21-sT-Dqv" customClass="StartJourneyMapViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dgh-cC-azB"/>
+                        <viewControllerLayoutGuide type="bottom" id="87d-Tm-ner"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SBC-oD-hhA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="YIX-mz-2Bj">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="startAJourneyMap" destination="YIX-mz-2Bj" id="XQ0-2y-pin"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Y9-on-4IJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7141.6000000000004" y="169.56521739130437"/>
         </scene>
         <!--Change Password Reauth View Controller-->
         <scene sceneID="FK6-eg-gjx">

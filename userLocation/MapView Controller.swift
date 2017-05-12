@@ -65,7 +65,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         manager.requestWhenInUseAuthorization()        
         manager.startUpdatingLocation()
         
-        displayShareAlertMessage(messageToDisplay: "Would you like to share this journey?")
         
         print ("MapView\(fireUserID)")
      
@@ -99,10 +98,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             pointer.fireUserID = self.fireUserID
         }
     }
-    
-    func showSharedFavLocation() {
-        
-    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
@@ -113,24 +109,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         FIRAuth.auth()?.removeStateDidChangeListener(handle!)
     }
-    
-    func displayShareAlertMessage(messageToDisplay: String) {
-        let alertController = UIAlertController(title: "Share Journey?", message: messageToDisplay, preferredStyle: .alert)
-        
-        let yesAction = UIAlertAction(title: "Yes", style: .default) { (action:UIAlertAction!) in
-            
-        }
-        
-        let noAction = UIAlertAction(title: "No", style: .default) { (action:UIAlertAction!) in
-        }
-        
-        alertController.addAction(yesAction)
-        alertController.addAction(noAction)
-        
-        self.present(alertController, animated: true, completion:nil)
-    }
-
-
     
 }
 

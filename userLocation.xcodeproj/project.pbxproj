@@ -32,6 +32,7 @@
 		EFF6AB0D1E8EF2FF00366DB2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF6AB0C1E8EF2FF00366DB2 /* LoginViewController.swift */; };
 		EFF6AB111E8F5F4F00366DB2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EFF6AB101E8F5F4F00366DB2 /* GoogleService-Info.plist */; };
 		EFFB04E31E2E8BD40071D961 /* SaveLocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFB04E21E2E8BD40071D961 /* SaveLocationDetailViewController.swift */; };
+		EFFD9AB41EC56B6900B4B384 /* StartJourneyMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFD9AB31EC56B6900B4B384 /* StartJourneyMapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,7 @@
 		EFF6AB0C1E8EF2FF00366DB2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EFF6AB101E8F5F4F00366DB2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EFFB04E21E2E8BD40071D961 /* SaveLocationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveLocationDetailViewController.swift; sourceTree = "<group>"; };
+		EFFD9AB31EC56B6900B4B384 /* StartJourneyMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartJourneyMapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 				EF72ABD31EB7CFEC003386CB /* SharedLocationsTableViewController.swift */,
 				EFC5267E1EB8FF61006E33AD /* SharedLocationsMapViewController.swift */,
 				EF3821561E2415DF00032F42 /* MapView Controller.swift */,
+				EFFD9AB31EC56B6900B4B384 /* StartJourneyMapViewController.swift */,
 				EFFB04E21E2E8BD40071D961 /* SaveLocationDetailViewController.swift */,
 				EF0A2B471EA013CE006709C3 /* ReauthenticateViewController.swift */,
 				EF0ECD141EA175D200902441 /* SettingsTableViewController.swift */,
@@ -411,6 +414,7 @@
 				EFDE1A591E3A9403002D1589 /* FavoriteLocationsTableViewController.swift in Sources */,
 				EF7DCC491EB29AD400D70194 /* ShareLocationViewController.swift in Sources */,
 				EFFB04E31E2E8BD40071D961 /* SaveLocationDetailViewController.swift in Sources */,
+				EFFD9AB41EC56B6900B4B384 /* StartJourneyMapViewController.swift in Sources */,
 				EF63100F1EBCFBC500A7CC84 /* UpdateEmailViewController.swift in Sources */,
 				EF3821571E2415DF00032F42 /* MapView Controller.swift in Sources */,
 				EF3821551E2415DF00032F42 /* AppDelegate.swift in Sources */,

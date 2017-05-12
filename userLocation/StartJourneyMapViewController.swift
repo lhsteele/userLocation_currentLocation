@@ -1,0 +1,66 @@
+//
+//  StartJourneyMapViewController.swift
+//  userLocation
+//
+//  Created by Lisa Steele on 5/11/17.
+//  Copyright © 2017 Lisa Steele. All rights reserved.
+//
+
+import UIKit
+import MapKit
+import CoreLocation
+import Firebase
+
+class StartJourneyMapViewController: UIViewController, CLLocationManagerDelegate {
+    
+    @IBOutlet var startAJourneyMap: MKMapView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.requestWhenInUseAuthorization()
+        manager.startUpdatingLocation()
+        
+        
+        displayShareAlertMessage(messageToDisplay: "Would you like to share this journey?")
+        
+    }
+    
+    let manager = CLLocationManager()
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        manager.stopUpdatingLocation()
+        let location = locations[0]
+        let span: MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
+        let myLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
+        let region: MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
+        startAJourneyMap.setRegion(region, animated: true)
+        self.startAJourneyMap.showsUserLocation = true
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func displayShareAlertMessage(messageToDisplay: String) {
+        let alertController = UIAlertController(title: "Share Journey?", message: messageToDisplay, preferredStyle: .alert)
+        
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { (action:UIAlertAction!) in
+            //Segue to another VC which will list all users subscribed to this location.
+        }
+        
+        let noAction = UIAlertAction(title: "No", style: .default) { (action:UIAlertAction!) in
+        }
+        
+        alertController.addAction(yesAction)
+        alertController.addAction(noAction)
+        
+        self.present(alertController, animated: true, completion:nil)
+    }
+
+
+
+}

@@ -179,7 +179,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         share.backgroundColor = UIColor.darkGray
         
         let startJourney = UITableViewRowAction(style: .normal, title: "Start Journey") { (action, indexPath) in
-            self.performSegue(withIdentifier: "MapViewSegue", sender: Any.self)
+            self.performSegue(withIdentifier: "StartJourneySegue", sender: Any.self)
         }
         
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
