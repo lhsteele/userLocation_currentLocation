@@ -400,11 +400,47 @@
                     </view>
                     <connections>
                         <outlet property="startAJourneyMap" destination="YIX-mz-2Bj" id="XQ0-2y-pin"/>
+                        <segue destination="VC7-8f-SV8" kind="show" identifier="ShareJourneySegue" id="FR8-k0-jfp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Y9-on-4IJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="7141.6000000000004" y="169.56521739130437"/>
+        </scene>
+        <!--Share Journey Picker View Controller-->
+        <scene sceneID="T3y-lc-xdB">
+            <objects>
+                <viewController id="VC7-8f-SV8" customClass="ShareJourneyPickerViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="c8M-co-Ya3"/>
+                        <viewControllerLayoutGuide type="bottom" id="5ha-D8-hz1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cFM-0F-ua1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A7W-ak-MUd">
+                                <rect key="frame" x="28" y="225" width="320" height="216"/>
+                                <color key="tintColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please select the user you would like to share this journey with:" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hFg-Y2-KL5">
+                                <rect key="frame" x="28" y="106" width="320" height="67"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="A7W-ak-MUd" firstAttribute="centerX" secondItem="cFM-0F-ua1" secondAttribute="centerX" id="4W9-rb-hZa"/>
+                            <constraint firstItem="A7W-ak-MUd" firstAttribute="centerY" secondItem="cFM-0F-ua1" secondAttribute="centerY" id="PdE-72-2Yg"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="evr-vX-Yk3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8056.8000000000002" y="171.36431784107947"/>
         </scene>
         <!--Change Password Reauth View Controller-->
         <scene sceneID="FK6-eg-gjx">

@@ -49,7 +49,7 @@ class StartJourneyMapViewController: UIViewController, CLLocationManagerDelegate
         let alertController = UIAlertController(title: "Share Journey?", message: messageToDisplay, preferredStyle: .alert)
         
         let yesAction = UIAlertAction(title: "Yes", style: .default) { (action:UIAlertAction!) in
-            //Segue to another VC which will list all users subscribed to this location.
+            self.performSegue(withIdentifier: "ShareJourneySegue", sender: self)
         }
         
         let noAction = UIAlertAction(title: "No", style: .default) { (action:UIAlertAction!) in
