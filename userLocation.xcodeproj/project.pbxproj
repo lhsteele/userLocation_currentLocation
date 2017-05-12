@@ -163,6 +163,7 @@
 				EFC5267E1EB8FF61006E33AD /* SharedLocationsMapViewController.swift */,
 				EF3821561E2415DF00032F42 /* MapView Controller.swift */,
 				EFFD9AB31EC56B6900B4B384 /* StartJourneyMapViewController.swift */,
+				EF8367F11EC64CF4005079E2 /* ShareJourneyPickerViewController.swift */,
 				EFFB04E21E2E8BD40071D961 /* SaveLocationDetailViewController.swift */,
 				EF0A2B471EA013CE006709C3 /* ReauthenticateViewController.swift */,
 				EF0ECD141EA175D200902441 /* SettingsTableViewController.swift */,
@@ -177,7 +178,6 @@
 				EFF6AB101E8F5F4F00366DB2 /* GoogleService-Info.plist */,
 				EF38215B1E2415DF00032F42 /* Assets.xcassets */,
 				EF3821601E2415DF00032F42 /* Info.plist */,
-				EF8367F11EC64CF4005079E2 /* ShareJourneyPickerViewController.swift */,
 			);
 			path = userLocation;
 			sourceTree = "<group>";

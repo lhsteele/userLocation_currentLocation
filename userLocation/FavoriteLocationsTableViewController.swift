@@ -31,6 +31,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     var userFavToDelete = String()
     var locationToShare = String()
     var locationNameString = String()
+    var journeyToStart = String()
     
     
     
@@ -179,6 +180,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         share.backgroundColor = UIColor.darkGray
         
         let startJourney = UITableViewRowAction(style: .normal, title: "Start Journey") { (action, indexPath) in
+            self.journeyToStart = self.listOfCreatedLocations[indexPath.row] as String
             self.performSegue(withIdentifier: "StartJourneySegue", sender: Any.self)
         }
         
@@ -271,6 +273,10 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         if (segue.identifier == "FavLocMapViewSegue") {
             let pointer = segue.destination as! FavLocMapViewController
             pointer.locationID = self.locationID
+        }
+        if (segue.identifier == "StartJourneySegue") {
+            let pointer = segue.destination as! StartJourneyMapViewController
+            pointer.journeyToStart = self.journeyToStart
         }
     }
     
