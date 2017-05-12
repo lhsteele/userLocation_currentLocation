@@ -18,16 +18,18 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
     var journeyToStart = String()
     var arrayOfSubscribedUsers = [String]()
     var userArray = [String]()
-    
+    var finalArray = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         createSubscribedUsersArray()
         
+        picker.delegate = self
+        picker.dataSource = self
     }
     
-    func createSubscribedUsersArray() {
+        func createSubscribedUsersArray() {
        let databaseRef = FIRDatabase.database().reference().child("SubscribedUsers").queryOrderedByKey()
         _ = databaseRef.queryEqual(toValue: journeyToStart).observe(.value, with: { (snapshot) in
             //print (snapshot)
@@ -43,27 +45,28 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
                             if let userName = pair.key as? String {
                                 //print (userName)
                                 user = userName
-                                self.userArray.append(user)
+                                self.arrayOfSubscribedUsers.append(user)
                             }
                             
                         }
-                        self.populateArray()
                     }
-                    
+                    //self.populateArray()
                 }
             }
-            
+            self.picker.reloadAllComponents()
         })
+        
     }
-    
+ 
+    /*
     func populateArray() {
         for item in userArray {
-            print (item)
             arrayOfSubscribedUsers.append(item)
-            print ("insideForLoop\(arrayOfSubscribedUsers)")
         }
-        print (arrayOfSubscribedUsers)
+        
     }
+    */
+    
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return arrayOfSubscribedUsers.count
@@ -73,9 +76,11 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
         return 1
     }
     
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return arrayOfSubscribedUsers[row]
     }
+    
     
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
