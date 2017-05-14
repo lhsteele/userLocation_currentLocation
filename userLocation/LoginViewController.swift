@@ -92,6 +92,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func createAccount() {
+        /*
+         Why hasn't this code run? Instead it ran through to line 118, and displayed the error message in userLogin.
+        if (userEmail.isEmpty || userPassword.isEmpty || username.isEmpty) {
+            displayEmptyTextFieldAlertMessage(messageToDisplay: "All text fields are required.")
+            return
+        }
+ */
         
         let validEmail = isEmailValid(emailAddressString: emailTextField.text!)
         
@@ -176,6 +183,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         alertController.addAction(OKAction)
         
         self.present(alertController, animated: true, completion:nil)
+    }
+    
+    func displayEmptyTextFieldAlertMessage(messageToDisplay: String) {
+        let alertController = UIAlertController(title: "Error", message: messageToDisplay, preferredStyle: .alert)
+        
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action: UIAlertAction!) in
+        }
+        
+        alertController.addAction(OKAction)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
     
     
