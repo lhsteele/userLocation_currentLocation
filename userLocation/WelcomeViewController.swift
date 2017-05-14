@@ -21,6 +21,8 @@ class WelcomeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         
+       
+        
     }
 
     override func didReceiveMemoryWarning() {

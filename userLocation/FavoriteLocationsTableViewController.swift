@@ -51,9 +51,12 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         addLocationButton.layer.borderWidth = 3
         addLocationButton.layer.cornerRadius = 10
         
-        if let font = UIFont(name: "System", size: 15) {
+        /*
+        This code doesn't do anything.
+        if let font = UIFont(name: "System", size: 5) {
             UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: font]
         }
+        */
         
         loadFavorites()
     }
