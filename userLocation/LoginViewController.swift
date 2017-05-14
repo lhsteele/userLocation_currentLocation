@@ -126,7 +126,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             let values = ["Email": self.emailTextField.text, "Username": self.usernameTextField.text]
             //Don't need to update passwords, keeps it from being printed in database
             if let userID = FIRAuth.auth()?.currentUser?.uid {
-                ref.child("Users").child(userID).updateChildValues(values) { (err, ref) in
+                ref.child("Users").child(userID).updateChildValues(values as Any as! [AnyHashable : Any]) { (err, ref) in
                 
                     if err != nil {
                         return

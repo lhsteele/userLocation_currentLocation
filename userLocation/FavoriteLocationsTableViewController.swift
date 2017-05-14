@@ -51,6 +51,9 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         addLocationButton.layer.borderWidth = 3
         addLocationButton.layer.cornerRadius = 10
         
+        if let font = UIFont(name: "System", size: 15) {
+            UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: font]
+        }
         
         loadFavorites()
     }
@@ -230,7 +233,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let indexPath = tableView.indexPathForSelectedRow!
-        let currentCell = tableView.cellForRow(at: indexPath)! as UITableViewCell
+        _ = tableView.cellForRow(at: indexPath)! as UITableViewCell
         
         performSegue(withIdentifier: "FavLocMapViewSegue", sender: self)
         
@@ -335,5 +338,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return false
     }
+
  
 }
