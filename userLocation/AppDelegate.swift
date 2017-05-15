@@ -22,50 +22,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FIRApp.configure()
         
-        //iOS10
         if #available(iOS 10, *) {
-            UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]) { (granted, error) in }
-            application.registerForRemoteNotifications()
-        }
-        
-        //iOS9
-        else if #available(iOS 9, *) {
-            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
-            UIApplication.shared.registerForRemoteNotifications()
-        }
-        
-        //iOS8
-        else if #available(iOS 8, *) {
-            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
-            UIApplication.shared.registerForRemoteNotifications()
-        }
-        
-        //iOS7
-        else {
-            application.registerForRemoteNotifications(matching: [.badge, .sound, .alert])
-        }
-        
-        //Called when APNs has assigned the device a unique token
-        func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-            //Convert token to string
-            let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
-            
-            //print it to console
-            print ("APNs device token: \(deviceTokenString)")
-            
-            //Persist it in your backend in case it's new.
-        }
-        
-        //Called when APNs failed to register the device for push notifications
-        func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-            //Print the error to console (you shoudl alert the user that registration failed)
-            print("APNs registration failed: \(error)")
+            let center = UNUserNotificationCenter.current()
+            center.delegate = self as! UNUserNotificationCenterDelegate
+            center.requestAuthorization(options: [.badge, .sound, .alert], completionHandler: { (grant, error) in
+                if error == nil {
+                    if grant {
+                        application.registerForRemoteNotifications()
+                    } else {
+                        //User didn't grant permission
+                    }
+                    } else {
+                        print ("error: \(error)")
+                }
+            })
+        } else {
+            //fallback on earlier versions
+            let notificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(notificationSettings)
         }
         
         return true
     }
     
-        func applicationWillResignActive(_ application: UIApplication) {
+  
+    
+    func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
     }
