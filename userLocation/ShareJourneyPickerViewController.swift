@@ -12,6 +12,7 @@ import Firebase
 
 class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    @IBOutlet var shareJourneyButton: UIButton!
     @IBOutlet var pickerLabel: UILabel!
     @IBOutlet var picker: UIPickerView!
     

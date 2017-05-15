@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B3DBC097CCB1F72F6897DCAE /* Pods_userLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6AD688DCCE6AB9651D6E88E /* Pods_userLocation.framework */; };
 		EF0A2B481EA013CE006709C3 /* ReauthenticateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0A2B471EA013CE006709C3 /* ReauthenticateViewController.swift */; };
+		EF0DBD491ECA51FA00A9699E /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF0DBD481ECA51FA00A9699E /* UserNotifications.framework */; };
 		EF0ECD151EA175D200902441 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0ECD141EA175D200902441 /* SettingsTableViewController.swift */; };
 		EF3821551E2415DF00032F42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3821541E2415DF00032F42 /* AppDelegate.swift */; };
 		EF3821571E2415DF00032F42 /* MapView Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3821561E2415DF00032F42 /* MapView Controller.swift */; };
@@ -58,6 +59,7 @@
 		C1CAFDC212A7668C352A7C16 /* Pods-userLocation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-userLocation.debug.xcconfig"; path = "Pods/Target Support Files/Pods-userLocation/Pods-userLocation.debug.xcconfig"; sourceTree = "<group>"; };
 		C6AD688DCCE6AB9651D6E88E /* Pods_userLocation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_userLocation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF0A2B471EA013CE006709C3 /* ReauthenticateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReauthenticateViewController.swift; sourceTree = "<group>"; };
+		EF0DBD481ECA51FA00A9699E /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		EF0ECD141EA175D200902441 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		EF3821511E2415DF00032F42 /* userLocation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = userLocation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF3821541E2415DF00032F42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF0DBD491ECA51FA00A9699E /* UserNotifications.framework in Frameworks */,
 				EF3821841E24162A00032F42 /* CoreLocation.framework in Frameworks */,
 				B3DBC097CCB1F72F6897DCAE /* Pods_userLocation.framework in Frameworks */,
 			);
@@ -203,6 +206,7 @@
 		EF3821821E24162A00032F42 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EF0DBD481ECA51FA00A9699E /* UserNotifications.framework */,
 				EF3821831E24162A00032F42 /* CoreLocation.framework */,
 				C6AD688DCCE6AB9651D6E88E /* Pods_userLocation.framework */,
 			);
@@ -284,6 +288,9 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 							com.apple.iCloud = {

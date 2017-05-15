@@ -437,6 +437,13 @@
                                 <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ysd-CW-bqa">
+                                <rect key="frame" x="28" y="449" width="320" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Share Journey">
+                                    <color key="titleColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -447,6 +454,7 @@
                     <connections>
                         <outlet property="picker" destination="A7W-ak-MUd" id="WAS-aX-z2j"/>
                         <outlet property="pickerLabel" destination="kGb-5o-9ER" id="fDf-Ui-ktD"/>
+                        <outlet property="shareJourneyButton" destination="Ysd-CW-bqa" id="6tU-NB-5cx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="evr-vX-Yk3" userLabel="First Responder" sceneMemberID="firstResponder"/>

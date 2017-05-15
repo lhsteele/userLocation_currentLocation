@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import UserNotifications
 
 
 @UIApplicationMain
@@ -18,9 +19,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var ref: FIRDatabaseReference?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         
         FIRApp.configure()
+        
+        //iOS10
+        if #available(iOS 10, *) {
+            UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]) { (granted, error) in }
+            application.registerForRemoteNotifications()
+        }
+        
+        //iOS9
+        else if #available(iOS 9, *) {
+            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
+            UIApplication.shared.registerForRemoteNotifications()
+        }
+        
+        //iOS8
+        else if #available(iOS 8, *) {
+            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
+            UIApplication.shared.registerForRemoteNotifications()
+        }
+        
+        //iOS7
+        else {
+            application.registerForRemoteNotifications(matching: [.badge, .sound, .alert])
+        }
+        
+        //Called when APNs has assigned the device a unique token
+        func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToekn deviceToken: Data) {
+            //Convert token to string
+            let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
+            
+            //print it to console
+            print ("APNs device token: \(deviceTokenString)")
+            
+            //Persist it in your backend in case it's new.
+        }
+        
+        //Called when APNs failed to register the device for push notifications
+        func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+            //Print the error to console (you shoudl alert the user that registration failed)
+            print("APNs registration failed: \(error)")
+        }
         
         return true
     }
