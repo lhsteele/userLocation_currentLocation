@@ -90,7 +90,7 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
     
     func findEmailsUserID() {
         let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
-        ref.child("Emails").queryOrderedByKey().observe(.value, with: { (snapshot) in
+        ref.child("Emails").queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists() {
                 
                 let listOfEmails = snapshot.children
@@ -127,9 +127,12 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
                             if userID == self.sharedEmailsUserID {
                                 if let username = displayName.value as? String {
                                     print (username)
+                                    self.saveSubscribedUserToLoc(username: username)
+                                    /*
                                     let saveRef = ref.child("SubscribedUsers").child(self.locationToShare)
                                     let updates = [username : self.sharedEmailsUserID]
                                     saveRef.updateChildValues(updates)
+                                    */
                                     return
                                 }
                                 
@@ -143,16 +146,14 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
         })
     }
  
-    /*
-    I tried putting the below function inside the innermost if let bracket (where I find the username), and also further down the chain - however, it doesn't recognize the username variable this way. It's an empty variable. I don't think the way I've done it is the best way to do it, and also not how I did it for the previous findEmailsUserID function. Why doesn't this work here?
-    func saveSubscribedUserToLoc() {
+    func saveSubscribedUserToLoc(username: String) {
         print ("username\(username)")
         let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
         let saveRef = ref.child("SubscribedUsers").child(locationToShare)
         let updates = [username : sharedEmailsUserID]
         saveRef.updateChildValues(updates)
     }
-    */
+    
     
         
     func displaySuccessAlertMessage(messageToDisplay: String) {

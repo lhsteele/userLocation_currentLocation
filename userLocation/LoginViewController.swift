@@ -82,7 +82,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             userLogin()
         } else {
                 // Register the user with Firebase
-            createAccount()
+            validateForm()
         }
         
         getUserInfo()
@@ -91,27 +91,25 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     }
     
-    func createAccount() {
-        /*
-         Why hasn't this code run? Instead it ran through to line 118, and displayed the error message in userLogin.
-        if (userEmail.isEmpty || userPassword.isEmpty || username.isEmpty) {
-            displayEmptyTextFieldAlertMessage(messageToDisplay: "All text fields are required.")
-            return
+    func validateForm() {
+        if let email = emailTextField.text, let password = passwordTextField.text {
+            if !email.isEmpty && !password.isEmpty {
+                let emailIsValid = isEmailValid(emailAddressString: emailTextField.text!)
+                if emailIsValid {
+                    createAccount(email: email, password: password)
+                } else {
+                    displayAlertMessage(messageToDisplay: "This email address is invalid.")
+                }
+            } else {
+                displayAlertMessage(messageToDisplay: "All text fields are required.")
+            }
         }
- */
-        
-        let validEmail = isEmailValid(emailAddressString: emailTextField.text!)
-        
-        
-        if validEmail {
+    }
     
-        } else {
-            //print ("Please enter a valid email address")
-            displayAlertMessage(messageToDisplay: "This email address is invalid or already in use.")
-        }
+    func createAccount(email: String, password: String) {
         
         
-        FIRAuth.auth()?.createUser(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
+        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
             if error != nil {
                 self.displayAlertMessage(messageToDisplay: "This email address is invalid or already in use.")
             } else {
