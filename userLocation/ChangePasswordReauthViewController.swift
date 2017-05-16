@@ -43,7 +43,7 @@ class ChangePasswordReauthViewController: UIViewController, UITextFieldDelegate 
         let credential = FIREmailPasswordAuthProvider.credential(withEmail: reauthEmailTextField.text!, password: reauthPasswordTextField.text!)
         
         user?.reauthenticate(with: credential, completion: { (error) in
-            if let error = error {
+            if error != nil {
                 self.displayAlertMessage(messageToDisplay: "Re-authentication Failure. Please try again.")
             } else {
                 self.performSegue(withIdentifier: "NewPasswordSegue", sender: self.submitButton)

@@ -42,10 +42,10 @@ class ReauthenticateViewController: UIViewController, UITextFieldDelegate {
     
     func reauthenticateToDelete() {
         let user = FIRAuth.auth()?.currentUser
-        var credential = FIREmailPasswordAuthProvider.credential(withEmail: reauthEmailTextField.text!, password: reauthPasswordTextField.text!)
+        let credential = FIREmailPasswordAuthProvider.credential(withEmail: reauthEmailTextField.text!, password: reauthPasswordTextField.text!)
         
         user?.reauthenticate(with: credential) { error in
-            if let error = error {
+            if error != nil {
                 self.displayAlertMessage(messageToDisplay: "Unable to delete account due to re-authentication failure. Please try again.")
             } else {
                 self.deleteAccount()
