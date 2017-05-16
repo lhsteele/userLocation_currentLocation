@@ -79,18 +79,28 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         // Check if it's sign in or register
         if isSignIn {
                 // Sign in the user with Firebase
-            userLogin()
+            validateFormForSignIn()
         } else {
                 // Register the user with Firebase
-            validateForm()
+            validateFormForRegistration()
         }
         
         getUserInfo()
         
     }
     
+    func validateFormForSignIn() {
+        if let email = emailTextField.text, let password = passwordTextField.text, let username = usernameTextField.text {
+            if !email.isEmpty && !password.isEmpty && !username.isEmpty {
+                userLogin()
+            } else {
+                displayAlertMessage(messageToDisplay: "All text fields are required.")
+            }
+        }
+    }
     
-    func validateForm() {
+    
+    func validateFormForRegistration() {
         if let email = emailTextField.text, let password = passwordTextField.text, let username = usernameTextField.text {
             if !email.isEmpty && !password.isEmpty && !username.isEmpty {
                 let emailIsValid = isEmailValid(emailAddressString: emailTextField.text!)
