@@ -87,20 +87,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         getUserInfo()
         
-        
-
     }
     
+    
     func validateForm() {
-        if let email = emailTextField.text, let password = passwordTextField.text {
-            if !email.isEmpty && !password.isEmpty {
+        if let email = emailTextField.text, let password = passwordTextField.text, let username = usernameTextField.text {
+            if !email.isEmpty && !password.isEmpty && !username.isEmpty {
                 let emailIsValid = isEmailValid(emailAddressString: emailTextField.text!)
                 if emailIsValid {
                     createAccount(email: email, password: password)
                 } else {
+                    print("email not valid")
                     displayAlertMessage(messageToDisplay: "This email address is invalid.")
                 }
             } else {
+                print("all text fields required")
                 displayAlertMessage(messageToDisplay: "All text fields are required.")
             }
         }
@@ -182,18 +183,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         self.present(alertController, animated: true, completion:nil)
     }
-    
-    func displayEmptyTextFieldAlertMessage(messageToDisplay: String) {
-        let alertController = UIAlertController(title: "Error", message: messageToDisplay, preferredStyle: .alert)
-        
-        let OKAction = UIAlertAction(title: "OK", style: .default) { (action: UIAlertAction!) in
-        }
-        
-        alertController.addAction(OKAction)
-        
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "FavoriteLocationsTableSegue") {
