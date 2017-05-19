@@ -84,11 +84,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                 }
                 self.loadData()
             })
-            //Here I'm trying to create a dictionary to which I can refer later, when trying to delete an entry. However, this data only lives within this closure.
-            //self.locationIDDictionary[userID] = self.locationID
-           
-            //If I try to print the dictionary here, it just gives me an empty dictionary.
-            //print (self.locationIDDictionary)
+            
         }
         
     }
