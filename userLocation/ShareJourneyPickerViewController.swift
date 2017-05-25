@@ -8,9 +8,10 @@
 
 import UIKit
 import Firebase
+import MapKit
 
 
-class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, CLLocationManagerDelegate {
     
     @IBOutlet var shareJourneyButton: UIButton!
     @IBOutlet var pickerLabel: UILabel!
@@ -20,6 +21,7 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
     var arrayOfSubscribedUsers = [String]()
     var userArray = [String]()
     var finalArray = [String]()
+    var localValue = CLLocationCoordinate2D()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +30,8 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
         
         picker.delegate = self
         picker.dataSource = self
+        
+        print (localValue)
     }
     
         func createSubscribedUsersArray() {
@@ -68,6 +72,10 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
     }
     */
     
+   
+    @IBAction func shareJourney(_ sender: Any) {
+        //print (myLocation)
+    }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return arrayOfSubscribedUsers.count
