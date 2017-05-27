@@ -16,6 +16,7 @@ class StartJourneyMapViewController: UIViewController, CLLocationManagerDelegate
     @IBOutlet var startAJourneyMap: MKMapView!
     var journeyToStart = String()
     var localValue = CLLocationCoordinate2D()
+    var fireUserID = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +55,6 @@ class StartJourneyMapViewController: UIViewController, CLLocationManagerDelegate
         
         let yesAction = UIAlertAction(title: "Yes", style: .default) { (action:UIAlertAction!) in
             self.performSegue(withIdentifier: "ShareJourneySegue", sender: self)
-            print (self.localValue)
         }
         
         let noAction = UIAlertAction(title: "No", style: .default) { (action:UIAlertAction!) in
@@ -71,6 +71,7 @@ class StartJourneyMapViewController: UIViewController, CLLocationManagerDelegate
             let pointer = segue.destination as! ShareJourneyPickerViewController
             pointer.journeyToStart = self.journeyToStart
             pointer.localValue = self.localValue
+            pointer.fireUserID = self.fireUserID
         }
     }
 

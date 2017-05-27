@@ -279,6 +279,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         if (segue.identifier == "StartJourneySegue") {
             let pointer = segue.destination as! StartJourneyMapViewController
             pointer.journeyToStart = self.journeyToStart
+            pointer.fireUserID = self.fireUserID
         }
     }
     
