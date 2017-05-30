@@ -22,9 +22,9 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
     var userArray = [String]()
     var finalArray = [String]()
     var localValue = CLLocationCoordinate2D()
-    var latitude = CLLocationCoordinate2D()
-    var longitude = CLLocationCoordinate2D()
     var fireUserID = String()
+    var latitude = CLLocationDegrees()
+    var longitude = CLLocationDegrees()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,46 +79,48 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
     func getDestinationCoordinates() {
         let databaseRef = FIRDatabase.database().reference().child("Locations").queryOrderedByKey()
         _ = databaseRef.queryEqual(toValue: journeyToStart).observe(.value, with: { (snapshot) in
-            
+            print (snapshot)
             for item in snapshot.children {
                 
-                if let locationID = item as? FIRDataSnapshot {
+                if let destination = item as? FIRDataSnapshot {
                     
-                    for item in locationID.children {
+                    for item in destination.children {
                         if let pair = item as? FIRDataSnapshot {
+                            print (pair)
                             
-                            if let value = pair.value as? CLLocationCoordinate2D {
+                            if let value = pair.value as? CLLocationDegrees {
+                                print (value)
+                                let lat = pair.key
                                 
-                                let latCoord = pair.key
-                                
-                                if latCoord == "Latitude" {
+                                if lat == "Latitude" {
                                     self.latitude = value
-                                    print (self.latitude)
                                 } else {
                                     self.longitude = value
-                                    print (self.longitude)
                                 }
                                 
                             }
                         }
                     }
                 }
-                
-                
+                print (self.latitude)
+                print (self.longitude)
+                self.saveDestinationCoordToDB()
             }
-            //self.saveDestinationCoordToDB()
         })
     }
     
-    /*
+    
     func saveDestinationCoordToDB() {
-        let ref = FIRDatabase.database().reference()
-        let destination = ref.child("Started Journeys").child(fireUserID)
-        let destinationCoordinates = ["DestinationLat" : latitude, "DestinationLong" : longitude]
+        print (self.latitude)
+        print (self.longitude)
+        print (fireUserID)
+        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+        let destination = ref.child("Started Journeys").child(fireUserID).key
+        let destinationCoordinates = ["DestinationLat" : latitude, "DestinationLong" : longitude] as [String : Any]
         let childUpdates = ["/Started Journeys/\(destination)" : destinationCoordinates]
         ref.updateChildValues(childUpdates)
     }
-    */
+    
     
    
     @IBAction func shareJourney(_ sender: Any) {
