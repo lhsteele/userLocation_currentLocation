@@ -111,12 +111,9 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
     
     
     func saveDestinationCoordToDB() {
-        print (self.latitude)
-        print (self.longitude)
-        print (fireUserID)
         let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
         let destination = ref.child("Started Journeys").child(fireUserID).key
-        let destinationCoordinates = ["DestinationLat" : latitude, "DestinationLong" : longitude] as [String : Any]
+        let destinationCoordinates = ["DestinationLat" : latitude, "DestinationLong" : longitude, "CurrentLat" : localValue.latitude, "CurrentLong" : localValue.longitude] as [String : Any]
         let childUpdates = ["/Started Journeys/\(destination)" : destinationCoordinates]
         ref.updateChildValues(childUpdates)
     }
