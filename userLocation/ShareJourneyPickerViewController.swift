@@ -23,6 +23,8 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
     var finalArray = [String]()
     var localValue = CLLocationCoordinate2D()
     var fireUserID = String()
+    var sharedUserName = String()
+    var sharedUserID = String()
     var latitude = CLLocationDegrees()
     var longitude = CLLocationDegrees()
 
@@ -47,9 +49,9 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
                 
                 var user = String()
                 
-                if let userID = item as? FIRDataSnapshot {
+                if let username = item as? FIRDataSnapshot {
                     //print (userID)
-                    for item2 in userID.children {
+                    for item2 in username.children {
                         if let pair = item2 as? FIRDataSnapshot {
                             if let userName = pair.key as? String {
                                 //print (userName)
@@ -59,22 +61,40 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
                             
                         }
                     }
-                    //self.populateArray()
+                    self.arrayOfSubscribedUsers.insert("Select User", at: 0)
                 }
             }
             self.picker.reloadAllComponents()
         })
         
     }
- 
-    /*
-    func populateArray() {
-        for item in userArray {
-            arrayOfSubscribedUsers.append(item)
-        }
-        
+    
+    func retrieveSharedUserID() {
+        let databaseRef = FIRDatabase.database().reference().child("SubscribedUsers").queryOrderedByKey()
+        _ = databaseRef.queryEqual(toValue: journeyToStart).observe(.value, with: { (snapshot) in
+            for item in snapshot.children {
+                
+                if let userid = item as? FIRDataSnapshot {
+                    
+                    for item2 in userid.children {
+                        if let pair = item2 as? FIRDataSnapshot {
+                            if let userID = pair.value as? String {
+                                var usersName = pair.key
+                                
+                                if usersName == self.sharedUserName {
+                                    self.sharedUserID = userID
+                                    return
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        })
     }
-    */
+    
+    
+    
     
     func getDestinationCoordinates() {
         let databaseRef = FIRDatabase.database().reference().child("Locations").queryOrderedByKey()
@@ -119,9 +139,9 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
     }
     
     
-   
     @IBAction func shareJourney(_ sender: Any) {
-        //print (myLocation)
+        retrieveSharedUserID()
+        print (sharedUserID)
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -137,12 +157,9 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
         return arrayOfSubscribedUsers[row]
     }
     
-    
-    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         pickerLabel.text = arrayOfSubscribedUsers[row]
+        sharedUserName = pickerLabel.text!
     }
-    
-    
    
 }
