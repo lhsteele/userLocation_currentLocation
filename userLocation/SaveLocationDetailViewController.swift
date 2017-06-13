@@ -75,7 +75,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         
         locationAutoKey = databaseRef.child("Locations").childByAutoId().key
         print (locationAutoKey)
-        let location = ["Latitude": newLatCoord, "Longitude": newLongCoord, "LocationName": newFavLoc, "Users": [fireUserID]] as [String : Any]
+        let location = ["Latitude": newLatCoord, "Longitude": newLongCoord, "LocationName": newFavLoc, "CreatedBy": [fireUserID]] as [String : Any]
         let childUpdates = ["/Locations/\(locationAutoKey)" : location]
         databaseRef.updateChildValues(childUpdates)
        
