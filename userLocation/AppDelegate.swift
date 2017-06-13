@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var ref: FIRDatabaseReference?
     let gcmMessageIDKey = "gcm.message_id"
+    var userInfo: String = ""
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -39,6 +40,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotification), name: .firInstanceIDTokenRefresh, object: nil)
+        
+        //assign to userInfo here to pass variable to next VC?
+        
         
         return true
     }
@@ -183,5 +187,12 @@ extension AppDelegate : FIRMessagingDelegate {
     func applicationReceivedRemoteMessage(_ remoteMessage: FIRMessagingRemoteMessage) {
         print(remoteMessage.appData)
     }
+    
+    func messaging(_ messaging: FIRMessaging, didRefreshRegistrationToken fcmToken: String) {
+        userInfo = fcmToken
+        print ("Firebase registration token: \(fcmToken)")
+        
+    }
+
 }
 
