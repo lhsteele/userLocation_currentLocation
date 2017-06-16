@@ -78,6 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         connectToFCM()
     }
     
+    
     func connectToFCM() {
         guard FIRInstanceID.instanceID().token() != nil else {
             return
@@ -93,6 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print ("Unable to register for remote notifications: \(error.localizedDescription)")
