@@ -140,7 +140,7 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
     
     @IBAction func shareJourney(_ sender: Any) {
         retrieveSharedUserID()
-        saveDestinationCoordToDB()
+        //saveDestinationCoordToDB()
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {

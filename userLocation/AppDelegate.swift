@@ -28,7 +28,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UNUserNotificationCenter.current().delegate = self as UNUserNotificationCenterDelegate
             
             let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-            UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: { _, _ in})
+            UNUserNotificationCenter.current().requestAuthorization(options: authOptions) {(granted, error) in
+                if (error != nil) {
+                    print ("I received the following error: \(error)")
+                } else if (granted) {
+                    print ("Authorization was granted!")
+                } else {
+                    print ("Authorization was not granted.")
+                }
+            }
             
         FIRMessaging.messaging().remoteMessageDelegate = self as FIRMessagingDelegate
         
@@ -37,11 +45,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerUserNotificationSettings(settings)
         }
         
-        application.registerForRemoteNotifications()
+        
+        printFCMToken()
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotification), name: .firInstanceIDTokenRefresh, object: nil)
         
+        application.registerForRemoteNotifications()
+        
         return true
+    }
+    
+    func printFCMToken() {
+        if let token = FIRInstanceID.instanceID().token() {
+            print ("Your FCM token is \(token)")
+        } else {
+            print ("You don't get have an FCM token.")
+        }
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
@@ -72,13 +91,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func tokenRefreshNotification(_ notification: Notification) {
         if let refreshedToken = FIRInstanceID.instanceID().token() {
-            print ("InstanceID token: \(refreshedToken)")
+            printFCMToken()
+        } else {
+            print ("We dont have an FCM token yet.")
         }
         
-        connectToFCM()
+        //connectToFCM()
     }
     
-    
+    /*
     func connectToFCM() {
         guard FIRInstanceID.instanceID().token() != nil else {
             return
@@ -94,6 +115,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    */
     
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -136,12 +158,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        connectToFCM()
+        //connectToFCM()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    
 }
 
 @available(iOS 10, *)
