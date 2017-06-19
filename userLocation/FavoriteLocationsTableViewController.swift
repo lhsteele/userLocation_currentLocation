@@ -411,13 +411,11 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var rowCount = 0
-        if section == 0 {
-            rowCount = self.listOfFavorites.count
-        } else {
-            rowCount = self.listOfSharedLocations.count
+        switch section {
+        case 0: return listOfFavorites.count
+        case 1: return listOfSharedFavorites.count
+        default: fatalError("Unknown section")
         }
-        return rowCount
     }
     
     func toggleEdit() {
