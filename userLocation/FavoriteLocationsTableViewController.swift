@@ -56,7 +56,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         addLocationButton.layer.cornerRadius = 10
         
         loadFavorites()
-        loadSharedLocations()
+        //loadSharedLocations()
         
         
     }
@@ -86,7 +86,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             })
             
         }
-        
+        self.loadSharedLocations()
     }
     
     func loadSharedLocations() {
@@ -241,12 +241,9 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         if indexPath.section == 0 {
             let favorite = self.listOfFavorites[indexPath.row]
             cell.textLabel?.text = favorite.location
-            print ("Row: \(indexPath.row)")
-        /*
         } else {
             let sharedFavorite = self.listOfSharedFavorites[indexPath.row]
             cell.textLabel?.text = sharedFavorite.location
-        */    
         }
         return cell
     }
