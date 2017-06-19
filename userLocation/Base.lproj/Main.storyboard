@@ -63,7 +63,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="xiK-CG-Ew7">
-                            <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                            <rect key="frame" x="0.0" y="116" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ei-Q0-6df">
@@ -88,8 +88,31 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="vIo-T0-sed" style="IBUITableViewCellStyleDefault" id="dji-Rc-pjm">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="headerCell" id="431-Vw-Xz9">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="431-Vw-Xz9" id="ch2-14-WeJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qlu-Z2-dHb">
+                                            <rect key="frame" x="8" y="12" width="359" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="Qlu-Z2-dHb" firstAttribute="top" secondItem="ch2-14-WeJ" secondAttribute="topMargin" constant="4" id="2cW-7r-IN9"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Qlu-Z2-dHb" secondAttribute="bottom" constant="3" id="Crt-4S-yrK"/>
+                                        <constraint firstItem="Qlu-Z2-dHb" firstAttribute="leading" secondItem="ch2-14-WeJ" secondAttribute="leadingMargin" id="NQz-sZ-RRL"/>
+                                        <constraint firstItem="Qlu-Z2-dHb" firstAttribute="trailing" secondItem="ch2-14-WeJ" secondAttribute="trailingMargin" id="Uqy-qm-qsW"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="vIo-T0-sed" style="IBUITableViewCellStyleDefault" id="dji-Rc-pjm">
+                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dji-Rc-pjm" id="q8g-mx-hro">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -142,7 +165,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pX4-EA-J4z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5402" y="172"/>
+            <point key="canvasLocation" x="5400.8000000000002" y="171.36431784107947"/>
         </scene>
         <!--Welcome View Controller-->
         <scene sceneID="l3R-zt-VQi">
@@ -1020,8 +1043,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="IU2-DW-LoN"/>
-        <segue reference="FbZ-EK-1jY"/>
+        <segue reference="oHB-73-aMh"/>
         <segue reference="tX9-J2-yO8"/>
+        <segue reference="FbZ-EK-1jY"/>
     </inferredMetricsTieBreakers>
 </document>

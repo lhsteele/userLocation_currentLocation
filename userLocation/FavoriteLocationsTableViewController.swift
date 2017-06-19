@@ -17,6 +17,8 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
     var listOfFavorites: [SavedFavorites] = []
     var listOfCreatedLocations = [String]()
+    var listOfSharedFavorites: [SavedFavorites] = []
+    var listOfSharedLocations = [String]()
     var locationID = ""
     var username = ""
     var ref: FIRDatabaseReference?
@@ -29,10 +31,12 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     var currentUserFavoritesArray = [String]()
     var favoriteLocations = String()
     var userFavToDelete = String()
+    var sharedFavToDelete = String()
     var locationToShare = String()
     var locationNameString = String()
     var journeyToStart = String()
-    
+    let s1Data: [String] = [""]
+    let s2Data: [String] = [""]
     
     
     @IBOutlet var sharedLocationsButton: UIBarButtonItem!
@@ -51,14 +55,10 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         addLocationButton.layer.borderWidth = 3
         addLocationButton.layer.cornerRadius = 10
         
-        /*
-        This code doesn't do anything.
-        if let font = UIFont(name: "System", size: 5) {
-            UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: font]
-        }
-        */
-        
         loadFavorites()
+        loadSharedLocations()
+        
+        
     }
     
     func loadFavorites() {
@@ -89,7 +89,31 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         
     }
     
-    
+    func loadSharedLocations() {
+        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+        
+        if let userID = FIRAuth.auth()?.currentUser?.uid {
+            
+            let locationKey = ref.child("SharedLocations").child(userID)
+            
+            locationKey.observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                let sharedLocations = snapshot.children
+                
+                for item in sharedLocations {
+                    if let pair = item as? FIRDataSnapshot {
+                        if let locID = pair.value as? String {
+                            self.locationID = locID
+                            print (self.locationID)
+                        }
+                    }
+                    self.listOfSharedLocations.append(self.locationID)
+                }
+                self.loadSharedData()
+            })
+        }
+    }
+
     func loadData () {
         for item in listOfCreatedLocations {
             
@@ -136,6 +160,56 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         }
     }
     
+    func loadSharedData () {
+        print ("loadSharedDataRun")
+        for item in listOfSharedLocations {
+            
+            let databaseRef = FIRDatabase.database().reference().child("Locations").queryOrderedByKey()
+            _ = databaseRef.queryEqual(toValue: item).observe(.value, with: { (snapshot) in
+                
+                for item2 in snapshot.children {
+                    
+                    var updatedLocation = ""
+                    var updatedLat = Double()
+                    var updatedLong = Double()
+                    
+                    if let dbLocation = item2 as? FIRDataSnapshot {
+                        
+                        for item2 in dbLocation.children {
+                            
+                            if let pair = item2 as? FIRDataSnapshot {
+                                
+                                if let location = pair.value as? String {
+                                    
+                                    updatedLocation = location
+                                    
+                                } else {
+                                    
+                                    if let value = pair.value as? Double {
+                                        
+                                        let valueName = pair.key
+                                        
+                                        if valueName == "Latitude" {
+                                            updatedLat = value
+                                            print ("SLTV\(updatedLat)")
+                                        } else {
+                                            updatedLong = value
+                                            print ("SLTV\(updatedLong)")
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    let newFavorite = SavedFavorites(latCoord: updatedLat, longCoord: updatedLong, location: updatedLocation, userID: self.fireUserID)
+                    self.listOfSharedFavorites.append(newFavorite)
+                }
+                self.tableView.reloadData()
+            })
+        }
+    }
+
+    
     
     func createUsersArray () {
         let databaseRef2 = FIRDatabase.database().reference().child("Locations")
@@ -164,15 +238,19 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        
-        let favorite = self.listOfFavorites[indexPath.row]
-    
-        cell.textLabel?.text = favorite.location
-        
+        if indexPath.section == 0 {
+            let favorite = self.listOfFavorites[indexPath.row]
+            cell.textLabel?.text = favorite.location
+            print ("Row: \(indexPath.row)")
+        /*
+        } else {
+            let sharedFavorite = self.listOfSharedFavorites[indexPath.row]
+            cell.textLabel?.text = sharedFavorite.location
+        */    
+        }
         return cell
-  
     }
-   
+    
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let share = UITableViewRowAction(style: .normal, title: "Share") { (action, indexPath) in
             self.locationToShare = self.listOfCreatedLocations[indexPath.row] as String
@@ -193,10 +271,15 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                 }
                 
                 self.listOfFavorites.remove(at: indexPath.row)
+                //self.listOfSharedFavorites.remove(at: indexPath.row)
+            
+                //self.tableView.reloadData()
                 
                 self.userFavToDelete = self.listOfCreatedLocations[indexPath.row] as String
+                //self.sharedFavToDelete = self.listOfSharedLocations[indexPath.row] as String
                 
                 let deletionRef = FIRDatabase.database().reference().child("Users").child(uid).child("CreatedLocations")
+                //let sharedDeletionRef = FIRDatabase.database().reference().child("SharedLocations").child(uid)
                 
                 deletionRef.observeSingleEvent(of: .value, with: { (snapshot) in
                     for snap in snapshot.children {
@@ -206,10 +289,22 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                         }
                     }
                 })
-                
+            
+                /*
+                sharedDeletionRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                    for snap in snapshot.children {
+                        let keySnap = snap as! FIRDataSnapshot
+                        if keySnap.value as! String == self.sharedFavToDelete {
+                            keySnap.ref.removeValue()
+                        }
+                    }
+                })
+                */
+            
                 self.deleteFromLocationsDB()
                 
                 self.listOfCreatedLocations.remove(at: indexPath.row)
+                //self.listOfSharedLocations.remove(at: indexPath.row)
                 
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
@@ -231,10 +326,17 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     */
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let indexPath = tableView.indexPathForSelectedRow!
-        _ = tableView.cellForRow(at: indexPath)! as UITableViewCell
+        if (indexPath.section == 0) {
+            let indexPath = tableView.indexPathForSelectedRow!
+            _ = tableView.cellForRow(at: indexPath)! as UITableViewCell
+            performSegue(withIdentifier: "FavLocMapViewSegue", sender: self)
+        } else {
+            let indexPath = tableView.indexPathForSelectedRow!
+            _ = tableView.cellForRow(at: indexPath)! as UITableViewCell
+            performSegue(withIdentifier: "ShowSharedLocationSegue", sender: self)
+        }
         
-        performSegue(withIdentifier: "FavLocMapViewSegue", sender: self)
+        
         
     }
     
@@ -281,6 +383,11 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             pointer.journeyToStart = self.journeyToStart
             pointer.fireUserID = self.fireUserID
         }
+        if (segue.identifier == "ShowSharedLocationSegue") {
+            let pointer = segue.destination as! SharedLocationsMapViewController
+            pointer.locationID = self.locationID
+            pointer.fireUserID = self.fireUserID
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -303,11 +410,17 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.listOfFavorites.count
+        var rowCount = 0
+        if section == 0 {
+            rowCount = self.listOfFavorites.count
+        } else {
+            rowCount = self.listOfSharedLocations.count
+        }
+        return rowCount
     }
     
     func toggleEdit() {
@@ -337,6 +450,18 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
     override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return false
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "My Favorites"
+        } else {
+            return "Shared Favorites"
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 45
     }
 
  
