@@ -52,14 +52,12 @@ class LiveJourneysTableViewController: UITableViewController {
                             
                             if locID == "DestinationName" {
                                 self.locationID = value
-                                print ("loc Name \(self.locationID)")
                             }
                         }
                     }
                     self.userCurrentJourneyLocation = self.locationID
                     
                 }
-                print (self.userCurrentJourneyLocation)
                 self.loadLiveJourneyData()
             })
         }
@@ -68,7 +66,7 @@ class LiveJourneysTableViewController: UITableViewController {
     func loadLiveJourneyData() {
         let databaseRef = FIRDatabase.database().reference().child("Started Journeys").queryOrderedByKey()
         _ = databaseRef.queryEqual(toValue: locationID).observe(.value, with: { (snapshot) in
-            
+            print (snapshot)
             for item in snapshot.children {
                 
                 var destLocation = ""
@@ -81,32 +79,30 @@ class LiveJourneysTableViewController: UITableViewController {
                     
                     for item in journeyLoc.children {
                         if let pair = item as? FIRDataSnapshot {
+                            print (pair)
                             if let location = pair.value as? String {
-                                destLocation = location
-                                print (destLocation)
-                            } else {
-                                if let value = pair.value as? Double {
-                                    
-                                    let name = pair.key
-                                    
-                                    
-                                    if name == "CurrentLat" {
-                                        cLat = value
+                                
+                                let name = pair.key
+                                if name == "DestinationName" {
+                                    destLocation = location
+                                    print (destLocation)
+                                } else {
+                                    if let value = pair.value as? Double {
                                         
-                                    } else if name == "CurrentLong" {
-                                        cLong = value
+                                        let name = pair.key
                                         
-                                    } else if name == "DestinationLat" {
-                                        dLat = value
-                                        
-                                    } else {
-                                        dLong = value
-                                        
+                                        if name == "CurrentLat" {
+                                            cLat = value
+                                        } else if name == "CurrentLong" {
+                                            cLong = value
+                                        } else if name == "DestinationLat" {
+                                            dLat = value
+                                        } else {
+                                            dLong = value
+                                        }
                                     }
                                 }
-                                
                             }
-
                         }
                     }
                 }
@@ -117,6 +113,8 @@ class LiveJourneysTableViewController: UITableViewController {
             print (self.userCurrentJourney)
         })
     }
+    
+        
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

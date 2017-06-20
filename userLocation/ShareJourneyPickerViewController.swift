@@ -97,63 +97,71 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
     func getDestinationCoordinates() {
         let databaseRef = FIRDatabase.database().reference().child("Locations").queryOrderedByKey()
         _ = databaseRef.queryEqual(toValue: journeyToStart).observe(.value, with: { (snapshot) in
-            print (snapshot)
+            
             for item in snapshot.children {
                 
                 if let destination = item as? FIRDataSnapshot {
                     
                     for item in destination.children {
                         if let pair = item as? FIRDataSnapshot {
-                            print (pair)
-                            
+                        
                             if let location = pair.value as? String {
                                 
-                                    self.locationName = location
-                                
-                            } else {
-                                
-                                if let value = pair.value as? CLLocationDegrees {
-                                    print (value)
-                                    let lat = pair.key
+                                        self.locationName = location
+                                        print ("locationName \(self.locationName)")
                                     
-                                    if lat == "Latitude" {
-                                        self.latitude = value
                                     } else {
-                                        self.longitude = value
+                                        if let value = pair.value as? CLLocationDegrees {
+                                            
+                                            let lat = pair.key
+                                            
+                                            if lat == "Latitude" {
+                                                self.latitude = value
+                                            } else {
+                                                self.longitude = value
+                                                
+                                            }
+                                            
+                                            self.saveDestinationCoordToDB()
+                                            self.saveLiveJourneyToSharedWithUser()
+                                            
+                                        }
                                     }
-                                    print ("getDestinationCoordinates run")
-                                    
-                                    self.saveDestinationCoordToDB()
-                                    print ("saveDestinationCoordToDB run")
-                                    
-                                    
-                                }
-                            }
-                            
                         }
                     }
                 }
-                print (self.latitude)
-                print (self.longitude)
+                
             }
         })
     }
     
-    
+   //decide which of these functions need to be called first, then callthe second within the completion block of the first.
     func saveDestinationCoordToDB() {
-        self.retrieveSharedUserID()
         let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
-        let destination = ref.child("Started Journeys").child(fireUserID).key
+        let destination = ref.child("StartedJourneys").child(fireUserID).key
         let destinationCoordinates = ["DestinationLat" : latitude, "DestinationLong" : longitude, "CurrentLat" : localValue.latitude, "CurrentLong" : localValue.longitude, "SharedWithUser" : sharedUserID, "DestinationName" : locationName] as [String : Any]
-        let childUpdates = ["/Started Journeys/\(destination)" : destinationCoordinates]
+        let childUpdates = ["/StartedJourneys/\(destination)" : destinationCoordinates]
+        //ref.updateChildValues(<#T##values: [AnyHashable : Any]##[AnyHashable : Any]#>, withCompletionBlock: <#T##(Error?, FIRDatabaseReference) -> Void#>)
+    }
+    
+    func saveLiveJourneyToSharedWithUser() {
+        print ("sharedUserID \(sharedUserID)")
+        print ("dLat \(latitude)")
+        print ("dLong \(longitude)")
+        print ("cLat \(localValue.latitude)")
+        print ("cLong \(localValue.longitude)")
+        print ("UMJ \(fireUserID)")
+        print ("dName \(locationName)")
+        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+        let destination = ref.child("SharedWithLiveJourneys").child(sharedUserID)
+        let destinationCoordinates = ["DestinationLat" : latitude, "DestinationLong" : longitude, "CurrentLat" : localValue.latitude, "CurrentLong" : localValue.longitude, "UserMakingJourney" : fireUserID, "DestinationName" : locationName] as [String : Any]
+        let childUpdates = ["/SharedWithLiveJourneys/\(destination)" : destinationCoordinates]
         ref.updateChildValues(childUpdates)
     }
     
     
     @IBAction func shareJourney(_ sender: Any) {
         retrieveSharedUserID()
-        saveDestinationCoordToDB()
-        
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {

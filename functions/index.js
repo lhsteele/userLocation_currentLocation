@@ -20,7 +20,7 @@ var options = {
   priority: "high"
 }
 
-exports.newEntry = functions.database.ref('/Started Journeys/{fireUserID}')
+exports.newEntry = functions.database.ref('/StartedJourneys/{fireUserID}')
   .onWrite(event => {
     const original = event.data.val()
     console.log(original)

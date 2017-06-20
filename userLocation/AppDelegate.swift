@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
             UNUserNotificationCenter.current().requestAuthorization(options: authOptions) {(granted, error) in
                 if (error != nil) {
-                    print ("I received the following error: \(error)")
+                    print ("I received the following error: \(String(describing: error))")
                 } else if (granted) {
                     print ("Authorization was granted!")
                 } else {
@@ -50,7 +50,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotification), name: .firInstanceIDTokenRefresh, object: nil)
         
+        //Somehow needs to be deferred to when the login happens. (this is when actual registration for notifications happens) everything else should be accessible still from AppDelegate
         application.registerForRemoteNotifications()
+        //call this from any other VC
+        //UIApplication.shared.registerForRemoteNotifications()
         
         return true
     }
