@@ -25,12 +25,10 @@
 		EF63100B1EBCEFE300A7CC84 /* FavLocMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF63100A1EBCEFE300A7CC84 /* FavLocMapViewController.swift */; };
 		EF63100D1EBCFACB00A7CC84 /* UpdateEmailReauthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF63100C1EBCFACB00A7CC84 /* UpdateEmailReauthViewController.swift */; };
 		EF63100F1EBCFBC500A7CC84 /* UpdateEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF63100E1EBCFBC500A7CC84 /* UpdateEmailViewController.swift */; };
-		EF72ABD41EB7CFEC003386CB /* SharedLocationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF72ABD31EB7CFEC003386CB /* SharedLocationsTableViewController.swift */; };
 		EF7DCC491EB29AD400D70194 /* ShareLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7DCC481EB29AD400D70194 /* ShareLocationViewController.swift */; };
 		EF8367F21EC64CF4005079E2 /* ShareJourneyPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8367F11EC64CF4005079E2 /* ShareJourneyPickerViewController.swift */; };
 		EF8765141E9454EE0078E3E5 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8765131E9454EE0078E3E5 /* WelcomeViewController.swift */; };
 		EF8F84801E25A33A00C32EBA /* userFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8F847F1E25A33A00C32EBA /* userFavorites.swift */; };
-		EFC5267F1EB8FF61006E33AD /* SharedLocationsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC5267E1EB8FF61006E33AD /* SharedLocationsMapViewController.swift */; };
 		EFDE1A591E3A9403002D1589 /* FavoriteLocationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDE1A581E3A9403002D1589 /* FavoriteLocationsTableViewController.swift */; };
 		EFF6AB0D1E8EF2FF00366DB2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF6AB0C1E8EF2FF00366DB2 /* LoginViewController.swift */; };
 		EFFB04E31E2E8BD40071D961 /* SaveLocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFB04E21E2E8BD40071D961 /* SaveLocationDetailViewController.swift */; };
@@ -82,12 +80,10 @@
 		EF63100A1EBCEFE300A7CC84 /* FavLocMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavLocMapViewController.swift; sourceTree = "<group>"; };
 		EF63100C1EBCFACB00A7CC84 /* UpdateEmailReauthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateEmailReauthViewController.swift; sourceTree = "<group>"; };
 		EF63100E1EBCFBC500A7CC84 /* UpdateEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateEmailViewController.swift; sourceTree = "<group>"; };
-		EF72ABD31EB7CFEC003386CB /* SharedLocationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedLocationsTableViewController.swift; sourceTree = "<group>"; };
 		EF7DCC481EB29AD400D70194 /* ShareLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareLocationViewController.swift; sourceTree = "<group>"; };
 		EF8367F11EC64CF4005079E2 /* ShareJourneyPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareJourneyPickerViewController.swift; sourceTree = "<group>"; };
 		EF8765131E9454EE0078E3E5 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		EF8F847F1E25A33A00C32EBA /* userFavorites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userFavorites.swift; sourceTree = "<group>"; };
-		EFC5267E1EB8FF61006E33AD /* SharedLocationsMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedLocationsMapViewController.swift; sourceTree = "<group>"; };
 		EFDE1A581E3A9403002D1589 /* FavoriteLocationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteLocationsTableViewController.swift; sourceTree = "<group>"; };
 		EFF6AB0C1E8EF2FF00366DB2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EFFB04E21E2E8BD40071D961 /* SaveLocationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveLocationDetailViewController.swift; sourceTree = "<group>"; };
@@ -162,8 +158,6 @@
 				EFF6AB0C1E8EF2FF00366DB2 /* LoginViewController.swift */,
 				EFDE1A581E3A9403002D1589 /* FavoriteLocationsTableViewController.swift */,
 				EF63100A1EBCEFE300A7CC84 /* FavLocMapViewController.swift */,
-				EF72ABD31EB7CFEC003386CB /* SharedLocationsTableViewController.swift */,
-				EFC5267E1EB8FF61006E33AD /* SharedLocationsMapViewController.swift */,
 				EF3821561E2415DF00032F42 /* MapView Controller.swift */,
 				EFFD9AB31EC56B6900B4B384 /* StartJourneyMapViewController.swift */,
 				EF8367F11EC64CF4005079E2 /* ShareJourneyPickerViewController.swift */,
@@ -411,8 +405,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF72ABD41EB7CFEC003386CB /* SharedLocationsTableViewController.swift in Sources */,
-				EFC5267F1EB8FF61006E33AD /* SharedLocationsMapViewController.swift in Sources */,
 				EF63100B1EBCEFE300A7CC84 /* FavLocMapViewController.swift in Sources */,
 				EFF6AB0D1E8EF2FF00366DB2 /* LoginViewController.swift in Sources */,
 				EF3CCA8B1EBD1FDC00C655C2 /* NewPasswordViewController.swift in Sources */,
