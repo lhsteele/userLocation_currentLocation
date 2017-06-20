@@ -27,6 +27,7 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
     var sharedUserID = String()
     var latitude = CLLocationDegrees()
     var longitude = CLLocationDegrees()
+    var locationName = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,25 +37,23 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
         picker.delegate = self
         picker.dataSource = self
         
-        getDestinationCoordinates()
         
     }
     
     func createSubscribedUsersArray() {
        let databaseRef = FIRDatabase.database().reference().child("SubscribedUsers").queryOrderedByKey()
         _ = databaseRef.queryEqual(toValue: journeyToStart).observe(.value, with: { (snapshot) in
-            //print (snapshot)
             
             for item in snapshot.children {
                 
                 var user = String()
                 
                 if let username = item as? FIRDataSnapshot {
-                    //print (userID)
+                    
                     for item2 in username.children {
                         if let pair = item2 as? FIRDataSnapshot {
                             if let userName = pair.key as? String {
-                                //print (userName)
+                                
                                 user = userName
                                 self.arrayOfSubscribedUsers.append(user)
                             }
@@ -83,7 +82,8 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
                                 
                                 if usersName == self.sharedUserName {
                                     self.sharedUserID = userID
-                                    self.saveDestinationCoordToDB()
+                                    self.getDestinationCoordinates()
+                                    
                                     return
                                 }
                             }
@@ -106,23 +106,35 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
                         if let pair = item as? FIRDataSnapshot {
                             print (pair)
                             
-                            if let value = pair.value as? CLLocationDegrees {
-                                print (value)
-                                let lat = pair.key
+                            if let location = pair.value as? String {
                                 
-                                if lat == "Latitude" {
-                                    self.latitude = value
-                                } else {
-                                    self.longitude = value
+                                    self.locationName = location
+                                
+                            } else {
+                                
+                                if let value = pair.value as? CLLocationDegrees {
+                                    print (value)
+                                    let lat = pair.key
+                                    
+                                    if lat == "Latitude" {
+                                        self.latitude = value
+                                    } else {
+                                        self.longitude = value
+                                    }
+                                    print ("getDestinationCoordinates run")
+                                    
+                                    self.saveDestinationCoordToDB()
+                                    print ("saveDestinationCoordToDB run")
+                                    
+                                    
                                 }
-                                
                             }
+                            
                         }
                     }
                 }
                 print (self.latitude)
                 print (self.longitude)
-                //self.saveDestinationCoordToDB()
             }
         })
     }
@@ -132,7 +144,7 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
         self.retrieveSharedUserID()
         let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
         let destination = ref.child("Started Journeys").child(fireUserID).key
-        let destinationCoordinates = ["DestinationLat" : latitude, "DestinationLong" : longitude, "CurrentLat" : localValue.latitude, "CurrentLong" : localValue.longitude, "SharedWithUser" : sharedUserID] as [String : Any]
+        let destinationCoordinates = ["DestinationLat" : latitude, "DestinationLong" : longitude, "CurrentLat" : localValue.latitude, "CurrentLong" : localValue.longitude, "SharedWithUser" : sharedUserID, "DestinationName" : locationName] as [String : Any]
         let childUpdates = ["/Started Journeys/\(destination)" : destinationCoordinates]
         ref.updateChildValues(childUpdates)
     }
@@ -140,7 +152,8 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
     
     @IBAction func shareJourney(_ sender: Any) {
         retrieveSharedUserID()
-        //saveDestinationCoordToDB()
+        saveDestinationCoordToDB()
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {

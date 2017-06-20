@@ -49,6 +49,7 @@ class LiveJourneysTableViewController: UITableViewController {
                     if let pair = item as? FIRDataSnapshot {
                         if let locID = pair.value as? String {
                             self.locationID = locID
+                            print ("loc Name \(self.locationID)")
                         }
                     }
                     self.userCurrentJourneyLocation.append(self.locationID)
@@ -63,6 +64,7 @@ class LiveJourneysTableViewController: UITableViewController {
     func loadLiveJourneyData() {
         let databaseRef = FIRDatabase.database().reference().child("Started Journeys").queryOrderedByKey()
         _ = databaseRef.queryEqual(toValue: locationID).observe(.value, with: { (snapshot) in
+            
             for item in snapshot.children {
                 
                 var destLocation = ""
@@ -71,31 +73,37 @@ class LiveJourneysTableViewController: UITableViewController {
                 var dLat = Double()
                 var dLong = Double()
                 
-                if let pair = item as? FIRDataSnapshot {
+                if let journeyLoc = item as? FIRDataSnapshot {
                     
-                    if let location = pair.value as? String {
-                        destLocation = location
-                    } else {
-                        if let value = pair.value as? Double {
-                        
-                            let name = pair.key
-                            print ("name \(name)")
-                            
-                            if name == "CurrentLat" {
-                                cLat = value
-                                print ("cLat \(cLat)")
-                            } else if name == "CurrentLong" {
-                                cLong = value
-                                print ("cLong \(cLong)")
-                            } else if name == "DestinationLat" {
-                                dLat = value
-                                print ("dLat \(dLat)")
+                    for item in journeyLoc.children {
+                        if let pair = item as? FIRDataSnapshot {
+                            if let location = pair.value as? String {
+                                destLocation = location
+                                print (destLocation)
                             } else {
-                                dLong = value
-                                print ("dLong \(dLong)")
+                                if let value = pair.value as? Double {
+                                    
+                                    let name = pair.key
+                                    
+                                    
+                                    if name == "CurrentLat" {
+                                        cLat = value
+                                        
+                                    } else if name == "CurrentLong" {
+                                        cLong = value
+                                        
+                                    } else if name == "DestinationLat" {
+                                        dLat = value
+                                        
+                                    } else {
+                                        dLong = value
+                                        
+                                    }
+                                }
+                                
                             }
+
                         }
-                        
                     }
                 }
                 let newJourney = JourneyLocation(userID: self.fireUserID, currentLat: cLat, currentLong: cLong, destinationLat: dLat, destinationLong: dLong)
@@ -118,16 +126,21 @@ class LiveJourneysTableViewController: UITableViewController {
         return 2
     }
 
+    /*
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        switch section {
+        case 0: return userCurrentJourney.count
+        //case 1: return sharedLiveJourney.count
+        default: fatalError("Unknown section")
+        }
     }
-
+ */
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        if indexPath.section == 0 {
+            cell.textLabel?.text = self.userCurrentJourneyLocation
+        }
 
         return cell
     }

@@ -160,7 +160,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     }
     
     func loadSharedData () {
-        print ("loadSharedDataRun")
+        
         for item in listOfSharedLocations {
             
             let databaseRef = FIRDatabase.database().reference().child("Locations").queryOrderedByKey()

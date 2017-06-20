@@ -28,7 +28,6 @@ class StartJourneyMapViewController: UIViewController, CLLocationManagerDelegate
         
         
         displayShareAlertMessage(messageToDisplay: "Would you like to share this journey?")
-        
     }
     
     let manager = CLLocationManager()
