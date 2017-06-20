@@ -39,7 +39,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     let s2Data: [String] = [""]
     
     
-    @IBOutlet var sharedLocationsButton: UIBarButtonItem!
+    
     @IBOutlet var settingsButton: UIBarButtonItem!
     @IBOutlet var addLocationButton: UIButton!
     
@@ -268,15 +268,15 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                 }
                 
                 self.listOfFavorites.remove(at: indexPath.row)
-                //self.listOfSharedFavorites.remove(at: indexPath.row)
+                self.listOfSharedFavorites.remove(at: indexPath.row)
             
-                //self.tableView.reloadData()
+                self.tableView.reloadData()
                 
                 self.userFavToDelete = self.listOfCreatedLocations[indexPath.row] as String
-                //self.sharedFavToDelete = self.listOfSharedLocations[indexPath.row] as String
+                self.sharedFavToDelete = self.listOfSharedLocations[indexPath.row] as String
                 
                 let deletionRef = FIRDatabase.database().reference().child("Users").child(uid).child("CreatedLocations")
-                //let sharedDeletionRef = FIRDatabase.database().reference().child("SharedLocations").child(uid)
+                let sharedDeletionRef = FIRDatabase.database().reference().child("SharedLocations").child(uid)
                 
                 deletionRef.observeSingleEvent(of: .value, with: { (snapshot) in
                     for snap in snapshot.children {
@@ -287,7 +287,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                     }
                 })
             
-                /*
+            
                 sharedDeletionRef.observeSingleEvent(of: .value, with: { (snapshot) in
                     for snap in snapshot.children {
                         let keySnap = snap as! FIRDataSnapshot
@@ -296,12 +296,12 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                         }
                     }
                 })
-                */
+            
             
                 self.deleteFromLocationsDB()
                 
                 self.listOfCreatedLocations.remove(at: indexPath.row)
-                //self.listOfSharedLocations.remove(at: indexPath.row)
+                self.listOfSharedLocations.remove(at: indexPath.row)
                 
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
@@ -347,10 +347,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         performSegue(withIdentifier: "SettingsSegue", sender: settingsButton)
     }
     
-    @IBAction func goToSharedLocations(_ sender: Any) {
-        performSegue(withIdentifier: "SharedLocationsSegue", sender: sharedLocationsButton)
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "MapViewSegue") {
             let pointer = segue.destination as! ViewController
@@ -359,10 +355,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         if (segue.identifier == "ShareLocationSegue") {
             let pointer = segue.destination as! ShareLocationViewController
             pointer.locationToShare = self.locationToShare
-            pointer.fireUserID = self.fireUserID
-        }
-        if (segue.identifier == "SharedLocationsSegue") {
-            let pointer = segue.destination as! SharedLocationsTableViewController
             pointer.fireUserID = self.fireUserID
         }
         if (segue.identifier == "SettingsSegue") {
@@ -378,11 +370,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         if (segue.identifier == "StartJourneySegue") {
             let pointer = segue.destination as! StartJourneyMapViewController
             pointer.journeyToStart = self.journeyToStart
-            pointer.fireUserID = self.fireUserID
-        }
-        if (segue.identifier == "ShowSharedLocationSegue") {
-            let pointer = segue.destination as! SharedLocationsMapViewController
-            pointer.locationID = self.locationID
             pointer.fireUserID = self.fireUserID
         }
     }
