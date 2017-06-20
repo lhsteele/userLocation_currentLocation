@@ -35,11 +35,10 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     var locationToShare = String()
     var locationNameString = String()
     var journeyToStart = String()
-    let s1Data: [String] = [""]
-    let s2Data: [String] = [""]
     
     
     
+    @IBOutlet var journeysButton: UIBarButtonItem!
     @IBOutlet var settingsButton: UIBarButtonItem!
     @IBOutlet var addLocationButton: UIButton!
     
@@ -104,7 +103,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                     if let pair = item as? FIRDataSnapshot {
                         if let locID = pair.value as? String {
                             self.locationID = locID
-                            print (self.locationID)
+                            
                         }
                     }
                     self.listOfSharedLocations.append(self.locationID)
@@ -191,10 +190,10 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                                         
                                         if valueName == "Latitude" {
                                             updatedLat = value
-                                            print ("SLTV\(updatedLat)")
+                                            
                                         } else {
                                             updatedLong = value
-                                            print ("SLTV\(updatedLong)")
+                                            
                                         }
                                     }
                                 }
@@ -347,6 +346,12 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         performSegue(withIdentifier: "SettingsSegue", sender: settingsButton)
     }
     
+    
+    @IBAction func goToLiveJourneys(_ sender: Any) {
+        performSegue(withIdentifier: "liveJourneysSegue", sender: journeysButton)
+    }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "MapViewSegue") {
             let pointer = segue.destination as! ViewController
@@ -370,6 +375,10 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         if (segue.identifier == "StartJourneySegue") {
             let pointer = segue.destination as! StartJourneyMapViewController
             pointer.journeyToStart = self.journeyToStart
+            pointer.fireUserID = self.fireUserID
+        }
+        if (segue.identifier == "liveJourneysSegue") {
+            let pointer = segue.destination as! LiveJourneysTableViewController
             pointer.fireUserID = self.fireUserID
         }
     }

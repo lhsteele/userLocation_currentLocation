@@ -136,8 +136,11 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Favorite Locations" id="S6j-az-jdU">
-                        <barButtonItem key="leftBarButtonItem" title="Live" id="Hnf-B5-vEL">
+                        <barButtonItem key="leftBarButtonItem" title="Journeys" id="Hnf-B5-vEL">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="goToLiveJourneys:" destination="8vQ-W8-wwu" id="Ehf-M2-ZkU"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="Ygt-rs-TzW">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -149,6 +152,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="addLocationButton" destination="9Ei-Q0-6df" id="Djw-iX-pCw"/>
+                        <outlet property="journeysButton" destination="Hnf-B5-vEL" id="Lqx-UV-cHg"/>
                         <outlet property="settingsButton" destination="Ygt-rs-TzW" id="rh6-dP-8Nd"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="MapViewSegue" id="p8w-qr-Hm1"/>
                         <segue destination="Wh7-Cd-sly" kind="show" identifier="ReauthenticationSegue" id="tX9-J2-yO8"/>
@@ -156,6 +160,7 @@
                         <segue destination="fbu-6W-fHY" kind="show" identifier="ShareLocationSegue" id="X6m-dw-UvP"/>
                         <segue destination="Krg-GJ-ehI" kind="show" identifier="FavLocMapViewSegue" id="gq1-7V-UZe"/>
                         <segue destination="b21-sT-Dqv" kind="show" identifier="StartJourneySegue" id="Yrl-wJ-WI2"/>
+                        <segue destination="vZp-uk-xNM" kind="show" identifier="liveJourneysSegue" id="KaS-cP-Sre"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pX4-EA-J4z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -289,6 +294,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UBC-N5-MS1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5402.3999999999996" y="-592.35382308845578"/>
+        </scene>
+        <!--Live Journeys Table View Controller-->
+        <scene sceneID="WaA-go-d52">
+            <objects>
+                <tableViewController id="vZp-uk-xNM" customClass="LiveJourneysTableViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="dWp-pH-bQV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="L49-x4-OfY">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="L49-x4-OfY" id="Hwr-IC-nLo">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="vZp-uk-xNM" id="lJH-Bg-ePS"/>
+                            <outlet property="delegate" destination="vZp-uk-xNM" id="EFF-P0-Uf3"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dRl-IV-9ND" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6278" y="-592"/>
         </scene>
         <!--Fav Loc Map View Controller-->
         <scene sceneID="suJ-FH-ciX">
@@ -886,19 +919,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QU3-IV-h1n">
-                                <rect key="frame" x="16" y="189" width="343" height="30"/>
+                                <rect key="frame" x="16" y="145" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save a favorite location:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOp-Cc-tZR">
-                                <rect key="frame" x="16" y="98" width="343" height="21"/>
+                                <rect key="frame" x="16" y="54" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coordinates" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FEf-9O-2Ju">
-                                <rect key="frame" x="16" y="249" width="343" height="21"/>
+                                <rect key="frame" x="16" y="205" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
