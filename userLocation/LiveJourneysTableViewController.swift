@@ -47,12 +47,16 @@ class LiveJourneysTableViewController: UITableViewController {
                 for item in liveJourneys {
                     
                     if let pair = item as? FIRDataSnapshot {
-                        if let locID = pair.value as? String {
-                            self.locationID = locID
-                            print ("loc Name \(self.locationID)")
+                        if let value = pair.value as? String {
+                            let locID = pair.key
+                            
+                            if locID == "DestinationName" {
+                                self.locationID = value
+                                print ("loc Name \(self.locationID)")
+                            }
                         }
                     }
-                    self.userCurrentJourneyLocation.append(self.locationID)
+                    self.userCurrentJourneyLocation = self.locationID
                     
                 }
                 print (self.userCurrentJourneyLocation)
