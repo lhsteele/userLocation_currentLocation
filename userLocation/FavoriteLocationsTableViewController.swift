@@ -55,7 +55,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         addLocationButton.layer.cornerRadius = 10
         
         loadFavorites()
-        deleteFromSharedLocations()
+        //deleteFromSharedLocations()
         //loadSharedLocations()
         
         
@@ -95,7 +95,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         
         if let userID = FIRAuth.auth()?.currentUser?.uid {
             
-            let locationKey = ref.child("SharedLocations").child(userID)
+            let locationKey = ref.child("LocationsSharedWithUser").child(userID)
             
             locationKey.observeSingleEvent(of: .value, with: { (snapshot) in
                 
@@ -251,7 +251,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let share = UITableViewRowAction(style: .normal, title: "Share") { (action, indexPath) in
-            self.locationToShare = self.listOfCreatedLocations[indexPath.row] as String
+            self.locationToShare = self.listOfFavorites[indexPath.row].location as String
             print (indexPath.row)
             print (self.listOfFavorites)
             print (self.listOfCreatedLocations)
@@ -261,27 +261,26 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         share.backgroundColor = UIColor.darkGray
         
         let startJourney = UITableViewRowAction(style: .normal, title: "Start Journey") { (action, indexPath) in
-            self.journeyToStart = self.listOfCreatedLocations[indexPath.row] as String
+            self.journeyToStart = self.listOfFavorites[indexPath.row].location as String
             self.performSegue(withIdentifier: "StartJourneySegue", sender: Any.self)
         }
         
         // needs to be a separate delete to delete from each array.
-        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+        let deleteS0 = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             
                 guard let uid = FIRAuth.auth()?.currentUser?.uid else {
                     return
                 }
                 
                 self.listOfFavorites.remove(at: indexPath.row)
-                //self.listOfSharedFavorites.remove(at: indexPath.row)
+                self.listOfCreatedLocations.remove(at: indexPath.row)
             
                 self.tableView.reloadData()
                 
-                self.userFavToDelete = self.listOfCreatedLocations[indexPath.row] as String
-                //self.sharedFavToDelete = self.listOfSharedLocations[indexPath.row] as String
-                
+                self.userFavToDelete = self.listOfFavorites[indexPath.row].location as String
+            
                 let deletionRef = FIRDatabase.database().reference().child("Users").child(uid).child("CreatedLocations")
-                let sharedDeletionRef = FIRDatabase.database().reference().child("SharedLocations").child(uid)
+            
             
                 // any deletion from database should happen in function outside of this.
                 deletionRef.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -293,28 +292,52 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                     }
                 })
             
-            
-                sharedDeletionRef.observeSingleEvent(of: .value, with: { (snapshot) in
-                    for snap in snapshot.children {
-                        let keySnap = snap as! FIRDataSnapshot
-                        if keySnap.value as! String == self.sharedFavToDelete {
-                            keySnap.ref.removeValue()
-                        }
-                    }
-                })
-            
-            
                 self.deleteFromLocationsDB()
-                
-                self.listOfCreatedLocations.remove(at: indexPath.row)
-                //self.listOfSharedLocations.remove(at: indexPath.row)
-                
+                self.deleteFromSubscribedUsers()
+            
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
-        if indexPath.section == 0 {
-            return [share, startJourney, delete]
+        
+        // needs to be a separate delete to delete from each array.
+        let deleteS1 = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            
+            guard let uid = FIRAuth.auth()?.currentUser?.uid else {
+                return
+            }
+            
+            //self.listOfSharedFavorites.remove(at: indexPath.row)
+            
+            self.tableView.reloadData()
+            
+            //self.sharedFavToDelete = self.listOfSharedLocations[indexPath.row] as String
+            
+            //let sharedDeletionRef = FIRDatabase.database().reference().child("SharedLocations").child(uid)
+            
+            // any deletion from database should happen in function outside of this.
+            
+            /*
+             sharedDeletionRef.observeSingleEvent(of: .value, with: { (snapshot) in
+             for snap in snapshot.children {
+             let keySnap = snap as! FIRDataSnapshot
+             if keySnap.value as! String == self.sharedFavToDelete {
+             keySnap.ref.removeValue()
+             }
+             }
+             })
+             */
+            
+            self.deleteFromLocationsDB()
+            self.deleteFromSubscribedUsers()
+            
+            //self.listOfSharedLocations.remove(at: indexPath.row)
+            
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
-        return [delete]
+
+        if indexPath.section == 0 {
+            return [share, startJourney, deleteS0]
+        }
+        return [deleteS1]
     }
     
     
@@ -325,7 +348,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         locToDeleteRef.removeValue()
     }
     
-    
+    /*
     func deleteFromSharedLocations() {
         let sharedLocDeletionRef = FIRDatabase.database().reference().child("SharedLocations")
         sharedLocDeletionRef.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -350,6 +373,14 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             
         })
         
+    }
+    */
+    
+    func deleteFromSubscribedUsers() {
+        let subscribedUsersDeletionRef = FIRDatabase.database().reference().child("SubscribedUsers")
+        
+        let locToDeleteRef = subscribedUsersDeletionRef.child(userFavToDelete)
+        locToDeleteRef.removeValue()
     }
     
     

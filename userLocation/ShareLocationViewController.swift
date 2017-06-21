@@ -83,7 +83,7 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
     
     func shareLocWithUser() {
         let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
-        let shareRef = ref.child("SharedLocations").child(sharedEmailsUserID)
+        let shareRef = ref.child("LocationsSharedWithUser").child(sharedEmailsUserID)
         let updates = [shareRef.childByAutoId().key : locationToShare]
         shareRef.updateChildValues(updates)
     }
