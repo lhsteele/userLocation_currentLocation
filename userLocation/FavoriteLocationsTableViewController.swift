@@ -55,6 +55,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         addLocationButton.layer.cornerRadius = 10
         
         loadFavorites()
+        deleteFromSharedLocations()
         //loadSharedLocations()
         
         
@@ -254,7 +255,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             print (indexPath.row)
             print (self.listOfFavorites)
             print (self.listOfCreatedLocations)
-            //self.performSegue(withIdentifier: "ShareLocationSegue", sender: Any.self)
+            self.performSegue(withIdentifier: "ShareLocationSegue", sender: Any.self)
         }
         
         share.backgroundColor = UIColor.darkGray
@@ -272,12 +273,12 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                 }
                 
                 self.listOfFavorites.remove(at: indexPath.row)
-                self.listOfSharedFavorites.remove(at: indexPath.row)
+                //self.listOfSharedFavorites.remove(at: indexPath.row)
             
                 self.tableView.reloadData()
                 
                 self.userFavToDelete = self.listOfCreatedLocations[indexPath.row] as String
-                self.sharedFavToDelete = self.listOfSharedLocations[indexPath.row] as String
+                //self.sharedFavToDelete = self.listOfSharedLocations[indexPath.row] as String
                 
                 let deletionRef = FIRDatabase.database().reference().child("Users").child(uid).child("CreatedLocations")
                 let sharedDeletionRef = FIRDatabase.database().reference().child("SharedLocations").child(uid)
@@ -306,7 +307,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                 self.deleteFromLocationsDB()
                 
                 self.listOfCreatedLocations.remove(at: indexPath.row)
-                self.listOfSharedLocations.remove(at: indexPath.row)
+                //self.listOfSharedLocations.remove(at: indexPath.row)
                 
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
@@ -324,11 +325,33 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         locToDeleteRef.removeValue()
     }
     
-    /*
-    func deleteFromSubscribedLocations() {
+    
+    func deleteFromSharedLocations() {
+        let sharedLocDeletionRef = FIRDatabase.database().reference().child("SharedLocations")
+        sharedLocDeletionRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            let keys = snapshot.children
+    
+            for item in keys {
+                if let location = item as? FIRDataSnapshot {
+                
+                    for item2 in location.children {
+                        if let pair = item2 as? FIRDataSnapshot {
+                            
+                            if let locId = pair.value as? String {
+                                
+                                if locId == "KjumHao0vttkv3l8nDx" {
+                                    print ("locID match \(locId)")
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+        })
         
     }
-    */
+    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (indexPath.section == 0) {
