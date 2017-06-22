@@ -59,7 +59,7 @@ class LiveJourneysTableViewController: UITableViewController {
                     self.userCurrentJourneyLocation = self.locationID
                     
                 }
-                self.loadLiveJourneyData()
+                //self.loadLiveJourneyData()
             })
         }
     }
@@ -79,7 +79,7 @@ class LiveJourneysTableViewController: UITableViewController {
             })
         }
     }
-    
+    /*
     func loadLiveJourneyData() {
         let databaseRef = FIRDatabase.database().reference().child("StartedJourneys").queryOrderedByKey()
         _ = databaseRef.queryEqual(toValue: locationID).observe(.value, with: { (snapshot) in
@@ -130,6 +130,7 @@ class LiveJourneysTableViewController: UITableViewController {
             print (self.userCurrentJourney)
         })
     }
+    */
     
     func loadSharedWithLiveJourneyData() {
         let databaseRef = FIRDatabase.database().reference().child("SharedWithLiveJourneys").queryOrderedByKey()
@@ -155,20 +156,21 @@ class LiveJourneysTableViewController: UITableViewController {
                                     destLocation = location
                                     
                                 } else {
-                                    if let value = pair.value as? Double {
+                                
+                                    if let coordinates = pair.value as? Double {
                                         
                                         let name = pair.key
                                         
                                         if name == "CurrentLat" {
-                                            cLat = value
+                                            cLat = coordinates
                                             print (cLat)
-                                        } else if name == "CurrentLong" {
-                                            cLong = value
-                                        } else if name == "DestinationLat" {
-                                            dLat = value
-                                        } else {
-                                            dLong = value
-                                        }
+                                        } //else if name == "CurrentLong" {
+                                            //cLong = coordinates
+                                        //} else if name == "DestinationLat" {
+                                            //dLat = coordinates
+                                        //} else {
+                                            //dLong = coordinates
+                                        //}
                                         let newJourney = JourneyLocation(userID: self.fireUserID, currentLat: cLat, currentLong: cLong, destinationLat: dLat, destinationLong: dLong)
                                         print (newJourney.currentLat)
                                         print (newJourney.currentLong)
@@ -176,7 +178,7 @@ class LiveJourneysTableViewController: UITableViewController {
                                         print (newJourney.destinationLong)
                                         self.sharedWithLiveJourney = newJourney
                                     }
-                                    
+                                 
                                 }
                             }
                         }
