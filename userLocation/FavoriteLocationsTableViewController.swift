@@ -56,8 +56,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         
         loadFavorites()
         
-        self.deleteFromUsersCreatedLocations()
-        
     }
     //When deleting a location from db, need to delete from Users as well as Location.
     
@@ -250,7 +248,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let share = UITableViewRowAction(style: .normal, title: "Share") { (action, indexPath) in
-            self.locationToShare = self.listOfFavorites[indexPath.row].location as String
+            self.locationToShare = self.listOfCreatedLocations[indexPath.row] as String
             print (indexPath.row)
             print (self.listOfFavorites)
             print (self.listOfCreatedLocations)
@@ -260,7 +258,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         share.backgroundColor = UIColor.darkGray
         
         let startJourney = UITableViewRowAction(style: .normal, title: "Start Journey") { (action, indexPath) in
-            self.journeyToStart = self.listOfFavorites[indexPath.row].location as String
+            self.journeyToStart = self.listOfCreatedLocations[indexPath.row] as String
             self.performSegue(withIdentifier: "StartJourneySegue", sender: Any.self)
         }
         
@@ -379,18 +377,20 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         if let uid = FIRAuth.auth()?.currentUser?.uid {
             let deletionRef = FIRDatabase.database().reference().child("Users").child(uid).child("CreatedLocations")
             
+            
             deletionRef.observeSingleEvent(of: .value, with: { (snapshot) in
                 for snap in snapshot.children {
                     let keySnap = snap as? FIRDataSnapshot
                     print (keySnap)
                     if let value = keySnap?.value as? String {
-                        let key = keySnap.key
+                        let key = keySnap?.key
                         if value == "KnBJo70wFt74z5ntxIG" {
-                        
+                        print ("match found")
                         }
                     }
                 }
             })
+            
         }
     
         print ("deleteFromUsersCreatedLocations run")
