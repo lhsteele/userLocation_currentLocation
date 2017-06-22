@@ -20,9 +20,10 @@ class LiveJourneysTableViewController: UITableViewController {
     var destinationLong = Double()
     var sharedWithUser = ""
     var fireUserID = String()
-    var userCurrentJourney: [JourneyLocation] = []
+    var userCurrentJourney: JourneyLocation?
     var userCurrentJourneyLocation = ""
-    var sharedWithLiveJourney: JourneyLocation?
+    var sharedWithLiveJourney: [JourneyLocation] = []
+    var sharedWithDestinationName = ""
     
     
     
@@ -139,11 +140,7 @@ class LiveJourneysTableViewController: UITableViewController {
             for item in snapshot.children {
                 
                 var destLocation = ""
-                var cLat = Double()
-                var cLong = Double()
-                var dLat = Double()
-                var dLong = Double()
-                
+            
                 if let journeyLoc = item as? FIRDataSnapshot {
                     
                     for item in journeyLoc.children {
@@ -155,31 +152,9 @@ class LiveJourneysTableViewController: UITableViewController {
                                 if name == "DestinationName" {
                                     destLocation = location
                                     
-                                } else {
-                                
-                                    if let coordinates = pair.value as? Double {
-                                        
-                                        let name = pair.key
-                                        
-                                        if name == "CurrentLat" {
-                                            cLat = coordinates
-                                            print (cLat)
-                                        } //else if name == "CurrentLong" {
-                                            //cLong = coordinates
-                                        //} else if name == "DestinationLat" {
-                                            //dLat = coordinates
-                                        //} else {
-                                            //dLong = coordinates
-                                        //}
-                                        let newJourney = JourneyLocation(userID: self.fireUserID, currentLat: cLat, currentLong: cLong, destinationLat: dLat, destinationLong: dLong)
-                                        print (newJourney.currentLat)
-                                        print (newJourney.currentLong)
-                                        print (newJourney.destinationLat)
-                                        print (newJourney.destinationLong)
-                                        self.sharedWithLiveJourney = newJourney
-                                    }
-                                 
                                 }
+                                self.sharedWithDestinationName = destLocation
+                                self.getCoordinates()
                             }
                         }
                     }
@@ -189,9 +164,50 @@ class LiveJourneysTableViewController: UITableViewController {
             self.tableView.reloadData()
         })
     }
+    
+    func getCoordinates() {
+        let databaseRef = FIRDatabase.database().reference().child("SharedWithLiveJourneys").queryOrderedByKey()
+        _ = databaseRef.queryEqual(toValue: fireUserID).observe(.value, with: { (snapshot) in
+            for item in snapshot.children {
+                
+                var cLat = Double()
+                var cLong = Double()
+                var dLat = Double()
+                var dLong = Double()
+                
+                if let sharedJourneyCoordinates = item as? FIRDataSnapshot {
+                    for item in sharedJourneyCoordinates.children {
+                        if let pair = item as? FIRDataSnapshot {
+                            if let coordinates = pair.value as? Double {
+                                
+                                let name = pair.key
+                                
+                                if name == "CurrentLat" {
+                                    cLat = coordinates
+                                } else if name == "CurrentLong" {
+                                    cLong = coordinates
+                                } else if name == "DestinationLat" {
+                                    dLat = coordinates
+                                } else {
+                                    dLong = coordinates
+                                }
+                                
+                                 let newJourney = JourneyLocation(userID: self.fireUserID, currentLat: cLat, currentLong: cLong, destinationLat: dLat, destinationLong: dLong)
+                                 self.sharedWithLiveJourney.append(newJourney)
+                            }
+
+                        }
+                        
+                    }
+                }
+                print (self.sharedWithLiveJourney)
+                
+            }
+        })
+    }
 
     
-        
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
