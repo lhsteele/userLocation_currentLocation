@@ -22,6 +22,7 @@ class LiveJourneysTableViewController: UITableViewController {
     var fireUserID = String()
     var userCurrentJourney: [JourneyLocation] = []
     var userCurrentJourneyLocation = ""
+    var sharedWithLiveJourney: JourneyLocation?
     
     
     
@@ -30,7 +31,7 @@ class LiveJourneysTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadUserLiveJourney()
+        checkForSharedLiveJourneys()
 
     }
     
@@ -62,9 +63,25 @@ class LiveJourneysTableViewController: UITableViewController {
             })
         }
     }
+ 
+    
+    func checkForSharedLiveJourneys() {
+        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+        if let userID = FIRAuth.auth()?.currentUser?.uid {
+            let locationKey = ref.child("SharedWithLiveJourneys").child(userID).child("JourneyIsLive")
+            locationKey.observeSingleEvent(of: .value, with: { (snapshot) in
+                //print (snapshot)
+                let value = snapshot.value as? BooleanLiteralType
+                print (value)
+                if value == true {
+                    self.loadSharedWithLiveJourneyData()
+                }
+            })
+        }
+    }
     
     func loadLiveJourneyData() {
-        let databaseRef = FIRDatabase.database().reference().child("Started Journeys").queryOrderedByKey()
+        let databaseRef = FIRDatabase.database().reference().child("StartedJourneys").queryOrderedByKey()
         _ = databaseRef.queryEqual(toValue: locationID).observe(.value, with: { (snapshot) in
             print (snapshot)
             for item in snapshot.children {
@@ -113,6 +130,64 @@ class LiveJourneysTableViewController: UITableViewController {
             print (self.userCurrentJourney)
         })
     }
+    
+    func loadSharedWithLiveJourneyData() {
+        let databaseRef = FIRDatabase.database().reference().child("SharedWithLiveJourneys").queryOrderedByKey()
+        _ = databaseRef.queryEqual(toValue: fireUserID).observe(.value, with: { (snapshot) in
+            print (snapshot)
+            for item in snapshot.children {
+                
+                var destLocation = ""
+                var cLat = Double()
+                var cLong = Double()
+                var dLat = Double()
+                var dLong = Double()
+                
+                if let journeyLoc = item as? FIRDataSnapshot {
+                    
+                    for item in journeyLoc.children {
+                        if let pair = item as? FIRDataSnapshot {
+                            
+                            if let location = pair.value as? String {
+                                
+                                let name = pair.key
+                                if name == "DestinationName" {
+                                    destLocation = location
+                                    
+                                } else {
+                                    if let value = pair.value as? Double {
+                                        
+                                        let name = pair.key
+                                        
+                                        if name == "CurrentLat" {
+                                            cLat = value
+                                            print (cLat)
+                                        } else if name == "CurrentLong" {
+                                            cLong = value
+                                        } else if name == "DestinationLat" {
+                                            dLat = value
+                                        } else {
+                                            dLong = value
+                                        }
+                                        let newJourney = JourneyLocation(userID: self.fireUserID, currentLat: cLat, currentLong: cLong, destinationLat: dLat, destinationLong: dLong)
+                                        print (newJourney.currentLat)
+                                        print (newJourney.currentLong)
+                                        print (newJourney.destinationLat)
+                                        print (newJourney.destinationLong)
+                                        self.sharedWithLiveJourney = newJourney
+                                    }
+                                    
+                                }
+                            }
+                        }
+                    }
+                }
+                
+            }
+            self.tableView.reloadData()
+        })
+    }
+
     
         
 
