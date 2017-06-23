@@ -23,7 +23,7 @@ class LiveJourneysTableViewController: UITableViewController {
     var userCurrentJourney: JourneyLocation?
     var userCurrentJourneyLocation = ""
     var sharedWithLiveJourney: [JourneyLocation] = []
-    var sharedWithDestinationName = ""
+    var sharedWithDestinationName: [String] = []
     
     
     
@@ -31,7 +31,7 @@ class LiveJourneysTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        loadUserLiveJourney()
         checkForSharedLiveJourneys()
 
     }
@@ -39,10 +39,9 @@ class LiveJourneysTableViewController: UITableViewController {
     func loadUserLiveJourney() {
         let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
         if let userID = FIRAuth.auth()?.currentUser?.uid {
-            let locationKey = ref.child("Started Journeys").child(userID)
+            let locationKey = ref.child("StartedJourneys").child(userID)
             
             locationKey.observeSingleEvent(of: .value, with: { (snapshot) in
-                
                 
                 let liveJourneys = snapshot.children
                 
@@ -54,13 +53,13 @@ class LiveJourneysTableViewController: UITableViewController {
                             
                             if locID == "DestinationName" {
                                 self.locationID = value
+                                self.userCurrentJourneyLocation = self.locationID
                             }
                         }
                     }
-                    self.userCurrentJourneyLocation = self.locationID
-                    
+                    print (self.userCurrentJourneyLocation)
                 }
-                //self.loadLiveJourneyData()
+                self.loadLiveJourneyData()
             })
         }
     }
@@ -80,59 +79,46 @@ class LiveJourneysTableViewController: UITableViewController {
             })
         }
     }
-    /*
+    
     func loadLiveJourneyData() {
         let databaseRef = FIRDatabase.database().reference().child("StartedJourneys").queryOrderedByKey()
-        _ = databaseRef.queryEqual(toValue: locationID).observe(.value, with: { (snapshot) in
-            print (snapshot)
+        _ = databaseRef.queryEqual(toValue: fireUserID).observe(.value, with: { (snapshot) in
             for item in snapshot.children {
                 
-                var destLocation = ""
                 var cLat = Double()
                 var cLong = Double()
                 var dLat = Double()
                 var dLong = Double()
                 
-                if let journeyLoc = item as? FIRDataSnapshot {
-                    
-                    for item in journeyLoc.children {
+                if let sharedJourneyCoordinates = item as? FIRDataSnapshot {
+                    for item in sharedJourneyCoordinates.children {
                         if let pair = item as? FIRDataSnapshot {
-                            print (pair)
-                            if let location = pair.value as? String {
+                            if let coordinates = pair.value as? Double {
                                 
                                 let name = pair.key
-                                if name == "DestinationName" {
-                                    destLocation = location
-                                    print (destLocation)
+                                
+                                if name == "CurrentLat" {
+                                    cLat = coordinates
+                                } else if name == "CurrentLong" {
+                                    cLong = coordinates
+                                } else if name == "DestinationLat" {
+                                    dLat = coordinates
                                 } else {
-                                    if let value = pair.value as? Double {
-                                        
-                                        let name = pair.key
-                                        
-                                        if name == "CurrentLat" {
-                                            cLat = value
-                                        } else if name == "CurrentLong" {
-                                            cLong = value
-                                        } else if name == "DestinationLat" {
-                                            dLat = value
-                                        } else {
-                                            dLong = value
-                                        }
-                                    }
+                                    dLong = coordinates
                                 }
+                                let newJourney = JourneyLocation(userID: self.fireUserID, currentLat: cLat, currentLong: cLong, destinationLat: dLat, destinationLong: dLong)
+                                self.userCurrentJourney = newJourney
                             }
+                            
                         }
+                        
                     }
                 }
-                let newJourney = JourneyLocation(userID: self.fireUserID, currentLat: cLat, currentLong: cLong, destinationLat: dLat, destinationLong: dLong)
-                self.userCurrentJourney.append(newJourney)
+                self.tableView.reloadData()
             }
-            self.tableView.reloadData()
-            print (self.userCurrentJourney)
         })
     }
-    */
-    
+
     func loadSharedWithLiveJourneyData() {
         let databaseRef = FIRDatabase.database().reference().child("SharedWithLiveJourneys").queryOrderedByKey()
         _ = databaseRef.queryEqual(toValue: fireUserID).observe(.value, with: { (snapshot) in
@@ -151,10 +137,10 @@ class LiveJourneysTableViewController: UITableViewController {
                                 let name = pair.key
                                 if name == "DestinationName" {
                                     destLocation = location
-                                    
+                                    self.sharedWithDestinationName.append(destLocation)
+                                    print (self.sharedWithDestinationName)
                                 }
-                                self.sharedWithDestinationName = destLocation
-                                self.getCoordinates()
+                                self.getSharedCoordinates()
                             }
                         }
                     }
@@ -165,7 +151,7 @@ class LiveJourneysTableViewController: UITableViewController {
         })
     }
     
-    func getCoordinates() {
+    func getSharedCoordinates() {
         let databaseRef = FIRDatabase.database().reference().child("SharedWithLiveJourneys").queryOrderedByKey()
         _ = databaseRef.queryEqual(toValue: fireUserID).observe(.value, with: { (snapshot) in
             for item in snapshot.children {
@@ -205,10 +191,8 @@ class LiveJourneysTableViewController: UITableViewController {
             }
         })
     }
-
     
     
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
@@ -221,23 +205,37 @@ class LiveJourneysTableViewController: UITableViewController {
         return 2
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case 0: return userCurrentJourney.count
-        //case 1: return sharedLiveJourney.count
+        case 0: return 1
+        case 1: return sharedWithDestinationName.count
         default: fatalError("Unknown section")
         }
     }
- */
+ 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         if indexPath.section == 0 {
             cell.textLabel?.text = self.userCurrentJourneyLocation
+        } else {
+            cell.textLabel?.text = self.sharedWithDestinationName[indexPath.row]
         }
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "My Current Journey"
+        } else {
+            return "Live Journeys Shared With Me"
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 45
     }
     
 
