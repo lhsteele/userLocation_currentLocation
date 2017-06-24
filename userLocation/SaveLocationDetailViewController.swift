@@ -28,6 +28,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     var fireUserID = String()
     var locationAutoKey = String()
     var favoriteLocationsArray = [String]()
+    var usersCreatedLocationKey = String()
     
     
     
@@ -83,11 +84,12 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     }
     
     func addLocToUser() {
-        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
         if let userID = FIRAuth.auth()?.currentUser?.uid {
-            let locationKey = ref.child("Users").child(userID).child("CreatedLocations")
-            let updates = [locationKey.childByAutoId().key : locationAutoKey]
-            locationKey.updateChildValues(updates)
+            let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("Users").child(userID).child("CreatedLocations")
+            usersCreatedLocationKey = ref.childByAutoId().key
+            print ("usersCreatedLocationKey/\(usersCreatedLocationKey)")
+            let updates = [usersCreatedLocationKey : locationAutoKey]
+            ref.updateChildValues(updates)
         }
         
     }
@@ -104,7 +106,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "NewFavLocationSegue") {
             let pointer = segue.destination as! FavoriteLocationsTableViewController
-            
+            pointer.usersCreatedLocationKey = self.usersCreatedLocationKey
             pointer.latCoordPassed = self.latCoordPassed
             pointer.longCoordPassed = self.longCoordPassed
             pointer.fireUserID = self.fireUserID

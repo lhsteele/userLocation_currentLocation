@@ -238,6 +238,17 @@ class LiveJourneysTableViewController: UITableViewController {
         return 45
     }
     
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let endJourney = UITableViewRowAction(style: .normal, title: "End Journey") { (action, indexPath) in
+            if indexPath.section == 0 {
+                //update boolean flag in db to "false"
+                //update in sharedWith node as well
+                //alert to say journey has succesfully been deleted
+                //reload table view so it shows with no currentLiveJourney.
+            }
+        }
+        return [endJourney]
+    }
 
     /*
     // Override to support conditional editing of the table view.

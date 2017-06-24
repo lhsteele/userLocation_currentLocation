@@ -19,6 +19,7 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
     var fireUserID = String()
     var sharedEmailsUserID = String()
     var username = String()
+    var sharedLocKey = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,8 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
 
         // Do any additional setup after loading the view.
     }
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -82,12 +84,12 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
     }
     
     func shareLocWithUser() {
-        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
-        let shareRef = ref.child("LocationsSharedWithUser").child(sharedEmailsUserID)
-        let updates = [shareRef.childByAutoId().key : locationToShare]
-        shareRef.updateChildValues(updates)
+        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("LocationsSharedWithUser").child(sharedEmailsUserID)
+        sharedLocKey = ref.childByAutoId().key
+        let updates = [(sharedLocKey) : locationToShare]
+        ref.updateChildValues(updates)
     }
-    
+        
     func findEmailsUserID() {
         let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
         ref.child("Emails").queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
@@ -154,12 +156,19 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
         saveRef.updateChildValues(updates)
     }
     
-    
-        
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "BackToFavorites") {
+            let pointer = segue.destination as! FavoriteLocationsTableViewController
+            pointer.sharedLocKey = self.sharedLocKey
+            pointer.sharedEmailsUserID = self.sharedEmailsUserID
+        }
+    }
+
     func displaySuccessAlertMessage(messageToDisplay: String) {
         let alertController = UIAlertController(title: "Success", message: messageToDisplay, preferredStyle: .alert)
         
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+            //self.deleteKey()
             self.performSegue(withIdentifier: "BackToFavorites", sender: self)
         }
         alertController.addAction(OKAction)
