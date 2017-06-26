@@ -243,8 +243,8 @@ class LiveJourneysTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let endJourney = UITableViewRowAction(style: .normal, title: "End Journey") { (action, indexPath) in
             if indexPath.section == 0 {
-                //self.updateDestinationCoordToDB()
-                self.updateSharedWithLiveJourneys()
+                self.updateDestinationCoordToDB()
+                //self.updateSharedWithLiveJourneys()
                 //update boolean flag in db to "false"
                 //update in sharedWith node as well
                 //alert to say journey has succesfully been deleted
@@ -261,12 +261,44 @@ class LiveJourneysTableViewController: UITableViewController {
         ref.updateChildValues(update)
     }
     
+    /*
+    func updateSharedWithLiveJourneys() {
+        let databaseRef = FIRDatabase.database().reference().child("SharedWithLiveJourneys").queryOrderedByKey()
+        _ = databaseRef.observe(.value, with: { (snapshot) in
+            for item in snapshot.children {
+                
+                self.journeyIsLive = false
+                let destName = ""
+                
+                if let sharedJourney = item as? FIRDataSnapshot {
+                    for item in sharedJourney.children {
+                        if let pair = item as? FIRDataSnapshot {
+                            if let coordinates = pair.value as? String {
+                                
+                                if coordinates == sharedWithDestinationName {
+                                    let update = ["SharedWithLiveJourneys/\(fireUserID)/DestinationName : self.journeyIsLive"]
+                                }
+
+                            }
+                            
+                        }
+                        
+                    }
+                }
+                
+            }
+        })
+    }
+    */
+    
+    /*
     func updateSharedWithLiveJourneys() {
         let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
         journeyIsLive = false
         let update = ["/SharedWithLiveJourneys/\(sharedWithUser)/JourneyIsLive" : journeyIsLive]
         ref.updateChildValues(update)
     }
+    */
     
     /*
     // Override to support conditional editing of the table view.
