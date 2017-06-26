@@ -49,9 +49,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         printFCMToken()
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotification), name: .firInstanceIDTokenRefresh, object: nil)
-        
+           
         //Somehow needs to be deferred to when the login happens. (this is when actual registration for notifications happens) everything else should be accessible still from AppDelegate
-        application.registerForRemoteNotifications()
+        //application.registerForRemoteNotifications()
         //call this from any other VC
         //UIApplication.shared.registerForRemoteNotifications()
         

@@ -18,13 +18,15 @@ class LiveJourneysTableViewController: UITableViewController {
     var currentLong = Double()
     var destinationLat = Double()
     var destinationLong = Double()
-    var sharedWithUser = ""
+    //var sharedWithUser = ""
     var fireUserID = String()
     var userCurrentJourney: JourneyLocation?
     var userCurrentJourneyLocation = ""
     var sharedWithLiveJourney: [JourneyLocation] = []
     var sharedWithDestinationName: [String] = []
-    
+    var journeyIsLive = false
+    var sharedUserID = String()
+    var journeyToEnd = String()
     
     
     
@@ -241,6 +243,8 @@ class LiveJourneysTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let endJourney = UITableViewRowAction(style: .normal, title: "End Journey") { (action, indexPath) in
             if indexPath.section == 0 {
+                //self.updateDestinationCoordToDB()
+                self.updateSharedWithLiveJourneys()
                 //update boolean flag in db to "false"
                 //update in sharedWith node as well
                 //alert to say journey has succesfully been deleted
@@ -249,7 +253,21 @@ class LiveJourneysTableViewController: UITableViewController {
         }
         return [endJourney]
     }
-
+    
+    func updateDestinationCoordToDB() {
+        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+        journeyIsLive = false
+        let update = ["/StartedJourneys/\(fireUserID)/JourneyIsLive" : journeyIsLive]
+        ref.updateChildValues(update)
+    }
+    
+    func updateSharedWithLiveJourneys() {
+        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+        journeyIsLive = false
+        let update = ["/SharedWithLiveJourneys/\(sharedWithUser)/JourneyIsLive" : journeyIsLive]
+        ref.updateChildValues(update)
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

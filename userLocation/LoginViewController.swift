@@ -86,6 +86,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         
         getUserInfo()
+        //The below shows the notification upon loading of the login screen, not after hitting submit.
+        UIApplication.shared.registerForRemoteNotifications()
         
     }
     

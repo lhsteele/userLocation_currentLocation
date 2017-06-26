@@ -42,6 +42,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
     
     
+    
     @IBOutlet var journeysButton: UIBarButtonItem!
     @IBOutlet var settingsButton: UIBarButtonItem!
     @IBOutlet var addLocationButton: UIButton!

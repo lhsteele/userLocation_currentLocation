@@ -156,10 +156,9 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
         print ("saveToSharedDB run")
     }
     
-    
     @IBAction func shareJourney(_ sender: Any) {
-        print ("button pressed")
         retrieveSharedUserID()
+        performSegue(withIdentifier: "BackToFavorites", sender: shareJourneyButton)
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {

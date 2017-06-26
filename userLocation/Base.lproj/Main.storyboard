@@ -430,6 +430,7 @@
                     <connections>
                         <outlet property="picker" destination="A7W-ak-MUd" id="WAS-aX-z2j"/>
                         <outlet property="pickerLabel" destination="kGb-5o-9ER" id="fDf-Ui-ktD"/>
+                        <segue destination="8vQ-W8-wwu" kind="show" identifier="BackToFavorites" id="1xk-cg-YgG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="evr-vX-Yk3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -991,7 +992,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="zct-xe-Nlu"/>
+        <segue reference="1xk-cg-YgG"/>
         <segue reference="tX9-J2-yO8"/>
         <segue reference="TxF-nw-k2B"/>
     </inferredMetricsTieBreakers>
