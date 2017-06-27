@@ -30,8 +30,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     var userPassword = String()
     var currentUserFavoritesArray = [String]()
     var favoriteLocations = String()
-    //var userFavToDelete = String()
-    var userFavToDelete2 = String()
     var sharedFavToDelete = String()
     var locationToShare = String()
     var locationNameString = String()
@@ -276,17 +274,25 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             
                 self.listOfFavorites.remove(at: indexPath.row)
                 self.listOfCreatedLocations.remove(at: indexPath.row)
-                //self.userFavToDelete2 = self.listOfCreatedLocations[indexPath.row] as String
             
                 self.tableView.reloadData()
             
                 self.startDeletion(location: userFavToDelete)
             
-                //tableView.deleteRows(at: [indexPath], with: .fade)
+                tableView.deleteRows(at: [indexPath], with: .fade)
             }
         
         // needs to fill in deletion for S1 once I've figured out S0
         let deleteS1 = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+           
+            let sharedFavToDelete = self.listOfSharedLocations[indexPath.row] as String
+            
+            self.listOfSharedFavorites.remove(at: indexPath.row)
+            self.listOfSharedLocations.remove(at: indexPath.row)
+            
+            self.tableView.reloadData()
+            
+            self.deleteFromSubscribedUsers(fourthLocation: sharedFavToDelete)
             
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
@@ -297,30 +303,25 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         return [deleteS1]
     }
     
+    //putting all deletion methods within one, with each nested in the completion handler of the previous as all are asynchronious calls.
     //location will be a new container for value
     func startDeletion(location: String) {
         deleteFromLocationsDB(secondLocation: location)
     }
     
-    //nest within completions handlers of each other as all are asynchronious calls.
     func deleteFromLocationsDB(secondLocation: String) {
         let locDeletionRef = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("Locations").child(secondLocation)
         locDeletionRef.removeValue { (error, reference) in
             //check error is nil before running the next. if nil, print to console.
-            self.deleteFromSubscribedUsers(thirdLocation: secondLocation)
+            if error != nil {
+                self.deleteFromUsersCreatedLocations(thirdLocation: secondLocation)
+            } else {
+                print ("error\(reference)")
+            }
         }
     }
     
-    func deleteFromSubscribedUsers(thirdLocation: String) {
-        let subscribedUsersDeletionRef = FIRDatabase.database().reference().child("SubscribedUsers")
-        
-        let locToDeleteRef = subscribedUsersDeletionRef.child(thirdLocation)
-        locToDeleteRef.removeValue { (error, reference) in
-            self.deleteFromUsersCreatedLocations(fourthLocation: thirdLocation)
-        }
-    }
-    
-    func deleteFromUsersCreatedLocations(fourthLocation: String) {
+    func deleteFromUsersCreatedLocations(thirdLocation: String) {
         
         if let userID = FIRAuth.auth()?.currentUser?.uid {
             let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("Users").child(userID).child("CreatedLocations")
@@ -332,17 +333,35 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                     if let pair = item as? FIRDataSnapshot {
                         if let value = pair.value as? String {
                             print (value)
-                            if value == fourthLocation {
+                            if value == thirdLocation {
                                 valueToDelete = value
                                 print ("valToDelete\(valueToDelete)")
                                 ref.child(pair.key).removeValue { (error, reference) in
-                                    self.deleteKeyFromLocationsSharedWithUser(fifthLocation: fourthLocation)
+                                    if error != nil {
+                                        self.deleteFromSubscribedUsers(fourthLocation: thirdLocation)
+                                    } else {
+                                        print ("error\(reference)")
+                                    }
                                 }
                             }
                         }
                     }
                 }
             })
+        }
+    }
+    
+    func deleteFromSubscribedUsers(fourthLocation: String) {
+        let subscribedUsersDeletionRef = FIRDatabase.database().reference().child("SubscribedUsers")
+        
+        let locToDeleteRef = subscribedUsersDeletionRef.child(fourthLocation)
+        locToDeleteRef.removeValue { (error, reference) in
+            if error != nil {
+                self.deleteKeyFromLocationsSharedWithUser(fifthLocation: fourthLocation)
+            } else {
+                print ("error\(reference)")
+            }
+            
         }
     }
     
