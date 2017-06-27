@@ -65,6 +65,8 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         loadFavorites()
         print ("usersCreatedLocationKey/\(usersCreatedLocationKey)")
         
+        self.deleteFromUsersCreatedLocations(fourthLocation: "KnBJo70wFt74z5ntxIG")
+        
     }
     
     func loadFavorites() {
@@ -274,21 +276,21 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         let deleteS0 = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             
 
-                let userFavToDelete = self.listOfCreatedLocations[indexPath.row] as String
+                //let userFavToDelete = self.listOfCreatedLocations[indexPath.row] as String
                 //print ("locationName \(userFavToDelete)")
             
             
             
-                self.listOfFavorites.remove(at: indexPath.row)
+                //self.listOfFavorites.remove(at: indexPath.row)
                 //self.listOfCreatedLocations.remove(at: indexPath.row)
                 //self.userFavToDelete2 = self.listOfCreatedLocations[indexPath.row] as String
             
                 //self.tableView.reloadData()
             
-                self.deleteFromUsersCreatedLocations(fourthLocation: "-KnBJo70wFt74z5ntxIG")
+                //self.deleteFromUsersCreatedLocations(fourthLocation: "KnBJo70wFt74z5ntxIG")
                 //self.startDeletion(location: userFavToDelete)
             
-                tableView.deleteRows(at: [indexPath], with: .fade)
+                //tableView.deleteRows(at: [indexPath], with: .fade)
             }
         
         // needs to fill in deletion for S1 once I've figured out S0
@@ -330,35 +332,36 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         
         let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("Users").child(fireUserID).child("CreatedLocations")
         
-        ref.queryOrderedByKey().observe(.value, with: { (snapshot) in
-            
-            for item in snapshot.children {
-                if let location = item as? FIRDataSnapshot {
-                    //print (location)
-                    for item in location.children {
-                        if let pair = item as? FIRDataSnapshot {
-                            if let key = pair.value as? String {
-                                print (key)
-                                
-                                if pair.value as? String == fourthLocation {
-                                    
-                                    ref.child(pair.key).removeValue { (error, reference) in
-                                        //self.deleteKeyFromLocationsSharedWithUser()
-                                    }
-                                }
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            let entries = snapshot.children
+            var valueToDelete = ""
+            for item in entries {
+                if let pair = item as? FIRDataSnapshot {
+                    if let value = pair.value as? String {
+                        print (value)
+                        if value == "-KnBJqQiC7lMvoiW5Vb9" {
+                            valueToDelete = value
+                            print ("valToDelete\(valueToDelete)")
+                            ref.child(pair.key).removeValue { (error, reference) in
+                                //self.deleteKeyFromLocationsSharedWithUser()
                             }
-                            
                         }
                     }
-                    
                 }
-                
             }
-            
             
         })
         
     }
+    
+    /*
+    if pair.value as? String == fourthLocation {
+    
+    ref.child(pair.key).removeValue { (error, reference) in
+    //self.deleteKeyFromLocationsSharedWithUser()
+    }
+    }
+    */
     
     /*
     func deleteKeyFromLocationsSharedWithUser() {
