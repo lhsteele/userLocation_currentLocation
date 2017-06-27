@@ -63,9 +63,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         addLocationButton.layer.cornerRadius = 10
         
         loadFavorites()
-        print ("usersCreatedLocationKey/\(usersCreatedLocationKey)")
-        
-        self.deleteFromUsersCreatedLocations(fourthLocation: "KnBJo70wFt74z5ntxIG")
         
     }
     
@@ -275,20 +272,15 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         // needs to be a separate delete to delete from each array.
         let deleteS0 = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             
-
-                //let userFavToDelete = self.listOfCreatedLocations[indexPath.row] as String
-                //print ("locationName \(userFavToDelete)")
+                let userFavToDelete = self.listOfCreatedLocations[indexPath.row] as String
             
-            
-            
-                //self.listOfFavorites.remove(at: indexPath.row)
-                //self.listOfCreatedLocations.remove(at: indexPath.row)
+                self.listOfFavorites.remove(at: indexPath.row)
+                self.listOfCreatedLocations.remove(at: indexPath.row)
                 //self.userFavToDelete2 = self.listOfCreatedLocations[indexPath.row] as String
             
-                //self.tableView.reloadData()
+                self.tableView.reloadData()
             
-                //self.deleteFromUsersCreatedLocations(fourthLocation: "KnBJo70wFt74z5ntxIG")
-                //self.startDeletion(location: userFavToDelete)
+                self.startDeletion(location: userFavToDelete)
             
                 //tableView.deleteRows(at: [indexPath], with: .fade)
             }
@@ -330,45 +322,52 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
     func deleteFromUsersCreatedLocations(fourthLocation: String) {
         
-        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("Users").child(fireUserID).child("CreatedLocations")
-        
-        ref.observeSingleEvent(of: .value, with: { (snapshot) in
-            let entries = snapshot.children
-            var valueToDelete = ""
-            for item in entries {
-                if let pair = item as? FIRDataSnapshot {
-                    if let value = pair.value as? String {
-                        print (value)
-                        if value == "-KnBJqQiC7lMvoiW5Vb9" {
-                            valueToDelete = value
-                            print ("valToDelete\(valueToDelete)")
-                            ref.child(pair.key).removeValue { (error, reference) in
-                                //self.deleteKeyFromLocationsSharedWithUser()
+        if let userID = FIRAuth.auth()?.currentUser?.uid {
+            let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("Users").child(userID).child("CreatedLocations")
+            
+            ref.observeSingleEvent(of: .value, with: { (snapshot) in
+                let entries = snapshot.children
+                var valueToDelete = ""
+                for item in entries {
+                    if let pair = item as? FIRDataSnapshot {
+                        if let value = pair.value as? String {
+                            print (value)
+                            if value == fourthLocation {
+                                valueToDelete = value
+                                print ("valToDelete\(valueToDelete)")
+                                ref.child(pair.key).removeValue { (error, reference) in
+                                    self.deleteKeyFromLocationsSharedWithUser(fifthLocation: fourthLocation)
+                                }
                             }
                         }
                     }
                 }
-            }
-            
-        })
-        
+            })
+        }
     }
     
-    /*
-    if pair.value as? String == fourthLocation {
-    
-    ref.child(pair.key).removeValue { (error, reference) in
-    //self.deleteKeyFromLocationsSharedWithUser()
-    }
-    }
-    */
-    
-    /*
-    func deleteKeyFromLocationsSharedWithUser() {
+    func deleteKeyFromLocationsSharedWithUser(fifthLocation: String) {
         let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("LocationsSharedWithUser").child(sharedEmailsUserID)
-        ref.child(sharedLocKey).removeValue()
+        
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            let entries = snapshot.children
+            var valueToDelete = ""
+            for item in entries {
+                if let pair = item as? FIRDataSnapshot {
+                    
+                    if let value = pair.value as? String {
+                        if value == fifthLocation {
+                            valueToDelete = value
+                            ref.child(pair.key).removeValue()
+                        }
+                    }
+                }
+            }
+        })
     }
-    */
+    
+    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (indexPath.section == 0) {
