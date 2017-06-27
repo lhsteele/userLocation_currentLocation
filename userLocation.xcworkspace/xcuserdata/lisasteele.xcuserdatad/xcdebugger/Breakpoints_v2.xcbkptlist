@@ -13,5 +13,85 @@
             stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "userLocation/FavoriteLocationsTableViewController.swift"
+            timestampString = "520287672.639544"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "289"
+            endingLineNumber = "289"
+            landmarkName = "tableView(_:editActionsForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "userLocation/FavoriteLocationsTableViewController.swift"
+            timestampString = "520288889.888414"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "344"
+            endingLineNumber = "344"
+            landmarkName = "deleteFromUsersCreatedLocations(fourthLocation:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "userLocation.FavoriteLocationsTableViewController.(deleteFromUsersCreatedLocations (fourthLocation : Swift.String) -&gt; ()).(closure #1)"
+                  moduleName = "userLocation"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lisasteele/Desktop/Thinkful_Swift/userLocation/userLocation/FavoriteLocationsTableViewController.swift"
+                  timestampString = "520288983.26751"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "345"
+                  endingLineNumber = "345"
+                  offsetFromSymbolStart = "2545">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "userLocation.FavoriteLocationsTableViewController.(deleteFromUsersCreatedLocations (fourthLocation : Swift.String) -&gt; ()).(closure #1).(closure #1)"
+                  moduleName = "userLocation"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lisasteele/Desktop/Thinkful_Swift/userLocation/userLocation/FavoriteLocationsTableViewController.swift"
+                  timestampString = "520288983.269742"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "347"
+                  endingLineNumber = "347"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "userLocation/FavoriteLocationsTableViewController.swift"
+            timestampString = "520288889.888414"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "342"
+            endingLineNumber = "342"
+            landmarkName = "deleteFromUsersCreatedLocations(fourthLocation:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

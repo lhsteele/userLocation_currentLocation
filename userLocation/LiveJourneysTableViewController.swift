@@ -289,7 +289,7 @@ class LiveJourneysTableViewController: UITableViewController {
             }
         })
     }
-    */
+    */  
     
     /*
     func updateSharedWithLiveJourneys() {

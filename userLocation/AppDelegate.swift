@@ -45,6 +45,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerUserNotificationSettings(settings)
         }
         
+        /*
+        func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+            completionHandler(UNNotificationPresentationOptions.alert)
+        }
+ 
+        
+        func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                    willPresent notification: UNNotification,
+                                    withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+            let userInfo = notification.request.content.userInfo
+            // Print message ID.
+            if let messageID = userInfo[gcmMessageIDKey] {
+                print("Message ID: \(messageID)")
+            }
+            
+            // Print full message.
+            print(userInfo)
+            
+            // Change this to your preferred presentation option
+            completionHandler([])
+        }
+        */
+
+        
         
         printFCMToken()
         
@@ -99,10 +123,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print ("We dont have an FCM token yet.")
         }
         
-        //connectToFCM()
+        connectToFCM()
     }
     
-    /*
+    
     func connectToFCM() {
         guard FIRInstanceID.instanceID().token() != nil else {
             return
@@ -118,7 +142,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-    */
+    
     
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -171,6 +195,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 }
 
+
 @available(iOS 10, *)
 extension AppDelegate : UNUserNotificationCenterDelegate {
     
@@ -208,6 +233,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 }
 // [END ios_10_message_handling]
 // [START ios_10_data_message_handling]
+
 extension AppDelegate : FIRMessagingDelegate {
     // Receive data message on iOS 10 devices while app is in the foreground.
     func applicationReceivedRemoteMessage(_ remoteMessage: FIRMessagingRemoteMessage) {
@@ -221,4 +247,5 @@ extension AppDelegate : FIRMessagingDelegate {
     }
 
 }
+
 

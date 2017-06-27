@@ -30,7 +30,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     var userPassword = String()
     var currentUserFavoritesArray = [String]()
     var favoriteLocations = String()
-    var userFavToDelete = String()
+    //var userFavToDelete = String()
     var userFavToDelete2 = String()
     var sharedFavToDelete = String()
     var locationToShare = String()
@@ -273,17 +273,20 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         // needs to be a separate delete to delete from each array.
         let deleteS0 = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             
-                self.userFavToDelete = self.listOfCreatedLocations[indexPath.row] as String
+
+                let userFavToDelete = self.listOfCreatedLocations[indexPath.row] as String
+                //print ("locationName \(userFavToDelete)")
+            
+            
+            
                 self.listOfFavorites.remove(at: indexPath.row)
                 //self.listOfCreatedLocations.remove(at: indexPath.row)
                 //self.userFavToDelete2 = self.listOfCreatedLocations[indexPath.row] as String
             
                 //self.tableView.reloadData()
             
-                self.deleteFromLocationsDB()
-                self.deleteFromSubscribedUsers()
-                self.deleteKeyFromLocationsSharedWithUser()
-                self.deleteFromUsersCreatedLocations()
+                self.deleteFromUsersCreatedLocations(fourthLocation: "-KnBJo70wFt74z5ntxIG")
+                //self.startDeletion(location: userFavToDelete)
             
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
@@ -300,30 +303,69 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         return [deleteS1]
     }
     
-    func deleteFromLocationsDB() {
-        let locDeletionRef = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("Locations").child(userFavToDelete)
-        locDeletionRef.removeValue()
+    //location will be a new container for value
+    func startDeletion(location: String) {
+        deleteFromLocationsDB(secondLocation: location)
     }
     
-    func deleteFromSubscribedUsers() {
+    //nest within completions handlers of each other as all are asynchronious calls.
+    func deleteFromLocationsDB(secondLocation: String) {
+        let locDeletionRef = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("Locations").child(secondLocation)
+        locDeletionRef.removeValue { (error, reference) in
+            //check error is nil before running the next. if nil, print to console.
+            self.deleteFromSubscribedUsers(thirdLocation: secondLocation)
+        }
+    }
+    
+    func deleteFromSubscribedUsers(thirdLocation: String) {
         let subscribedUsersDeletionRef = FIRDatabase.database().reference().child("SubscribedUsers")
         
-        let locToDeleteRef = subscribedUsersDeletionRef.child(userFavToDelete)
-        locToDeleteRef.removeValue()
+        let locToDeleteRef = subscribedUsersDeletionRef.child(thirdLocation)
+        locToDeleteRef.removeValue { (error, reference) in
+            self.deleteFromUsersCreatedLocations(fourthLocation: thirdLocation)
+        }
     }
     
-    func deleteFromUsersCreatedLocations() {
-        print ("usersCreatedLocationKey/\(usersCreatedLocationKey)")
+    func deleteFromUsersCreatedLocations(fourthLocation: String) {
+        
         let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("Users").child(fireUserID).child("CreatedLocations")
-        ref.child(usersCreatedLocationKey).removeValue()
+        
+        ref.queryOrderedByKey().observe(.value, with: { (snapshot) in
+            
+            for item in snapshot.children {
+                if let location = item as? FIRDataSnapshot {
+                    //print (location)
+                    for item in location.children {
+                        if let pair = item as? FIRDataSnapshot {
+                            if let key = pair.value as? String {
+                                print (key)
+                                
+                                if pair.value as? String == fourthLocation {
+                                    
+                                    ref.child(pair.key).removeValue { (error, reference) in
+                                        //self.deleteKeyFromLocationsSharedWithUser()
+                                    }
+                                }
+                            }
+                            
+                        }
+                    }
+                    
+                }
+                
+            }
+            
+            
+        })
+        
     }
     
-    
+    /*
     func deleteKeyFromLocationsSharedWithUser() {
         let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("LocationsSharedWithUser").child(sharedEmailsUserID)
         ref.child(sharedLocKey).removeValue()
     }
-    
+    */
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (indexPath.section == 0) {

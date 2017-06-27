@@ -39,6 +39,7 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
         picker.dataSource = self
         
         print (journeyToStart)
+        print (fireUserID)
         
     }
     
