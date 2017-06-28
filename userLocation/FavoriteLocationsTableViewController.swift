@@ -282,7 +282,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
         
-        // needs to fill in deletion for S1 once I've figured out S0
+        
         let deleteS1 = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
            
             let sharedFavToDelete = self.listOfSharedLocations[indexPath.row] as String
