@@ -245,8 +245,10 @@ class LiveJourneysTableViewController: UITableViewController {
         let endJourney = UITableViewRowAction(style: .normal, title: "End Journey") { (action, indexPath) in
             if indexPath.section == 0 {
                 let journeyToEnd = self.userCurrentJourneyLocation
-                //self.deleteUserLiveJourney(location: journeyToEnd)
-                self.deleteSharedWithLiveJourneys(secondLocation: journeyToEnd)
+        
+                self.deleteUserLiveJourney(location: journeyToEnd)
+                //self.findSharedUsersForLocation()
+                
                 //Need to delete the StartedJourneys and SharedWithLiveJourneys entries from db when journey is ended.
                 //reconfigure how the data is loaded on to tableView. (no need for boolean flag at all, so no need to check for it.)
                 //alert to say journey has succesfully been deleted
@@ -257,30 +259,43 @@ class LiveJourneysTableViewController: UITableViewController {
     }
     
     func deleteUserLiveJourney(location : String) {
-        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("StartedJourneys").child(fireUserID)
-        ref.removeValue { (error, reference) in
-            self.deleteSharedWithLiveJourneys(secondLocation: location)
+        if let userID = FIRAuth.auth()?.currentUser?.uid {
+            let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("StartedJourneys").child(userID)
+            ref.removeValue(completionBlock: { (error, reference) in
+                self.findSharedUsersForLocation()
+            })
         }
+        
     }
     
-    //This is searching for the destination name for a match, but maybe should be searching for the fireUserID instead. ???
-    func deleteSharedWithLiveJourneys(secondLocation: String) {
-        let databaseRef = FIRDatabase.database().reference().child("SharedWithLiveJourneys")
-        databaseRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            let entries = snapshot.children
-            var valueToDelete = ""
-            for item in entries {
-                
-                if let pair = item as? FIRDataSnapshot {
-                    if let value = pair.value as? String {
-                        if value == secondLocation {
-                            valueToDelete = value
-                            databaseRef.child(pair.key).removeValue()
+    func deleteSharedWithLiveJourneys() {
+        let databaseRef = FIRDatabase.database().reference().child("SharedWithLiveJourneys").child(sharedUserID)
+        databaseRef.removeValue()
+    }
+    
+    
+    func findSharedUsersForLocation() {
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("StartedJourneys")
+        if let userID = FIRAuth.auth()?.currentUser?.uid {
+            databaseRef.child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
+                let entries = snapshot.children
+                var sharedUser = ""
+                for item in entries {
+                    if let pair = item as? FIRDataSnapshot {
+                        if let key = pair.key as? String {
+                            if key == "SharedWithUser" {
+                                if let value = pair.value as? String {
+                                    sharedUser = value
+                                    print (sharedUser)
+                                    self.sharedUserID = sharedUser
+                                    self.deleteSharedWithLiveJourneys()
+                                }
+                            }
                         }
                     }
                 }
-            }
-        })
+            })
+        }
     }
     
     
