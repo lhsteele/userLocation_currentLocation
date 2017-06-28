@@ -28,7 +28,7 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
     var latitude = CLLocationDegrees()
     var longitude = CLLocationDegrees()
     var locationName = String()
-    var journeyIsLive = false
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -139,8 +139,7 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
     func saveDestinationCoordToDB() {
         let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
         let destination = ref.child("StartedJourneys").child(fireUserID).key
-        journeyIsLive = true
-        let destinationCoordinates = ["StartedJourneys/\(destination)" : ["DestinationLat" : latitude, "DestinationLong" : longitude, "CurrentLat" : localValue.latitude, "CurrentLong" : localValue.longitude, "SharedWithUser" : sharedUserID, "DestinationName" : locationName, "JourneyIsLive" : journeyIsLive]] as [String : Any]
+        let destinationCoordinates = ["StartedJourneys/\(destination)" : ["DestinationLat" : latitude, "DestinationLong" : longitude, "CurrentLat" : localValue.latitude, "CurrentLong" : localValue.longitude, "SharedWithUser" : sharedUserID, "DestinationName" : locationName]] as [String : Any]
         ref.updateChildValues(destinationCoordinates) { (Error, FIRDatabaseReference) in
             print ("saveToDB run")
             self.saveLiveJourneyToSharedWithUser()
@@ -150,8 +149,7 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
     func saveLiveJourneyToSharedWithUser() {
         let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
         let destination = ref.child("SharedWithLiveJourneys").child(sharedUserID).key
-        journeyIsLive = true
-        let destinationCoordinates = ["DestinationLat" : latitude, "DestinationLong" : longitude, "CurrentLat" : localValue.latitude, "CurrentLong" : localValue.longitude, "UserMakingJourney" : fireUserID, "DestinationName" : locationName, "JourneyIsLive" : journeyIsLive] as [String : Any]
+        let destinationCoordinates = ["DestinationLat" : latitude, "DestinationLong" : longitude, "CurrentLat" : localValue.latitude, "CurrentLong" : localValue.longitude, "UserMakingJourney" : fireUserID, "DestinationName" : locationName] as [String : Any]
         let childUpdates = ["/SharedWithLiveJourneys/\(destination)" : destinationCoordinates]
         ref.updateChildValues(childUpdates)
         print ("saveToSharedDB run")
