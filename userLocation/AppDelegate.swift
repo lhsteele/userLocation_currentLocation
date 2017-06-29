@@ -13,7 +13,7 @@ import UserNotifications
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
     var ref: FIRDatabaseReference?
@@ -38,7 +38,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
             
-        FIRMessaging.messaging().remoteMessageDelegate = self as FIRMessagingDelegate
+            func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                        willPresent notification: UNNotification,
+                                        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+                //completionHandler([.alert, .badge, .sound])
+                completionHandler(UNNotificationPresentationOptions.alert)
+                
+                let userInfo = notification.request.content.userInfo
+                // Print message ID.
+                if let messageID = userInfo[gcmMessageIDKey] {
+                    print("Message ID: \(messageID)")
+                }
+                
+                // Print full message.
+                print(userInfo)
+                
+                displayAlertMessage(messageToDisplay: "Someone has shared a journey with you.")
+            }
+            
+            func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                        didReceive response: UNNotificationResponse,
+                                        withCompletionHandler completionHandler: @escaping () -> Void) {
+                let userInfo = response.notification.request.content.userInfo
+                // Print message ID.
+                if let messageID = userInfo[gcmMessageIDKey] {
+                    print("Message ID: \(messageID)")
+                }
+                
+                // Print full message.
+                print(userInfo)
+                
+                completionHandler()
+            }
+            
+            
+        FIRMessaging.messaging().remoteMessageDelegate = self as? FIRMessagingDelegate
         
         } else {
             let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
@@ -182,7 +216,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
-
+/*
 @available(iOS 10, *)
 extension AppDelegate : UNUserNotificationCenterDelegate {
     
@@ -191,13 +225,14 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         displayAlertMessage(messageToDisplay: "Someone has shared a journey with you.")
-        /*
+        completionHandler([.alert, .badge, .sound])
+        
         let userInfo = notification.request.content.userInfo
         // Print message ID.
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID: \(messageID)")
         }
-        */
+        
         // Print full message.
         print(userInfo)
         
@@ -238,5 +273,5 @@ extension AppDelegate : FIRMessagingDelegate {
     }
 
 }
-
+*/
 
