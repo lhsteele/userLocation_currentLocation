@@ -66,22 +66,6 @@ class LiveJourneysTableViewController: UITableViewController {
         }
     }
  
-    /*
-    func checkForSharedLiveJourneys() {
-        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
-        if let userID = FIRAuth.auth()?.currentUser?.uid {
-            let locationKey = ref.child("SharedWithLiveJourneys").child(userID).child("JourneyIsLive")
-            locationKey.observeSingleEvent(of: .value, with: { (snapshot) in
-                //print (snapshot)
-                let value = snapshot.value as? BooleanLiteralType
-                print (value)
-                if value == true {
-                    self.loadSharedWithLiveJourneyData()
-                }
-            })
-        }
-    }
-    */
     
     func loadLiveJourneyData() {
         let databaseRef = FIRDatabase.database().reference().child("StartedJourneys").queryOrderedByKey()
@@ -248,10 +232,9 @@ class LiveJourneysTableViewController: UITableViewController {
         
                 self.findSharedUsersForLocation()
                 
-                //Need to delete the StartedJourneys and SharedWithLiveJourneys entries from db when journey is ended.
-                //reconfigure how the data is loaded on to tableView. (no need for boolean flag at all, so no need to check for it.)
-                //alert to say journey has succesfully been deleted
-                //reload table view so it shows with no currentLiveJourney.
+                self.displaySuccessAlertMessage(messageToDisplay: "Journey has been succesfully ended.")
+                self.tableView.reloadData()
+                
             }
         }
         return [endJourney]
@@ -300,15 +283,15 @@ class LiveJourneysTableViewController: UITableViewController {
         }
     }
     
-    
-    /*
-    func updateSharedWithLiveJourneys() {
-        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
-        journeyIsLive = false
-        let update = ["/SharedWithLiveJourneys/\(sharedWithUser)/JourneyIsLive" : journeyIsLive]
-        ref.updateChildValues(update)
+    func displaySuccessAlertMessage(messageToDisplay: String) {
+        let alertController = UIAlertController(title: "Sucess", message: messageToDisplay, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "Ok", style: .default) { (action:UIAlertAction) in
+            //performSegue
+            self.performSegue(withIdentifier: "JourneyEndedBackToFavorites", sender: self)
+        }
+        alertController.addAction(OKAction)
+        self.present(alertController, animated: true, completion: nil)
     }
-    */
     
     /*
     // Override to support conditional editing of the table view.
