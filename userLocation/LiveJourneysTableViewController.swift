@@ -246,8 +246,7 @@ class LiveJourneysTableViewController: UITableViewController {
             if indexPath.section == 0 {
                 let journeyToEnd = self.userCurrentJourneyLocation
         
-                self.deleteUserLiveJourney(location: journeyToEnd)
-                //self.findSharedUsersForLocation()
+                self.findSharedUsersForLocation()
                 
                 //Need to delete the StartedJourneys and SharedWithLiveJourneys entries from db when journey is ended.
                 //reconfigure how the data is loaded on to tableView. (no need for boolean flag at all, so no need to check for it.)
@@ -261,27 +260,30 @@ class LiveJourneysTableViewController: UITableViewController {
     func deleteUserLiveJourney(location : String) {
         if let userID = FIRAuth.auth()?.currentUser?.uid {
             let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("StartedJourneys").child(userID)
-            ref.removeValue(completionBlock: { (error, reference) in
-                self.findSharedUsersForLocation()
-            })
+            ref.removeValue()
         }
         
     }
     
     func deleteSharedWithLiveJourneys() {
         let databaseRef = FIRDatabase.database().reference().child("SharedWithLiveJourneys").child(sharedUserID)
-        databaseRef.removeValue()
+        databaseRef.removeValue { (error, reference) in
+            self.deleteUserLiveJourney(location: self.journeyToEnd)
+        }
     }
     
     
     func findSharedUsersForLocation() {
         let databaseRef = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("StartedJourneys")
         if let userID = FIRAuth.auth()?.currentUser?.uid {
+            print (userID)
             databaseRef.child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
+                print (snapshot)
                 let entries = snapshot.children
                 var sharedUser = ""
                 for item in entries {
                     if let pair = item as? FIRDataSnapshot {
+                        print (pair)
                         if let key = pair.key as? String {
                             if key == "SharedWithUser" {
                                 if let value = pair.value as? String {
