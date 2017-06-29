@@ -45,30 +45,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerUserNotificationSettings(settings)
         }
         
-        /*
-        func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-            completionHandler(UNNotificationPresentationOptions.alert)
-        }
- 
-        
-        func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                    willPresent notification: UNNotification,
-                                    withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-            let userInfo = notification.request.content.userInfo
-            // Print message ID.
-            if let messageID = userInfo[gcmMessageIDKey] {
-                print("Message ID: \(messageID)")
-            }
-            
-            // Print full message.
-            print(userInfo)
-            
-            // Change this to your preferred presentation option
-            completionHandler([])
-        }
-        */
-
-        
         
         printFCMToken()
         
@@ -192,7 +168,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    
+    func displayAlertMessage(messageToDisplay: String) {
+        let alertController = UIAlertController(title: "", message: messageToDisplay, preferredStyle: .alert)
+        
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .default) { (action: UIAlertAction!) in
+        }
+        alertController.addAction(dismissAction)
+        
+        let viewAction = UIAlertAction(title: "View", style: .default) { (action: UIAlertAction!) in
+            //segue to the Live Journeys VC
+        }
+        alertController.addAction(viewAction)
+    }
 }
 
 
@@ -203,12 +190,14 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        displayAlertMessage(messageToDisplay: "Someone has shared a journey with you.")
+        /*
         let userInfo = notification.request.content.userInfo
         // Print message ID.
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID: \(messageID)")
         }
-        
+        */
         // Print full message.
         print(userInfo)
         
@@ -230,6 +219,8 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         
         completionHandler()
     }
+    
+    
 }
 // [END ios_10_message_handling]
 // [START ios_10_data_message_handling]
