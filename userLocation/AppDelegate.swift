@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         FIRApp.configure()
         
+        
         if #available(iOS 10, *) {
             UNUserNotificationCenter.current().delegate = self as UNUserNotificationCenterDelegate
             
@@ -41,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             func userNotificationCenter(_ center: UNUserNotificationCenter,
                                         willPresent notification: UNNotification,
                                         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-                //completionHandler([.alert, .badge, .sound])
+                completionHandler([.alert, .badge, .sound])
                 completionHandler(UNNotificationPresentationOptions.alert)
                 
                 let userInfo = notification.request.content.userInfo
@@ -67,8 +68,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 
                 // Print full message.
                 print(userInfo)
-                
+                displayAlertMessage(messageToDisplay: "Someone has shared a journey with you.")
                 completionHandler()
+            }
+            
+            func applicationReceivedRemoteMessage(_ remoteMessage: FIRMessagingRemoteMessage) {
+                print(remoteMessage.appData)
+            }
+            
+            func messaging(_ messaging: FIRMessaging, didRefreshRegistrationToken fcmToken: String) {
+                userInfo = fcmToken
+                print ("Firebase registration token: \(fcmToken)")
+                
             }
             
             
@@ -82,6 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         printFCMToken()
         
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotification), name: .firInstanceIDTokenRefresh, object: nil)
            
         //Somehow needs to be deferred to when the login happens. (this is when actual registration for notifications happens) everything else should be accessible still from AppDelegate
@@ -91,6 +103,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         return true
     }
+
     
     func printFCMToken() {
         if let token = FIRInstanceID.instanceID().token() {
@@ -213,6 +226,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             //segue to the Live Journeys VC
         }
         alertController.addAction(viewAction)
+        self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
     }
 }
 
