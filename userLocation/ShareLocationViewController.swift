@@ -45,38 +45,37 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
         
         
         if validEmail {
-            //print ("validEmail")
+            let registeredUserRef = FIRDatabase.database().reference().child("Emails")
+            
+            registeredUserRef.queryOrderedByKey().observe(.value, with: { (snapshot) in
+                
+                if snapshot.exists() {
+                    
+                    let listOfEmails = snapshot.children
+                    
+                    var emailFound = false
+                    
+                    for snap in listOfEmails {
+                        if let email = snap as? FIRDataSnapshot {
+                            if let userEmail = email.value as? String {
+                                if userEmail == self.emailToCheck {
+                                    emailFound = true
+                                    print ("email is found")
+                                    self.findEmailsUserID()
+                                }
+                            }
+                        }
+                    }
+                    if !emailFound {
+                        self.displayErrorAlertMessage(messageToDisplay: "This is not a registered email address. Would you like to share the app?")
+                    }
+                }
+                
+            })
         } else {
             displayErrorAlertMessage(messageToDisplay: "This email address is invalid or already in use.")
             return
         }
-        
-        let registeredUserRef = FIRDatabase.database().reference().child("Emails")
-        
-        registeredUserRef.queryOrderedByKey().observe(.value, with: { (snapshot) in
-            
-            if snapshot.exists() {
-                
-                let listOfEmails = snapshot.children
-                
-                var emailFound = false
-                
-                for snap in listOfEmails {
-                    if let email = snap as? FIRDataSnapshot {
-                        if let userEmail = email.value as? String {
-                            if userEmail == self.emailToCheck {
-                                emailFound = true
-                                self.findEmailsUserID()
-                            }
-                        }
-                    }
-                }
-                if !emailFound {
-                    self.displayErrorAlertMessage(messageToDisplay: "This is not a registered email address. Would you like to share the app?")
-                }
-            }
-            
-        })
         
     }
     
@@ -90,9 +89,10 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
                     if let email = snap as? FIRDataSnapshot {
                         if let userEmail = email.value as? String, let userKey = email.key as? String {
                             if userEmail == self.emailToCheck {
+                                print ("email match")
                                 self.sharedEmailsUserID = userKey
                                 self.checkIfLocationAlreadySharedWithUser()
-                                self.findEmailsUsername()
+                                //self.findEmailsUsername()
                                 return
                             }
                         }
@@ -122,12 +122,11 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
                                     print ("ID match")
                                     self.displayEmailExistsErrorAlertMessage(messageToDisplay: "Location has already been shared with this user.")
                                     return
-                                } else {
-                                    self.shareLocWithUser()
                                 }
                             }
                         }
                     }
+                    self.findEmailsUsername()
                     
                 }
             }
@@ -158,6 +157,7 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
                                 if let username = displayName.value as? String {
                                     print (username)
                                     self.saveSubscribedUserToLoc(username: username)
+                                    self.shareLocWithUser()
                                     return
                                 }
                             }
@@ -222,8 +222,10 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
         let alertController = UIAlertController(title: "Error", message: messageToDisplay, preferredStyle: .alert)
         
         let cancelShareAction = UIAlertAction(title: "Cancel", style: .default) { (action: UIAlertAction) in
+            self.performSegue(withIdentifier: "BackToFavorites", sender: self)
         }
         alertController.addAction(cancelShareAction)
+        self.present(alertController, animated: true, completion: nil)
     }
 
     func isEmailValid(emailAddressString: String) -> Bool {
