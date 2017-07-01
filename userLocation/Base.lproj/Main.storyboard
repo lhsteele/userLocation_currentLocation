@@ -217,11 +217,11 @@
                         <viewControllerLayoutGuide type="bottom" id="JJX-js-uB7"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="9Xj-93-FdT">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="25p-nT-Bhd">
-                                <rect key="frame" x="123" y="339" width="129" height="29"/>
+                                <rect key="frame" x="123" y="325" width="129" height="29"/>
                                 <segments>
                                     <segment title="Sign In"/>
                                     <segment title="Register"/>
@@ -281,14 +281,17 @@
                         <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="yVe-sX-aYB" firstAttribute="top" secondItem="9Xj-93-FdT" secondAttribute="top" constant="50" id="49c-IU-W6H"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="25p-nT-Bhd" secondAttribute="trailing" constant="107" id="7ne-Lq-VRg"/>
                             <constraint firstItem="25p-nT-Bhd" firstAttribute="centerX" secondItem="9Xj-93-FdT" secondAttribute="centerX" id="BMm-Dg-a8q"/>
+                            <constraint firstItem="25p-nT-Bhd" firstAttribute="top" secondItem="Dpl-xg-9vd" secondAttribute="bottom" constant="15" id="K94-Gt-6so"/>
                             <constraint firstItem="yVe-sX-aYB" firstAttribute="centerX" secondItem="25p-nT-Bhd" secondAttribute="centerX" id="cIV-TJ-Csv"/>
-                            <constraint firstAttribute="bottom" secondItem="25p-nT-Bhd" secondAttribute="bottom" constant="300" id="kLW-DF-t9C"/>
+                            <constraint firstItem="25p-nT-Bhd" firstAttribute="leading" secondItem="9Xj-93-FdT" secondAttribute="leadingMargin" constant="107" id="ch6-Fg-XwA"/>
                             <constraint firstItem="Dpl-xg-9vd" firstAttribute="leading" secondItem="9Xj-93-FdT" secondAttribute="leadingMargin" id="oZa-kE-zDA"/>
                             <constraint firstAttribute="top" secondItem="Dpl-xg-9vd" secondAttribute="top" constant="-100" id="tMV-51-iOR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Dpl-xg-9vd" secondAttribute="trailing" id="wm8-H1-hQD"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="LDD-cu-SgA"/>
                     <connections>
                         <outlet property="emailTextField" destination="XNk-oM-Y8b" id="C0P-kY-EEq"/>
@@ -1094,8 +1097,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="zct-xe-Nlu"/>
-        <segue reference="tX9-J2-yO8"/>
+        <segue reference="GUW-PM-UeP"/>
         <segue reference="R4Y-j0-YUS"/>
+        <segue reference="tX9-J2-yO8"/>
     </inferredMetricsTieBreakers>
 </document>
