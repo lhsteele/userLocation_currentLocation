@@ -332,11 +332,46 @@
                     </tableView>
                     <connections>
                         <segue destination="8vQ-W8-wwu" kind="show" identifier="JourneyEndedBackToFavorites" id="1Bn-so-FB5"/>
+                        <segue destination="tkZ-yj-GPa" kind="show" identifier="LiveJourneyMapViewSegue" id="CeF-MK-6Gj"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dRl-IV-9ND" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6278" y="-592"/>
+        </scene>
+        <!--Live Journeys Map View Controller-->
+        <scene sceneID="8DF-dk-iBC">
+            <objects>
+                <viewController storyboardIdentifier="LiveJourneyMapView" id="tkZ-yj-GPa" customClass="LiveJourneysMapViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="T3r-ar-4Uv"/>
+                        <viewControllerLayoutGuide type="bottom" id="NTd-Cb-860"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ESZ-MJ-lqX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="wqP-wO-v2M">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wqP-wO-v2M" firstAttribute="top" secondItem="ESZ-MJ-lqX" secondAttribute="top" id="5Ij-DW-bkb"/>
+                            <constraint firstItem="wqP-wO-v2M" firstAttribute="centerY" secondItem="ESZ-MJ-lqX" secondAttribute="centerY" id="Jeb-rD-KO6"/>
+                            <constraint firstItem="wqP-wO-v2M" firstAttribute="leading" secondItem="ESZ-MJ-lqX" secondAttribute="leading" id="Mg7-ZY-AB5"/>
+                            <constraint firstItem="wqP-wO-v2M" firstAttribute="centerX" secondItem="ESZ-MJ-lqX" secondAttribute="centerX" id="caD-vm-yvj"/>
+                            <constraint firstItem="NTd-Cb-860" firstAttribute="top" secondItem="wqP-wO-v2M" secondAttribute="bottom" id="h9d-zk-31W"/>
+                            <constraint firstAttribute="trailing" secondItem="wqP-wO-v2M" secondAttribute="trailing" id="llo-0T-S6H"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="liveJourneyMap" destination="wqP-wO-v2M" id="kO0-L8-svJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lej-RD-XUx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7141.6000000000004" y="-592.35382308845578"/>
         </scene>
         <!--Fav Loc Map View Controller-->
         <scene sceneID="suJ-FH-ciX">
@@ -1097,8 +1132,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="GUW-PM-UeP"/>
-        <segue reference="R4Y-j0-YUS"/>
+        <segue reference="1Bn-so-FB5"/>
         <segue reference="tX9-J2-yO8"/>
+        <segue reference="R4Y-j0-YUS"/>
     </inferredMetricsTieBreakers>
 </document>

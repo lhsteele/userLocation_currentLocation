@@ -44,13 +44,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     @IBOutlet var journeysButton: UIBarButtonItem!
     @IBOutlet var settingsButton: UIBarButtonItem!
     @IBOutlet var addLocationButton: UIButton!
-    
-    //Have worked out how to save a 'key' to the reference of a childByAutoID location when it's created, in order to reference it later for deletion. 
-    //This is working smoothly, until I write to that 'key' variable more than once. Then the deletion no longer works, because it's reference is
-    //pointing to the most recent location I've saved/shared, rather than corresponding to the one I want to delete. 
-    //This is what they mean by needing the save the dictionary key to the index number in the table. Need to figure out how to do this.
-    
-    
+   
     override func viewDidLoad() {
     
         super.viewDidLoad()
@@ -241,13 +235,8 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        if indexPath.section == 0 {
-            let favorite = self.listOfFavorites[indexPath.row]
-            cell.textLabel?.text = favorite.location
-        } else {
-            let sharedFavorite = self.listOfSharedFavorites[indexPath.row]
-            cell.textLabel?.text = sharedFavorite.location
-        }
+        let favorite = self.listOfFavorites[indexPath.row]
+        cell.textLabel?.text = favorite.location
         return cell
     }
     
@@ -264,7 +253,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             self.performSegue(withIdentifier: "StartJourneySegue", sender: Any.self)
         }
         
-        let deleteS0 = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             
                 let userFavToDelete = self.listOfCreatedLocations[indexPath.row] as String
                 self.listOfFavorites.remove(at: indexPath.row)
@@ -279,11 +268,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
         
-        if indexPath.section == 0 {
-            return [share, startJourney, deleteS0]
-        }
-        //Once decide if this Table View should show Shared locations at all, then this might be deleted completely as Table View will only have 1 section.
-        return [share]
+        return [share, startJourney, delete]
     }
     
     //putting all deletion methods within one, with each nested in the completion handler of the previous as all are asynchronious calls.
@@ -378,15 +363,9 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (indexPath.section == 0) {
-            let indexPath = tableView.indexPathForSelectedRow!
-            _ = tableView.cellForRow(at: indexPath)! as UITableViewCell
-            performSegue(withIdentifier: "FavLocMapViewSegue", sender: self)
-        } else {
-            let indexPath = tableView.indexPathForSelectedRow!
-            _ = tableView.cellForRow(at: indexPath)! as UITableViewCell
-            performSegue(withIdentifier: "ShowSharedLocationSegue", sender: self)
-        }
+        let indexPath = tableView.indexPathForSelectedRow!
+        _ = tableView.cellForRow(at: indexPath)! as UITableViewCell
+        performSegue(withIdentifier: "FavLocMapViewSegue", sender: self)
     }
     
     @IBAction func addNewLocation(_ sender: Any) {
@@ -456,15 +435,11 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0: return listOfFavorites.count
-        case 1: return listOfSharedFavorites.count
-        default: fatalError("Unknown section")
-        }
+        return listOfFavorites.count
     }
     
     func toggleEdit() {
@@ -494,18 +469,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return false
     }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
-            return "My Favorites"
-        } else {
-            return "Shared Favorites"
-        }
-    }
-
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 45
-    }
-
+  
  
 }
