@@ -213,6 +213,12 @@ class LiveJourneysTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let indexPath = tableView.indexPathForSelectedRow!
+        _ = tableView.cellForRow(at: indexPath)! as UITableViewCell
+        performSegue(withIdentifier: "LiveJourneyMapViewSegue", sender: self)
+    }
+    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
             return "My Current Journey"
