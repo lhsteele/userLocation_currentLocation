@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import Firebase
 
-class LiveJourneysMapViewController: UIViewController, CLLocationManagerDelegate{
+class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate{
     
     var startingCoordinates = CLLocationCoordinate2D()
     var destinationCoordinates = CLLocationCoordinate2D()
@@ -25,9 +25,9 @@ class LiveJourneysMapViewController: UIViewController, CLLocationManagerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getStartingCoordinates()
-        showMap()
+        liveJourneyMap.delegate = self
         
+        getStartingCoordinates()
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,23 +36,26 @@ class LiveJourneysMapViewController: UIViewController, CLLocationManagerDelegate
     }
     
     func showMap() {
-        let span = MKCoordinateSpanMake(0.5, 0.5)
+        let span = MKCoordinateSpanMake(0.01, 0.01)
         let region = MKCoordinateRegionMake(startingCoordinates, span)
         
         liveJourneyMap.setRegion(region, animated: true)
         
         //let annotationView: MKPinAnnotationView!
         let annotationPoint = MKPointAnnotation()
+        let secondAnnoPoint = MKPointAnnotation()
         
         annotationPoint.coordinate = startingCoordinates
+        secondAnnoPoint.coordinate = destinationCoordinates
         print ("startingCoordinates \(startingCoordinates)")
         //get location name
         annotationPoint.title = ""
         
         //annotationView = MKPinAnnotationView(annotation: annotationPoint, reuseIdentifier: "Annotation")
         
+        //liveJourneyMap.addAnnotation(annotationView.annotation!)
         liveJourneyMap.addAnnotation(annotationPoint)
-        liveJourneyMap.showAnnotations([annotationPoint], animated: true)
+        liveJourneyMap.showAnnotations([annotationPoint, secondAnnoPoint as! MKAnnotation], animated: true)
         
         let directionsRequest = MKDirectionsRequest()
         
@@ -80,25 +83,13 @@ class LiveJourneysMapViewController: UIViewController, CLLocationManagerDelegate
         */
     }
     
-    /*
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        switch status {
-        case .denied, .restricted:
-            print ("denied")
-        case .notDetermined:
-            manager.requestWhenInUseAuthorization()
-        default:
-            manager.startUpdatingLocation()
-        }
-    }
-    */
-    
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
         renderer.strokeColor = .red
         renderer.lineWidth = 5.0
-        return renderer as! MKPolylineRenderer
+        return renderer
     }
+   
     
     func getStartingCoordinates() {
         let databaseRef = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("StartedJourneys")
@@ -162,6 +153,7 @@ class LiveJourneysMapViewController: UIViewController, CLLocationManagerDelegate
                 let endCoordinate = CLLocationCoordinate2DMake(self.destinationLat, self.destinationLong)
                 self.destinationCoordinates = endCoordinate
                 print (self.destinationCoordinates)
+                self.showMap()
             })
         }
     }

@@ -92,21 +92,21 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
                                 print ("email match")
                                 self.sharedEmailsUserID = userKey
                                 self.checkIfLocationAlreadySharedWithUser()
-                                //self.findEmailsUsername()
-                                return
                             }
                         }
                     }
                 }
-                print ("emailNotFound")
+                //print ("emailNotFound")
             }
         })
         
     }
     
     func checkIfLocationAlreadySharedWithUser() {
+        print ("locationToShare\(locationToShare)")
         let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("SubscribedUsers").queryOrderedByKey()
-        ref.queryEqual(toValue: locationToShare).observeSingleEvent(of: .value, with: { (snapshot) in
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            //ref.queryEqual(toValue: locationToShare).observeSingleEvent(of: .value, with: { (snapshot) in
             print (snapshot)
             let items = snapshot.children
             for item in items {
@@ -146,6 +146,8 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
         ref.child("Usernames").queryOrderedByKey().observe(.value, with: { (snapshot) in
             if snapshot.exists() {
                 
+                var usernameToShare = String()
+                
                 let listOfUserIDs = snapshot.children
                 
                 for snap in listOfUserIDs {
@@ -154,10 +156,11 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
                         if let userID = displayName.key as? String {
                             print (userID)
                             if userID == self.sharedEmailsUserID {
-                                if let username = displayName.value as? String {
-                                    print (username)
-                                    self.saveSubscribedUserToLoc(username: username)
-                                    self.shareLocWithUser()
+                                if let usersName = displayName.value as? String {
+                                    usernameToShare = usersName
+                                    print (usersName)
+                                    self.saveSubscribedUserToLoc(username: usernameToShare)
+                                    //self.shareLocWithUser()
                                     return
                                 }
                             }
@@ -176,6 +179,7 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
         let saveRef = ref.child("SubscribedUsers").child(locationToShare)
         let updates = [username : sharedEmailsUserID]
         saveRef.updateChildValues(updates)
+        self.shareLocWithUser()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

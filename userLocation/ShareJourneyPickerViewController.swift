@@ -86,8 +86,6 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
                                 if usersName == self.sharedUserName {
                                     self.sharedUserID = userID
                                     self.getDestinationCoordinates()
-                                    
-                                    return
                                 }
                                 print ("retrieve run")
                             }
