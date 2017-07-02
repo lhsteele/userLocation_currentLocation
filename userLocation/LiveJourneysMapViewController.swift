@@ -10,10 +10,10 @@ import UIKit
 import MapKit
 import Firebase
 
-class LiveJourneysMapViewController: UIViewController {
+class LiveJourneysMapViewController: UIViewController, CLLocationManagerDelegate{
     
     var startingCoordinates = CLLocationCoordinate2D()
-    var destinationCoordinatates = CLLocationCoordinate2D()
+    var destinationCoordinates = CLLocationCoordinate2D()
     var startingLat = CLLocationDegrees()
     var startingLong = CLLocationDegrees()
     var destinationLat = CLLocationDegrees()
@@ -25,7 +25,9 @@ class LiveJourneysMapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getDestinationCoordinates()
+        getStartingCoordinates()
+        showMap()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,14 +41,63 @@ class LiveJourneysMapViewController: UIViewController {
         
         liveJourneyMap.setRegion(region, animated: true)
         
-        let annotation = MKPointAnnotation()
+        //let annotationView: MKPinAnnotationView!
+        let annotationPoint = MKPointAnnotation()
         
-        annotation.coordinate = startingCoordinates
+        annotationPoint.coordinate = startingCoordinates
         print ("startingCoordinates \(startingCoordinates)")
-        annotation.title = ""
+        //get location name
+        annotationPoint.title = ""
         
-        liveJourneyMap.addAnnotation(annotation)
-        liveJourneyMap.showAnnotations([annotation], animated: true)
+        //annotationView = MKPinAnnotationView(annotation: annotationPoint, reuseIdentifier: "Annotation")
+        
+        liveJourneyMap.addAnnotation(annotationPoint)
+        liveJourneyMap.showAnnotations([annotationPoint], animated: true)
+        
+        let directionsRequest = MKDirectionsRequest()
+        
+        directionsRequest.source = MKMapItem(placemark: MKPlacemark(coordinate: startingCoordinates))
+        directionsRequest.destination = MKMapItem(placemark: MKPlacemark(coordinate: destinationCoordinates))
+        directionsRequest.requestsAlternateRoutes = false
+        directionsRequest.transportType = .automobile
+        
+        let directions = MKDirections(request: directionsRequest)
+        
+        directions.calculate { (response, error) in
+            if let res = response {
+                if let route = res.routes.first {
+                    self.liveJourneyMap.add(route.polyline)
+                    self.liveJourneyMap.region.center = self.startingCoordinates
+                }
+            } else {
+                print (error)
+            }
+        }
+        /*
+        directions.calculateETA { (etaResponse, error) in
+            <#code#>
+        }
+        */
+    }
+    
+    /*
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .denied, .restricted:
+            print ("denied")
+        case .notDetermined:
+            manager.requestWhenInUseAuthorization()
+        default:
+            manager.startUpdatingLocation()
+        }
+    }
+    */
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
+        renderer.strokeColor = .red
+        renderer.lineWidth = 5.0
+        return renderer as! MKPolylineRenderer
     }
     
     func getStartingCoordinates() {
@@ -80,6 +131,7 @@ class LiveJourneysMapViewController: UIViewController {
                     print (self.startingCoordinates)
                 })
             }
+        getDestinationCoordinates()
     }
     
     func getDestinationCoordinates() {
@@ -108,8 +160,8 @@ class LiveJourneysMapViewController: UIViewController {
                     }
                 }
                 let endCoordinate = CLLocationCoordinate2DMake(self.destinationLat, self.destinationLong)
-                self.destinationCoordinatates = endCoordinate
-                print (self.destinationCoordinatates)
+                self.destinationCoordinates = endCoordinate
+                print (self.destinationCoordinates)
             })
         }
     }
