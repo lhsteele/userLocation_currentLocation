@@ -44,11 +44,17 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
     
     override func viewDidLoad() {
         super.viewDidLoad()
+      
+        
+        getStartingCoordinates()
+        
+        
+    }
+    
+    func plotOnMap() {
         
         liveJourneyMap.delegate = self
         manager.delegate = self
-        
-        getStartingCoordinates()
         
         let startLocation = startingCoordinates
         let destinationLocation = destinationCoordinates
@@ -56,15 +62,53 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
         let startPlacemark = MKPlacemark(coordinate: startLocation, addressDictionary: nil)
         let destinationPlacemark = MKPlacemark(coordinate: destinationLocation, addressDictionary: nil)
         
-        let sourceMapItem = MKMapItem(placemark: startPlacemark)
+        let startMapItem = MKMapItem(placemark: startPlacemark)
         let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
         
-        let startAnnotation = MKPointA
+        let startAnnotation = MKPointAnnotation()
+        startAnnotation.title = "Current Location"
         
-nnotation()
-        //startAnnotation.title = ""
+        if let location = startPlacemark.location {
+            startAnnotation.coordinate = location.coordinate
+        }
         
+        let destinationAnnotation = MKPointAnnotation()
+        //destinationAnnotation.title = ""
         
+        if let location = destinationPlacemark.location {
+            destinationAnnotation.coordinate = location.coordinate
+        }
+        
+        self.liveJourneyMap.showAnnotations([startAnnotation, destinationAnnotation], animated: true)
+        
+        let directionsRequest = MKDirectionsRequest()
+        directionsRequest.source = startMapItem
+        directionsRequest.destination = destinationMapItem
+        directionsRequest.transportType = .automobile
+        
+        let directions = MKDirections(request: directionsRequest)
+        
+        directions.calculate { (response, error) -> Void in
+            guard let response = response else {
+                if let error = error {
+                    print ("Error: \(error)")
+                }
+                return
+            }
+            let route = response.routes[0]
+            self.liveJourneyMap.addOverlays((route.polyline), level: MKOverlayLevel.aboveRoads)
+            
+            let rect = route.polyline.boundingMapRect
+            self.liveJourneyMap.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
+        }
+        
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
+        renderer.strokeColor = .red
+        renderer.lineWidth = 5.0
+        return renderer
     }
 
     override func didReceiveMemoryWarning() {
@@ -122,13 +166,6 @@ nnotation()
     }
     */
     
-    
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        let renderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
-        renderer.strokeColor = .red
-        renderer.lineWidth = 5.0
-        return renderer
-    }
    
     
     func getStartingCoordinates() {
