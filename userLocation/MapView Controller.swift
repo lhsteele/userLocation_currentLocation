@@ -59,13 +59,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         
         //self.navigationController?.setNavigationBarHidden(true, animated: true)
-        
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
-        manager.requestWhenInUseAuthorization()        
+        manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
-        
-        
         print ("MapView\(fireUserID)")
      
     }

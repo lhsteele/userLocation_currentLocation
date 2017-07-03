@@ -18,18 +18,6 @@ class StartJourneyMapViewController: UIViewController, CLLocationManagerDelegate
     var localValue = CLLocationCoordinate2D()
     var fireUserID = String()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        manager.delegate = self
-        manager.desiredAccuracy = kCLLocationAccuracyBest
-        manager.requestWhenInUseAuthorization()
-        manager.startUpdatingLocation()
-        
-        
-        displayShareAlertMessage(messageToDisplay: "Would you like to share this journey?")
-    }
-    
     let manager = CLLocationManager()
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -40,10 +28,23 @@ class StartJourneyMapViewController: UIViewController, CLLocationManagerDelegate
         let region: MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
         startAJourneyMap.setRegion(region, animated: true)
         self.startAJourneyMap.showsUserLocation = true
-        
+        print (localValue)
         localValue = location.coordinate
     }
 
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print ("viewDidLoad\(localValue)")
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.requestWhenInUseAuthorization()
+        manager.startUpdatingLocation()
+        
+        displayShareAlertMessage(messageToDisplay: "Would you like to share this journey?")
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
