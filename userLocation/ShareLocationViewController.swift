@@ -96,7 +96,6 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
                         }
                     }
                 }
-                //print ("emailNotFound")
             }
         })
         
@@ -106,40 +105,53 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
         print ("locationToShare\(locationToShare)")
         let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("SubscribedUsers").queryOrderedByKey()
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
-            //ref.queryEqual(toValue: locationToShare).observeSingleEvent(of: .value, with: { (snapshot) in
             print (snapshot)
             let items = snapshot.children
             for item in items {
-                if let userID = item as? FIRDataSnapshot {
-                    print (userID)
-                    for item2 in userID.children {
-                        if let pair = item2 as? FIRDataSnapshot {
-                            print (pair)
-                            if let ID = pair.value as? String {
-                                print (ID)
-                                print (self.sharedEmailsUserID)
-                                if ID == self.sharedEmailsUserID {
-                                    print ("ID match")
-                                    self.displayEmailExistsErrorAlertMessage(messageToDisplay: "Location has already been shared with this user.")
-                                    return
+                if let locationID = item as? FIRDataSnapshot {
+                    if let locIDKey = locationID.key as? String {
+                        if locIDKey == self.locationToShare {
+                            print ("location found")
+                            if let userID = item as? FIRDataSnapshot {
+                                
+                                for item2 in userID.children {
+                                    if let pair = item2 as? FIRDataSnapshot {
+                                        
+                                        if let ID = pair.value as? String {
+                                            
+                                            
+                                            if ID == self.sharedEmailsUserID {
+                                                print ("ID match")
+                                                self.displayEmailExistsErrorAlertMessage(messageToDisplay: "Location has already been shared with this user.")
+                                                return
+                                            }
+                                        }
+                                    }
                                 }
+                                self.findEmailsUsername()
+                                
                             }
+                        } else {
+                            self.findEmailsUsername()
                         }
+                        
                     }
-                    self.findEmailsUsername()
                     
                 }
+                
             }
+            self.shareLocWithUser()
         })
     }
     
     func shareLocWithUser() {
         let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("LocationsSharedWithUser").child(sharedEmailsUserID)
         sharedLocKey = ref.childByAutoId().key
-        let updates = [(sharedLocKey) : locationToShare]
+        let updates = [sharedLocKey : locationToShare]
         ref.updateChildValues(updates)
-        self.displaySuccessAlertMessage(messageToDisplay: "This location will be shared with \(self.emailToCheck)")
+        self.displaySuccessAlertMessage(messageToDisplay: "This locations will be shared with \(self.emailToCheck)")
     }
+    
     
     func findEmailsUsername() {
         let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
@@ -158,9 +170,7 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
                             if userID == self.sharedEmailsUserID {
                                 if let usersName = displayName.value as? String {
                                     usernameToShare = usersName
-                                    print (usersName)
                                     self.saveSubscribedUserToLoc(username: usernameToShare)
-                                    //self.shareLocWithUser()
                                     return
                                 }
                             }
@@ -168,7 +178,6 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
                     }
                     
                 }
-                
             }
         })
     }
@@ -179,7 +188,6 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
         let saveRef = ref.child("SubscribedUsers").child(locationToShare)
         let updates = [username : sharedEmailsUserID]
         saveRef.updateChildValues(updates)
-        self.shareLocWithUser()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
