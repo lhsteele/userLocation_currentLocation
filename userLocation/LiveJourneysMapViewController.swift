@@ -21,11 +21,33 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
 
     @IBOutlet var liveJourneyMap: MKMapView!
     
+    let manager = CLLocationManager()
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        manager.stopUpdatingLocation()
+        
+        let location = locations[0]
+        
+        let span: MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
+        
+        let myLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
+        
+        let region: MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
+        
+        liveJourneyMap.setRegion(region, animated: true)
+        
+        self.liveJourneyMap.showsUserLocation = true
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         liveJourneyMap.delegate = self
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.requestWhenInUseAuthorization()
+        manager.startUpdatingLocation()
         
         getStartingCoordinates()
     }
@@ -35,11 +57,12 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
         // Dispose of any resources that can be recreated.
     }
     
+    
     func showMap() {
-        let span = MKCoordinateSpanMake(0.01, 0.01)
-        let region = MKCoordinateRegionMake(startingCoordinates, span)
+        //let span = MKCoordinateSpanMake(0.01, 0.01)
+        //let region = MKCoordinateRegionMake(startingCoordinates, span)
         
-        liveJourneyMap.setRegion(region, animated: true)
+        //liveJourneyMap.setRegion(region, animated: true)
         
         //let annotationView: MKPinAnnotationView!
         let annotationPoint = MKPointAnnotation()
