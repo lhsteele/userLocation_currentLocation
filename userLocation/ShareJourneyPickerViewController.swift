@@ -101,7 +101,7 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
         _ = databaseRef.queryEqual(toValue: journeyToStart).observe(.value, with: { (snapshot) in
             
             for item in snapshot.children {
-                
+                print (snapshot)
                 if let destination = item as? FIRDataSnapshot {
                     
                     for item in destination.children {

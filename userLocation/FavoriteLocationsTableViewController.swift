@@ -37,6 +37,8 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     var sharedLocKey = String()
     var sharedEmailsUserID = String()
     var usersCreatedLocationKey = String()
+    var sharedUserName = String()
+    var sharedUserID = String()
     
     
     
@@ -323,9 +325,10 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                                 valueToDelete = value
                                 print ("valToDelete\(valueToDelete)")
                                 ref.child(pair.key).removeValue { (error, reference) in
-                                    self.deleteKeyFromLocationsSharedWithUser(fifthLocation: fourthLocation)
+                                    self.deleteKeyFromLocationsSharedWithUser(sixthLocation: fourthLocation)
                                     if error != nil {
-                                        self.deleteKeyFromLocationsSharedWithUser(fifthLocation: fourthLocation)
+                                        //self.deleteKeyFromLocationsSharedWithUser(fifthLocation: fourthLocation)
+                                        self.findSharedEmailsUserID(fifthLocation: fourthLocation)
                                     } else {
                                         print ("error\(reference)")
                                     }
@@ -338,8 +341,32 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         }
     }
     
+    func findSharedEmailsUserID(fifthLocation: String) {
+        let databaseRef = FIRDatabase.database().reference().child("SubscribedUsers").queryOrderedByKey()
+        _ = databaseRef.queryEqual(toValue: journeyToStart).observe(.value, with: { (snapshot) in
+            for item in snapshot.children {
+                
+                if let userid = item as? FIRDataSnapshot {
+                    
+                    for item2 in userid.children {
+                        if let pair = item2 as? FIRDataSnapshot {
+                            if let userID = pair.value as? String {
+                                var usersName = pair.key
+                                
+                                if usersName == self.sharedUserName {
+                                    self.sharedUserID = userID
+                                    self.deleteKeyFromLocationsSharedWithUser(sixthLocation: fifthLocation)
+                                }
+                                print ("retrieve run")
+                            }
+                        }
+                    }
+                }
+            }
+        })
+    }
     
-    func deleteKeyFromLocationsSharedWithUser(fifthLocation: String) {
+    func deleteKeyFromLocationsSharedWithUser(sixthLocation: String) {
         let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("LocationsSharedWithUser").child(sharedEmailsUserID)
         
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -350,7 +377,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                 if let pair = item as? FIRDataSnapshot {
                     
                     if let value = pair.value as? String {
-                        if value == fifthLocation {
+                        if value == sixthLocation{
                             valueToDelete = value
                             ref.child(pair.key).removeValue()
                         }

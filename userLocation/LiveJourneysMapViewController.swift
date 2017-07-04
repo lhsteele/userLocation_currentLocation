@@ -55,6 +55,8 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
         
         liveJourneyMap.delegate = self
         manager.delegate = self
+        print ("starting\(startingCoordinates)")
+        print ("end\(destinationCoordinates)")
         
         let startLocation = startingCoordinates
         let destinationLocation = destinationCoordinates
@@ -96,20 +98,28 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
                 return
             }
             let route = response.routes[0]
-            self.liveJourneyMap.addOverlays((route.polyline), level: MKOverlayLevel.aboveRoads)
+            var pointsToUse: [CLLocationCoordinate2D] = []
+            pointsToUse = [startLocation, destinationLocation]
+            let path = MKPolyline(coordinates: &pointsToUse, count: pointsToUse.count)
+            self.liveJourneyMap.add(path)
+            //self.liveJourneyMap.addOverlays((route), level: MKOverlayLevel.aboveRoads)
+            
             
             let rect = route.polyline.boundingMapRect
             self.liveJourneyMap.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
         }
         
     }
+   
     
+    /*
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
         renderer.strokeColor = .red
         renderer.lineWidth = 5.0
         return renderer
     }
+    */
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -230,7 +240,7 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
                 let endCoordinate = CLLocationCoordinate2DMake(self.destinationLat, self.destinationLong)
                 self.destinationCoordinates = endCoordinate
                 print (self.destinationCoordinates)
-                self.showMap()
+                self.plotOnMap()
             })
         }
     }
