@@ -13,7 +13,7 @@ import Firebase
 
 
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var createAFavoriteLocation: UIButton!
@@ -83,6 +83,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
       
         performSegue(withIdentifier: "SaveLocationDetailSegue", sender: self)
         
+    }
+    
+    func dropPin(gestureRecognizer: UIGestureRecognizer) {
+        if gestureRecognizer.state == .began {
+            let holdLocation = gestureRecognizer.location(in: map)
+            let pinCoordinate = map.convert(holdLocation, toCoordinateFrom: map)
+            
+            let annotationView: MKAnnotationView!
+            let pointAnnotation = MKPointAnnotation()
+            
+            pointAnnotation.coordinate = pinCoordinate
+            pointAnnotation.title = "\(pinCoordinate.latitude), \(pinCoordinate.longitude)"
+            
+            annotationView = MKAnnotationView(annotation: pointAnnotation, reuseIdentifier: "Annotation")
+            map.addAnnotation(annotationView.annotation!)
+            
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
