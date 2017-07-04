@@ -19,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "userLocation/ShareJourneyPickerViewController.swift"
-            timestampString = "520831521.296977"
+            filePath = "userLocation/AppDelegate.swift"
+            timestampString = "520891395.900718"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "getDestinationCoordinates()"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
+            landmarkName = "application(_:didRegisterForRemoteNotificationsWithDeviceToken:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

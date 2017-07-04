@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import FirebaseDatabase
 import Firebase
+import UserNotifications
 
 let favoriteLocationKey = "NewFavoriteLocation"
 
@@ -50,6 +51,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     override func viewDidLoad() {
     
         super.viewDidLoad()
+        
         self.navigationController?.setNavigationBarHidden(false, animated: true)
 
         addLocationButton.layer.borderColor = UIColor(red: 128/255, green: 128/255, blue: 0/255, alpha: 1).cgColor
@@ -443,7 +445,9 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
+        //The below shows the notification upon loading of the login screen, not after hitting submit.
+        //This also make the notifications not deliver to my phone.
+        self.requestNotificationAuthorisation()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -497,5 +501,27 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         return false
     }
   
+    func requestNotificationAuthorisation() {
+        if #available(iOS 10, *) {
+            
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(options: authOptions) {(granted, error) in
+                if (error != nil) {
+                    print ("I received the following error: \(String(describing: error))")
+                } else if (granted) {
+                    print ("Authorization was granted!")
+                } else {
+                    print ("Authorization was not granted.")
+                }
+            }
+            
+            
+            
+        } else {
+            let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            UIApplication.shared.registerUserNotificationSettings(settings)
+        }
+    
+    }
  
 }

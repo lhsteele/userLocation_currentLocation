@@ -29,13 +29,15 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        liveJourneyMap.delegate = self
+        manager.delegate = self
+        
         getStartingCoordinates()
     }
     
     func plotOnMap() {
         
-        liveJourneyMap.delegate = self
-        manager.delegate = self
+        
         print ("starting\(startingCoordinates)")
         print ("end\(destinationCoordinates)")
         
@@ -94,21 +96,7 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
 
         }
         
-        func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-            let reuseID = "pin"
-            var annotationView = liveJourneyMap.dequeueReusableAnnotationView(withIdentifier: (reuseID))
-            if annotationView == nil {
-                annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
-                annotationView?.canShowCallout = true
-                //annotationView?.rightCalloutAccessoryView = UIButton(type: .infoLight)
-                var button = UIButton(type: .detailDisclosure) as UIButton
-                annotationView?.rightCalloutAccessoryView = button
-                //annotationView?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as? UIButton
-            } else {
-                annotationView?.annotation = annotation
-            }
-            return annotationView
-        }
+        
     }
    
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -116,6 +104,22 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
         renderer.strokeColor = .red
         renderer.lineWidth = 5.0
         return renderer
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let reuseID = "pin"
+        var annotationView = liveJourneyMap.dequeueReusableAnnotationView(withIdentifier: (reuseID))
+        if annotationView == nil {
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
+            annotationView?.canShowCallout = true
+            //annotationView?.rightCalloutAccessoryView = UIButton(type: .infoLight)
+            var button = UIButton(type: .detailDisclosure) as UIButton
+            annotationView?.rightCalloutAccessoryView = button
+            //annotationView?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as? UIButton
+        } else {
+            annotationView?.annotation = annotation
+        }
+        return annotationView
     }
     
     override func didReceiveMemoryWarning() {

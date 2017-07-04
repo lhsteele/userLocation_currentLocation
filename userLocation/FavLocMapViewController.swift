@@ -26,7 +26,7 @@ class FavLocMapViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
         getLocationCoordinates()
-
+        print (favLocToMap)
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,7 +54,7 @@ class FavLocMapViewController: UIViewController {
     
     func getLocationCoordinates() {
         let databaseRef = FIRDatabase.database().reference().child("Locations").queryOrderedByKey()
-        
+        print (locationID)
         _ = databaseRef.queryEqual(toValue: locationID).observe(.value, with: { (snapshot) in
             for item in snapshot.children {
                 var favLocation = ""

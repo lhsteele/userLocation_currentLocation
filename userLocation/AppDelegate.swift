@@ -13,7 +13,7 @@ import UserNotifications
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var ref: FIRDatabaseReference?
@@ -24,21 +24,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         FIRApp.configure()
         
-        
         if #available(iOS 10, *) {
-            UNUserNotificationCenter.current().delegate = self as UNUserNotificationCenterDelegate
+            UNUserNotificationCenter.current().delegate = self
             
-            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-            UNUserNotificationCenter.current().requestAuthorization(options: authOptions) {(granted, error) in
-                if (error != nil) {
-                    print ("I received the following error: \(String(describing: error))")
-                } else if (granted) {
-                    print ("Authorization was granted!")
-                } else {
-                    print ("Authorization was not granted.")
-                }
-            }
-            
+            FIRMessaging.messaging().remoteMessageDelegate = self as? FIRMessagingDelegate
+        }
+        NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotification), name: .firInstanceIDTokenRefresh, object: nil)
+        
+        return true
+    }
+            /*
             func userNotificationCenter(_ center: UNUserNotificationCenter,
                                         willPresent notification: UNNotification,
                                         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
@@ -81,30 +76,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 print ("Firebase registration token: \(fcmToken)")
                 
             }
+            */
             
-            
-        FIRMessaging.messaging().remoteMessageDelegate = self as? FIRMessagingDelegate
         
-        } else {
-            let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-            application.registerUserNotificationSettings(settings)
-        }
-        
-        
-        printFCMToken()
-        
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotification), name: .firInstanceIDTokenRefresh, object: nil)
-           
         //Somehow needs to be deferred to when the login happens. (this is when actual registration for notifications happens) everything else should be accessible still from AppDelegate
         //application.registerForRemoteNotifications()
         //call this from any other VC
         //UIApplication.shared.registerForRemoteNotifications()
         
-        return true
-    }
-
+     
     
+        
     func printFCMToken() {
         if let token = FIRInstanceID.instanceID().token() {
             print ("Your FCM token is \(token)")
@@ -189,6 +171,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Let FCM know about the message for analytics etc.
         FIRMessaging.messaging().appDidReceiveMessage(userInfo)
         // handle your message
+        //userInfo dictionary will contain the payload.
+        //call display alert message
+        //may need to write a test to see if app .isActive (or something similar)
     }
   
     
@@ -230,7 +215,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 }
 
-/*
+
 @available(iOS 10, *)
 extension AppDelegate : UNUserNotificationCenterDelegate {
     
@@ -287,5 +272,5 @@ extension AppDelegate : FIRMessagingDelegate {
     }
 
 }
-*/
+
 
