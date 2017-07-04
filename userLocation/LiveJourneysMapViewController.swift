@@ -18,6 +18,7 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
     var startingLong = CLLocationDegrees()
     var destinationLat = CLLocationDegrees()
     var destinationLong = CLLocationDegrees()
+    
 
     @IBOutlet var liveJourneyMap: MKMapView!
     
@@ -55,7 +56,9 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
         }
         
         let destinationAnnotation = MKPointAnnotation()
-        //destinationAnnotation.title = ""
+        //need to write logic to retrieve destination location name from DB
+        destinationAnnotation.title = "X"
+        
         
         if let location = destinationPlacemark.location {
             destinationAnnotation.coordinate = location.coordinate
@@ -78,11 +81,7 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
                 return
             }
             let route = response.routes[0]
-            //var pointsToUse: [CLLocationCoordinate2D] = []
-            //pointsToUse = [startLocation, destinationLocation]
-            //let path = MKPolyline(coordinates: &pointsToUse, count: pointsToUse.count)
             self.liveJourneyMap.add(route.polyline)
-            //self.liveJourneyMap.addOverlays((route), level: MKOverlayLevel.aboveRoads)
             
             let rect = route.polyline.boundingMapRect
             self.liveJourneyMap.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
@@ -91,13 +90,25 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
             let seconds = route.expectedTravelTime
             let minutes = seconds / 60
             print ("ETA in mins \(minutes)")
-            
+            destinationAnnotation.subtitle = "Estimated ETA : \(minutes) minutes"
+
         }
-        /*
-        directions.calculateETA { (etaResponse, error) in
-            
+        
+        func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+            let reuseID = "pin"
+            var annotationView = liveJourneyMap.dequeueReusableAnnotationView(withIdentifier: (reuseID))
+            if annotationView == nil {
+                annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
+                annotationView?.canShowCallout = true
+                //annotationView?.rightCalloutAccessoryView = UIButton(type: .infoLight)
+                var button = UIButton(type: .detailDisclosure) as UIButton
+                annotationView?.rightCalloutAccessoryView = button
+                //annotationView?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as? UIButton
+            } else {
+                annotationView?.annotation = annotation
+            }
+            return annotationView
         }
-        */
     }
    
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -106,8 +117,7 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
         renderer.lineWidth = 5.0
         return renderer
     }
- 
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
