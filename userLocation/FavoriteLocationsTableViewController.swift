@@ -266,7 +266,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             
                 //tableView.deleteRows(at: [indexPath], with: .fade)
             }
-        let deleteRow = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+        _ = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
         
@@ -351,7 +351,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                     for item2 in userid.children {
                         if let pair = item2 as? FIRDataSnapshot {
                             if let userID = pair.value as? String {
-                                var usersName = pair.key
+                                let usersName = pair.key
                                 
                                 if usersName == self.sharedUserName {
                                     self.sharedUserID = userID

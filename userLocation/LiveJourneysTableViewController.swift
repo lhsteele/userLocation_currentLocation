@@ -234,7 +234,7 @@ class LiveJourneysTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let endJourney = UITableViewRowAction(style: .normal, title: "End Journey") { (action, indexPath) in
             if indexPath.section == 0 {
-                let journeyToEnd = self.userCurrentJourneyLocation
+                _ = self.userCurrentJourneyLocation
         
                 self.findSharedUsersForLocation()
                 

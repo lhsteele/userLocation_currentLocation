@@ -24,31 +24,11 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
     let manager = CLLocationManager()
     var movedToUserLocation = false
     
-    /*
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        manager.stopUpdatingLocation()
-        
-        let location = locations[0]
-        
-        let span: MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
-        
-        let myLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
-        
-        let region: MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
-        
-        liveJourneyMap.setRegion(region, animated: true)
-        
-        self.liveJourneyMap.showsUserLocation = true
-    }
-    */
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
-      
         
         getStartingCoordinates()
-        
-        
     }
     
     func plotOnMap() {
@@ -98,85 +78,40 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
                 return
             }
             let route = response.routes[0]
-            var pointsToUse: [CLLocationCoordinate2D] = []
-            pointsToUse = [startLocation, destinationLocation]
-            let path = MKPolyline(coordinates: &pointsToUse, count: pointsToUse.count)
-            self.liveJourneyMap.add(path)
+            //var pointsToUse: [CLLocationCoordinate2D] = []
+            //pointsToUse = [startLocation, destinationLocation]
+            //let path = MKPolyline(coordinates: &pointsToUse, count: pointsToUse.count)
+            self.liveJourneyMap.add(route.polyline)
             //self.liveJourneyMap.addOverlays((route), level: MKOverlayLevel.aboveRoads)
-            
             
             let rect = route.polyline.boundingMapRect
             self.liveJourneyMap.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
+            print ("Distance: \(route.distance), ETA: \(route.expectedTravelTime)")
+            
+            let seconds = route.expectedTravelTime
+            let minutes = seconds / 60
+            print ("ETA in mins \(minutes)")
+            
         }
-        
+        /*
+        directions.calculateETA { (etaResponse, error) in
+            
+        }
+        */
     }
    
-    
-    /*
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
         renderer.strokeColor = .red
         renderer.lineWidth = 5.0
         return renderer
     }
-    */
+ 
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    /*
-    func showMap() {
-        let span = MKCoordinateSpanMake(0.01, 0.01)
-        let region = MKCoordinateRegionMake(startingCoordinates, span)
-        
-        liveJourneyMap.setRegion(region, animated: true)
-        
-        let annotationView: MKPinAnnotationView!
-        let annotationPoint = MKPointAnnotation()
-        let secondAnnoPoint = MKPointAnnotation()
-        
-        annotationPoint.coordinate = startingCoordinates
-        secondAnnoPoint.coordinate = destinationCoordinates
-        print ("startingCoordinates \(startingCoordinates)")
-        //get location name
-        annotationPoint.title = ""
-        
-        annotationView = MKPinAnnotationView(annotation: annotationPoint, reuseIdentifier: "Annotation")
-        
-        liveJourneyMap.addAnnotation(annotationView.annotation!)
-        //liveJourneyMap.addAnnotation(annotationPoint)
-        //liveJourneyMap.showAnnotations([annotationPoint, secondAnnoPoint as! MKAnnotation], animated: true)
-        
-        let directionsRequest = MKDirectionsRequest()
-        
-        directionsRequest.source = MKMapItem(placemark: MKPlacemark(coordinate: startingCoordinates))
-        directionsRequest.destination = MKMapItem(placemark: MKPlacemark(coordinate: destinationCoordinates))
-        directionsRequest.requestsAlternateRoutes = false
-        directionsRequest.transportType = .automobile
-        
-        let directions = MKDirections(request: directionsRequest)
-        
-        directions.calculate { (response, error) in
-            if let res = response {
-                if let route = res.routes.first {
-                    self.liveJourneyMap.add(route.polyline)
-                    self.liveJourneyMap.region.center = self.startingCoordinates
-                }
-            } else {
-                print (error)
-            }
-        }
-        /*
-        directions.calculateETA { (etaResponse, error) in
-            <#code#>
-        }
-        */
-    }
-    */
-    
-   
     
     func getStartingCoordinates() {
         let databaseRef = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("StartedJourneys")

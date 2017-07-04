@@ -81,7 +81,7 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
                     for item2 in userid.children {
                         if let pair = item2 as? FIRDataSnapshot {
                             if let userID = pair.value as? String {
-                                var usersName = pair.key
+                                let usersName = pair.key
                                 
                                 if usersName == self.sharedUserName {
                                     self.sharedUserID = userID

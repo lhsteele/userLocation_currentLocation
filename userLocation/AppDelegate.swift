@@ -140,7 +140,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func tokenRefreshNotification(_ notification: Notification) {
-        if let refreshedToken = FIRInstanceID.instanceID().token() {
+        if FIRInstanceID.instanceID().token() != nil {
             printFCMToken()
         } else {
             print ("We dont have an FCM token yet.")
