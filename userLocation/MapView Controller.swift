@@ -116,12 +116,33 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
-        switch newState {
-        case .starting:
-            view.dragState = .dragging
+        /*
+        switch (newState) {
         case .ending, .canceling:
             view.dragState = .none
         default: break
+        }
+        */
+        let annotation = MKPointAnnotation()
+        var newLocationName = String()
+        var newLocationStreet = String()
+        if newState == MKAnnotationViewDragState.ending {
+            if let droppedAt = view.annotation?.coordinate {
+                let location = CLLocation(latitude: droppedAt.latitude, longitude: droppedAt.longitude)
+                CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (placemarks, error) in
+                    guard let placemarks = placemarks, let placemark = placemarks.first else { return }
+                    if let address = placemark.thoroughfare, let name = placemark.name {
+                        newLocationName = address
+                        print ("new \(newLocationName)")
+                        newLocationStreet = name
+                        print ("new \(newLocationStreet)")
+                    }
+                    annotation.coordinate = droppedAt
+                    annotation.title = newLocationName
+                    annotation.subtitle = newLocationStreet
+                })
+            }
+            map.addAnnotation(annotation)
         }
     }
     
