@@ -18,6 +18,7 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
     var startingLong = CLLocationDegrees()
     var destinationLat = CLLocationDegrees()
     var destinationLong = CLLocationDegrees()
+    var destinationName = String()
     
 
     @IBOutlet var liveJourneyMap: MKMapView!
@@ -59,7 +60,7 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
         
         let destinationAnnotation = MKPointAnnotation()
         //need to write logic to retrieve destination location name from DB
-        destinationAnnotation.title = "X"
+        destinationAnnotation.title = destinationName
         
         
         if let location = destinationPlacemark.location {
@@ -90,7 +91,7 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
             print ("Distance: \(route.distance), ETA: \(route.expectedTravelTime)")
             
             let seconds = route.expectedTravelTime
-            let minutes = seconds / 60
+            let minutes = round(seconds / 60)
             print ("ETA in mins \(minutes)")
             destinationAnnotation.subtitle = "Estimated ETA : \(minutes) minutes"
 
@@ -112,10 +113,7 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
         if annotationView == nil {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
             annotationView?.canShowCallout = true
-            //annotationView?.rightCalloutAccessoryView = UIButton(type: .infoLight)
-            var button = UIButton(type: .detailDisclosure) as UIButton
-            annotationView?.rightCalloutAccessoryView = button
-            //annotationView?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as? UIButton
+            
         } else {
             annotationView?.annotation = annotation
         }
@@ -126,6 +124,7 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+  
     
     func getStartingCoordinates() {
         let databaseRef = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("StartedJourneys")
@@ -189,20 +188,33 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
                 let endCoordinate = CLLocationCoordinate2DMake(self.destinationLat, self.destinationLong)
                 self.destinationCoordinates = endCoordinate
                 print (self.destinationCoordinates)
-                self.plotOnMap()
+                self.getDestinationLocationName()
             })
         }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func getDestinationLocationName() {
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("StartedJourneys")
+        if let userID = FIRAuth.auth()?.currentUser?.uid {
+            var name = String()
+            
+            databaseRef.child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
+                let children = snapshot.children
+                
+                for item in children {
+                    if let pair = item as? FIRDataSnapshot {
+                        if let childValue = pair.value as? String {
+                            let childKey = pair.key as? String
+                            if childKey == "DestinationName" {
+                                name = childValue as String
+                                self.destinationName = name
+                            }
+                        }
+                    }
+                }
+                self.plotOnMap()
+            })
+        }
     }
-    */
 
 }

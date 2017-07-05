@@ -84,7 +84,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         performSegue(withIdentifier: "SaveLocationDetailSegue", sender: self)
         
     }
-    
+    /*
     func dropPin(gestureRecognizer: UIGestureRecognizer) {
         if gestureRecognizer.state == .began {
             let holdLocation = gestureRecognizer.location(in: map)
@@ -101,6 +101,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             
         }
     }
+    */
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "SaveLocationDetailSegue") {
