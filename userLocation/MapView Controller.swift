@@ -29,10 +29,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     var passedFireUserID = String()
     var listOfSharedFavorites: [SavedFavorites] = []
     var locationID = ""
-    
-    
-    
+
+
     let manager = CLLocationManager ()
+    let geocoder = CLGeocoder()
     
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -58,6 +58,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         super.viewDidLoad()
         
         //self.navigationController?.setNavigationBarHidden(true, animated: true)
+        map.delegate = self
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
@@ -67,6 +68,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         longPressGestureRecognizer.minimumPressDuration = 2.0
         map.addGestureRecognizer(longPressGestureRecognizer)
         self.action(gestureRecognizer: longPressGestureRecognizer)
+        
     }
     
     func action(gestureRecognizer: UIGestureRecognizer) {
@@ -74,12 +76,39 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         let touchPoint = gestureRecognizer.location(in: map)
         let newCoordinates = map.convert(touchPoint, toCoordinateFrom: map)
         let annotation = MKPointAnnotation()
-        annotation.coordinate = newCoordinates
-        map.addAnnotation(annotation)
+        var locationName = String()
+        var locationStreet = String()
+        
         latCoordPassed = newCoordinates.latitude
         longCoordPassed = newCoordinates.longitude
         print ("lat \(latCoordPassed)")
         print ("long \(longCoordPassed)")
+        
+        var location = CLLocation(latitude: latCoordPassed, longitude: longCoordPassed)
+        
+        CLGeocoder().reverseGeocodeLocation(location) { (placemarks, error) in
+            guard let placemarks = placemarks, let placemark = placemarks.first else { return }
+            if let address = placemark.thoroughfare, let name = placemark.name {
+                locationName = address
+                locationStreet = name
+            }
+        }
+        annotation.coordinate = newCoordinates
+        annotation.title = locationName
+        annotation.subtitle = locationStreet
+        map.addAnnotation(annotation)
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let reuseID = "pin"
+        var annotationView = map.dequeueReusableAnnotationView(withIdentifier: (reuseID))
+        if annotationView == nil {
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
+            annotationView?.canShowCallout = true
+        } else {
+            annotationView?.annotation = annotation
+        }
+        return annotationView
     }
     
     @IBAction func saveUserFavorite(_ sender: Any) {
