@@ -34,6 +34,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     let manager = CLLocationManager ()
     
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         manager.stopUpdatingLocation()
         
@@ -50,10 +51,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         self.map.showsUserLocation = true
         
     }
+ 
     
-    
-    
-
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -64,44 +63,31 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
         print ("MapView\(fireUserID)")
-     
+        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(action(gestureRecognizer:)))
+        longPressGestureRecognizer.minimumPressDuration = 2.0
+        map.addGestureRecognizer(longPressGestureRecognizer)
+        self.action(gestureRecognizer: longPressGestureRecognizer)
+    }
+    
+    func action(gestureRecognizer: UIGestureRecognizer) {
+        
+        let touchPoint = gestureRecognizer.location(in: map)
+        let newCoordinates = map.convert(touchPoint, toCoordinateFrom: map)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = newCoordinates
+        map.addAnnotation(annotation)
+        latCoordPassed = newCoordinates.latitude
+        longCoordPassed = newCoordinates.longitude
+        print ("lat \(latCoordPassed)")
+        print ("long \(longCoordPassed)")
     }
     
     @IBAction func saveUserFavorite(_ sender: Any) {
-        if let location = manager.location {
-            
-            
-            let localValue: CLLocationCoordinate2D = location.coordinate
-            
-            let latCoord = localValue.latitude
-            let longCoord = localValue.longitude
-            
-            latCoordPassed = latCoord
-            longCoordPassed = longCoord
-            
-        }
       
         performSegue(withIdentifier: "SaveLocationDetailSegue", sender: self)
         
     }
-    /*
-    func dropPin(gestureRecognizer: UIGestureRecognizer) {
-        if gestureRecognizer.state == .began {
-            let holdLocation = gestureRecognizer.location(in: map)
-            let pinCoordinate = map.convert(holdLocation, toCoordinateFrom: map)
-            
-            let annotationView: MKAnnotationView!
-            let pointAnnotation = MKPointAnnotation()
-            
-            pointAnnotation.coordinate = pinCoordinate
-            pointAnnotation.title = "\(pinCoordinate.latitude), \(pinCoordinate.longitude)"
-            
-            annotationView = MKAnnotationView(annotation: pointAnnotation, reuseIdentifier: "Annotation")
-            map.addAnnotation(annotationView.annotation!)
-            
-        }
-    }
-    */
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "SaveLocationDetailSegue") {
