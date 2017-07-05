@@ -84,7 +84,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         print ("lat \(latCoordPassed)")
         print ("long \(longCoordPassed)")
         
-        var location = CLLocation(latitude: latCoordPassed, longitude: longCoordPassed)
+        let location = CLLocation(latitude: latCoordPassed, longitude: longCoordPassed)
         
         CLGeocoder().reverseGeocodeLocation(location) { (placemarks, error) in
             guard let placemarks = placemarks, let placemark = placemarks.first else { return }
@@ -92,10 +92,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                 locationName = address
                 locationStreet = name
             }
+            annotation.coordinate = newCoordinates
+            annotation.title = locationName
+            print (locationName)
+            annotation.subtitle = locationStreet
+            print (locationStreet)
         }
-        annotation.coordinate = newCoordinates
-        annotation.title = locationName
-        annotation.subtitle = locationStreet
+        
         map.addAnnotation(annotation)
     }
     
@@ -105,10 +108,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         if annotationView == nil {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
             annotationView?.canShowCallout = true
+            annotationView?.isDraggable = true
         } else {
             annotationView?.annotation = annotation
         }
         return annotationView
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
+        switch newState {
+        case .starting:
+            view.dragState = .dragging
+        case .ending, .canceling:
+            view.dragState = .none
+        default: break
+        }
     }
     
     @IBAction func saveUserFavorite(_ sender: Any) {
