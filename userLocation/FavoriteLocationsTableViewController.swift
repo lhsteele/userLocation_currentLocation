@@ -255,6 +255,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         
         let startJourney = UITableViewRowAction(style: .normal, title: "Start Journey") { (action, indexPath) in
             self.journeyToStart = self.listOfCreatedLocations[indexPath.row] as String
+            print ("journeyToStart\(self.journeyToStart)")
             self.performSegue(withIdentifier: "StartJourneySegue", sender: Any.self)
         }
         
@@ -395,6 +396,8 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let indexPath = tableView.indexPathForSelectedRow!
         _ = tableView.cellForRow(at: indexPath)! as UITableViewCell
+        self.locationID = self.listOfCreatedLocations[indexPath.row] as String
+        print ("locID\(self.locationID)")
         performSegue(withIdentifier: "FavLocMapViewSegue", sender: self)
     }
     
@@ -512,6 +515,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                     print ("I received the following error: \(String(describing: error))")
                 } else if (granted) {
                     print ("Authorization was granted!")
+                    
                 } else {
                     print ("Authorization was not granted.")
                 }
@@ -520,9 +524,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             
         } else {
             let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-            UIApplication.shared.registerUserNotificationSettings(settings)
         }
-        UIApplication.shared.registerForRemoteNotifications()
     }
  
 }

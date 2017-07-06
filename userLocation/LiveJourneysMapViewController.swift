@@ -19,6 +19,7 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
     var destinationLat = CLLocationDegrees()
     var destinationLong = CLLocationDegrees()
     var destinationName = String()
+    var today = String()
     
 
     @IBOutlet var liveJourneyMap: MKMapView!
@@ -119,6 +120,7 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
         }
         return annotationView
     }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
