@@ -1,7 +1,7 @@
 // This registration token comes from the client FCM SDKs.
 var functions = require('firebase-functions');
 var admin = require('firebase-admin')
-var registrationToken = "cqShMOqBAzo:APA91bGFAkp5rRK3PXvbkuIuKR6lveUcKy-DN-P7OyWqDOJXTPMLVfd_ey8Gc0eMOuCAmwtIjsI53rFHPXIcbcpoPaliSh9cnQFN4KqFwvCLaqoj6vs7NgO-GxzKDLEh6lJVtowPdYzQ";
+var registrationToken = "cHEwvrLik4s:APA91bHqigfRY5qMlQ3RGf8Rsi8kxPEWCVhGnMgP3umIU6Zu92EncMrDfE_PsdT609R9w_PSqmcHTv-eMC6hr7TRbjUCpvilpRJKxlhtdEeojbhLJu4FQMg-nbRhYRTKVrF44djoK4Hl";
 
 admin.initializeApp({
   credential: admin.credential.applicationDefault(),

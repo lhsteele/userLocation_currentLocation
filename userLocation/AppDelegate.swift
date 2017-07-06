@@ -33,58 +33,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-            /*
-            func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                        willPresent notification: UNNotification,
-                                        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-                completionHandler([.alert, .badge, .sound])
-                completionHandler(UNNotificationPresentationOptions.alert)
-                
-                let userInfo = notification.request.content.userInfo
-                // Print message ID.
-                if let messageID = userInfo[gcmMessageIDKey] {
-                    print("Message ID: \(messageID)")
-                }
-                
-                // Print full message.
-                print(userInfo)
-                
-                displayAlertMessage(messageToDisplay: "Someone has shared a journey with you.")
-            }
-            
-            func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                        didReceive response: UNNotificationResponse,
-                                        withCompletionHandler completionHandler: @escaping () -> Void) {
-                let userInfo = response.notification.request.content.userInfo
-                // Print message ID.
-                if let messageID = userInfo[gcmMessageIDKey] {
-                    print("Message ID: \(messageID)")
-                }
-                
-                // Print full message.
-                print(userInfo)
-                displayAlertMessage(messageToDisplay: "Someone has shared a journey with you.")
-                completionHandler()
-            }
-            
-            func applicationReceivedRemoteMessage(_ remoteMessage: FIRMessagingRemoteMessage) {
-                print(remoteMessage.appData)
-            }
-            
-            func messaging(_ messaging: FIRMessaging, didRefreshRegistrationToken fcmToken: String) {
-                userInfo = fcmToken
-                print ("Firebase registration token: \(fcmToken)")
-                
-            }
-            */
-            
-        
-        //Somehow needs to be deferred to when the login happens. (this is when actual registration for notifications happens) everything else should be accessible still from AppDelegate
-        //application.registerForRemoteNotifications()
-        //call this from any other VC
-        //UIApplication.shared.registerForRemoteNotifications()
-        
-     
     
         
     func printFCMToken() {
@@ -172,8 +120,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRMessaging.messaging().appDidReceiveMessage(userInfo)
         // handle your message
         //userInfo dictionary will contain the payload.
-        //call display alert message
+        //displayAlertMessage(messageToDisplay: "Someone has shared a journey with you.")
         //may need to write a test to see if app .isActive (or something similar)
+        
     }
   
     
@@ -223,7 +172,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        displayAlertMessage(messageToDisplay: "Someone has shared a journey with you.")
+        
         completionHandler([.alert, .badge, .sound])
         
         let userInfo = notification.request.content.userInfo
@@ -235,8 +184,6 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         // Print full message.
         print(userInfo)
         
-        // Change this to your preferred presentation option
-        completionHandler([])
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter,

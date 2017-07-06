@@ -116,13 +116,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
-        /*
+        
         switch (newState) {
         case .ending, .canceling:
             view.dragState = .none
         default: break
         }
-        */
+ 
         let annotation = MKPointAnnotation()
         var newLocationName = String()
         var newLocationStreet = String()
@@ -151,7 +151,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         performSegue(withIdentifier: "SaveLocationDetailSegue", sender: self)
         
     }
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "SaveLocationDetailSegue") {

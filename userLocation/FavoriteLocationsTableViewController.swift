@@ -10,11 +10,12 @@ import UIKit
 import MapKit
 import FirebaseDatabase
 import Firebase
+import FirebaseMessaging
 import UserNotifications
 
 let favoriteLocationKey = "NewFavoriteLocation"
 
-class FavoriteLocationsTableViewController: UITableViewController, CLLocationManagerDelegate, UINavigationBarDelegate {
+class FavoriteLocationsTableViewController: UITableViewController, CLLocationManagerDelegate, UINavigationBarDelegate, UNUserNotificationCenterDelegate {
     
     var listOfFavorites: [SavedFavorites] = []
     var listOfCreatedLocations = [String]()
@@ -500,9 +501,10 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return false
     }
-  
+    
     func requestNotificationAuthorisation() {
         if #available(iOS 10, *) {
+            
             
             let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
             UNUserNotificationCenter.current().requestAuthorization(options: authOptions) {(granted, error) in
@@ -514,14 +516,13 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                     print ("Authorization was not granted.")
                 }
             }
-            
-            
+        
             
         } else {
             let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
             UIApplication.shared.registerUserNotificationSettings(settings)
         }
-    
+        UIApplication.shared.registerForRemoteNotifications()
     }
  
 }
