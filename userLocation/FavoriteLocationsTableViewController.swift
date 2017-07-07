@@ -522,8 +522,10 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             
         } else {
             let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            //UIApplication.shared.registerForRemoteNotifications()
         }
-        self.checkIfRegisteredForNotifications()
+        //UIApplication.shared.registerForRemoteNotifications()
+        //self.checkIfRegisteredForNotifications()
     }
     
     func checkIfRegisteredForNotifications() {
@@ -580,5 +582,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             }
         }
     }
+    
  
 }

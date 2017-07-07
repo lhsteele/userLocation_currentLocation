@@ -76,8 +76,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func printFCMToken() {
         if let token = FIRInstanceID.instanceID().token() {
             print ("Your FCM token is \(token)")
-            let userToken = token
-            //self.checkIfRegisteredForNotifications()
         } else {
             print ("You don't get have an FCM token.")
         }

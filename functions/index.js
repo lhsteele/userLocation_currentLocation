@@ -1,7 +1,8 @@
 // This registration token comes from the client FCM SDKs.
 var functions = require('firebase-functions');
 var admin = require('firebase-admin')
-var registrationToken = "fwrfb2rAbU8:APA91bH8dk_qnNLOUrlM5vJo1OXm1uQiGjp5AteU5LY6c-oqTA3qkAlu14YT-Y7gLFu9dWjm7jphLKAZhQ-Vsd7Nd37ars3nxT6ZwKlapTNQuK8jxYIWlX_Pgzwml7jEWtFvb-jDH1fj";
+//var registrationToken = "f2og_pbqadc:APA91bH6MJynSoPqqDzxGDKkfUJf6zwGatniXTU5HrRpEYlpSC2Y4TNBZnAiHnrlowFgx1E8MFavixW6Hnp_nQioY6tO4dc6LyAAEanE0Sxh-7T_91yb596Mpyh9C_urD2BZ-bu8Hx_W";
+var userDeviceToken = ""
 
 admin.initializeApp({
   credential: admin.credential.applicationDefault(),
@@ -29,13 +30,14 @@ exports.newEntry = functions.database.ref('/StartedJourneys/{fireUserID}')
     const sharedUserID = original.SharedWithUser
     console.log(sharedUserID)
     var db = admin.database()
-    var ref = db.ref('/UserInfo')
+    var ref = db.ref('/UserTokens')
     ref.orderByKey().equalTo(sharedUserID).on("child_added", function(snapshot) {
       const deviceToken = snapshot.val()
-      console.log(deviceToken)
+      userDeviceToken = deviceToken
+      console.log(userDeviceToken)
     })
     
-  	return admin.messaging().sendToDevice(registrationToken, payload, options)
+  	return admin.messaging().sendToDevice(userDeviceToken, payload, options)
   	.then(function(response) {
   	// See the MessagingDevicesResponse reference documentation for
   	// the contents of response.
