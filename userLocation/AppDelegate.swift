@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var ref: FIRDatabaseReference?
     let gcmMessageIDKey = "gcm.message_id"
     var userInfo: String = ""
+    var userToken = String()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -32,15 +33,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotification), name: .firInstanceIDTokenRefresh, object: nil)
         
         return true
-    }
-    
-        
-    func printFCMToken() {
-        if let token = FIRInstanceID.instanceID().token() {
-            print ("Your FCM token is \(token)")
-        } else {
-            print ("You don't get have an FCM token.")
-        }
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
@@ -69,6 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //to perform action when app is opened upon notification click, set click_action in notification payload.
     }
     
+    
     func tokenRefreshNotification(_ notification: Notification) {
         if FIRInstanceID.instanceID().token() != nil {
             printFCMToken()
@@ -78,7 +71,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         connectToFCM()
     }
+   
     
+    func printFCMToken() {
+        if let token = FIRInstanceID.instanceID().token() {
+            print ("Your FCM token is \(token)")
+            let userToken = token
+            //self.checkIfRegisteredForNotifications()
+        } else {
+            print ("You don't get have an FCM token.")
+        }
+    }
     
     func connectToFCM() {
         guard FIRInstanceID.instanceID().token() != nil else {
@@ -95,7 +98,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-    
     
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {

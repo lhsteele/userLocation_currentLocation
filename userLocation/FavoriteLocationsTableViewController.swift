@@ -43,8 +43,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     var sharedUserID = String()
     
     
-    
-    
     @IBOutlet var journeysButton: UIBarButtonItem!
     @IBOutlet var settingsButton: UIBarButtonItem!
     @IBOutlet var addLocationButton: UIButton!
@@ -391,7 +389,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         })
     }
     
-    
+     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let indexPath = tableView.indexPathForSelectedRow!
@@ -515,7 +513,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                     print ("I received the following error: \(String(describing: error))")
                 } else if (granted) {
                     print ("Authorization was granted!")
-                    
+                    self.printFCMToken()
                 } else {
                     print ("Authorization was not granted.")
                 }
@@ -524,6 +522,62 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             
         } else {
             let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+        }
+        self.checkIfRegisteredForNotifications()
+    }
+    
+    func checkIfRegisteredForNotifications() {
+        let isRegistered = UIApplication.shared.isRegisteredForRemoteNotifications
+        if isRegistered {
+            print ("userIsRegisteredForNotifications")
+            //save token to database
+            self.printFCMToken()
+        } else {
+            //show alert user is not registered for notification.
+        }
+    }
+    
+    func addTokenToDB(userToken : String) {
+        print ("userToken\(userToken)")
+        if let userID = FIRAuth.auth()?.currentUser?.uid {
+            let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("UserTokens")
+            let updates = [userID : userToken]
+            ref.updateChildValues(updates)
+        }
+    }
+    
+    func tokenRefreshNotification(_ notification: Notification) {
+        if FIRInstanceID.instanceID().token() != nil {
+            printFCMToken()
+        } else {
+            print ("We dont have an FCM token yet.")
+        }
+        
+        connectToFCM()
+    }
+    
+    func printFCMToken() {
+        if let token = FIRInstanceID.instanceID().token() {
+            print ("Your FCM token is \(token)")
+            self.addTokenToDB(userToken : token)
+        } else {
+            print ("You don't get have an FCM token.")
+        }
+    }
+    
+    func connectToFCM() {
+        guard FIRInstanceID.instanceID().token() != nil else {
+            return
+        }
+        
+        FIRMessaging.messaging().disconnect()
+        
+        FIRMessaging.messaging().connect { (error) in
+            if error != nil {
+                print ("Unable to connect with FCM. \(error?.localizedDescription ?? "")")
+            } else {
+                print ("Connected to FCM")
+            }
         }
     }
  
