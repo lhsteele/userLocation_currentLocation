@@ -69,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print ("We dont have an FCM token yet.")
         }
         
-        //connectToFCM()
+        connectToFCM()
     }
    
     

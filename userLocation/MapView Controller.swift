@@ -17,6 +17,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var createAFavoriteLocation: UIButton!
+    @IBOutlet var addressTextField: UITextField!
+    
+    
 
     var latCoord = CLLocationDegrees()
     var longCoord = CLLocationDegrees()

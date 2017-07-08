@@ -555,7 +555,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             print ("We dont have an FCM token yet.")
         }
         
-        //connectToFCM()
+        connectToFCM()
     }
     
     func printFCMToken() {
