@@ -13,7 +13,7 @@ import Firebase
 
 
 
-class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var createAFavoriteLocation: UIButton!
@@ -32,6 +32,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     var passedFireUserID = String()
     var listOfSharedFavorites: [SavedFavorites] = []
     var locationID = ""
+    var inputAddressCoordinates = CLLocationCoordinate2D()
+    
+    
 
 
     let manager = CLLocationManager ()
@@ -71,7 +74,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         longPressGestureRecognizer.minimumPressDuration = 2.0
         map.addGestureRecognizer(longPressGestureRecognizer)
         self.action(gestureRecognizer: longPressGestureRecognizer)
-        
+        addressTextField.returnKeyType = UIReturnKeyType.done
+        self.addressTextField.delegate = self
     }
     
     func action(gestureRecognizer: UIGestureRecognizer) {
@@ -149,17 +153,56 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         }
     }
     
-    @IBAction func saveUserFavorite(_ sender: Any) {
-      
-        performSegue(withIdentifier: "SaveLocationDetailSegue", sender: self)
+    func plotInputAddress() {
+        let geocoder = CLGeocoder()
+        let annotation = MKPointAnnotation()
+        let inputAddress = addressTextField.text!
+        geocoder.geocodeAddressString(inputAddress) { (placemarks, error) in
+            let placemark = placemarks?.first
+            if let inputLat = placemark?.location?.coordinate.latitude, let inputLong = placemark?.location?.coordinate.longitude {
+                let coordMaker = CLLocationCoordinate2DMake(inputLat, inputLong)
+                print ("Lat: \(inputLat), Long: \(inputLong)")
+                self.inputAddressCoordinates = coordMaker
+            }
+            self.showInputAddressOnMap()
+        }
         
     }
+    
+    func showInputAddressOnMap() {
+        print ("inputAddressCoordinates \(inputAddressCoordinates)")
+        let span = MKCoordinateSpanMake(0.5, 0.5)
+        let region = MKCoordinateRegionMake(inputAddressCoordinates, span)
+        
+        map.setRegion(region, animated: true)
+        
+        let annotation = MKPointAnnotation()
+        
+        annotation.coordinate = inputAddressCoordinates
+        annotation.title = addressTextField.text
+        
+        map.addAnnotation(annotation)
+        map.showAnnotations([annotation], animated: true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        addressTextField.resignFirstResponder()
+        if addressTextField != nil {
+            self.plotInputAddress()
+        }
+        return true
+    }
+    
+    
+    @IBAction func saveUserFavorite(_ sender: Any) {
+        performSegue(withIdentifier: "SaveLocationDetailSegue", sender: self)
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "SaveLocationDetailSegue") {
 
             let pointer = segue.destination as! SaveLocationDetailViewController
-            
             pointer.latCoordPassed = self.latCoordPassed
             pointer.longCoordPassed = self.longCoordPassed
             pointer.fireUserID = self.fireUserID

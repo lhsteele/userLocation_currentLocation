@@ -33,7 +33,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter address:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GZ3-6p-2CT">
-                                <rect key="frame" x="16" y="512" width="343" height="30"/>
+                                <rect key="frame" x="16" y="84" width="343" height="30"/>
                                 <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -41,16 +41,16 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="GZ3-6p-2CT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="AqH-Ic-MzW"/>
+                            <constraint firstItem="GZ3-6p-2CT" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="6qk-FJ-uah"/>
                             <constraint firstItem="dg0-d2-acE" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="L0z-8l-D4f"/>
-                            <constraint firstItem="5vh-wZ-Dsu" firstAttribute="top" secondItem="GZ3-6p-2CT" secondAttribute="bottom" constant="8" id="Lfz-mF-KZD"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="dg0-d2-acE" secondAttribute="bottom" id="T9a-ey-OLp"/>
-                            <constraint firstItem="GZ3-6p-2CT" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="UuR-oY-S3t"/>
                             <constraint firstItem="dg0-d2-acE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="VWy-BX-glQ"/>
                             <constraint firstItem="dg0-d2-acE" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Xm5-Ae-6dQ"/>
                             <constraint firstItem="dg0-d2-acE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="dyH-4O-0NR"/>
                             <constraint firstItem="dg0-d2-acE" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="fDm-CS-UIc"/>
                             <constraint firstItem="dg0-d2-acE" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="fQA-kv-UCP"/>
+                            <constraint firstItem="GZ3-6p-2CT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="k7G-Jo-eoo"/>
+                            <constraint firstItem="GZ3-6p-2CT" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="m1d-hq-RfI"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="5vh-wZ-Dsu" secondAttribute="bottom" constant="87" id="ogb-R3-ReD"/>
                             <constraint firstAttribute="trailing" secondItem="dg0-d2-acE" secondAttribute="trailing" id="s52-bP-rwL"/>
                             <constraint firstItem="dg0-d2-acE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="swF-hZ-p5p"/>
