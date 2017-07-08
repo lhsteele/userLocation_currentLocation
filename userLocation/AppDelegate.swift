@@ -69,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print ("We dont have an FCM token yet.")
         }
         
-        connectToFCM()
+        //connectToFCM()
     }
    
     
@@ -107,7 +107,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         for i in 0..<deviceToken.count {
             readableToken += String(format: "%02.2hhx", deviceToken[i] as CVarArg)
         }
-
+        print ("method run")
         print ("APNs token retrieved: \(readableToken)")
         
         //with swizzling disabled must set APNs token here.

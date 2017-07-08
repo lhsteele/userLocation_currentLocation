@@ -31,20 +31,20 @@ exports.newEntry = functions.database.ref('/StartedJourneys/{fireUserID}')
     console.log(sharedUserID)
     var db = admin.database()
     var ref = db.ref('/UserTokens')
-    ref.orderByKey().equalTo(sharedUserID).on("child_added", function(snapshot) {
+    return ref.orderByKey().equalTo(sharedUserID).on("child_added", function(snapshot) {
       const deviceToken = snapshot.val()
       userDeviceToken = deviceToken
       console.log(userDeviceToken)
+
+      admin.messaging().sendToDevice(userDeviceToken, payload, options)
+	  	.then(function(response) {
+	  	// See the MessagingDevicesResponse reference documentation for
+	  	// the contents of response.
+	    	console.log("Successfully sent message:", response);
+	  	})
+	  	.catch(function(error) {
+	    	console.log("Error sending message:", error);
+	  	});
     })
-    
-  	return admin.messaging().sendToDevice(userDeviceToken, payload, options)
-  	.then(function(response) {
-  	// See the MessagingDevicesResponse reference documentation for
-  	// the contents of response.
-    	console.log("Successfully sent message:", response);
-  	})
-  	.catch(function(error) {
-    	console.log("Error sending message:", error);
-  	});
    
 })

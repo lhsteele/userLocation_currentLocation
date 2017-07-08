@@ -522,9 +522,9 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             
         } else {
             let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-            //UIApplication.shared.registerForRemoteNotifications()
         }
-        //UIApplication.shared.registerForRemoteNotifications()
+        //This needs to be called in order to register for APNS token.
+        UIApplication.shared.registerForRemoteNotifications()
         //self.checkIfRegisteredForNotifications()
     }
     
@@ -555,7 +555,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             print ("We dont have an FCM token yet.")
         }
         
-        connectToFCM()
+        //connectToFCM()
     }
     
     func printFCMToken() {
