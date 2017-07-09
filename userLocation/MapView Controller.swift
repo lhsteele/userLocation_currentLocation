@@ -25,6 +25,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     var longCoord = CLLocationDegrees()
     var latCoordPassed = CLLocationDegrees()
     var longCoordPassed = CLLocationDegrees()
+    var textInputLat = CLLocationDegrees()
+    var textInputLong = CLLocationDegrees()
     var temporaryString = ""
     var handle: FIRAuthStateDidChangeListenerHandle?
     var fireUserID = String()
@@ -56,6 +58,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
         self.map.showsUserLocation = true
         
+        let localValue: CLLocationCoordinate2D = location.coordinate
+        
+        let latCoord = localValue.latitude
+        let longCoord = localValue.longitude
+        
+        latCoordPassed = latCoord
+        longCoordPassed = longCoord
     }
  
     
@@ -70,44 +79,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
         print ("MapView\(fireUserID)")
-        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(action(gestureRecognizer:)))
-        longPressGestureRecognizer.minimumPressDuration = 2.0
-        map.addGestureRecognizer(longPressGestureRecognizer)
-        self.action(gestureRecognizer: longPressGestureRecognizer)
+        
         addressTextField.returnKeyType = UIReturnKeyType.done
         self.addressTextField.delegate = self
     }
     
-    func action(gestureRecognizer: UIGestureRecognizer) {
-        
-        let touchPoint = gestureRecognizer.location(in: map)
-        let newCoordinates = map.convert(touchPoint, toCoordinateFrom: map)
-        let annotation = MKPointAnnotation()
-        var locationName = String()
-        var locationStreet = String()
-        
-        latCoordPassed = newCoordinates.latitude
-        longCoordPassed = newCoordinates.longitude
-        print ("lat \(latCoordPassed)")
-        print ("long \(longCoordPassed)")
-        
-        let location = CLLocation(latitude: latCoordPassed, longitude: longCoordPassed)
-        
-        CLGeocoder().reverseGeocodeLocation(location) { (placemarks, error) in
-            guard let placemarks = placemarks, let placemark = placemarks.first else { return }
-            if let address = placemark.thoroughfare, let name = placemark.name {
-                locationName = address
-                locationStreet = name
-            }
-            annotation.coordinate = newCoordinates
-            annotation.title = locationName
-            print (locationName)
-            annotation.subtitle = locationStreet
-            print (locationStreet)
-        }
-        
-        map.addAnnotation(annotation)
-    }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let reuseID = "pin"
@@ -115,42 +91,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         if annotationView == nil {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
             annotationView?.canShowCallout = true
-            annotationView?.isDraggable = true
         } else {
             annotationView?.annotation = annotation
         }
         return annotationView
-    }
-    
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
-        
-        switch (newState) {
-        case .ending, .canceling:
-            view.dragState = .none
-        default: break
-        }
- 
-        let annotation = MKPointAnnotation()
-        var newLocationName = String()
-        var newLocationStreet = String()
-        if newState == MKAnnotationViewDragState.ending {
-            if let droppedAt = view.annotation?.coordinate {
-                let location = CLLocation(latitude: droppedAt.latitude, longitude: droppedAt.longitude)
-                CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (placemarks, error) in
-                    guard let placemarks = placemarks, let placemark = placemarks.first else { return }
-                    if let address = placemark.thoroughfare, let name = placemark.name {
-                        newLocationName = address
-                        print ("new \(newLocationName)")
-                        newLocationStreet = name
-                        print ("new \(newLocationStreet)")
-                    }
-                    annotation.coordinate = droppedAt
-                    annotation.title = newLocationName
-                    annotation.subtitle = newLocationStreet
-                })
-            }
-            map.addAnnotation(annotation)
-        }
     }
     
     func plotInputAddress() {
@@ -160,6 +104,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         geocoder.geocodeAddressString(inputAddress) { (placemarks, error) in
             let placemark = placemarks?.first
             if let inputLat = placemark?.location?.coordinate.latitude, let inputLong = placemark?.location?.coordinate.longitude {
+                //self.textInputLat = inputLat
+                //self.textInputLong = inputLong
+                self.latCoordPassed = inputLat
+                self.longCoordPassed = inputLong
                 let coordMaker = CLLocationCoordinate2DMake(inputLat, inputLong)
                 print ("Lat: \(inputLat), Long: \(inputLong)")
                 self.inputAddressCoordinates = coordMaker
@@ -195,6 +143,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     
     @IBAction func saveUserFavorite(_ sender: Any) {
+        /*
+        if let location = manager.location {
+            let localValue: CLLocationCoordinate2D = location.coordinate
+            
+            let latCoord = localValue.latitude
+            let longCoord = localValue.longitude
+            
+            latCoordPassed = latCoord
+            longCoordPassed = longCoord
+        } else {
+            latCoordPassed = textInputLat
+            longCoordPassed = textInputLong
+            print ("lcp\(latCoordPassed)")
+            print ("locp\(longCoordPassed)")
+        }
+        */
         performSegue(withIdentifier: "SaveLocationDetailSegue", sender: self)
     }
     

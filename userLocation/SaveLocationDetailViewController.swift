@@ -43,6 +43,8 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         locationNameField.returnKeyType = UIReturnKeyType.done
         
         print ("SaveLoc\(fireUserID)")
+        print ("lcp \(latCoordPassed)")
+        print ("locp \(longCoordPassed)")
     
     }
     
