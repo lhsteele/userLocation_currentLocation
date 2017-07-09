@@ -28,6 +28,7 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
     var latitude = CLLocationDegrees()
     var longitude = CLLocationDegrees()
     var locationName = String()
+    var handle: FIRAuthStateDidChangeListenerHandle?
     
 
     override func viewDidLoad() {
@@ -179,6 +180,20 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         pickerLabel.text = arrayOfSubscribedUsers[row]
         sharedUserName = pickerLabel.text!
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+        }
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+    }
+    
+    func appDidEnterBackground(_application: UIApplication) {
+        try! FIRAuth.auth()!.signOut()
     }
    
 }

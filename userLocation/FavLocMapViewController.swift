@@ -17,6 +17,7 @@ class FavLocMapViewController: UIViewController {
     var locationLong = CLLocationDegrees()
     var favLocToMap = CLLocationCoordinate2D()
     var annotation = MKPointAnnotation()
+    var handle: FIRAuthStateDidChangeListenerHandle?
 
     @IBOutlet var favLocMap: MKMapView!
     
@@ -95,5 +96,18 @@ class FavLocMapViewController: UIViewController {
         })
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+    }
+    
+    func appDidEnterBackground(_application: UIApplication) {
+        try! FIRAuth.auth()!.signOut()
+    }
     
 }

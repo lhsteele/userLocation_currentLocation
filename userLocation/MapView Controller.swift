@@ -35,9 +35,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     var listOfSharedFavorites: [SavedFavorites] = []
     var locationID = ""
     var inputAddressCoordinates = CLLocationCoordinate2D()
-    
-    
-
 
     let manager = CLLocationManager ()
     let geocoder = CLGeocoder()
@@ -99,7 +96,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     func plotInputAddress() {
         let geocoder = CLGeocoder()
-        let annotation = MKPointAnnotation()
+        _ = MKPointAnnotation()
         let inputAddress = addressTextField.text!
         geocoder.geocodeAddressString(inputAddress) { (placemarks, error) in
             let placemark = placemarks?.first
@@ -164,6 +161,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     override func viewWillDisappear(_ animated: Bool) {
         FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+    }
+    
+    func appDidEnterBackground(_application: UIApplication) {
+        try! FIRAuth.auth()!.signOut()
     }
     
 }

@@ -20,6 +20,7 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
     var sharedEmailsUserID = String()
     var username = String()
     var sharedLocKey = String()
+    var handle: FIRAuthStateDidChangeListenerHandle?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -274,6 +275,20 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
         shareLocEmailTextField.resignFirstResponder()
         
         return true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+        }
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+    }
+    
+    func appDidEnterBackground(_application: UIApplication) {
+        try! FIRAuth.auth()!.signOut()
     }
 
 }

@@ -20,7 +20,7 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
     var destinationLong = CLLocationDegrees()
     var destinationName = String()
     var today = String()
-    
+    var handle: FIRAuthStateDidChangeListenerHandle?
 
     @IBOutlet var liveJourneyMap: MKMapView!
     
@@ -217,6 +217,21 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
                 self.plotOnMap()
             })
         }
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+        }
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+    }
+    
+    func appDidEnterBackground(_application: UIApplication) {
+        try! FIRAuth.auth()!.signOut()
     }
 
 }

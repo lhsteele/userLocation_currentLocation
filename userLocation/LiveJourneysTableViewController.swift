@@ -27,6 +27,7 @@ class LiveJourneysTableViewController: UITableViewController {
     var journeyIsLive = false
     var sharedUserID = String()
     var journeyToEnd = String()
+    var handle: FIRAuthStateDidChangeListenerHandle?
     
     
     
@@ -297,6 +298,20 @@ class LiveJourneysTableViewController: UITableViewController {
         }
         alertController.addAction(OKAction)
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+        }
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+    }
+    
+    func appDidEnterBackground(_application: UIApplication) {
+        try! FIRAuth.auth()!.signOut()
     }
     
     /*

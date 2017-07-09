@@ -462,6 +462,10 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         FIRAuth.auth()?.removeStateDidChangeListener(handle!)
     }
     
+    func appDidEnterBackground(_application: UIApplication) {
+        try! FIRAuth.auth()!.signOut()
+    }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

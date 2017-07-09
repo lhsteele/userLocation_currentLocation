@@ -125,6 +125,10 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         FIRAuth.auth()?.removeStateDidChangeListener(handle!)
     }
+    
+    func appDidEnterBackground(_application: UIApplication) {
+        try! FIRAuth.auth()!.signOut()
+    }
 
 }
 
