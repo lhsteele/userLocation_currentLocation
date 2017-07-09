@@ -104,8 +104,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         geocoder.geocodeAddressString(inputAddress) { (placemarks, error) in
             let placemark = placemarks?.first
             if let inputLat = placemark?.location?.coordinate.latitude, let inputLong = placemark?.location?.coordinate.longitude {
-                //self.textInputLat = inputLat
-                //self.textInputLong = inputLong
                 self.latCoordPassed = inputLat
                 self.longCoordPassed = inputLong
                 let coordMaker = CLLocationCoordinate2DMake(inputLat, inputLong)
@@ -143,22 +141,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     
     @IBAction func saveUserFavorite(_ sender: Any) {
-        /*
-        if let location = manager.location {
-            let localValue: CLLocationCoordinate2D = location.coordinate
-            
-            let latCoord = localValue.latitude
-            let longCoord = localValue.longitude
-            
-            latCoordPassed = latCoord
-            longCoordPassed = longCoord
-        } else {
-            latCoordPassed = textInputLat
-            longCoordPassed = textInputLong
-            print ("lcp\(latCoordPassed)")
-            print ("locp\(longCoordPassed)")
-        }
-        */
         performSegue(withIdentifier: "SaveLocationDetailSegue", sender: self)
     }
     
