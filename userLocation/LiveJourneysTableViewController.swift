@@ -28,6 +28,8 @@ class LiveJourneysTableViewController: UITableViewController {
     var sharedUserID = String()
     var journeyToEnd = String()
     var handle: FIRAuthStateDidChangeListenerHandle?
+    var journeyUserID = String()
+    var journeyUserName = String()
     
     
     
@@ -36,7 +38,7 @@ class LiveJourneysTableViewController: UITableViewController {
         super.viewDidLoad()
         loadUserLiveJourney()
         loadSharedWithLiveJourneyData()
-
+        getUserMakingJourneyID()
     }
     
     func loadUserLiveJourney() {
@@ -177,6 +179,53 @@ class LiveJourneysTableViewController: UITableViewController {
                 print (self.sharedWithLiveJourney)
                 
             }
+        })
+    }
+    
+    func getUserMakingJourneyID() {
+        let databaseRef = FIRDatabase.database().reference().child("SharedWithLiveJourneys").queryOrderedByKey()
+        _ = databaseRef.queryEqual(toValue: fireUserID).observe(.value, with: { (snapshot) in
+            for item in snapshot.children {
+                
+                if let children = item as? FIRDataSnapshot {
+                    for item in children.children {
+                        if let pair = item as? FIRDataSnapshot {
+                            if let id = pair.value as? String {
+                                let name = pair.key
+                                
+                                if name == "UserMakingJourney" {
+                                    self.journeyUserID = id
+                                    print ("userID \(self.journeyUserID)")
+                                    self.getUserMakingJourneyName(journeyUserID : self.journeyUserID)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        })
+    }
+    
+    func getUserMakingJourneyName(journeyUserID: String) {
+        print ("journeyUserID2 \(journeyUserID)")
+        let databaseRef = FIRDatabase.database().reference().child("Usernames").queryOrderedByKey()
+        _ = databaseRef.queryEqual(toValue: journeyUserID).observe(.value, with: { (snapshot) in
+            for item in snapshot.children {
+                print ("item \(item)")
+                
+                if let pair = item as? FIRDataSnapshot {
+                    
+                    if let id = pair.value as? String {
+                        let name = pair.key
+                        
+                        if name == self.journeyUserID {
+                            self.journeyUserName = id
+                            print ("userName \(self.journeyUserName)")
+                        }
+                    }
+                }
+            }
+            
         })
     }
     
