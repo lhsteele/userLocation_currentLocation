@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseAuth
 
 class ShareLocationViewController: UIViewController, UITextFieldDelegate {
     
@@ -150,7 +151,7 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
         sharedLocKey = ref.childByAutoId().key
         let updates = [sharedLocKey : locationToShare]
         ref.updateChildValues(updates)
-        self.displaySuccessAlertMessage(messageToDisplay: "This locations will be shared with \(self.emailToCheck)")
+        self.displaySuccessAlertMessage(messageToDisplay: "This location will be shared with \(self.emailToCheck)")
     }
     
     

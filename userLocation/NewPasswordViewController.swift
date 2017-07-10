@@ -14,7 +14,8 @@ class NewPasswordViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet var newPasswordTextField: UITextField!
     @IBOutlet var submitButton: UIButton!
     
-
+    var handle: FIRAuthStateDidChangeListenerHandle?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -71,6 +72,20 @@ class NewPasswordViewController: UIViewController, UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         newPasswordTextField.resignFirstResponder()
         return true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+        }
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+    }
+    
+    func appDidEnterBackground(_application: UIApplication) {
+        try! FIRAuth.auth()!.signOut()
     }
 
 

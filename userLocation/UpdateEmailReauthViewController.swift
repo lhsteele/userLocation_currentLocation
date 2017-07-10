@@ -16,6 +16,7 @@ class UpdateEmailReauthViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var reauthToUpdateEmailTextField: UITextField!
     @IBOutlet var submitButton: UIButton!
     
+    var handle: FIRAuthStateDidChangeListenerHandle?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +70,21 @@ class UpdateEmailReauthViewController: UIViewController, UITextFieldDelegate {
         reauthToUpdateEmailTextField.resignFirstResponder()
         reauthToUpdatePasswordTextField.resignFirstResponder()
         return true
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+        }
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+    }
+    
+    func appDidEnterBackground(_application: UIApplication) {
+        try! FIRAuth.auth()!.signOut()
     }
 
 }

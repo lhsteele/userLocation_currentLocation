@@ -129,7 +129,7 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
   
     
     func getStartingCoordinates() {
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("StartedJourneys")
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("SharedWithLiveJourneys")
         
             if let userID = FIRAuth.auth()?.currentUser?.uid {
                 
@@ -163,7 +163,7 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
     }
     
     func getDestinationCoordinates() {
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("StartedJourneys")
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("SharedWithLiveJourneys")
         
         if let userID = FIRAuth.auth()?.currentUser?.uid {
             
@@ -196,7 +196,7 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
     }
     
     func getDestinationLocationName() {
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("StartedJourneys")
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("SharedWithLiveJourneys")
         if let userID = FIRAuth.auth()?.currentUser?.uid {
             var name = String()
             
