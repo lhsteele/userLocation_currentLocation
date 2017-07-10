@@ -30,10 +30,9 @@ class LiveJourneysTableViewController: UITableViewController {
     var handle: FIRAuthStateDidChangeListenerHandle?
     var journeyUserID = String()
     var journeyUserName = String()
+    var sharedWithUserID = String()
+    var sharedWithUsername = String()
     
-    
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         loadUserLiveJourney()
@@ -266,7 +265,11 @@ class LiveJourneysTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let indexPath = tableView.indexPathForSelectedRow!
         _ = tableView.cellForRow(at: indexPath)! as UITableViewCell
-        performSegue(withIdentifier: "LiveJourneyMapViewSegue", sender: self)
+        if indexPath.section == 0 {
+            journeySharedWithUser()
+        } else {
+            performSegue(withIdentifier: "LiveJourneyMapViewSegue", sender: self)
+        }
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -339,11 +342,66 @@ class LiveJourneysTableViewController: UITableViewController {
         }
     }
     
+    func journeySharedWithUser() {
+        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+        if let userID = FIRAuth.auth()?.currentUser?.uid {
+            let locationKey = ref.child("StartedJourneys").child(userID)
+            
+            locationKey.observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                let liveJourneys = snapshot.children
+                
+                for item in liveJourneys {
+                    
+                    if let pair = item as? FIRDataSnapshot {
+                        if let value = pair.value as? String {
+                            let userID = pair.key
+                            
+                            if userID == "SharedWithUser" {
+                                self.sharedWithUserID = value
+                            }
+                        }
+                    }
+                }
+                self.journeySharedWithUsername(journeyUserID: self.self.sharedWithUserID)
+            })
+        }
+    }
+    
+    func journeySharedWithUsername(journeyUserID: String) {
+        let databaseRef = FIRDatabase.database().reference().child("Usernames").queryOrderedByKey()
+        _ = databaseRef.queryEqual(toValue: sharedWithUserID).observe(.value, with: { (snapshot) in
+            for item in snapshot.children {
+                
+                if let pair = item as? FIRDataSnapshot {
+                    
+                    if let id = pair.value as? String {
+                        let name = pair.key
+                        
+                        if name == self.sharedWithUserID {
+                            self.sharedWithUsername = id
+                            self.displaySharedWithUserMessage(messageToDisplay: "This journey has been shared with \(self.sharedWithUsername)")
+                        }
+                    }
+                }
+            }
+            
+        })
+    }
+    
     func displaySuccessAlertMessage(messageToDisplay: String) {
         let alertController = UIAlertController(title: "Sucess", message: messageToDisplay, preferredStyle: .alert)
-        let OKAction = UIAlertAction(title: "Ok", style: .default) { (action:UIAlertAction) in
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
             //performSegue
             self.performSegue(withIdentifier: "JourneyEndedBackToFavorites", sender: self)
+        }
+        alertController.addAction(OKAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func displaySharedWithUserMessage(messageToDisplay: String) {
+        let alertController = UIAlertController(title: "", message: messageToDisplay, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
         }
         alertController.addAction(OKAction)
         self.present(alertController, animated: true, completion: nil)
