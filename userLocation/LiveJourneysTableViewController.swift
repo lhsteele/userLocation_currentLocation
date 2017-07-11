@@ -151,6 +151,10 @@ class LiveJourneysTableViewController: UITableViewController {
                         
                         if name == self.sharingUserID {
                             self.sharingUsername = id
+                            //get destination name
+                            //create constant and append the two together
+                            //then append to list.
+                            //this will also eliminate the need for the alert.
                             self.usersSharingJourneys.append(self.sharingUsername)
                         }
                     }
