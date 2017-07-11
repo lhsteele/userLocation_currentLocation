@@ -161,6 +161,7 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
     
     @IBAction func shareJourney(_ sender: Any) {
         retrieveSharedUserID()
+        print ("perform Segue")
         performSegue(withIdentifier: "BackToFavorites", sender: shareJourneyButton)
     }
     

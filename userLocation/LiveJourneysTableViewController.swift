@@ -23,7 +23,7 @@ class LiveJourneysTableViewController: UITableViewController {
     var userCurrentJourney: JourneyLocation?
     var userCurrentJourneyLocation = ""
     var sharedWithLiveJourney: [JourneyLocation] = []
-    var sharedWithDestinationName: [String] = []
+    var usersSharingJourneys: [String] = []
     var journeyIsLive = false
     var sharedUserID = String()
     var journeyToEnd = String()
@@ -32,12 +32,15 @@ class LiveJourneysTableViewController: UITableViewController {
     var journeyUserName = String()
     var sharedWithUserID = String()
     var sharedWithUsername = String()
+    var sharingUserID = String()
+    var sharingUsername = String()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadUserLiveJourney()
         loadSharedWithLiveJourneyData()
-        getUserMakingJourneyID()
+       //usernamesSharingJourneys()
     }
     
     func loadUserLiveJourney() {
@@ -114,20 +117,17 @@ class LiveJourneysTableViewController: UITableViewController {
             print (snapshot)
             for item in snapshot.children {
                 
-                var destLocation = ""
-            
                 if let journeyLoc = item as? FIRDataSnapshot {
                     
                     for item in journeyLoc.children {
                         if let pair = item as? FIRDataSnapshot {
                             
-                            if let location = pair.value as? String {
+                            if let user = pair.value as? String {
                                 
                                 let name = pair.key
-                                if name == "DestinationName" {
-                                    destLocation = location
-                                    self.sharedWithDestinationName.append(destLocation)
-                                    print (self.sharedWithDestinationName)
+                                if name == "UserMakingJourney" {
+                                    self.sharingUserID = user
+                                    self.usernamesSharingJourneys(sharingUserID: self.sharingUserID)
                                 }
                                 self.getSharedCoordinates()
                             }
@@ -135,6 +135,26 @@ class LiveJourneysTableViewController: UITableViewController {
                     }
                 }
                 
+            }
+            //self.tableView.reloadData()
+        })
+    }
+    
+    func usernamesSharingJourneys(sharingUserID: String) {
+        let databaseRef = FIRDatabase.database().reference().child("Usernames").queryOrderedByKey()
+        _ = databaseRef.queryEqual(toValue: sharingUserID).observe(.value, with: { (snapshot) in
+            for item in snapshot.children {
+                
+                if let pair = item as? FIRDataSnapshot {
+                    if let id = pair.value as? String {
+                        let name = pair.key
+                        
+                        if name == self.sharingUserID {
+                            self.sharingUsername = id
+                            self.usersSharingJourneys.append(self.sharingUsername)
+                        }
+                    }
+                }
             }
             self.tableView.reloadData()
         })
@@ -245,7 +265,7 @@ class LiveJourneysTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0: return 1
-        case 1: return sharedWithDestinationName.count
+        case 1: return usersSharingJourneys.count
         default: fatalError("Unknown section")
         }
     }
@@ -256,7 +276,7 @@ class LiveJourneysTableViewController: UITableViewController {
         if indexPath.section == 0 {
             cell.textLabel?.text = self.userCurrentJourneyLocation
         } else {
-            cell.textLabel?.text = self.sharedWithDestinationName[indexPath.row]
+            cell.textLabel?.text = self.usersSharingJourneys[indexPath.row]
         }
 
         return cell
@@ -363,7 +383,7 @@ class LiveJourneysTableViewController: UITableViewController {
                         }
                     }
                 }
-                self.journeySharedWithUsername(journeyUserID: self.self.sharedWithUserID)
+                self.journeySharedWithUsername(journeyUserID: self.sharedWithUserID)
             })
         }
     }
@@ -410,7 +430,6 @@ class LiveJourneysTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
         }
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
