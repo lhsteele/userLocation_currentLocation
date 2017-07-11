@@ -254,7 +254,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         let startJourney = UITableViewRowAction(style: .normal, title: "Start Journey") { (action, indexPath) in
             self.journeyToStart = self.listOfCreatedLocations[indexPath.row] as String
             print ("journeyToStart\(self.journeyToStart)")
-            self.performSegue(withIdentifier: "StartJourneySegue", sender: Any.self)
+            self.checkForExistingLiveJourney()
         }
         
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
@@ -389,7 +389,27 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         })
     }
     
-     
+    func checkForExistingLiveJourney() {
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("StartedJourneys").queryOrderedByKey()
+        if let userID = FIRAuth.auth()?.currentUser?.uid {
+            _ = databaseRef.queryEqual(toValue: userID).observe(.value, with: { (snapshot) in
+                print (snapshot)
+                if snapshot.exists() {
+                    self.displayErrorAlertMessage(messageToDisplay: "You are currently on a journey and have already shared it with another user.")
+                } else {
+                    self.performSegue(withIdentifier: "StartJourneySegue", sender: Any.self)
+                }
+            })
+        }
+    }
+    
+    func displayErrorAlertMessage(messageToDisplay: String) {
+        let alertController = UIAlertController(title: "Error", message: messageToDisplay, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (action:UIAlertAction) in
+        }
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let indexPath = tableView.indexPathForSelectedRow!
