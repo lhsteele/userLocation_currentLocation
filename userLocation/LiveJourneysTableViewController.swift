@@ -18,7 +18,8 @@ class LiveJourneysTableViewController: UITableViewController {
     var currentLong = Double()
     var destinationLat = Double()
     var destinationLong = Double()
-    //var sharedWithUser = ""
+    var destinationName = String()
+    var sharedWithUserData = String()
     var fireUserID = String()
     var userCurrentJourney: JourneyLocation?
     var userCurrentJourneyLocation = ""
@@ -125,11 +126,17 @@ class LiveJourneysTableViewController: UITableViewController {
                             if let user = pair.value as? String {
                                 
                                 let name = pair.key
-                                if name == "UserMakingJourney" {
-                                    self.sharingUserID = user
-                                    self.usernamesSharingJourneys(sharingUserID: self.sharingUserID)
+                                
+                                if name == "Destination" {
+                                    self.destinationName = user
+                                    if name == "UserMakingJourney" {
+                                        self.sharingUserID = user
+                                        self.usernamesSharingJourneys(sharingUserID: self.sharingUserID)
+                                        self.sharedWithUserData = "\(self.sharingUsername) \(self.destinationName)"
+                                        print (self.sharedWithUserData)
+                                        self.getSharedCoordinates()
+                                    }
                                 }
-                                self.getSharedCoordinates()
                             }
                         }
                     }
@@ -142,24 +149,25 @@ class LiveJourneysTableViewController: UITableViewController {
     
     func usernamesSharingJourneys(sharingUserID: String) {
         let databaseRef = FIRDatabase.database().reference().child("Usernames").queryOrderedByKey()
-        _ = databaseRef.queryEqual(toValue: sharingUserID).observe(.value, with: { (snapshot) in
-            for item in snapshot.children {
-                
-                if let pair = item as? FIRDataSnapshot {
-                    if let id = pair.value as? String {
-                        let name = pair.key
-                        
-                        if name == self.sharingUserID {
-                            self.sharingUsername = id
+        _ = databaseRef.queryEqual(toValue: sharingUserID).observeSingleEvent(of: .value, with: { (snapshot) in
+                for item in snapshot.children {
+                    
+                    if let pair = item as? FIRDataSnapshot {
+                        if let id = pair.value as? String {
+                            let name = pair.key
+                           
+                            if name == self.sharingUserID {
+                                self.sharingUsername = id
+                                print ("sharingUsername \(self.sharingUsername)")
+                            }
                             //get destination name
                             //create constant and append the two together
                             //then append to list.
                             //this will also eliminate the need for the alert.
-                            self.usersSharingJourneys.append(self.sharingUsername)
+                            
                         }
                     }
                 }
-            }
             self.tableView.reloadData()
         })
     }
