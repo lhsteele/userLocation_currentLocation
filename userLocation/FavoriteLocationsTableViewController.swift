@@ -58,7 +58,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         addLocationButton.layer.cornerRadius = 10
         
         loadFavorites()
-        print ("load favorites")
     }
     
     func loadFavorites() {
