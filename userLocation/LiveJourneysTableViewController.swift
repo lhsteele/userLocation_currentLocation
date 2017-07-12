@@ -136,7 +136,7 @@ class LiveJourneysTableViewController: UITableViewController {
                                         print (self.sharedWithUserData)
                                         self.getSharedCoordinates()
                                     }
-                                }
+                                } 
                             }
                         }
                     }
