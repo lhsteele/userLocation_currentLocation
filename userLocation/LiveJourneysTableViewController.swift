@@ -127,23 +127,23 @@ class LiveJourneysTableViewController: UITableViewController {
                                 
                                 let name = pair.key
                                 
-                                if name == "Destination" {
+                                if name == "UserMakingJourney" {
+                                    self.sharingUsername = user
+                                } else if name == "DestinationName" {
                                     self.destinationName = user
-                                    if name == "UserMakingJourney" {
-                                        self.sharingUserID = user
-                                        self.usernamesSharingJourneys(sharingUserID: self.sharingUserID)
-                                        self.sharedWithUserData = "\(self.sharingUsername) \(self.destinationName)"
-                                        print (self.sharedWithUserData)
-                                        self.getSharedCoordinates()
-                                    }
-                                } 
+                                }
+                                self.sharedWithUserData = "\(self.sharingUsername) - \(self.destinationName)"
+                                print ("sharedWithUserData \(self.sharedWithUserData)")
+                                
                             }
                         }
                     }
+                    self.usersSharingJourneys.append(self.sharedWithUserData)
+                    self.getSharedCoordinates()
                 }
                 
             }
-            //self.tableView.reloadData()
+            self.tableView.reloadData()
         })
     }
     
@@ -212,7 +212,7 @@ class LiveJourneysTableViewController: UITableViewController {
             }
         })
     }
-    
+    /*
     func getUserMakingJourneyID() {
         let databaseRef = FIRDatabase.database().reference().child("SharedWithLiveJourneys").queryOrderedByKey()
         _ = databaseRef.queryEqual(toValue: fireUserID).observe(.value, with: { (snapshot) in
@@ -259,7 +259,7 @@ class LiveJourneysTableViewController: UITableViewController {
             
         })
     }
-    
+    */
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
