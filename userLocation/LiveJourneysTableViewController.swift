@@ -57,12 +57,14 @@ class LiveJourneysTableViewController: UITableViewController {
                     
                     if let pair = item as? FIRDataSnapshot {
                         if let value = pair.value as? String {
-                            let locID = pair.key
+                            let key = pair.key
                             
-                            if locID == "DestinationName" {
+                            if key == "SharedWithUser" {
+                                self.sharedWithUsername = value
+                            } else if key == "DestinationName" {
                                 self.locationID = value
-                                self.userCurrentJourneyLocation = self.locationID
                             }
+                            self.userCurrentJourneyLocation = "\(self.locationID): shared with \(self.sharedWithUsername)"
                         }
                     }
                     print (self.userCurrentJourneyLocation)
@@ -132,7 +134,7 @@ class LiveJourneysTableViewController: UITableViewController {
                                 } else if name == "DestinationName" {
                                     self.destinationName = user
                                 }
-                                self.sharedWithUserData = "\(self.sharingUsername) - \(self.destinationName)"
+                                self.sharedWithUserData = "\(self.sharingUsername): going to \(self.destinationName)"
                                 print ("sharedWithUserData \(self.sharedWithUserData)")
                                 
                             }
@@ -146,32 +148,7 @@ class LiveJourneysTableViewController: UITableViewController {
             self.tableView.reloadData()
         })
     }
-    
-    func usernamesSharingJourneys(sharingUserID: String) {
-        let databaseRef = FIRDatabase.database().reference().child("Usernames").queryOrderedByKey()
-        _ = databaseRef.queryEqual(toValue: sharingUserID).observeSingleEvent(of: .value, with: { (snapshot) in
-                for item in snapshot.children {
-                    
-                    if let pair = item as? FIRDataSnapshot {
-                        if let id = pair.value as? String {
-                            let name = pair.key
-                           
-                            if name == self.sharingUserID {
-                                self.sharingUsername = id
-                                print ("sharingUsername \(self.sharingUsername)")
-                            }
-                            //get destination name
-                            //create constant and append the two together
-                            //then append to list.
-                            //this will also eliminate the need for the alert.
-                            
-                        }
-                    }
-                }
-            self.tableView.reloadData()
-        })
-    }
-    
+  
     func getSharedCoordinates() {
         let databaseRef = FIRDatabase.database().reference().child("SharedWithLiveJourneys").queryOrderedByKey()
         _ = databaseRef.queryEqual(toValue: fireUserID).observe(.value, with: { (snapshot) in
@@ -212,55 +189,7 @@ class LiveJourneysTableViewController: UITableViewController {
             }
         })
     }
-    /*
-    func getUserMakingJourneyID() {
-        let databaseRef = FIRDatabase.database().reference().child("SharedWithLiveJourneys").queryOrderedByKey()
-        _ = databaseRef.queryEqual(toValue: fireUserID).observe(.value, with: { (snapshot) in
-            for item in snapshot.children {
-                
-                if let children = item as? FIRDataSnapshot {
-                    for item in children.children {
-                        if let pair = item as? FIRDataSnapshot {
-                            if let id = pair.value as? String {
-                                let name = pair.key
-                                
-                                if name == "UserMakingJourney" {
-                                    self.journeyUserID = id
-                                    print ("userID \(self.journeyUserID)")
-                                    self.getUserMakingJourneyName(journeyUserID : self.journeyUserID)
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        })
-    }
-    
-    func getUserMakingJourneyName(journeyUserID: String) {
-        print ("journeyUserID2 \(journeyUserID)")
-        let databaseRef = FIRDatabase.database().reference().child("Usernames").queryOrderedByKey()
-        _ = databaseRef.queryEqual(toValue: journeyUserID).observe(.value, with: { (snapshot) in
-            for item in snapshot.children {
-                print ("item \(item)")
-                
-                if let pair = item as? FIRDataSnapshot {
-                    
-                    if let id = pair.value as? String {
-                        let name = pair.key
-                        
-                        if name == self.journeyUserID {
-                            self.journeyUserName = id
-                            print ("userName \(self.journeyUserName)")
-                        }
-                    }
-                }
-            }
-            
-        })
-    }
-    */
-    
+       
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
@@ -297,9 +226,7 @@ class LiveJourneysTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let indexPath = tableView.indexPathForSelectedRow!
         _ = tableView.cellForRow(at: indexPath)! as UITableViewCell
-        if indexPath.section == 0 {
-            journeySharedWithUser()
-        } else {
+        if indexPath.section != 0 {
             performSegue(withIdentifier: "LiveJourneyMapViewSegue", sender: self)
         }
     }
@@ -373,7 +300,7 @@ class LiveJourneysTableViewController: UITableViewController {
             })
         }
     }
-    
+    /*
     func journeySharedWithUser() {
         let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
         if let userID = FIRAuth.auth()?.currentUser?.uid {
@@ -420,7 +347,7 @@ class LiveJourneysTableViewController: UITableViewController {
             
         })
     }
-    
+    */
     func displaySuccessAlertMessage(messageToDisplay: String) {
         let alertController = UIAlertController(title: "Sucess", message: messageToDisplay, preferredStyle: .alert)
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
@@ -430,7 +357,7 @@ class LiveJourneysTableViewController: UITableViewController {
         alertController.addAction(OKAction)
         self.present(alertController, animated: true, completion: nil)
     }
-    
+    /*
     func displaySharedWithUserMessage(messageToDisplay: String) {
         let alertController = UIAlertController(title: "", message: messageToDisplay, preferredStyle: .alert)
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
@@ -438,7 +365,7 @@ class LiveJourneysTableViewController: UITableViewController {
         alertController.addAction(OKAction)
         self.present(alertController, animated: true, completion: nil)
     }
-    
+    */
     override func viewWillAppear(_ animated: Bool) {
         handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
         }
