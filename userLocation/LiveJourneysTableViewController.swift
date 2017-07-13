@@ -287,7 +287,7 @@ class LiveJourneysTableViewController: UITableViewController {
                     if let pair = item as? FIRDataSnapshot {
                         print (pair)
                         if let key = pair.key as? String {
-                            if key == "SharedWithUser" {
+                            if key == "SharedWithUserID" {
                                 if let value = pair.value as? String {
                                     sharedUser = value
                                     print (sharedUser)

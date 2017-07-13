@@ -25,9 +25,9 @@ exports.newEntry = functions.database.ref('/StartedJourneys/{fireUserID}')
   .onWrite(event => {
     const original = event.data.val()
     console.log(original)
-    console.log(original.SharedWithUser)
+    console.log(original.SharedWithUserID)
         
-    const sharedUserID = original.SharedWithUser
+    const sharedUserID = original.SharedWithUserID
     console.log(sharedUserID)
     var db = admin.database()
     var ref = db.ref('/UserTokens')
