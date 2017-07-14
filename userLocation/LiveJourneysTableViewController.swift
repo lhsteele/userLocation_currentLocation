@@ -264,7 +264,7 @@ class LiveJourneysTableViewController: UITableViewController {
             let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("StartedJourneys").child(userID)
             ref.removeValue()
         }
-        
+        self.tableView.reloadData()
     }
     
     func deleteSharedWithLiveJourneys() {
@@ -272,6 +272,7 @@ class LiveJourneysTableViewController: UITableViewController {
         databaseRef.removeValue { (error, reference) in
             self.deleteUserLiveJourney(location: self.journeyToEnd)
         }
+        self.tableView.reloadData()
     }
     
     

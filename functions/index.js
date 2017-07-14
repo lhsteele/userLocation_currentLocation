@@ -3,6 +3,7 @@ var functions = require('firebase-functions');
 var admin = require('firebase-admin')
 //var registrationToken = "f2og_pbqadc:APA91bH6MJynSoPqqDzxGDKkfUJf6zwGatniXTU5HrRpEYlpSC2Y4TNBZnAiHnrlowFgx1E8MFavixW6Hnp_nQioY6tO4dc6LyAAEanE0Sxh-7T_91yb596Mpyh9C_urD2BZ-bu8Hx_W";
 var userDeviceToken = ""
+var sharedUserID = ""
 
 admin.initializeApp({
   credential: admin.credential.applicationDefault(),
@@ -27,7 +28,7 @@ exports.newEntry = functions.database.ref('/StartedJourneys/{fireUserID}')
     console.log(original)
     console.log(original.SharedWithUserID)
         
-    const sharedUserID = original.SharedWithUserID
+    sharedUserID = original.SharedWithUserID
     console.log(sharedUserID)
     var db = admin.database()
     var ref = db.ref('/UserTokens')
@@ -48,3 +49,25 @@ exports.newEntry = functions.database.ref('/StartedJourneys/{fireUserID}')
     })
    
 })
+
+exports.secondEntry = functions.database.ref('/StartedJourneys/{fireUserID}')
+	.onDelete(event => {
+		const original = event.data.val()
+		
+		console.log(sharedUserID)
+		var db = admin.database()
+		var ref = db.ref('/UserTokens')
+		return ref.orderByKey().equalTo(sharedUserID).on("child_added", function(snapshot) {
+			const deletionDeviceToken = snapshot.val()
+			userDeletionDeviceToken = deletionDeviceToken
+			console.log(userDeletionDeviceToken)
+
+			admin.messaging().sendToDevice(userDeletionDeviceToken, payload, options)
+				.then(function(response) {
+					console.log("Successfully sent message:", response);
+				})
+				.catch(function(error) {
+					console.log("Error sending message:", error);
+				});
+		})
+	})
