@@ -250,7 +250,7 @@ class LiveJourneysTableViewController: UITableViewController {
                 _ = self.userCurrentJourneyLocation
         
                 self.findSharedUsersForLocation()
-                
+                self.deleteUserLiveJourney(location: self.journeyToEnd)
                 self.displaySuccessAlertMessage(messageToDisplay: "Journey has been succesfully ended.")
                 self.tableView.reloadData()
                 
@@ -267,6 +267,14 @@ class LiveJourneysTableViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
+    func updateSharedWithLiveJourneysBoolean(sharedUserID: String) {
+        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+        let destination = ref.child("SharedWithLiveJourneys").child(self.sharedUserID)
+        let update = ["JourneyEnded" : true]
+        destination.updateChildValues(update)
+    }
+    
+    /*
     func deleteSharedWithLiveJourneys() {
         let databaseRef = FIRDatabase.database().reference().child("SharedWithLiveJourneys").child(sharedUserID)
         databaseRef.removeValue { (error, reference) in
@@ -274,8 +282,7 @@ class LiveJourneysTableViewController: UITableViewController {
         }
         self.tableView.reloadData()
     }
-    
-    
+       */
     func findSharedUsersForLocation() {
         let databaseRef = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("StartedJourneys")
         if let userID = FIRAuth.auth()?.currentUser?.uid {
@@ -293,7 +300,8 @@ class LiveJourneysTableViewController: UITableViewController {
                                     sharedUser = value
                                     print (sharedUser)
                                     self.sharedUserID = sharedUser
-                                    self.deleteSharedWithLiveJourneys()
+                                    self.updateSharedWithLiveJourneysBoolean(sharedUserID: self.sharedUserID)
+                                    //self.deleteSharedWithLiveJourneys()
                                 }
                             }
                         }
@@ -302,7 +310,7 @@ class LiveJourneysTableViewController: UITableViewController {
             })
         }
     }
-  
+ 
     func displaySuccessAlertMessage(messageToDisplay: String) {
         let alertController = UIAlertController(title: "Sucess", message: messageToDisplay, preferredStyle: .alert)
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
