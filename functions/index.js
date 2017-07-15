@@ -22,6 +22,13 @@ var options = {
   priority: "high"
 }
 
+var secondPayload = {
+  notification: {
+    title: "Name of App",
+    body: "A shared journey has ended."
+  },
+};
+
 exports.newEntry = functions.database.ref('/StartedJourneys/{fireUserID}')
   .onWrite(event => {
     const original = event.data.val()
@@ -51,7 +58,7 @@ exports.newEntry = functions.database.ref('/StartedJourneys/{fireUserID}')
 })
 
 exports.secondEntry = functions.database.ref('/StartedJourneys/{fireUserID}')
-	.onDelete(event => {
+	.onUpdate(event => {
 		const original = event.data.val()
 		
 		console.log(sharedUserID)
@@ -62,7 +69,7 @@ exports.secondEntry = functions.database.ref('/StartedJourneys/{fireUserID}')
 			userDeletionDeviceToken = deletionDeviceToken
 			console.log(userDeletionDeviceToken)
 
-			admin.messaging().sendToDevice(userDeletionDeviceToken, payload, options)
+			admin.messaging().sendToDevice(userDeletionDeviceToken, secondPayload, options)
 				.then(function(response) {
 					console.log("Successfully sent message:", response);
 				})

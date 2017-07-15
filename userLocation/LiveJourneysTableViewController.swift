@@ -59,12 +59,18 @@ class LiveJourneysTableViewController: UITableViewController {
                         if let value = pair.value as? String {
                             let key = pair.key
                             
-                            if key == "SharedWithUser" {
-                                self.sharedWithUsername = value
-                            } else if key == "DestinationName" {
-                                self.locationID = value
+                            if key == "JourneyEnded" {
+                                if value == "false" {
+                                    if key == "SharedWithUser" {
+                                        self.sharedWithUsername = value
+                                    } else if key == "DestinationName" {
+                                        self.locationID = value
+                                        self.userCurrentJourneyLocation = "\(self.locationID): shared with \(self.sharedWithUsername)"
+                                    }
+                                } else {
+                                    return
+                                }
                             }
-                            self.userCurrentJourneyLocation = "\(self.locationID): shared with \(self.sharedWithUsername)"
                         }
                     }
                     print (self.userCurrentJourneyLocation)
@@ -250,7 +256,6 @@ class LiveJourneysTableViewController: UITableViewController {
                 _ = self.userCurrentJourneyLocation
         
                 self.findSharedUsersForLocation()
-                self.deleteUserLiveJourney(location: self.journeyToEnd)
                 self.displaySuccessAlertMessage(messageToDisplay: "Journey has been succesfully ended.")
                 self.tableView.reloadData()
                 
@@ -259,12 +264,13 @@ class LiveJourneysTableViewController: UITableViewController {
         return [endJourney]
     }
     
-    func deleteUserLiveJourney(location : String) {
+    func updateUserLiveJourneyBoolean() {
         if let userID = FIRAuth.auth()?.currentUser?.uid {
-            let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("StartedJourneys").child(userID)
-            ref.removeValue()
+            let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+            let destination = ref.child("StartedJourneys").child(userID)
+            let update = ["JourneyEnded" : true]
+            destination.updateChildValues(update)
         }
-        self.tableView.reloadData()
     }
     
     func updateSharedWithLiveJourneysBoolean(sharedUserID: String) {
@@ -272,6 +278,8 @@ class LiveJourneysTableViewController: UITableViewController {
         let destination = ref.child("SharedWithLiveJourneys").child(self.sharedUserID)
         let update = ["JourneyEnded" : true]
         destination.updateChildValues(update)
+        self.updateUserLiveJourneyBoolean()
+        //self.deleteUserLiveJourney(location: self.journeyToEnd)
     }
     
     /*
@@ -282,7 +290,16 @@ class LiveJourneysTableViewController: UITableViewController {
         }
         self.tableView.reloadData()
     }
-       */
+     
+    func deleteUserLiveJourney(location : String) {
+        if let userID = FIRAuth.auth()?.currentUser?.uid {
+        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("StartedJourneys").child(userID)
+        ref.removeValue()
+        }
+        self.tableView.reloadData()
+     }
+    */
+    
     func findSharedUsersForLocation() {
         let databaseRef = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("StartedJourneys")
         if let userID = FIRAuth.auth()?.currentUser?.uid {
@@ -301,7 +318,6 @@ class LiveJourneysTableViewController: UITableViewController {
                                     print (sharedUser)
                                     self.sharedUserID = sharedUser
                                     self.updateSharedWithLiveJourneysBoolean(sharedUserID: self.sharedUserID)
-                                    //self.deleteSharedWithLiveJourneys()
                                 }
                             }
                         }
