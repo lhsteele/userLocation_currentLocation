@@ -35,6 +35,7 @@ class LiveJourneysTableViewController: UITableViewController {
     var sharedWithUsername = String()
     var sharingUserID = String()
     var sharingUsername = String()
+    var boolIsTrue: Bool = true
     
     
     override func viewDidLoad() {
@@ -56,19 +57,25 @@ class LiveJourneysTableViewController: UITableViewController {
                 for item in liveJourneys {
                     
                     if let pair = item as? FIRDataSnapshot {
+                        print (pair)
                         if let value = pair.value as? String {
                             let key = pair.key
                             
                             if key == "JourneyEnded" {
-                                if value == "false" {
-                                    if key == "SharedWithUser" {
-                                        self.sharedWithUsername = value
-                                    } else if key == "DestinationName" {
-                                        self.locationID = value
+                                if let boolean = pair.value as? BooleanLiteralType {
+                                    if boolean == self.boolIsTrue {
+                                        print ("bool is false")
+                                        if key == "SharedWithUser" {
+                                            self.sharedWithUsername = value
+                                        } else if key == "DestinationName" {
+                                            self.locationID = value
+                                            
+                                        }
                                         self.userCurrentJourneyLocation = "\(self.locationID): shared with \(self.sharedWithUsername)"
+                                        print (self.userCurrentJourneyLocation)
+                                    } else {
+                                        return
                                     }
-                                } else {
-                                    return
                                 }
                             }
                         }
@@ -135,13 +142,18 @@ class LiveJourneysTableViewController: UITableViewController {
                                 
                                 let name = pair.key
                                 
-                                if name == "UserMakingJourney" {
-                                    self.sharingUsername = user
-                                } else if name == "DestinationName" {
-                                    self.destinationName = user
+                                if name == "JourneyEnded" {
+                                    if user == "false" {
+                                        if name == "UserMakingJourney" {
+                                            self.sharingUsername = user
+                                        } else if name == "DestinationName" {
+                                            self.destinationName = user
+                                            self.sharedWithUserData = "\(self.sharingUsername): going to \(self.destinationName)"
+                                        }
+                                    } else {
+                                        return
+                                    }
                                 }
-                                self.sharedWithUserData = "\(self.sharingUsername): going to \(self.destinationName)"
-                                print ("sharedWithUserData \(self.sharedWithUserData)")
                                 
                             }
                         }
