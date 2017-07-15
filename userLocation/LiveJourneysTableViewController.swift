@@ -254,7 +254,7 @@ class LiveJourneysTableViewController: UITableViewController {
                 self.displaySuccessAlertMessage(messageToDisplay: "Journey has been succesfully ended.")
                 self.tableView.reloadData()
                 
-            }
+            } 
         }
         return [endJourney]
     }
