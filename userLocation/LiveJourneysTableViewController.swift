@@ -24,7 +24,8 @@ class LiveJourneysTableViewController: UITableViewController {
     var userCurrentJourney: JourneyLocation?
     var userCurrentJourneyLocation = ""
     var sharedWithLiveJourney: [JourneyLocation] = []
-    var usersSharingJourneys: [String] = []
+    //var usersSharingJourneys: [String] = []
+    var userSharingJourney = String()
     var journeyIsLive = false
     var sharedUserID = String()
     var journeyToEnd = String()
@@ -58,27 +59,19 @@ class LiveJourneysTableViewController: UITableViewController {
                     
                     if let pair = item as? FIRDataSnapshot {
                         print (pair)
-                        if let value = pair.value as? String {
-                            let key = pair.key
-                            
-                            if key == "JourneyEnded" {
-                                if let boolean = pair.value as? BooleanLiteralType {
-                                    if boolean == self.boolIsTrue {
-                                        print ("bool is false")
-                                        if key == "SharedWithUser" {
-                                            self.sharedWithUsername = value
-                                        } else if key == "DestinationName" {
-                                            self.locationID = value
-                                            
-                                        }
-                                        self.userCurrentJourneyLocation = "\(self.locationID): shared with \(self.sharedWithUsername)"
-                                        print (self.userCurrentJourneyLocation)
+                            if let boolean = pair.value as? Bool {
+                                let boolKey = pair.key
+                                if boolKey == "JourneyEnded" {
+                                    print ("journeyEnded reached")
+                                    if boolean != true {
+                                        self.loadUserLiveDataForTable()
                                     } else {
                                         return
                                     }
                                 }
                             }
-                        }
+                            
+                        
                     }
                     print (self.userCurrentJourneyLocation)
                 }
@@ -86,7 +79,32 @@ class LiveJourneysTableViewController: UITableViewController {
             })
         }
     }
- 
+    
+    func loadUserLiveDataForTable() {
+        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+        if let userID = FIRAuth.auth()?.currentUser?.uid {
+            let locationKey = ref.child("StartedJourneys").child(userID)
+            locationKey.observeSingleEvent(of: .value, with: { (snapshot) in
+                let liveJourneys = snapshot.children
+                for item in liveJourneys {
+                    if let pair = item as? FIRDataSnapshot {
+                        if let value = pair.value as? String {
+                            let key = pair.key
+                            
+                            if key == "SharedWithUser" {
+                                self.sharedWithUsername = value
+                            } else if key == "DestinationName" {
+                                self.locationID = value
+                            }
+                            self.userCurrentJourneyLocation = "\(self.locationID): shared with \(self.sharedWithUsername)"
+                            print (self.userCurrentJourneyLocation)
+                        }
+                    }
+                }
+            })
+        }
+    }
+    
     
     func loadLiveJourneyData() {
         let databaseRef = FIRDatabase.database().reference().child("StartedJourneys").queryOrderedByKey()
@@ -137,33 +155,52 @@ class LiveJourneysTableViewController: UITableViewController {
                     
                     for item in journeyLoc.children {
                         if let pair = item as? FIRDataSnapshot {
-                            
-                            if let user = pair.value as? String {
-                                
-                                let name = pair.key
-                                
-                                if name == "JourneyEnded" {
-                                    if user == "false" {
-                                        if name == "UserMakingJourney" {
-                                            self.sharingUsername = user
-                                        } else if name == "DestinationName" {
-                                            self.destinationName = user
-                                            self.sharedWithUserData = "\(self.sharingUsername): going to \(self.destinationName)"
-                                        }
+                            if let boolean = pair.value as? Bool {
+                                let boolKey = pair.key
+                                if boolKey == "JourneyEnded" {
+                                    print ("journeyEnded reached")
+                                    if boolean != true {
+                                        self.loadSharedWithLiveDataForTable()
                                     } else {
                                         return
                                     }
                                 }
-                                
                             }
                         }
                     }
-                    self.usersSharingJourneys.append(self.sharedWithUserData)
-                    self.getSharedCoordinates()
                 }
                 
             }
             self.tableView.reloadData()
+        })
+    }
+    
+    func loadSharedWithLiveDataForTable() {
+        let databaseRef = FIRDatabase.database().reference().child("SharedWithLiveJourneys").queryOrderedByKey()
+        _ = databaseRef.queryEqual(toValue: fireUserID).observe(.value, with: { (snapshot) in
+            for item in snapshot.children {
+                if let journeyLoc = item as? FIRDataSnapshot {
+                    for item in journeyLoc.children {
+                        if let pair = item as? FIRDataSnapshot {
+                            if let user = pair.value as? String {
+                                let name = pair.key
+                                if name == "DestinationName" {
+                                    self.destinationName = user
+                                    print (self.destinationName)
+                                    
+                                } else if name == "UserMakingJourney" {
+                                    self.sharingUsername = user
+                                    print (self.sharingUsername)
+                                    self.sharedWithUserData = "\(self.sharingUsername): going to \(self.destinationName)"
+                                }
+                            }
+                        }
+                    }
+                    self.userSharingJourney = self.sharedWithUserData
+                    print (self.userSharingJourney)
+                    self.getSharedCoordinates()
+                }
+            }
         })
     }
   
@@ -202,8 +239,6 @@ class LiveJourneysTableViewController: UITableViewController {
                         
                     }
                 }
-                print (self.sharedWithLiveJourney)
-                
             }
         })
     }
@@ -224,7 +259,7 @@ class LiveJourneysTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0: return 1
-        case 1: return usersSharingJourneys.count
+        case 1: return 1
         default: fatalError("Unknown section")
         }
     }
@@ -235,7 +270,7 @@ class LiveJourneysTableViewController: UITableViewController {
         if indexPath.section == 0 {
             cell.textLabel?.text = self.userCurrentJourneyLocation
         } else {
-            cell.textLabel?.text = self.usersSharingJourneys[indexPath.row]
+            cell.textLabel?.text = self.userSharingJourney
             cell.accessoryType = .disclosureIndicator
         }
 
