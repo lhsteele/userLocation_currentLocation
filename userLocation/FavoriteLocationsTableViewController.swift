@@ -392,22 +392,27 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         if let userID = FIRAuth.auth()?.currentUser?.uid {
         let databaseRef = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("StartedJourneys").child(userID)
             _ = databaseRef.observeSingleEvent(of: .value, with: { (snapshot) in
-                let children = snapshot.children
-                for item in children {
-                    if let pair = item as? FIRDataSnapshot {
-                        print (pair)
-                        if let boolean = pair.value as? Bool {
-                            let boolKey = pair.key
-                            if boolKey == "JourneyEnded" {
-                                if boolean != true {
-                                    self.displayErrorAlertMessage(messageToDisplay: "You are currently on a journey and have already shared it with another user.")
-                                } else {
-                                    self.performSegue(withIdentifier: "StartJourneySegue", sender: Any.self)
+                if snapshot.exists() {
+                    let children = snapshot.children
+                    for item in children {
+                        if let pair = item as? FIRDataSnapshot {
+                            print (pair)
+                            if let boolean = pair.value as? Bool {
+                                let boolKey = pair.key
+                                if boolKey == "JourneyEnded" {
+                                    if boolean != true {
+                                        self.displayErrorAlertMessage(messageToDisplay: "You are currently on a journey and have already shared it with another user.")
+                                    } else {
+                                        self.performSegue(withIdentifier: "StartJourneySegue", sender: Any.self)
+                                    }
                                 }
                             }
                         }
                     }
+                } else {
+                    self.performSegue(withIdentifier: "StartJourneySegue", sender: Any.self)
                 }
+                
             })
         }
     }
