@@ -172,8 +172,10 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        let content = UNMutableNotificationContent()
+        content.sound = UNNotificationSound.default()
         
-        completionHandler([.alert, .badge, .sound])
+        completionHandler([.alert, .sound])
         
         let userInfo = notification.request.content.userInfo
         // Print message ID.

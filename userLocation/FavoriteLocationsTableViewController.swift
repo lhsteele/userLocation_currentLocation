@@ -544,8 +544,10 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     func requestNotificationAuthorisation() {
         if #available(iOS 10, *) {
             
+            let content = UNMutableNotificationContent()
+            content.sound = UNNotificationSound.default()
             
-            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            let authOptions: UNAuthorizationOptions = [.alert, .sound]
             UNUserNotificationCenter.current().requestAuthorization(options: authOptions) {(granted, error) in
                 if (error != nil) {
                     print ("I received the following error: \(String(describing: error))")
@@ -559,7 +561,9 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         
             
         } else {
-            let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            let content = UNMutableNotificationContent()
+            content.sound = UNNotificationSound.default()
+            let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .sound], categories: nil)
         }
         //This needs to be called in order to register for APNS token.
         UIApplication.shared.registerForRemoteNotifications()

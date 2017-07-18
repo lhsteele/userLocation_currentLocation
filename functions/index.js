@@ -14,21 +14,21 @@ admin.initializeApp({
 var payload = {
   notification: {
     title: "Name of App",
-    body: "Someone has shared a journey with you."
+    body: "Please check your Live Journeys table for an update."
   },
 };
 
 var options = {
   priority: "high"
 }
-
+/*
 var secondPayload = {
   notification: {
     title: "Name of App",
     body: "A shared journey has ended."
   },
 };
-
+*/
 exports.newEntry = functions.database.ref('/StartedJourneys/{fireUserID}')
   .onWrite(event => {
     const original = event.data.val()
@@ -53,11 +53,13 @@ exports.newEntry = functions.database.ref('/StartedJourneys/{fireUserID}')
 	  	.catch(function(error) {
 	    	console.log("Error sending message:", error);
 	  	});
+
     })
    
 })
 
-exports.secondEntry = functions.database.ref('/StartedJourneys/{fireUserID}')
+/*
+exports.secondEntry = functions.database.ref('/StartedJourneys/{fireUserID}/JourneyEnded')
 	.onUpdate(event => {
 		const original = event.data.val()
 		
@@ -66,6 +68,7 @@ exports.secondEntry = functions.database.ref('/StartedJourneys/{fireUserID}')
 		var ref = db.ref('/UserTokens')
 		return ref.orderByKey().equalTo(sharedUserID).on("child_added", function(snapshot) {
 			const deletionDeviceToken = snapshot.val()
+			console.log("XXX")
 			userDeletionDeviceToken = deletionDeviceToken
 			console.log(userDeletionDeviceToken)
 
@@ -75,6 +78,7 @@ exports.secondEntry = functions.database.ref('/StartedJourneys/{fireUserID}')
 				})
 				.catch(function(error) {
 					console.log("Error sending message:", error);
-				});
-		})
+			});
 	})
+})
+*/
