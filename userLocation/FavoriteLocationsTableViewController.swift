@@ -13,6 +13,7 @@ import Firebase
 import FirebaseMessaging
 import UserNotifications
 
+
 let favoriteLocationKey = "NewFavoriteLocation"
 
 class FavoriteLocationsTableViewController: UITableViewController, CLLocationManagerDelegate, UINavigationBarDelegate, UNUserNotificationCenterDelegate {
