@@ -6,5 +6,5 @@ target "userLocation" do
     pod 'Firebase/Database'
     pod 'Firebase/Auth'
     pod 'Firebase/Messaging'
-    
+    pod 'ChameleonFramework/Swift'
 end
