@@ -11,7 +11,7 @@ admin.initializeApp({
 });
 
 
-var payload = {
+var payloadStart = {
   notification: {
     title: "Name of App",
     body: "Please check your Live Journeys table for an update."
@@ -21,19 +21,28 @@ var payload = {
 var options = {
   priority: "high"
 }
-/*
-var secondPayload = {
+
+var payloadEnd = {
   notification: {
     title: "Name of App",
     body: "A shared journey has ended."
   },
 };
-*/
+
 exports.newEntry = functions.database.ref('/StartedJourneys/{fireUserID}')
   .onWrite(event => {
     const original = event.data.val()
-    console.log(original)
+    //console.log(original)
     console.log(original.SharedWithUserID)
+    console.log(original.JourneyEnded)
+    console.log(event.data.changed())
+    console.log(event.data.exists())
+    console.log(event.data.previous)
+    console.log(event.params)
+    var payload = payloadStart
+    if (original.JourneyEnded) {
+    	payload = payloadEnd
+    } 
         
     sharedUserID = original.SharedWithUserID
     console.log(sharedUserID)
@@ -41,10 +50,10 @@ exports.newEntry = functions.database.ref('/StartedJourneys/{fireUserID}')
     var ref = db.ref('/UserTokens')
     return ref.orderByKey().equalTo(sharedUserID).on("child_added", function(snapshot) {
       const deviceToken = snapshot.val()
-      userDeviceToken = deviceToken
-      console.log(userDeviceToken)
+      //userDeviceToken = deviceToken
+      //console.log(userDeviceToken)
 
-      admin.messaging().sendToDevice(userDeviceToken, payload, options)
+      admin.messaging().sendToDevice(deviceToken, payload, options)
 	  	.then(function(response) {
 	  	// See the MessagingDevicesResponse reference documentation for
 	  	// the contents of response.
