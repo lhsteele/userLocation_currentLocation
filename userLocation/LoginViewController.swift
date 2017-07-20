@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import ChameleonFramework
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
@@ -50,7 +51,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         //usernameTextField.tag = 2
         usernameTextField.returnKeyType = UIReturnKeyType.done
         
-        view.backgroundColor = FlatNavyBlue
+        let frame = CGRect(x: 0, y: 0, width: 100, height: 700)
+        view.backgroundColor = GradientColor(UIGradientStyle.topToBottom, frame: frame, colors: [FlatMint(), FlatMintDark()])
     }
 
     override func didReceiveMemoryWarning() {
