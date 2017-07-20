@@ -50,6 +50,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         //usernameTextField.tag = 2
         usernameTextField.returnKeyType = UIReturnKeyType.done
         
+        view.backgroundColor = FlatNavyBlue
     }
 
     override func didReceiveMemoryWarning() {
