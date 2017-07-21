@@ -11,6 +11,7 @@ import Firebase
 import FirebaseDatabase
 import MapKit
 
+
 class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var locationNameField: UITextField!

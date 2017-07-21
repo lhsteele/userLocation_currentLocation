@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 import MapKit
-
+import ChameleonFramework
 
 class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, CLLocationManagerDelegate {
     
@@ -44,6 +44,10 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
         print (journeyToStart)
         print (fireUserID)
         
+        view.backgroundColor = FlatTeal()
+        shareJourneyButton.setTitleColor(FlatWhite(), for: UIControlState.normal)
+        pickerLabel.textColor = FlatWhite()
+        picker.tintColor = FlatWhite()
     }
     
     func createSubscribedUsersArray() {

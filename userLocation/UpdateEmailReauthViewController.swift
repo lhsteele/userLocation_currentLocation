@@ -8,10 +8,12 @@
 
 import UIKit
 import Firebase
+import ChameleonFramework
 
 class UpdateEmailReauthViewController: UIViewController, UITextFieldDelegate {
 
    
+    @IBOutlet var label: UILabel!
     @IBOutlet var reauthToUpdatePasswordTextField: UITextField!
     @IBOutlet var reauthToUpdateEmailTextField: UITextField!
     @IBOutlet var submitButton: UIButton!
@@ -28,6 +30,10 @@ class UpdateEmailReauthViewController: UIViewController, UITextFieldDelegate {
         
         reauthToUpdatePasswordTextField.delegate = self
         reauthToUpdatePasswordTextField.returnKeyType = UIReturnKeyType.done
+        
+        view.backgroundColor = FlatTeal()
+        submitButton.tintColor = FlatWhite()
+        label.textColor = FlatWhite()
     }
 
     override func didReceiveMemoryWarning() {

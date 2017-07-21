@@ -8,9 +8,12 @@
 
 import UIKit
 import Firebase
+import ChameleonFramework
 
 class NewPasswordViewController: UIViewController, UITextFieldDelegate{
     
+    
+    @IBOutlet var label: UILabel!
     @IBOutlet var newPasswordTextField: UITextField!
     @IBOutlet var submitButton: UIButton!
     
@@ -23,6 +26,10 @@ class NewPasswordViewController: UIViewController, UITextFieldDelegate{
         
         newPasswordTextField.delegate = self
         newPasswordTextField.returnKeyType = UIReturnKeyType.done
+        
+        view.backgroundColor = FlatTeal()
+        submitButton.tintColor = FlatWhite()
+        label.textColor = FlatWhite()
     }
 
     override func didReceiveMemoryWarning() {

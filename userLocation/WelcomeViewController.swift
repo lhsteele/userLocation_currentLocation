@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import ChameleonFramework
 
 class WelcomeViewController: UIViewController, UIGestureRecognizerDelegate {
 
@@ -20,6 +21,8 @@ class WelcomeViewController: UIViewController, UIGestureRecognizerDelegate {
         super.viewDidLoad()
         
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        view.backgroundColor = FlatTeal()
         
     }
 

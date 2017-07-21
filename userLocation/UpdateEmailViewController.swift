@@ -8,10 +8,12 @@
 
 import UIKit
 import Firebase
+import ChameleonFramework
 
 class UpdateEmailViewController: UIViewController, UITextFieldDelegate {
     
     
+    @IBOutlet var label: UILabel!
     @IBOutlet var newEmailTextField: UITextField!
     @IBOutlet var submitButton: UIButton!
     
@@ -24,6 +26,10 @@ class UpdateEmailViewController: UIViewController, UITextFieldDelegate {
         
         newEmailTextField.delegate = self
         newEmailTextField.returnKeyType = UIReturnKeyType.done
+        
+        view.backgroundColor = FlatTeal()
+        submitButton.tintColor = FlatWhite()
+        label.textColor = FlatWhite()
     }
 
     override func didReceiveMemoryWarning() {

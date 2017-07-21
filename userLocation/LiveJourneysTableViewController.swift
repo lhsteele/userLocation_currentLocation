@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import FirebaseDatabase
 import Firebase
+import ChameleonFramework
 
 class LiveJourneysTableViewController: UITableViewController {
     
@@ -45,6 +46,8 @@ class LiveJourneysTableViewController: UITableViewController {
         loadSharedWithLiveJourneyData()
         tableView.reloadData()
        //usernamesSharingJourneys()
+        
+        
     }
     
     func loadUserLiveJourney() {
@@ -274,8 +277,10 @@ class LiveJourneysTableViewController: UITableViewController {
         let sharedData = self.userSharingJourney
         if indexPath.section == 0 {
             cell.textLabel?.text = userData
+            cell.textLabel?.textColor = FlatTeal()
         } else {
             cell.textLabel?.text = sharedData
+            cell.textLabel?.textColor = FlatTeal()
             cell.accessoryType = .disclosureIndicator
         }
 
@@ -292,8 +297,10 @@ class LiveJourneysTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
+            
             return "My Current Journey"
         } else {
+            
             return "Live Journeys Shared With Me"
         }
     }

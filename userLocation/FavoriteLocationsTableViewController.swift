@@ -12,7 +12,7 @@ import FirebaseDatabase
 import Firebase
 import FirebaseMessaging
 import UserNotifications
-
+import ChameleonFramework
 
 let favoriteLocationKey = "NewFavoriteLocation"
 
@@ -53,6 +53,8 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         super.viewDidLoad()
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        settingsButton.tintColor = FlatWhite()
+        journeysButton.tintColor = FlatWhite()
 
         addLocationButton.layer.borderColor = UIColor(red: 128/255, green: 128/255, blue: 0/255, alpha: 1).cgColor
         addLocationButton.layer.borderWidth = 3

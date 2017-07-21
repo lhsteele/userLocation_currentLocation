@@ -32,6 +32,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotification), name: .firInstanceIDTokenRefresh, object: nil)
         
+        UINavigationBar.appearance().tintColor = FlatTeal()
+        UINavigationBar.appearance().barTintColor = FlatTeal()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: FlatWhite()]
+        
         return true
     }
     

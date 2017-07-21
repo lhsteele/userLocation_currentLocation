@@ -51,8 +51,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         //usernameTextField.tag = 2
         usernameTextField.returnKeyType = UIReturnKeyType.done
         
-        let frame = CGRect(x: 0, y: 0, width: 100, height: 700)
-        view.backgroundColor = GradientColor(UIGradientStyle.topToBottom, frame: frame, colors: [FlatMint(), FlatMintDark()])
+        //var colorArray = ColorSchemeOf(ColorScheme.complementary, color: FlatNavyBlue(), isFlatScheme: true)
+        view.backgroundColor = FlatTeal()
+        signInToggle.tintColor = FlatWhite()
+        submitButton.tintColor = FlatWhite()
+        signInLabel.textColor = FlatWhite()
     }
 
     override func didReceiveMemoryWarning() {

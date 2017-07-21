@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import ChameleonFramework
 
 class SettingsTableViewController: UITableViewController {
     
@@ -23,11 +24,16 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet var deleteAccountButton: UITableViewCell!
     var handle: FIRAuthStateDidChangeListenerHandle?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.navigationController?.setNavigationBarHidden(true, animated: true)
-        
+        backButton.tintColor = FlatWhite()
+        updateEmailButton.textLabel?.textColor = FlatTeal()
+        changePasswordButton.textLabel?.textColor = FlatTeal()
+        logoutButton.textLabel?.textColor = FlatTeal()
+        deleteAccountButton.textLabel?.textColor = FlatRedDark()
     }
 
     override func didReceiveMemoryWarning() {

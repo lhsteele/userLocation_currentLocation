@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import ChameleonFramework
 
 class ShareLocationViewController: UIViewController, UITextFieldDelegate {
     
@@ -28,6 +29,8 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
         shareLocEmailTextField.delegate = self
         shareLocEmailTextField.returnKeyType = UIReturnKeyType.done
 
+        view.backgroundColor = FlatTeal()
+        shareLocSubmitButton.setTitleColor(FlatWhite(), for: UIControlState.normal)
         // Do any additional setup after loading the view.
     }
     
