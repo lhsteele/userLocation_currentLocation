@@ -11,6 +11,7 @@ import Firebase
 import FirebaseAuth
 import ChameleonFramework
 
+
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var signInToggle: UISegmentedControl!
@@ -56,6 +57,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         signInToggle.tintColor = FlatWhite()
         submitButton.tintColor = FlatWhite()
         signInLabel.textColor = FlatWhite()
+        
     }
 
     override func didReceiveMemoryWarning() {

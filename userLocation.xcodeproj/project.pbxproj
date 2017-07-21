@@ -22,6 +22,7 @@
 		EF3821841E24162A00032F42 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3821831E24162A00032F42 /* CoreLocation.framework */; };
 		EF3CCA891EBD1CCB00C655C2 /* ChangePasswordReauthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3CCA881EBD1CCB00C655C2 /* ChangePasswordReauthViewController.swift */; };
 		EF3CCA8B1EBD1FDC00C655C2 /* NewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3CCA8A1EBD1FDC00C655C2 /* NewPasswordViewController.swift */; };
+		EF556EB31F229D1F004783E2 /* GoodbyeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF556EB21F229D1F004783E2 /* GoodbyeViewController.swift */; };
 		EF61AD6C1F083EE400D7DD9E /* LiveJourneysMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF61AD6B1F083EE400D7DD9E /* LiveJourneysMapViewController.swift */; };
 		EF63100B1EBCEFE300A7CC84 /* FavLocMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF63100A1EBCEFE300A7CC84 /* FavLocMapViewController.swift */; };
 		EF63100D1EBCFACB00A7CC84 /* UpdateEmailReauthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF63100C1EBCFACB00A7CC84 /* UpdateEmailReauthViewController.swift */; };
@@ -79,6 +80,7 @@
 		EF3821831E24162A00032F42 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		EF3CCA881EBD1CCB00C655C2 /* ChangePasswordReauthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordReauthViewController.swift; sourceTree = "<group>"; };
 		EF3CCA8A1EBD1FDC00C655C2 /* NewPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPasswordViewController.swift; sourceTree = "<group>"; };
+		EF556EB21F229D1F004783E2 /* GoodbyeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodbyeViewController.swift; sourceTree = "<group>"; };
 		EF5A9AED1E51618500650937 /* userLocation.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = userLocation.entitlements; sourceTree = "<group>"; };
 		EF61AD6B1F083EE400D7DD9E /* LiveJourneysMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveJourneysMapViewController.swift; sourceTree = "<group>"; };
 		EF63100A1EBCEFE300A7CC84 /* FavLocMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavLocMapViewController.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				EF63100E1EBCFBC500A7CC84 /* UpdateEmailViewController.swift */,
 				EF3CCA881EBD1CCB00C655C2 /* ChangePasswordReauthViewController.swift */,
 				EF3CCA8A1EBD1FDC00C655C2 /* NewPasswordViewController.swift */,
+				EF556EB21F229D1F004783E2 /* GoodbyeViewController.swift */,
 				EF8F847F1E25A33A00C32EBA /* userFavorites.swift */,
 				EF38215D1E2415DF00032F42 /* LaunchScreen.storyboard */,
 				EF3821581E2415DF00032F42 /* Main.storyboard */,
@@ -419,6 +422,7 @@
 				EF3CCA8B1EBD1FDC00C655C2 /* NewPasswordViewController.swift in Sources */,
 				EF3CCA891EBD1CCB00C655C2 /* ChangePasswordReauthViewController.swift in Sources */,
 				EF8765141E9454EE0078E3E5 /* WelcomeViewController.swift in Sources */,
+				EF556EB31F229D1F004783E2 /* GoodbyeViewController.swift in Sources */,
 				EF8367F21EC64CF4005079E2 /* ShareJourneyPickerViewController.swift in Sources */,
 				EF0A2B481EA013CE006709C3 /* ReauthenticateViewController.swift in Sources */,
 				EF8F84801E25A33A00C32EBA /* userFavorites.swift in Sources */,

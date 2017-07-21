@@ -30,7 +30,7 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
         shareLocEmailTextField.returnKeyType = UIReturnKeyType.done
 
         view.backgroundColor = FlatTeal()
-        shareLocSubmitButton.setTitleColor(FlatWhite(), for: UIControlState.normal)
+        shareLocSubmitButton.setTitleColor(FlatWhite  (), for: UIControlState.normal)
         // Do any additional setup after loading the view.
     }
     

@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import Firebase
+import ChameleonFramework
 
 
 
@@ -79,6 +80,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
         addressTextField.returnKeyType = UIReturnKeyType.done
         self.addressTextField.delegate = self
+        
+        createAFavoriteLocation.setTitleColor(FlatTealDark(), for: UIControlState.normal)
+        
     }
     
     

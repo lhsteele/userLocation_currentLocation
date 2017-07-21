@@ -294,15 +294,25 @@ class LiveJourneysTableViewController: UITableViewController {
             performSegue(withIdentifier: "LiveJourneyMapViewSegue", sender: self)
         }
     }
-    
+    /*
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
-            
             return "My Current Journey"
         } else {
-            
             return "Live Journeys Shared With Me"
         }
+    }
+    */
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label: UILabel = UILabel()
+        if section == 0 {
+            label.text = "My Current Journey"
+            label.textColor = FlatTealDark()
+        } else {
+            label.text = "Live Journeys Shared With Me"
+            label.textColor = FlatTealDark()
+        }
+        return label
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
