@@ -1118,6 +1118,24 @@
             </objects>
             <point key="canvasLocation" x="4510" y="1012"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="B38-ay-U7D">
+            <objects>
+                <viewController storyboardIdentifier="Onboarding" id="sen-hF-zNs" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jw8-uF-Zox"/>
+                        <viewControllerLayoutGuide type="bottom" id="f43-hF-TIm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2vh-by-Vib">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Agm-dS-1Wt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2742" y="-592"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ib5-DM-M5N">
             <objects>

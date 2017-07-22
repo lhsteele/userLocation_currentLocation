@@ -46,8 +46,8 @@ PODS:
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.9)
+  - paper-onboarding (2.0.1)
   - Protobuf (3.3.0)
-  - SkyFloatingLabelTextField (3.1.0)
 
 DEPENDENCIES:
   - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
@@ -55,7 +55,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Firebase/Messaging
-  - SkyFloatingLabelTextField (~> 3.0)
+  - paper-onboarding (~> 2.0.1)
 
 EXTERNAL SOURCES:
   ChameleonFramework:
@@ -77,9 +77,9 @@ SPEC CHECKSUMS:
   FirebaseMessaging: 753d05a925e9eb8eadd09a0ffc9b808578b72fac
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 5c046c76a1f859bc9c187e918f18e4fc7bb57b5e
+  paper-onboarding: a8e001214d9ce9decf78e160b3823f396dbd51ac
   Protobuf: d582fecf68201eac3d79ed61369ef45734394b9c
-  SkyFloatingLabelTextField: 26a92ad407044dd5a7c3e4e348738ff0991514fe
 
-PODFILE CHECKSUM: f9156efed68f8098f529386111afb7833250c7e8
+PODFILE CHECKSUM: 107b2248cbff45d94d9979c669add294bbcc5108
 
 COCOAPODS: 1.2.1

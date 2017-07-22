@@ -7,5 +7,5 @@ target "userLocation" do
     pod 'Firebase/Auth'
     pod 'Firebase/Messaging'
     pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
-    pod 'SkyFloatingLabelTextField', '~> 3.0'
+    pod 'paper-onboarding', '~> 2.0.1' 
 end

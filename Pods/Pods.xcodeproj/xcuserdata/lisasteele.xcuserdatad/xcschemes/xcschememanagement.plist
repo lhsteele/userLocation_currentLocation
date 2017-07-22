@@ -29,7 +29,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SkyFloatingLabelTextField.xcscheme</key>
+		<key>paper-onboarding.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -37,12 +37,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>196309AA54AD127EB94AC910F2937BB4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>24F5C83C23C271177E12D9BAE2E97D52</key>
+		<key>436DD5906B4E1B432C3F41AB48B014DF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,12 +52,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C052BEBFBD0AB5218CC64BA3450F6547</key>
+		<key>82767C2E93E7F10A106B43904CC0490C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F331506A7A266DAE2C03235E27B3E2EA</key>
+		<key>89ED7D11E27D0A6C47F11CA290477F57</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C052BEBFBD0AB5218CC64BA3450F6547</key>
 		<dict>
 			<key>primary</key>
 			<true/>
