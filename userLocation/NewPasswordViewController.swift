@@ -17,7 +17,7 @@ class NewPasswordViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet var newPasswordTextField: UITextField!
     @IBOutlet var submitButton: UIButton!
     
-    var handle: FIRAuthStateDidChangeListenerHandle?
+    var handle: AuthStateDidChangeListenerHandle?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,8 +43,8 @@ class NewPasswordViewController: UIViewController, UITextFieldDelegate{
     }
     
     func changePassword() {
-        let user = FIRAuth.auth()?.currentUser
-        user?.updatePassword(newPasswordTextField.text!, completion: { (error) in
+        let user = Auth.auth().currentUser
+        user?.updatePassword(to: newPasswordTextField.text!, completion: { (error) in
             if error != nil {
                 self.displayAlertMessage(messageToDisplay: "There has been an error updating your password. Please try again.")
             } else {
@@ -82,17 +82,17 @@ class NewPasswordViewController: UIViewController, UITextFieldDelegate{
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+        handle = Auth.auth().addStateDidChangeListener() { (auth, user) in
         }
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+        Auth.auth().removeStateDidChangeListener(handle!)
     }
     
     func appDidEnterBackground(_application: UIApplication) {
-        try! FIRAuth.auth()!.signOut()
+        try! Auth.auth().signOut()
     }
 
 

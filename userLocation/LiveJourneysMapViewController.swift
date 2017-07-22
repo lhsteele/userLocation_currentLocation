@@ -20,7 +20,7 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
     var destinationLong = CLLocationDegrees()
     var destinationName = String()
     var today = String()
-    var handle: FIRAuthStateDidChangeListenerHandle?
+    var handle: AuthStateDidChangeListenerHandle?
 
     @IBOutlet var liveJourneyMap: MKMapView!
     
@@ -129,9 +129,9 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
   
     
     func getStartingCoordinates() {
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("SharedWithLiveJourneys")
+        let databaseRef = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("SharedWithLiveJourneys")
         
-            if let userID = FIRAuth.auth()?.currentUser?.uid {
+            if let userID = Auth.auth().currentUser?.uid {
                 
                 var currentLat = CLLocationDegrees()
                 var currentLong = CLLocationDegrees()
@@ -141,7 +141,7 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
                     let children = snapshot.children
                     
                     for item in children {
-                        if let pair = item as? FIRDataSnapshot {
+                        if let pair = item as? DataSnapshot {
                             if let childValue = pair.value as? CLLocationDegrees {
                                 let childKey = pair.key as? String
                                 if childKey == "CurrentLat" {
@@ -163,9 +163,9 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
     }
     
     func getDestinationCoordinates() {
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("SharedWithLiveJourneys")
+        let databaseRef = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("SharedWithLiveJourneys")
         
-        if let userID = FIRAuth.auth()?.currentUser?.uid {
+        if let userID = Auth.auth().currentUser?.uid {
             
             var endLat = CLLocationDegrees()
             var endLong = CLLocationDegrees()
@@ -174,7 +174,7 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
                 let children = snapshot.children
                 
                 for item in children {
-                    if let pair = item as? FIRDataSnapshot {
+                    if let pair = item as? DataSnapshot {
                         if let childValue = pair.value as? CLLocationDegrees {
                             let childKey = pair.key as? String
                             if childKey == "DestinationLat" {
@@ -196,15 +196,15 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
     }
     
     func getDestinationLocationName() {
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("SharedWithLiveJourneys")
-        if let userID = FIRAuth.auth()?.currentUser?.uid {
+        let databaseRef = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("SharedWithLiveJourneys")
+        if let userID = Auth.auth().currentUser?.uid {
             var name = String()
             
             databaseRef.child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
                 let children = snapshot.children
                 
                 for item in children {
-                    if let pair = item as? FIRDataSnapshot {
+                    if let pair = item as? DataSnapshot {
                         if let childValue = pair.value as? String {
                             let childKey = pair.key as? String
                             if childKey == "DestinationName" {
@@ -221,17 +221,17 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
     
     
     override func viewWillAppear(_ animated: Bool) {
-        handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+        handle = Auth.auth().addStateDidChangeListener() { (auth, user) in
         }
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+        Auth.auth().removeStateDidChangeListener(handle!)
     }
     
     func appDidEnterBackground(_application: UIApplication) {
-        try! FIRAuth.auth()!.signOut()
+        try! Auth.auth().signOut()
     }
 
 }

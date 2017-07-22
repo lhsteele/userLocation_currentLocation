@@ -17,7 +17,7 @@ class UpdateEmailViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var newEmailTextField: UITextField!
     @IBOutlet var submitButton: UIButton!
     
-    var handle: FIRAuthStateDidChangeListenerHandle?
+    var handle: AuthStateDidChangeListenerHandle?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,8 +42,8 @@ class UpdateEmailViewController: UIViewController, UITextFieldDelegate {
     }
     
     func updateEmail() {
-        let user = FIRAuth.auth()?.currentUser
-        user?.updateEmail(newEmailTextField.text!, completion: { (error) in
+        let user = Auth.auth().currentUser
+        user?.updateEmail(to: newEmailTextField.text!, completion: { (error) in
             if error != nil {
                 self.displayAlertMessage(messageToDisplay: "There has been an error changing your email address. Please try again.")
             } else {
@@ -82,17 +82,17 @@ class UpdateEmailViewController: UIViewController, UITextFieldDelegate {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+        handle = Auth.auth().addStateDidChangeListener() { (auth, user) in
         }
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+        Auth.auth().removeStateDidChangeListener(handle!)
     }
     
     func appDidEnterBackground(_application: UIApplication) {
-        try! FIRAuth.auth()!.signOut()
+        try! Auth.auth().signOut()
     }
 
 }

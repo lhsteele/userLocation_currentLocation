@@ -30,7 +30,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     var userEmail = String()
     var username = String()
     var userPassword = String()
-    var handle: FIRAuthStateDidChangeListenerHandle?
+    var handle: AuthStateDidChangeListenerHandle?
     
     var isSignIn: Bool = true
 
@@ -128,7 +128,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func createAccount(email: String, password: String) {
         
         
-        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
+        Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
             if error != nil {
                 self.displayAlertMessage(messageToDisplay: "This email address is invalid or already in use.")
             } else {
@@ -139,10 +139,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.performSegue(withIdentifier: "FavoriteLocationsTableSegue", sender: self.submitButton)
             }
             
-            let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+            let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
             let values = ["Email": self.emailTextField.text, "Username": self.usernameTextField.text]
             //Don't need to update passwords, keeps it from being printed in database
-            if let userID = FIRAuth.auth()?.currentUser?.uid {
+            if let userID = Auth.auth().currentUser?.uid {
                 ref.child("Users").child(userID).updateChildValues(values as Any as! [AnyHashable : Any]) { (err, ref) in
                 
                     if err != nil {
@@ -156,7 +156,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func userLogin() {
-        FIRAuth.auth()?.signIn(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
+        Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
             if error != nil {
                 self.signInLabel.text = "There has been an error. Please try again."
             } else {
@@ -214,7 +214,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func getUserInfo() {
-        let user = FIRAuth.auth()?.currentUser
+        let user = Auth.auth().currentUser
         if let user = user {
             let uid =  user.uid
             let email = user.email!
@@ -227,9 +227,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func saveEmail() {
-        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+        let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
         //print ("saveEmailRun")
-        if let userID = FIRAuth.auth()?.currentUser?.uid {
+        if let userID = Auth.auth().currentUser?.uid {
             //print (userID)
             let value = [userID : userEmail]
             //print (value)
@@ -243,8 +243,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func saveUsername() {
-        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
-        if let userID = FIRAuth.auth()?.currentUser?.uid {
+        let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+        if let userID = Auth.auth().currentUser?.uid {
             print (username)
             let value = [userID : username]
             ref.child("Usernames").updateChildValues(value) { (err, ref) in
@@ -282,18 +282,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     
     func appDidEnterBackground(_application: UIApplication) {
-        try! FIRAuth.auth()!.signOut()
+        try! Auth.auth().signOut()
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
-        handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+        handle = Auth.auth().addStateDidChangeListener() { (auth, user) in
             
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+        Auth.auth().removeStateDidChangeListener(handle!)
     }
     
 }

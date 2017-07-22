@@ -15,7 +15,7 @@ class WelcomeViewController: UIViewController, UIGestureRecognizerDelegate {
     var fireUserID = String()
     var userEmail = String()
     var username = String()
-    var handle: FIRAuthStateDidChangeListenerHandle?
+    var handle: AuthStateDidChangeListenerHandle?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,7 @@ class WelcomeViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func getUserInfo() {
-        let user = FIRAuth.auth()?.currentUser
+        let user = Auth.auth().currentUser
         if let user = user {
             let uid =  user.uid
             let email = user.email!
@@ -59,7 +59,7 @@ class WelcomeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        if let _ = FIRAuth.auth()?.currentUser {
+        if let _ = Auth.auth().currentUser {
             self.getUserInfo()
             self.performSegue(withIdentifier: "UserLoggedInSegue", sender: self)
         } else {

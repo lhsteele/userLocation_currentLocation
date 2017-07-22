@@ -28,7 +28,7 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
     var latitude = CLLocationDegrees()
     var longitude = CLLocationDegrees()
     var locationName = String()
-    var handle: FIRAuthStateDidChangeListenerHandle?
+    var handle: AuthStateDidChangeListenerHandle?
     var usernameMakingJourney = String()
     var journeyEnded: Bool = false
     
@@ -51,17 +51,17 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
     }
     
     func createSubscribedUsersArray() {
-       let databaseRef = FIRDatabase.database().reference().child("SubscribedUsers").queryOrderedByKey()
+       let databaseRef = Database.database().reference().child("SubscribedUsers").queryOrderedByKey()
         _ = databaseRef.queryEqual(toValue: journeyToStart).observe(.value, with: { (snapshot) in
             
             for item in snapshot.children {
                 
                 var user = String()
                 
-                if let username = item as? FIRDataSnapshot {
+                if let username = item as? DataSnapshot {
                     
                     for item2 in username.children {
-                        if let pair = item2 as? FIRDataSnapshot {
+                        if let pair = item2 as? DataSnapshot {
                             if let userName = pair.key as? String {
                                 
                                 user = userName
@@ -79,14 +79,14 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
     }
     
     func retrieveSharedUserID() {
-        let databaseRef = FIRDatabase.database().reference().child("SubscribedUsers").queryOrderedByKey()
+        let databaseRef = Database.database().reference().child("SubscribedUsers").queryOrderedByKey()
         _ = databaseRef.queryEqual(toValue: journeyToStart).observe(.value, with: { (snapshot) in
             for item in snapshot.children {
                 
-                if let userid = item as? FIRDataSnapshot {
+                if let userid = item as? DataSnapshot {
                     
                     for item2 in userid.children {
-                        if let pair = item2 as? FIRDataSnapshot {
+                        if let pair = item2 as? DataSnapshot {
                             if let userID = pair.value as? String {
                                 let usersName = pair.key
                                 
@@ -104,15 +104,15 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
     }
  
     func getDestinationCoordinates(userID : String) {
-        let databaseRef = FIRDatabase.database().reference().child("Locations").queryOrderedByKey()
+        let databaseRef = Database.database().reference().child("Locations").queryOrderedByKey()
         _ = databaseRef.queryEqual(toValue: journeyToStart).observe(.value, with: { (snapshot) in
             
             for item in snapshot.children {
                 print (snapshot)
-                if let destination = item as? FIRDataSnapshot {
+                if let destination = item as? DataSnapshot {
                     
                     for item in destination.children {
-                        if let pair = item as? FIRDataSnapshot {
+                        if let pair = item as? DataSnapshot {
                         
                             if let location = pair.value as? String {
                                 
@@ -142,8 +142,8 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
     }
     
     func saveDestinationCoordToDB() {
-        if let userID = FIRAuth.auth()?.currentUser?.uid {
-            let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+        if let userID = Auth.auth().currentUser?.uid {
+            let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
             let destination = ref.child("StartedJourneys").child(userID).key
             let destinationCoordinates = ["StartedJourneys/\(destination)" : ["DestinationLat" : latitude, "DestinationLong" : longitude, "CurrentLat" : localValue.latitude, "CurrentLong" : localValue.longitude, "SharedWithUser" : sharedUserName, "DestinationName" : locationName, "SharedWithUserID" : self.sharedUserID, "JourneyEnded" : journeyEnded]] as [String : Any]
             ref.updateChildValues(destinationCoordinates) { (Error, FIRDatabaseReference) in
@@ -154,11 +154,11 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
     
     
     func retrieveUsername() {
-        if let userID = FIRAuth.auth()?.currentUser?.uid {
-            let databaseRef = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("Usernames").queryOrderedByKey()
+        if let userID = Auth.auth().currentUser?.uid {
+            let databaseRef = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("Usernames").queryOrderedByKey()
             databaseRef.queryEqual(toValue: userID).observeSingleEvent(of: .value, with: { (snapshot) in
                 for item in snapshot.children {
-                    if let pair = item as? FIRDataSnapshot {
+                    if let pair = item as? DataSnapshot {
                         if let name = pair.value as? String {
                             let key = pair.key
                             
@@ -176,8 +176,8 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
     
     
     func saveLiveJourneyToSharedWithUser(userID: String) {
-        if let userID = FIRAuth.auth()?.currentUser?.uid {
-            let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+        if let userID = Auth.auth().currentUser?.uid {
+            let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
             let destination = ref.child("SharedWithLiveJourneys").child(sharedUserID).key
             let destinationCoordinates = ["DestinationLat" : latitude, "DestinationLong" : longitude, "CurrentLat" : localValue.latitude, "CurrentLong" : localValue.longitude, "UserMakingJourney" : self.usernameMakingJourney, "DestinationName" : locationName, "UserIDMakingJourney" : userID, "JourneyEnded" : journeyEnded] as [String : Any]
             let childUpdates = ["/SharedWithLiveJourneys/\(destination)" : destinationCoordinates]
@@ -210,17 +210,17 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+        handle = Auth.auth().addStateDidChangeListener() { (auth, user) in
         }
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+        Auth.auth().removeStateDidChangeListener(handle!)
     }
     
     func appDidEnterBackground(_application: UIApplication) {
-        try! FIRAuth.auth()!.signOut()
+        try! Auth.auth().signOut()
     }
    
 }

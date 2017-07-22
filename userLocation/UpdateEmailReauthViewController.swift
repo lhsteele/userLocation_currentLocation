@@ -18,7 +18,7 @@ class UpdateEmailReauthViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var reauthToUpdateEmailTextField: UITextField!
     @IBOutlet var submitButton: UIButton!
     
-    var handle: FIRAuthStateDidChangeListenerHandle?
+    var handle: AuthStateDidChangeListenerHandle?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,8 +48,8 @@ class UpdateEmailReauthViewController: UIViewController, UITextFieldDelegate {
     
     
     func reauthenticateToUpdateEmail() {
-        let user = FIRAuth.auth()?.currentUser
-        let credential = FIREmailPasswordAuthProvider.credential(withEmail: reauthToUpdateEmailTextField.text!, password: reauthToUpdatePasswordTextField.text!)
+        let user = Auth.auth().currentUser
+        let credential = EmailAuthProvider.credential(withEmail: reauthToUpdateEmailTextField.text!, password: reauthToUpdatePasswordTextField.text!)
         
         user?.reauthenticate(with: credential) { error in
             if error != nil {
@@ -80,17 +80,17 @@ class UpdateEmailReauthViewController: UIViewController, UITextFieldDelegate {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+        handle = Auth.auth().addStateDidChangeListener() { (auth, user) in
         }
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+        Auth.auth().removeStateDidChangeListener(handle!)
     }
     
     func appDidEnterBackground(_application: UIApplication) {
-        try! FIRAuth.auth()!.signOut()
+        try! Auth.auth().signOut()
     }
 
 }

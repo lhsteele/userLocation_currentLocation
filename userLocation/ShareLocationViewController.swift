@@ -22,7 +22,7 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
     var sharedEmailsUserID = String()
     var username = String()
     var sharedLocKey = String()
-    var handle: FIRAuthStateDidChangeListenerHandle?
+    var handle: AuthStateDidChangeListenerHandle?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +50,7 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
         
         
         if validEmail {
-            let registeredUserRef = FIRDatabase.database().reference().child("Emails")
+            let registeredUserRef = Database.database().reference().child("Emails")
             
             registeredUserRef.queryOrderedByKey().observe(.value, with: { (snapshot) in
                 
@@ -61,7 +61,7 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
                     var emailFound = false
                     
                     for snap in listOfEmails {
-                        if let email = snap as? FIRDataSnapshot {
+                        if let email = snap as? DataSnapshot {
                             if let userEmail = email.value as? String {
                                 if userEmail == self.emailToCheck {
                                     emailFound = true
@@ -85,13 +85,13 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
     }
     
     func findEmailsUserID() {
-        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+        let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
         ref.child("Emails").queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists() {
                 
                 let listOfEmails = snapshot.children
                 for snap in listOfEmails {
-                    if let email = snap as? FIRDataSnapshot {
+                    if let email = snap as? DataSnapshot {
                         if let userEmail = email.value as? String, let userKey = email.key as? String {
                             if userEmail == self.emailToCheck {
                                 print ("email match")
@@ -108,19 +108,19 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
     
     func checkIfLocationAlreadySharedWithUser() {
         print ("locationToShare\(locationToShare)")
-        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("SubscribedUsers").queryOrderedByKey()
+        let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("SubscribedUsers").queryOrderedByKey()
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             print (snapshot)
             let items = snapshot.children
             for item in items {
-                if let locationID = item as? FIRDataSnapshot {
+                if let locationID = item as? DataSnapshot {
                     if let locIDKey = locationID.key as? String {
                         if locIDKey == self.locationToShare {
                             print ("location found")
-                            if let userID = item as? FIRDataSnapshot {
+                            if let userID = item as? DataSnapshot {
                                 
                                 for item2 in userID.children {
-                                    if let pair = item2 as? FIRDataSnapshot {
+                                    if let pair = item2 as? DataSnapshot {
                                         
                                         if let ID = pair.value as? String {
                                             
@@ -150,7 +150,7 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
     }
     
     func shareLocWithUser() {
-        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("LocationsSharedWithUser").child(sharedEmailsUserID)
+        let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("LocationsSharedWithUser").child(sharedEmailsUserID)
         sharedLocKey = ref.childByAutoId().key
         let updates = [sharedLocKey : locationToShare]
         ref.updateChildValues(updates)
@@ -159,7 +159,7 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
     
     
     func findEmailsUsername() {
-        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+        let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
         ref.child("Usernames").queryOrderedByKey().observe(.value, with: { (snapshot) in
             if snapshot.exists() {
                 
@@ -168,7 +168,7 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
                 let listOfUserIDs = snapshot.children
                 
                 for snap in listOfUserIDs {
-                    if let displayName = snap as? FIRDataSnapshot {
+                    if let displayName = snap as? DataSnapshot {
                         
                         if let userID = displayName.key as? String {
                             print (userID)
@@ -189,7 +189,7 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
     
     func saveSubscribedUserToLoc(username: String) {
         print ("username\(username)")
-        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+        let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
         let saveRef = ref.child("SubscribedUsers").child(locationToShare)
         let updates = [username : sharedEmailsUserID]
         saveRef.updateChildValues(updates)
@@ -282,17 +282,17 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+        handle = Auth.auth().addStateDidChangeListener() { (auth, user) in
         }
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+        Auth.auth().removeStateDidChangeListener(handle!)
     }
     
     func appDidEnterBackground(_application: UIApplication) {
-        try! FIRAuth.auth()!.signOut()
+        try! Auth.auth().signOut()
     }
 
 }

@@ -16,7 +16,7 @@ import ChameleonFramework
 
 let favoriteLocationKey = "NewFavoriteLocation"
 
-class FavoriteLocationsTableViewController: UITableViewController, CLLocationManagerDelegate, UINavigationBarDelegate, UNUserNotificationCenterDelegate {
+class FavoriteLocationsTableViewController: UITableViewController, CLLocationManagerDelegate, UINavigationBarDelegate, UNUserNotificationCenterDelegate, UIApplicationDelegate {
     
     var listOfFavorites: [SavedFavorites] = []
     var listOfCreatedLocations = [String]()
@@ -24,8 +24,8 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     var listOfSharedLocations = [String]()
     var locationID = ""
     var username = ""
-    var ref: FIRDatabaseReference?
-    var handle: FIRAuthStateDidChangeListenerHandle?
+    var ref: DatabaseReference?
+    var handle: AuthStateDidChangeListenerHandle?
     var fireUserID = String()
     var latCoordPassed = CLLocationDegrees()
     var longCoordPassed = CLLocationDegrees()
@@ -64,9 +64,9 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     }
     
     func loadFavorites() {
-        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+        let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
         
-        if let userID = FIRAuth.auth()?.currentUser?.uid {
+        if let userID = Auth.auth().currentUser?.uid {
             
             let locationKey = ref.child("Users").child(userID).child("CreatedLocations")
             
@@ -75,7 +75,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                 
                 for item in createdLocations {
                     
-                    if let pair = item as? FIRDataSnapshot {
+                    if let pair = item as? DataSnapshot {
                         if let locID = pair.value as? String {
                             self.locationID = locID
                         }
@@ -92,9 +92,9 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     }
     
     func loadSharedLocations() {
-        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+        let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
         
-        if let userID = FIRAuth.auth()?.currentUser?.uid {
+        if let userID = Auth.auth().currentUser?.uid {
             
             let locationKey = ref.child("LocationsSharedWithUser").child(userID)
             
@@ -103,7 +103,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                 let sharedLocations = snapshot.children
                 
                 for item in sharedLocations {
-                    if let pair = item as? FIRDataSnapshot {
+                    if let pair = item as? DataSnapshot {
                         if let locID = pair.value as? String {
                             self.locationID = locID
                             
@@ -119,7 +119,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     func loadData () {
         for item in listOfCreatedLocations {
             
-            let databaseRef = FIRDatabase.database().reference().child("Locations").queryOrderedByKey()
+            let databaseRef = Database.database().reference().child("Locations").queryOrderedByKey()
             _ = databaseRef.queryEqual(toValue: item).observe(.value, with: { (snapshot) in
                 
                 for item2 in snapshot.children {
@@ -128,11 +128,11 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                     var updatedLat = Double()
                     var updatedLong = Double()
                     
-                    if let dbLocation = item2 as? FIRDataSnapshot {
+                    if let dbLocation = item2 as? DataSnapshot {
                         
                         for item2 in dbLocation.children {
                             
-                            if let pair = item2 as? FIRDataSnapshot {
+                            if let pair = item2 as? DataSnapshot {
                                 
                                 if let location = pair.value as? String {
                                     
@@ -166,7 +166,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         
         for item in listOfSharedLocations {
             
-            let databaseRef = FIRDatabase.database().reference().child("Locations").queryOrderedByKey()
+            let databaseRef = Database.database().reference().child("Locations").queryOrderedByKey()
             _ = databaseRef.queryEqual(toValue: item).observe(.value, with: { (snapshot) in
                 
                 for item2 in snapshot.children {
@@ -175,11 +175,11 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                     var updatedLat = Double()
                     var updatedLong = Double()
                     
-                    if let dbLocation = item2 as? FIRDataSnapshot {
+                    if let dbLocation = item2 as? DataSnapshot {
                         
                         for item2 in dbLocation.children {
                             
-                            if let pair = item2 as? FIRDataSnapshot {
+                            if let pair = item2 as? DataSnapshot {
                                 
                                 if let location = pair.value as? String {
                                     
@@ -214,19 +214,19 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
     
     func createUsersArray () {
-        let databaseRef2 = FIRDatabase.database().reference().child("Locations")
+        let databaseRef2 = Database.database().reference().child("Locations")
         
         _ = databaseRef2.observe(.childAdded, with: { snapshot in
-            var subscribedUser = FIRDataSnapshot()
-            var updatedUserArray = [FIRDataSnapshot]()
+            var subscribedUser = DataSnapshot()
+            var updatedUserArray = [DataSnapshot]()
             
             for item in snapshot.children {
                 
-                if let user = item as? FIRDataSnapshot {
+                if let user = item as? DataSnapshot {
                     
                     for item2 in user.children {
                         
-                        if let userID = item2 as? FIRDataSnapshot {
+                        if let userID = item2 as? DataSnapshot {
                             subscribedUser = userID
                         }
                         updatedUserArray.append(subscribedUser)
@@ -286,7 +286,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     }
     
     func deleteFromLocationsDB(secondLocation: String) {
-        let locDeletionRef = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("Locations").child(secondLocation)
+        let locDeletionRef = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("Locations").child(secondLocation)
         locDeletionRef.removeValue { (error, reference) in
             //check error is nil before running the next. if nil, print to console.
             self.deleteFromSubscribedUsers(thirdLocation: secondLocation)
@@ -299,7 +299,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     }
     
     func deleteFromSubscribedUsers(thirdLocation: String) {
-        let subscribedUsersDeletionRef = FIRDatabase.database().reference().child("SubscribedUsers")
+        let subscribedUsersDeletionRef = Database.database().reference().child("SubscribedUsers")
         
         let locToDeleteRef = subscribedUsersDeletionRef.child(thirdLocation)
         locToDeleteRef.removeValue { (error, reference) in
@@ -315,14 +315,14 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
     func deleteFromUsersCreatedLocations(fourthLocation: String) {
         
-        if let userID = FIRAuth.auth()?.currentUser?.uid {
-            let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("Users").child(userID).child("CreatedLocations")
+        if let userID = Auth.auth().currentUser?.uid {
+            let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("Users").child(userID).child("CreatedLocations")
             
             ref.observeSingleEvent(of: .value, with: { (snapshot) in
                 let entries = snapshot.children
                 var valueToDelete = ""
                 for item in entries {
-                    if let pair = item as? FIRDataSnapshot {
+                    if let pair = item as? DataSnapshot {
                         if let value = pair.value as? String {
                             print (value)
                             if value == fourthLocation {
@@ -346,14 +346,14 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     }
     
     func findSharedEmailsUserID(fifthLocation: String) {
-        let databaseRef = FIRDatabase.database().reference().child("SubscribedUsers").queryOrderedByKey()
+        let databaseRef = Database.database().reference().child("SubscribedUsers").queryOrderedByKey()
         _ = databaseRef.queryEqual(toValue: journeyToStart).observe(.value, with: { (snapshot) in
             for item in snapshot.children {
                 
-                if let userid = item as? FIRDataSnapshot {
+                if let userid = item as? DataSnapshot {
                     
                     for item2 in userid.children {
-                        if let pair = item2 as? FIRDataSnapshot {
+                        if let pair = item2 as? DataSnapshot {
                             if let userID = pair.value as? String {
                                 let usersName = pair.key
                                 
@@ -371,14 +371,14 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     }
     
     func deleteKeyFromLocationsSharedWithUser(sixthLocation: String) {
-        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("LocationsSharedWithUser").child(sharedEmailsUserID)
+        let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("LocationsSharedWithUser").child(sharedEmailsUserID)
         
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             
             let entries = snapshot.children
             var valueToDelete = ""
             for item in entries {
-                if let pair = item as? FIRDataSnapshot {
+                if let pair = item as? DataSnapshot {
                     
                     if let value = pair.value as? String {
                         if value == sixthLocation{
@@ -392,13 +392,13 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     }
     
     func checkForExistingLiveJourney() {
-        if let userID = FIRAuth.auth()?.currentUser?.uid {
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("StartedJourneys").child(userID)
+        if let userID = Auth.auth().currentUser?.uid {
+        let databaseRef = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("StartedJourneys").child(userID)
             _ = databaseRef.observeSingleEvent(of: .value, with: { (snapshot) in
                 if snapshot.exists() {
                     let children = snapshot.children
                     for item in children {
-                        if let pair = item as? FIRDataSnapshot {
+                        if let pair = item as? DataSnapshot {
                             print (pair)
                             if let boolean = pair.value as? Bool {
                                 let boolKey = pair.key
@@ -491,16 +491,16 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+        handle = Auth.auth().addStateDidChangeListener() { (auth, user) in
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+        Auth.auth().removeStateDidChangeListener(handle!)
     }
     
     func appDidEnterBackground(_application: UIApplication) {
-        try! FIRAuth.auth()!.signOut()
+        try! Auth.auth().signOut()
     }
 
     
@@ -567,6 +567,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             let content = UNMutableNotificationContent()
             content.sound = UNNotificationSound.default()
             let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .sound], categories: nil)
+            UIApplication.shared.registerUserNotificationSettings(settings)
         }
         //This needs to be called in order to register for APNS token.
         UIApplication.shared.registerForRemoteNotifications()
@@ -586,15 +587,15 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
     func addTokenToDB(userToken : String) {
         print ("userToken\(userToken)")
-        if let userID = FIRAuth.auth()?.currentUser?.uid {
-            let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("UserTokens")
+        if let userID = Auth.auth().currentUser?.uid {
+            let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("UserTokens")
             let updates = [userID : userToken]
             ref.updateChildValues(updates)
         }
     }
     
     func tokenRefreshNotification(_ notification: Notification) {
-        if FIRInstanceID.instanceID().token() != nil {
+        if InstanceID.instanceID().token() != nil {
             printFCMToken()
         } else {
             print ("We dont have an FCM token yet.")
@@ -604,7 +605,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     }
     
     func printFCMToken() {
-        if let token = FIRInstanceID.instanceID().token() {
+        if let token = InstanceID.instanceID().token() {
             print ("Your FCM token is \(token)")
             self.addTokenToDB(userToken : token)
         } else {
@@ -613,13 +614,13 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     }
     
     func connectToFCM() {
-        guard FIRInstanceID.instanceID().token() != nil else {
+        guard InstanceID.instanceID().token() != nil else {
             return
         }
         
-        FIRMessaging.messaging().disconnect()
+        Messaging.messaging().disconnect()
         
-        FIRMessaging.messaging().connect { (error) in
+        Messaging.messaging().connect { (error) in
             if error != nil {
                 print ("Unable to connect with FCM. \(error?.localizedDescription ?? "")")
             } else {

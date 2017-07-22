@@ -11,12 +11,14 @@ import Firebase
 import FirebaseMessaging
 import UserNotifications
 import ChameleonFramework
+import Onboard
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var ref: FIRDatabaseReference?
+    var ref: DatabaseReference?
     let gcmMessageIDKey = "gcm.message_id"
     var userInfo: String = ""
     var userToken = String()
@@ -25,19 +27,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
-        FIRApp.configure()
+        FirebaseApp.configure()
         
         if #available(iOS 10, *) {
             UNUserNotificationCenter.current().delegate = self
             
-            FIRMessaging.messaging().remoteMessageDelegate = self as? FIRMessagingDelegate
+            Messaging.messaging().delegate = self as? MessagingDelegate
         }
-        NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotification), name: .firInstanceIDTokenRefresh, object: nil)
+        //NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotification), name: .firInstanceIDTokenRefresh, object: nil)
         
         UINavigationBar.appearance().tintColor = FlatTeal()
         UINavigationBar.appearance().barTintColor = FlatTeal()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: FlatWhite()]
         
+        let defaults = UserDefaults.standard
+        let userHasOnboarded = defaults.bool(forKey: "userHasOnboarded")
+        self.window?.rootViewController = self.generateStandardOnboardingVC()
+        /*
+        if userHasOnboarded == true {
+            self.setupNormalRootViewController()
+        } else {
+            self.window?.rootViewController = self.generateStandardOnboardingVC()
+        }
+        */
         return true
     }
     
@@ -69,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func tokenRefreshNotification(_ notification: Notification) {
-        if FIRInstanceID.instanceID().token() != nil {
+        if InstanceID.instanceID().token() != nil {
             printFCMToken()
         } else {
             print ("We dont have an FCM token yet.")
@@ -80,7 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
    
     
     func printFCMToken() {
-        if let token = FIRInstanceID.instanceID().token() {
+        if let token = InstanceID.instanceID().token() {
             print ("Your FCM token is \(token)")
         } else {
             print ("You don't get have an FCM token.")
@@ -88,13 +100,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func connectToFCM() {
-        guard FIRInstanceID.instanceID().token() != nil else {
+        guard InstanceID.instanceID().token() != nil else {
             return
         }
         
-        FIRMessaging.messaging().disconnect()
+        Messaging.messaging().disconnect()
         
-        FIRMessaging.messaging().connect { (error) in
+        Messaging.messaging().connect { (error) in
             if error != nil {
                 print ("Unable to connect with FCM. \(error?.localizedDescription ?? "")")
             } else {
@@ -117,13 +129,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print ("APNs token retrieved: \(readableToken)")
         
         //with swizzling disabled must set APNs token here.
-        FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: FIRInstanceIDAPNSTokenType.sandbox)
+        InstanceID.instanceID().setAPNSToken(deviceToken, type: InstanceIDAPNSTokenType.sandbox)
     }
     
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         // Let FCM know about the message for analytics etc.
-        FIRMessaging.messaging().appDidReceiveMessage(userInfo)
+        Messaging.messaging().appDidReceiveMessage(userInfo)
         // handle your message
         //userInfo dictionary will contain the payload.
         //displayAlertMessage(messageToDisplay: "Someone has shared a journey with you.")
@@ -139,7 +151,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        FIRMessaging.messaging().disconnect()
+        Messaging.messaging().disconnect()
         print ("Disconnected from FCM.")
     }
 
@@ -167,6 +179,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         alertController.addAction(viewAction)
         self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
+    }
+    
+    func generateStandardOnboardingVC () -> OnboardingViewController {
+        var onboardingVC = OnboardingViewController()
+        
+        let firstPage = OnboardingContentViewController.content(withTitle: "Welcome to the App!", body: nil, image: UIImage(named: ""), buttonText: nil, action: nil)
+        
+        let secondPage = OnboardingContentViewController.content(withTitle: nil, body: "Share your journey with a friend.", image: UIImage(named: ""), buttonText: nil, action: nil)
+        
+        let thirdPage = OnboardingContentViewController.content(withTitle: nil, body: "Your friend can see your journey on a map.", image: UIImage(named: ""), buttonText: nil, action: nil)
+        
+        let fourthPage = OnboardingContentViewController.content(withTitle: nil, body: "They can even see your ETA.", image: UIImage(named: ""), buttonText: "Get started", action: self.handleOnboardingCompletion)
+        
+        onboardingVC = OnboardingViewController.onboard(withBackgroundImage: UIImage(named: ""), contents: [firstPage, secondPage, thirdPage, fourthPage])
+        onboardingVC.view.backgroundColor = FlatTeal()
+        onboardingVC.shouldFadeTransitions = true
+        onboardingVC.shouldMaskBackground = false
+        onboardingVC.shouldBlurBackground = false
+        onboardingVC.fadePageControlOnLastPage = true
+        onboardingVC.pageControl.pageIndicatorTintColor = FlatWhiteDark()
+        onboardingVC.pageControl.currentPageIndicatorTintColor = FlatWhite()
+        onboardingVC.allowSkipping = false
+        onboardingVC.swipingEnabled = true
+        
+        return onboardingVC
+    }
+    
+    func handleOnboardingCompletion() {
+        self.setupNormalRootViewController()
+    }
+    
+    func setupNormalRootViewController() {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = mainStoryboard.instantiateViewController(withIdentifier: "NavigationController")
+        UIApplication.shared.keyWindow?.rootViewController = viewController
+        let defaults = UserDefaults.standard
+        defaults.set(true, forKey: "userHasOnboarded")
+    }
+    func skip() {
+        self.setupNormalRootViewController()
     }
 }
 
@@ -214,13 +266,13 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 // [END ios_10_message_handling]
 // [START ios_10_data_message_handling]
 
-extension AppDelegate : FIRMessagingDelegate {
+extension AppDelegate : MessagingDelegate {
     // Receive data message on iOS 10 devices while app is in the foreground.
-    func applicationReceivedRemoteMessage(_ remoteMessage: FIRMessagingRemoteMessage) {
+    func application(received remoteMessage: MessagingRemoteMessage) {
         print(remoteMessage.appData)
     }
     
-    func messaging(_ messaging: FIRMessaging, didRefreshRegistrationToken fcmToken: String) {
+    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
         userInfo = fcmToken
         print ("Firebase registration token: \(fcmToken)")
         

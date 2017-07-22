@@ -27,7 +27,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     var newLatCoord = CLLocationDegrees()
     var newLongCoord = CLLocationDegrees()
     var username = ""
-    var handle: FIRAuthStateDidChangeListenerHandle?
+    var handle: AuthStateDidChangeListenerHandle?
     var fireUserID = String()
     var locationAutoKey = String()
     var favoriteLocationsArray = [String]()
@@ -77,7 +77,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     }
     
     func addToFirebase() {
-        let databaseRef = FIRDatabase.database().reference()
+        let databaseRef = Database.database().reference()
         
         locationAutoKey = databaseRef.child("Locations").childByAutoId().key
         print (locationAutoKey)
@@ -89,8 +89,8 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     }
     
     func addLocToUser() {
-        if let userID = FIRAuth.auth()?.currentUser?.uid {
-            let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("Users").child(userID).child("CreatedLocations")
+        if let userID = Auth.auth().currentUser?.uid {
+            let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("Users").child(userID).child("CreatedLocations")
             usersCreatedLocationKey = ref.childByAutoId().key
             print ("usersCreatedLocationKey/\(usersCreatedLocationKey)")
             let updates = [usersCreatedLocationKey : locationAutoKey]
@@ -123,17 +123,17 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+        handle = Auth.auth().addStateDidChangeListener() { (auth, user) in
         }
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+        Auth.auth().removeStateDidChangeListener(handle!)
     }
     
     func appDidEnterBackground(_application: UIApplication) {
-        try! FIRAuth.auth()!.signOut()
+        try! Auth.auth().signOut()
     }
 
 }

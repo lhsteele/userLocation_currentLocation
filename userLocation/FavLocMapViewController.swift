@@ -17,7 +17,7 @@ class FavLocMapViewController: UIViewController {
     var locationLong = CLLocationDegrees()
     var favLocToMap = CLLocationCoordinate2D()
     var annotation = MKPointAnnotation()
-    var handle: FIRAuthStateDidChangeListenerHandle?
+    var handle: AuthStateDidChangeListenerHandle?
 
     @IBOutlet var favLocMap: MKMapView!
     
@@ -54,7 +54,7 @@ class FavLocMapViewController: UIViewController {
     
     
     func getLocationCoordinates() {
-        let databaseRef = FIRDatabase.database().reference().child("Locations").queryOrderedByKey()
+        let databaseRef = Database.database().reference().child("Locations").queryOrderedByKey()
         print (locationID)
         _ = databaseRef.queryEqual(toValue: locationID).observe(.value, with: { (snapshot) in
             for item in snapshot.children {
@@ -62,11 +62,11 @@ class FavLocMapViewController: UIViewController {
                 var favLat = Double()
                 var favLong = Double()
                 
-                if let dbLocation = item as? FIRDataSnapshot {
+                if let dbLocation = item as? DataSnapshot {
                     
                     for item in dbLocation.children {
                         
-                        if let pair = item as? FIRDataSnapshot {
+                        if let pair = item as? DataSnapshot {
                             if let location = pair.value as? String {
                                 favLocation = location
                             } else {
@@ -98,16 +98,16 @@ class FavLocMapViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+        handle = Auth.auth().addStateDidChangeListener() { (auth, user) in
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+        Auth.auth().removeStateDidChangeListener(handle!)
     }
     
     func appDidEnterBackground(_application: UIApplication) {
-        try! FIRAuth.auth()!.signOut()
+        try! Auth.auth().signOut()
     }
     
 }

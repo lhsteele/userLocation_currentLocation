@@ -23,7 +23,6 @@
 		EF3CCA891EBD1CCB00C655C2 /* ChangePasswordReauthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3CCA881EBD1CCB00C655C2 /* ChangePasswordReauthViewController.swift */; };
 		EF3CCA8B1EBD1FDC00C655C2 /* NewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3CCA8A1EBD1FDC00C655C2 /* NewPasswordViewController.swift */; };
 		EF556EB31F229D1F004783E2 /* GoodbyeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF556EB21F229D1F004783E2 /* GoodbyeViewController.swift */; };
-		EF556EB51F22FBA6004783E2 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF556EB41F22FBA6004783E2 /* Onboarding.swift */; };
 		EF61AD6C1F083EE400D7DD9E /* LiveJourneysMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF61AD6B1F083EE400D7DD9E /* LiveJourneysMapViewController.swift */; };
 		EF63100B1EBCEFE300A7CC84 /* FavLocMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF63100A1EBCEFE300A7CC84 /* FavLocMapViewController.swift */; };
 		EF63100D1EBCFACB00A7CC84 /* UpdateEmailReauthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF63100C1EBCFACB00A7CC84 /* UpdateEmailReauthViewController.swift */; };
@@ -82,7 +81,6 @@
 		EF3CCA881EBD1CCB00C655C2 /* ChangePasswordReauthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordReauthViewController.swift; sourceTree = "<group>"; };
 		EF3CCA8A1EBD1FDC00C655C2 /* NewPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPasswordViewController.swift; sourceTree = "<group>"; };
 		EF556EB21F229D1F004783E2 /* GoodbyeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodbyeViewController.swift; sourceTree = "<group>"; };
-		EF556EB41F22FBA6004783E2 /* Onboarding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		EF5A9AED1E51618500650937 /* userLocation.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = userLocation.entitlements; sourceTree = "<group>"; };
 		EF61AD6B1F083EE400D7DD9E /* LiveJourneysMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveJourneysMapViewController.swift; sourceTree = "<group>"; };
 		EF63100A1EBCEFE300A7CC84 /* FavLocMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavLocMapViewController.swift; sourceTree = "<group>"; };
@@ -184,7 +182,6 @@
 				EF3CCA8A1EBD1FDC00C655C2 /* NewPasswordViewController.swift */,
 				EF556EB21F229D1F004783E2 /* GoodbyeViewController.swift */,
 				EF8F847F1E25A33A00C32EBA /* userFavorites.swift */,
-				EF556EB41F22FBA6004783E2 /* Onboarding.swift */,
 				EF38215D1E2415DF00032F42 /* LaunchScreen.storyboard */,
 				EF3821581E2415DF00032F42 /* Main.storyboard */,
 				EF38215B1E2415DF00032F42 /* Assets.xcassets */,
@@ -436,7 +433,6 @@
 				EFB922841EF8C99800BD6413 /* LiveJourneysTableViewController.swift in Sources */,
 				EFFD9AB41EC56B6900B4B384 /* StartJourneyMapViewController.swift in Sources */,
 				EF61AD6C1F083EE400D7DD9E /* LiveJourneysMapViewController.swift in Sources */,
-				EF556EB51F22FBA6004783E2 /* Onboarding.swift in Sources */,
 				EF63100F1EBCFBC500A7CC84 /* UpdateEmailViewController.swift in Sources */,
 				EF3821571E2415DF00032F42 /* MapView Controller.swift in Sources */,
 				EFB922861EF8D52200BD6413 /* JourneyLocations.swift in Sources */,
@@ -602,6 +598,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "XC-com-lisahsteele-userLocation";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -621,6 +618,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "XC-com-lisahsteele-userLocation";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

@@ -17,7 +17,7 @@ class ReauthenticateViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var reauthEmailTextField: UITextField!
     @IBOutlet var reauthPasswordTextField: UITextField!
     @IBOutlet var reauthSubmitButton: UIButton!
-    var handle: FIRAuthStateDidChangeListenerHandle?
+    var handle: AuthStateDidChangeListenerHandle?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,8 +48,8 @@ class ReauthenticateViewController: UIViewController, UITextFieldDelegate {
     
     
     func reauthenticateToDelete() {
-        let user = FIRAuth.auth()?.currentUser
-        let credential = FIREmailPasswordAuthProvider.credential(withEmail: reauthEmailTextField.text!, password: reauthPasswordTextField.text!)
+        let user = Auth.auth().currentUser
+        let credential = EmailAuthProvider.credential(withEmail: reauthEmailTextField.text!, password: reauthPasswordTextField.text!)
         
         user?.reauthenticate(with: credential) { error in
             if error != nil {
@@ -63,7 +63,7 @@ class ReauthenticateViewController: UIViewController, UITextFieldDelegate {
     
     
     func deleteAccount () {
-        let user = FIRAuth.auth()?.currentUser
+        let user = Auth.auth().currentUser
         
         user?.delete { error in
             if let error = error {
@@ -75,12 +75,12 @@ class ReauthenticateViewController: UIViewController, UITextFieldDelegate {
     }
     
     func deleteFromDB() {
-        if let userToDeleteID = FIRAuth.auth()?.currentUser?.uid {
-            let deleteRef = FIRDatabase.database().reference().child("Emails")
+        if let userToDeleteID = Auth.auth().currentUser?.uid {
+            let deleteRef = Database.database().reference().child("Emails")
             let deleteFromEmailNode = deleteRef.child(userToDeleteID)
             deleteFromEmailNode.removeValue()
 
-            let deleteRef2 = FIRDatabase.database().reference().child("Users")
+            let deleteRef2 = Database.database().reference().child("Users")
             let deleteFromUsersNode = deleteRef2.child(userToDeleteID)
             deleteFromUsersNode.removeValue()
         }
@@ -133,17 +133,17 @@ class ReauthenticateViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+        handle = Auth.auth().addStateDidChangeListener() { (auth, user) in
         }
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+        Auth.auth().removeStateDidChangeListener(handle!)
     }
     
     func appDidEnterBackground(_application: UIApplication) {
-        try! FIRAuth.auth()!.signOut()
+        try! Auth.auth().signOut()
     }
 
 }

@@ -185,7 +185,7 @@
         <!--Welcome View Controller-->
         <scene sceneID="l3R-zt-VQi">
             <objects>
-                <viewController id="gtg-Z4-3m4" customClass="WelcomeViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WelcomeViewController" id="gtg-Z4-3m4" customClass="WelcomeViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1rL-cO-xwD"/>
                         <viewControllerLayoutGuide type="bottom" id="oTu-Cl-FL1"/>
@@ -1139,7 +1139,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Ib5-DM-M5N">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aPT-tG-0Rr" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationController" automaticallyAdjustsScrollViewInsets="NO" id="aPT-tG-0Rr" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="s5f-jl-oFs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -1156,8 +1156,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="1Bn-so-FB5"/>
+        <segue reference="FbZ-EK-1jY"/>
+        <segue reference="IU2-DW-LoN"/>
         <segue reference="cWw-05-A8f"/>
-        <segue reference="dfE-Na-D61"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -18,7 +18,7 @@ class StartJourneyMapViewController: UIViewController, CLLocationManagerDelegate
     var journeyToStart = String()
     var localValue = CLLocationCoordinate2D()
     var fireUserID = String()
-    var handle: FIRAuthStateDidChangeListenerHandle?
+    var handle: AuthStateDidChangeListenerHandle?
     
     
     let manager = CLLocationManager()
@@ -81,17 +81,17 @@ class StartJourneyMapViewController: UIViewController, CLLocationManagerDelegate
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+        handle = Auth.auth().addStateDidChangeListener() { (auth, user) in
         }
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+        Auth.auth().removeStateDidChangeListener(handle!)
     }
     
     func appDidEnterBackground(_application: UIApplication) {
-        try! FIRAuth.auth()!.signOut()
+        try! Auth.auth().signOut()
     }
 
 }

@@ -30,7 +30,7 @@ class LiveJourneysTableViewController: UITableViewController {
     var journeyIsLive = false
     var sharedUserID = String()
     var journeyToEnd = String()
-    var handle: FIRAuthStateDidChangeListenerHandle?
+    var handle: AuthStateDidChangeListenerHandle?
     var journeyUserID = String()
     var journeyUserName = String()
     var sharedWithUserID = String()
@@ -51,8 +51,8 @@ class LiveJourneysTableViewController: UITableViewController {
     }
     
     func loadUserLiveJourney() {
-        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
-        if let userID = FIRAuth.auth()?.currentUser?.uid {
+        let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+        if let userID = Auth.auth().currentUser?.uid {
             let locationKey = ref.child("StartedJourneys").child(userID)
             
             locationKey.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -61,7 +61,7 @@ class LiveJourneysTableViewController: UITableViewController {
                 
                 for item in liveJourneys {
                     
-                    if let pair = item as? FIRDataSnapshot {
+                    if let pair = item as? DataSnapshot {
                         print (pair)
                             if let boolean = pair.value as? Bool {
                                 let boolKey = pair.key
@@ -82,13 +82,13 @@ class LiveJourneysTableViewController: UITableViewController {
     }
     
     func loadUserLiveDataForTable() {
-        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
-        if let userID = FIRAuth.auth()?.currentUser?.uid {
+        let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+        if let userID = Auth.auth().currentUser?.uid {
             let locationKey = ref.child("StartedJourneys").child(userID)
             locationKey.observeSingleEvent(of: .value, with: { (snapshot) in
                 let liveJourneys = snapshot.children
                 for item in liveJourneys {
-                    if let pair = item as? FIRDataSnapshot {
+                    if let pair = item as? DataSnapshot {
                         if let value = pair.value as? String {
                             let key = pair.key
                             
@@ -109,7 +109,7 @@ class LiveJourneysTableViewController: UITableViewController {
     
     
     func loadLiveJourneyData() {
-        let databaseRef = FIRDatabase.database().reference().child("StartedJourneys").queryOrderedByKey()
+        let databaseRef = Database.database().reference().child("StartedJourneys").queryOrderedByKey()
         _ = databaseRef.queryEqual(toValue: fireUserID).observe(.value, with: { (snapshot) in
             for item in snapshot.children {
                 
@@ -118,9 +118,9 @@ class LiveJourneysTableViewController: UITableViewController {
                 var dLat = Double()
                 var dLong = Double()
                 
-                if let sharedJourneyCoordinates = item as? FIRDataSnapshot {
+                if let sharedJourneyCoordinates = item as? DataSnapshot {
                     for item in sharedJourneyCoordinates.children {
-                        if let pair = item as? FIRDataSnapshot {
+                        if let pair = item as? DataSnapshot {
                             if let coordinates = pair.value as? Double {
                                 
                                 let name = pair.key
@@ -148,16 +148,16 @@ class LiveJourneysTableViewController: UITableViewController {
     }
 
     func loadSharedWithLiveJourneyData() {
-        if let userID = FIRAuth.auth()?.currentUser?.uid {
-            let databaseRef = FIRDatabase.database().reference().child("SharedWithLiveJourneys").queryOrderedByKey()
+        if let userID = Auth.auth().currentUser?.uid {
+            let databaseRef = Database.database().reference().child("SharedWithLiveJourneys").queryOrderedByKey()
             _ = databaseRef.queryEqual(toValue: userID).observe(.value, with: { (snapshot) in
                 print (snapshot)
                 for item in snapshot.children {
                     
-                    if let journeyLoc = item as? FIRDataSnapshot {
+                    if let journeyLoc = item as? DataSnapshot {
                         
                         for item in journeyLoc.children {
-                            if let pair = item as? FIRDataSnapshot {
+                            if let pair = item as? DataSnapshot {
                                 if let boolean = pair.value as? Bool {
                                     let boolKey = pair.key
                                     if boolKey == "JourneyEnded" {
@@ -179,13 +179,13 @@ class LiveJourneysTableViewController: UITableViewController {
     }
     
     func loadSharedWithLiveDataForTable() {
-        if let userID = FIRAuth.auth()?.currentUser?.uid {
-            let databaseRef = FIRDatabase.database().reference().child("SharedWithLiveJourneys").queryOrderedByKey()
+        if let userID = Auth.auth().currentUser?.uid {
+            let databaseRef = Database.database().reference().child("SharedWithLiveJourneys").queryOrderedByKey()
             _ = databaseRef.queryEqual(toValue: userID).observe(.value, with: { (snapshot) in
                 for item in snapshot.children {
-                    if let journeyLoc = item as? FIRDataSnapshot {
+                    if let journeyLoc = item as? DataSnapshot {
                         for item in journeyLoc.children {
-                            if let pair = item as? FIRDataSnapshot {
+                            if let pair = item as? DataSnapshot {
                                 if let user = pair.value as? String {
                                     let name = pair.key
                                     if name == "DestinationName" {
@@ -211,7 +211,7 @@ class LiveJourneysTableViewController: UITableViewController {
     }
   
     func getSharedCoordinates() {
-        let databaseRef = FIRDatabase.database().reference().child("SharedWithLiveJourneys").queryOrderedByKey()
+        let databaseRef = Database.database().reference().child("SharedWithLiveJourneys").queryOrderedByKey()
         _ = databaseRef.queryEqual(toValue: fireUserID).observe(.value, with: { (snapshot) in
             for item in snapshot.children {
                 
@@ -220,9 +220,9 @@ class LiveJourneysTableViewController: UITableViewController {
                 var dLat = Double()
                 var dLong = Double()
                 
-                if let sharedJourneyCoordinates = item as? FIRDataSnapshot {
+                if let sharedJourneyCoordinates = item as? DataSnapshot {
                     for item in sharedJourneyCoordinates.children {
-                        if let pair = item as? FIRDataSnapshot {
+                        if let pair = item as? DataSnapshot {
                             if let coordinates = pair.value as? Double {
                                 
                                 let name = pair.key
@@ -334,8 +334,8 @@ class LiveJourneysTableViewController: UITableViewController {
     }
     
     func updateUserLiveJourneyBoolean() {
-        if let userID = FIRAuth.auth()?.currentUser?.uid {
-            let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+        if let userID = Auth.auth().currentUser?.uid {
+            let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
             let destination = ref.child("StartedJourneys").child(userID)
             let update = ["JourneyEnded" : true]
             destination.updateChildValues(update)
@@ -343,7 +343,7 @@ class LiveJourneysTableViewController: UITableViewController {
     }
     
     func updateSharedWithLiveJourneysBoolean(sharedUserID: String) {
-        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+        let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
         let destination = ref.child("SharedWithLiveJourneys").child(self.sharedUserID)
         let update = ["JourneyEnded" : true]
         destination.updateChildValues(update)
@@ -370,15 +370,15 @@ class LiveJourneysTableViewController: UITableViewController {
     */
     
     func findSharedUsersForLocation() {
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("StartedJourneys")
-        if let userID = FIRAuth.auth()?.currentUser?.uid {
+        let databaseRef = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("StartedJourneys")
+        if let userID = Auth.auth().currentUser?.uid {
             print (userID)
             databaseRef.child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
                 print (snapshot)
                 let entries = snapshot.children
                 var sharedUser = ""
                 for item in entries {
-                    if let pair = item as? FIRDataSnapshot {
+                    if let pair = item as? DataSnapshot {
                         print (pair)
                         if let key = pair.key as? String {
                             if key == "SharedWithUserID" {
@@ -407,16 +407,16 @@ class LiveJourneysTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+        handle = Auth.auth().addStateDidChangeListener() { (auth, user) in
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+        Auth.auth().removeStateDidChangeListener(handle!)
     }
     
     func appDidEnterBackground(_application: UIApplication) {
-        try! FIRAuth.auth()!.signOut()
+        try! Auth.auth().signOut()
     }
     
     /*

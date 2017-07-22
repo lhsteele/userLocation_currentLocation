@@ -18,7 +18,7 @@ class ChangePasswordReauthViewController: UIViewController, UITextFieldDelegate 
     @IBOutlet var reauthPasswordTextField: UITextField!
     @IBOutlet var submitButton: UIButton!
     
-    var handle: FIRAuthStateDidChangeListenerHandle?
+    var handle: AuthStateDidChangeListenerHandle?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,8 +46,8 @@ class ChangePasswordReauthViewController: UIViewController, UITextFieldDelegate 
     }
     
     func reauthenticateToChangePassword() {
-        let user = FIRAuth.auth()?.currentUser
-        let credential = FIREmailPasswordAuthProvider.credential(withEmail: reauthEmailTextField.text!, password: reauthPasswordTextField.text!)
+        let user = Auth.auth().currentUser
+        let credential = EmailAuthProvider.credential(withEmail: reauthEmailTextField.text!, password: reauthPasswordTextField.text!)
         
         user?.reauthenticate(with: credential, completion: { (error) in
             if error != nil {
@@ -77,16 +77,16 @@ class ChangePasswordReauthViewController: UIViewController, UITextFieldDelegate 
     
     
     override func viewWillAppear(_ animated: Bool) {
-        handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+        handle = Auth.auth().addStateDidChangeListener() { (auth, user) in
         }
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+        Auth.auth().removeStateDidChangeListener(handle!)
     }
     
     func appDidEnterBackground(_application: UIApplication) {
-        try! FIRAuth.auth()!.signOut()
+        try! Auth.auth().signOut()
     }
 }
