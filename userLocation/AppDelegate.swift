@@ -188,7 +188,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let secondPage = OnboardingContentViewController.content(withTitle: nil, body: "Share your journey with a friend.", image: UIImage(named: ""), buttonText: nil, action: nil)
         
-        let thirdPage = OnboardingContentViewController.content(withTitle: nil, body: "Your friend can see your journey on a map.", image: UIImage(named: ""), buttonText: nil, action: nil)
+        let thirdPage = OnboardingContentViewController.content(withTitle: nil, body: "Friends see your journey plotted on a map.", image: UIImage(named: ""), buttonText: nil, action: nil)
         
         let fourthPage = OnboardingContentViewController.content(withTitle: nil, body: "They can even see your ETA.", image: UIImage(named: ""), buttonText: "Get started", action: self.handleOnboardingCompletion)
         
