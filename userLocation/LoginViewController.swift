@@ -12,6 +12,7 @@ import FirebaseAuth
 import ChameleonFramework
 
 
+
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var signInToggle: UISegmentedControl!
@@ -40,9 +41,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         
-        emailTextField.delegate = self
-        //emailTextField.tag = 0
+        
         emailTextField.returnKeyType = UIReturnKeyType.done
+        //emailTextField.tag = 0
+        emailTextField.delegate = self
+        
+    
         
         passwordTextField.delegate = self
         //passwordTextField.tag = 1
