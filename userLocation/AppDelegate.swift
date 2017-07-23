@@ -186,14 +186,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let firstPage = OnboardingContentViewController.content(withTitle: "Welcome to the App!", body: nil, image: UIImage(named: ""), buttonText: nil, action: nil)
         
-        let secondPage = OnboardingContentViewController.content(withTitle: nil, body: "Share your journey with a friend.", image: UIImage(named: ""), buttonText: nil, action: nil)
+        let secondPage = OnboardingContentViewController.content(withTitle: "Share a journey with someone.", body: "Let them know you're on your way.", image: UIImage(named: "Share"), buttonText: nil, action: nil)
         
-        let thirdPage = OnboardingContentViewController.content(withTitle: nil, body: "Friends see your journey plotted on a map.", image: UIImage(named: ""), buttonText: nil, action: nil)
+        let thirdPage = OnboardingContentViewController.content(withTitle: "Your journey is plotted on a map.", body: "Friends and family can see the route you're taking.", image: UIImage(named: "PlotOnMap"), buttonText: nil, action: nil)
         
-        let fourthPage = OnboardingContentViewController.content(withTitle: nil, body: "They can even see your ETA.", image: UIImage(named: ""), buttonText: "Get started", action: self.handleOnboardingCompletion)
+        let fourthPage = OnboardingContentViewController.content(withTitle: "The map will also show your ETA.", body: "That way they know when to expect you.", image: UIImage(named: "ETA"), buttonText: "Get started", action: self.handleOnboardingCompletion)
         
         onboardingVC = OnboardingViewController.onboard(withBackgroundImage: UIImage(named: ""), contents: [firstPage, secondPage, thirdPage, fourthPage])
-        onboardingVC.view.backgroundColor = FlatTeal()
+        onboardingVC.view.backgroundColor = FlatTeal().lighten(byPercentage: 60)
         onboardingVC.shouldFadeTransitions = true
         onboardingVC.shouldMaskBackground = false
         onboardingVC.shouldBlurBackground = false
