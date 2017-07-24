@@ -8,5 +8,4 @@ target "userLocation" do
     pod 'Firebase/Messaging'
     pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
     pod 'Onboard'
-    
 end
