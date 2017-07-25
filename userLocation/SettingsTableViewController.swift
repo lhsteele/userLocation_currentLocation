@@ -19,7 +19,6 @@ class SettingsTableViewController: UITableViewController {
 
     @IBOutlet var updateEmailButton: UITableViewCell!
     @IBOutlet var changePasswordButton: UITableViewCell!
-    @IBOutlet var backButton: UIBarButtonItem!
     @IBOutlet var logoutButton: UITableViewCell!
     @IBOutlet var deleteAccountButton: UITableViewCell!
     var handle: AuthStateDidChangeListenerHandle?
@@ -28,8 +27,9 @@ class SettingsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
-        backButton.tintColor = FlatWhite()
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.navigationBar.tintColor = FlatWhite()
+        
         updateEmailButton.textLabel?.textColor = FlatTeal()
         changePasswordButton.textLabel?.textColor = FlatTeal()
         logoutButton.textLabel?.textColor = FlatTeal()
@@ -40,11 +40,6 @@ class SettingsTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    @IBAction func backToFavorites(_ sender: Any) {
-        performSegue(withIdentifier: "BackToFavorites", sender: backButton)
-    }
-    
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //indexPath data type has two values, section and row 

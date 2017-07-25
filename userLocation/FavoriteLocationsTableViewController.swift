@@ -374,7 +374,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             
             let entries = snapshot.children
-            var valueToDelete = ""
+            var valueToDelete = String()
             for item in entries {
                 if let pair = item as? DataSnapshot {
                     
@@ -616,7 +616,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             return
         }
         
-        Messaging.messaging().disconnect()
+        Messaging.messaging().shouldEstablishDirectChannel = false
         
         Messaging.messaging().connect { (error) in
             if error != nil {

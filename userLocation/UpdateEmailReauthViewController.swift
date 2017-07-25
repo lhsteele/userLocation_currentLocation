@@ -24,6 +24,7 @@ class UpdateEmailReauthViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.navigationBar.tintColor = FlatWhite()
         
         reauthToUpdateEmailTextField.delegate = self
         reauthToUpdateEmailTextField.returnKeyType = UIReturnKeyType.done

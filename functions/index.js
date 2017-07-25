@@ -13,8 +13,8 @@ admin.initializeApp({
 
 var payloadStart = {
   notification: {
-    title: "Name of App",
-    body: "Please check your Live Journeys table for an update."
+    title: "See You Soon",
+    body: "Someone has shared a journey with you."
   },
 };
 
@@ -24,7 +24,7 @@ var options = {
 
 var payloadEnd = {
   notification: {
-    title: "Name of App",
+    title: "See You Soon",
     body: "A shared journey has ended."
   },
 };

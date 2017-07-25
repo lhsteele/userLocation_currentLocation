@@ -47,7 +47,7 @@ class LiveJourneysTableViewController: UITableViewController {
         tableView.reloadData()
        //usernamesSharingJourneys()
         
-        
+        self.navigationController?.navigationBar.tintColor = FlatWhite()
     }
     
     func loadUserLiveJourney() {

@@ -58,7 +58,7 @@ class FavLocMapViewController: UIViewController {
         print (locationID)
         _ = databaseRef.queryEqual(toValue: locationID).observe(.value, with: { (snapshot) in
             for item in snapshot.children {
-                var favLocation = ""
+                var favLocation = String()
                 var favLat = Double()
                 var favLong = Double()
                 

@@ -104,7 +104,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return
         }
         
-        Messaging.messaging().disconnect()
+        Messaging.messaging().shouldEstablishDirectChannel = false
         
         Messaging.messaging().connect { (error) in
             if error != nil {
@@ -128,8 +128,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print ("method run")
         print ("APNs token retrieved: \(readableToken)")
         
-        //with swizzling disabled must set APNs token here.
-        InstanceID.instanceID().setAPNSToken(deviceToken, type: InstanceIDAPNSTokenType.sandbox)
+        Messaging.messaging().apnsToken = deviceToken
     }
     
     
@@ -151,7 +150,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        Messaging.messaging().disconnect()
+        Messaging.messaging().shouldEstablishDirectChannel = false
         print ("Disconnected from FCM.")
     }
 
@@ -184,7 +183,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func generateStandardOnboardingVC () -> OnboardingViewController {
         var onboardingVC = OnboardingViewController()
         
-        let firstPage = OnboardingContentViewController.content(withTitle: "Welcome to the App!", body: nil, image: UIImage(named: ""), buttonText: nil, action: nil)
+        let firstPage = OnboardingContentViewController.content(withTitle: "See You Soon", body: nil, image: UIImage(named: ""), buttonText: nil, action: nil)
         
         let secondPage = OnboardingContentViewController.content(withTitle: "Share a journey with someone.", body: "Let them know you're on your way.", image: UIImage(named: "Share"), buttonText: nil, action: nil)
         
@@ -202,6 +201,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         onboardingVC.pageControl.currentPageIndicatorTintColor = FlatWhite()
         onboardingVC.allowSkipping = false
         onboardingVC.swipingEnabled = true
+        
+        
         
         return onboardingVC
     }

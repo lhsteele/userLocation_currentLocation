@@ -855,25 +855,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="1jM-Oz-2DK">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <items>
-                                <navigationItem title="Settings" id="lQr-PI-KMX">
-                                    <barButtonItem key="leftBarButtonItem" title="Back" id="W83-YO-WSd">
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <action selector="backToFavorites:" destination="CsW-Pa-AJx" id="sGU-Zg-CfD"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </navigationItem>
-                            </items>
-                        </navigationBar>
                         <sections>
                             <tableViewSection id="sRz-wt-WyL">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="EYJ-uh-o2R" style="IBUITableViewCellStyleDefault" id="s3D-he-ar0">
-                                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="35" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="s3D-he-ar0" id="W2o-9f-HSg">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
@@ -890,7 +876,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Jnw-uP-pLo" style="IBUITableViewCellStyleDefault" id="nl6-Vj-rxk">
-                                        <rect key="frame" x="0.0" y="88" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="79" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nl6-Vj-rxk" id="XR0-1q-4yR">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
@@ -907,7 +893,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="wpe-E1-ylL" style="IBUITableViewCellStyleDefault" id="FSE-LY-KjL">
-                                        <rect key="frame" x="0.0" y="132" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="123" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FSE-LY-KjL" id="kof-Bw-1vL">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
@@ -924,7 +910,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="7sj-Me-lPs" style="IBUITableViewCellStyleDefault" id="R4J-zv-9pA">
-                                        <rect key="frame" x="0.0" y="176" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="167" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="R4J-zv-9pA" id="3nz-nm-sAm">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
@@ -945,7 +931,6 @@
                         </sections>
                     </tableView>
                     <connections>
-                        <outlet property="backButton" destination="W83-YO-WSd" id="SGh-iT-0Zh"/>
                         <outlet property="changePasswordButton" destination="nl6-Vj-rxk" id="YZv-CE-vXK"/>
                         <outlet property="deleteAccountButton" destination="R4J-zv-9pA" id="BUl-Mx-Gdc"/>
                         <outlet property="logoutButton" destination="FSE-LY-KjL" id="au1-eI-YXE"/>
@@ -1156,8 +1141,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ziV-4J-GkS"/>
-        <segue reference="tX9-J2-yO8"/>
-        <segue reference="R4Y-j0-YUS"/>
+        <segue reference="uuF-om-tct"/>
+        <segue reference="dfE-Na-D61"/>
+        <segue reference="cWw-05-A8f"/>
     </inferredMetricsTieBreakers>
 </document>
