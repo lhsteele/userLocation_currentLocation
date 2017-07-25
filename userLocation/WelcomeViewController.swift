@@ -61,6 +61,7 @@ class WelcomeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         if let _ = Auth.auth().currentUser {
             self.getUserInfo()
+            print ("welcomeVC\(fireUserID)")  
             self.performSegue(withIdentifier: "UserLoggedInSegue", sender: self)
         } else {
             self.performSegue(withIdentifier: "LoginSegue", sender: self)

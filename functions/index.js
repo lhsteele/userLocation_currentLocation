@@ -15,7 +15,6 @@ var payloadStart = {
   notification: {
     title: "See You Soon",
     body: "Someone has shared a journey with you."
-    sound: "default"
   },
 };
 
@@ -27,7 +26,6 @@ var payloadEnd = {
   notification: {
     title: "See You Soon",
     body: "A shared journey has ended."
-    sound: "default"
   },
 };
 
