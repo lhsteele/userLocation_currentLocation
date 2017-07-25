@@ -143,7 +143,7 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
                     for item in children {
                         if let pair = item as? DataSnapshot {
                             if let childValue = pair.value as? CLLocationDegrees {
-                                let childKey = pair.key as? String
+                                let childKey = pair.key /*as? String*/
                                 if childKey == "CurrentLat" {
                                     currentLat = childValue as CLLocationDegrees
                                     self.startingLat = currentLat
@@ -176,7 +176,7 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
                 for item in children {
                     if let pair = item as? DataSnapshot {
                         if let childValue = pair.value as? CLLocationDegrees {
-                            let childKey = pair.key as? String
+                            let childKey = pair.key /*as? String*/
                             if childKey == "DestinationLat" {
                                 endLat = childValue as CLLocationDegrees
                                 self.destinationLat = endLat
@@ -206,7 +206,7 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
                 for item in children {
                     if let pair = item as? DataSnapshot {
                         if let childValue = pair.value as? String {
-                            let childKey = pair.key as? String
+                            let childKey = pair.key /*as? String*/
                             if childKey == "DestinationName" {
                                 name = childValue as String
                                 self.destinationName = name

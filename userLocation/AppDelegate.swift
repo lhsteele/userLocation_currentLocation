@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if #available(iOS 10, *) {
             UNUserNotificationCenter.current().delegate = self
             
-            Messaging.messaging().delegate = self as? MessagingDelegate
+            Messaging.messaging().delegate = self //as? MessagingDelegate
         }
         //NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotification), name: .firInstanceIDTokenRefresh, object: nil)
         
@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: FlatWhite()]
         
         let defaults = UserDefaults.standard
-        let userHasOnboarded = defaults.bool(forKey: "userHasOnboarded")
+        _ = defaults.bool(forKey: "userHasOnboarded")
         self.window?.rootViewController = self.generateStandardOnboardingVC()
         /*
         if userHasOnboarded == true {
