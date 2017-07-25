@@ -48,6 +48,7 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
         shareJourneyButton.setTitleColor(FlatWhite(), for: UIControlState.normal)
         pickerLabel.textColor = FlatWhite()
         picker.tintColor = FlatWhite()
+        
     }
     
     func createSubscribedUsersArray() {
@@ -207,6 +208,11 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         pickerLabel.text = arrayOfSubscribedUsers[row]
         sharedUserName = pickerLabel.text!
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        let attributedString = NSAttributedString(string: arrayOfSubscribedUsers[row], attributes: [NSForegroundColorAttributeName : FlatWhite()])
+        return attributedString
     }
     
     override func viewWillAppear(_ animated: Bool) {
