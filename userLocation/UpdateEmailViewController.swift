@@ -60,7 +60,17 @@ class UpdateEmailViewController: UIViewController, UITextFieldDelegate {
             let updatedEmail = ["Email" : newEmailTextField.text]
             destination.updateChildValues(updatedEmail)
         }
+        self.updateDBEmailList()
         
+    }
+    
+    func updateDBEmailList() {
+        if let userID = Auth.auth().currentUser?.uid {
+            let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+            let destination = ref.child("Emails")
+            let updatedEmail = [userID : newEmailTextField.text]
+            destination.updateChildValues(updatedEmail)
+        }
     }
     
     func displayAlertMessage(messageToDisplay: String) {
