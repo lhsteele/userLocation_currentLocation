@@ -618,13 +618,20 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         
         Messaging.messaging().shouldEstablishDirectChannel = false
         
-        Messaging.messaging().connect { (error) in
+        if Messaging.messaging().isDirectChannelEstablished == true {
+            print ("Connected to FCM")
+        } else {
+            print ("Unable to connect with FCM.")
+        }
+        /*
+        Messaging.messaging().isDirectChannelEstablished { (error) in
             if error != nil {
                 print ("Unable to connect with FCM. \(error?.localizedDescription ?? "")")
             } else {
                 print ("Connected to FCM")
             }
         }
+        */
     }
     
  
