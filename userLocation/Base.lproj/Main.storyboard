@@ -709,7 +709,6 @@
                     </view>
                     <connections>
                         <outlet property="label" destination="ytL-uv-Jnl" id="Lyf-gk-yh2"/>
-                        <outlet property="lable" destination="ytL-uv-Jnl" id="QmP-zc-wvj"/>
                         <outlet property="newPasswordTextField" destination="MXA-OV-8tF" id="H5c-nV-HO2"/>
                         <outlet property="submitButton" destination="ZOL-Hw-wbE" id="usO-Ta-EVJ"/>
                         <segue destination="4fS-mw-GIs" kind="show" identifier="PasswordChangedLoginSegue" id="R4Y-j0-YUS"/>
@@ -1159,6 +1158,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="ziV-4J-GkS"/>
         <segue reference="tX9-J2-yO8"/>
-        <segue reference="TxF-nw-k2B"/>
+        <segue reference="R4Y-j0-YUS"/>
     </inferredMetricsTieBreakers>
 </document>

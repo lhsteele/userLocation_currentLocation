@@ -83,6 +83,10 @@ class ReauthenticateViewController: UIViewController, UITextFieldDelegate {
             let deleteRef2 = Database.database().reference().child("Users")
             let deleteFromUsersNode = deleteRef2.child(userToDeleteID)
             deleteFromUsersNode.removeValue()
+            
+            let deleteRef3 = Database.database().reference().child("Usernames")
+            let deleteFromUsernamesNode = deleteRef3.child(userToDeleteID)
+            deleteFromUsernamesNode.removeValue()
         }
         
     }
