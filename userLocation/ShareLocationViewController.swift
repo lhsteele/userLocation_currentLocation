@@ -13,6 +13,7 @@ import ChameleonFramework
 
 class ShareLocationViewController: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet var label: UILabel!
     @IBOutlet var shareLocEmailTextField: UITextField!
     @IBOutlet var shareLocSubmitButton: UIButton!
     
@@ -31,7 +32,8 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
 
         view.backgroundColor = FlatTeal()
         shareLocSubmitButton.setTitleColor(FlatWhite  (), for: UIControlState.normal)
-        // Do any additional setup after loading the view.
+        label.textColor = FlatWhite()
+        
     }
     
     

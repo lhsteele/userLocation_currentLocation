@@ -140,7 +140,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.getUserInfo()
                 self.saveEmail()
                 self.saveUsername()
-                self.performSegue(withIdentifier: "FavoriteLocationsTableSegue", sender: self.submitButton)
+                //self.performSegue(withIdentifier: "FavoriteLocationsTableSegue", sender: self.submitButton)
             }
             
             let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")

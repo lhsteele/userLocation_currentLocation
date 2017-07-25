@@ -1014,6 +1014,7 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
+                        <outlet property="label" destination="DPE-2A-vlW" id="YAt-y1-IZs"/>
                         <outlet property="shareLocEmailTextField" destination="qCD-zM-RkH" id="D0M-A7-RV7"/>
                         <outlet property="shareLocSubmitButton" destination="sVa-Bq-7Ux" id="4xb-9J-s9N"/>
                         <segue destination="8vQ-W8-wwu" kind="show" identifier="BackToFavorites" id="ziV-4J-GkS"/>
@@ -1156,7 +1157,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="IU2-DW-LoN"/>
+        <segue reference="ziV-4J-GkS"/>
         <segue reference="tX9-J2-yO8"/>
         <segue reference="TxF-nw-k2B"/>
     </inferredMetricsTieBreakers>
