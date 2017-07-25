@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="aPT-tG-0Rr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -182,10 +182,10 @@
             </objects>
             <point key="canvasLocation" x="5400.8000000000002" y="171.36431784107947"/>
         </scene>
-        <!--Welcome View Controller-->
+        <!--WelcomeViewController-->
         <scene sceneID="l3R-zt-VQi">
             <objects>
-                <viewController storyboardIdentifier="WelcomeViewController" id="gtg-Z4-3m4" customClass="WelcomeViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WelcomeViewController" title="WelcomeViewController" id="gtg-Z4-3m4" customClass="WelcomeViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1rL-cO-xwD"/>
                         <viewControllerLayoutGuide type="bottom" id="oTu-Cl-FL1"/>
@@ -1121,10 +1121,10 @@
             </objects>
             <point key="canvasLocation" x="2742" y="-592"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--NavigationController-->
         <scene sceneID="Ib5-DM-M5N">
             <objects>
-                <navigationController storyboardIdentifier="NavigationController" automaticallyAdjustsScrollViewInsets="NO" id="aPT-tG-0Rr" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationController" title="NavigationController" automaticallyAdjustsScrollViewInsets="NO" id="aPT-tG-0Rr" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="s5f-jl-oFs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -1141,8 +1141,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="1Bn-so-FB5"/>
-        <segue reference="dfE-Na-D61"/>
+        <segue reference="IU2-DW-LoN"/>
+        <segue reference="FbZ-EK-1jY"/>
         <segue reference="cWw-05-A8f"/>
     </inferredMetricsTieBreakers>
 </document>

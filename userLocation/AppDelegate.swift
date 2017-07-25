@@ -41,15 +41,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: FlatWhite()]
         
         let defaults = UserDefaults.standard
-        _ = defaults.bool(forKey: "userHasOnboarded")
-        self.window?.rootViewController = self.generateStandardOnboardingVC()
-        /*
-        if userHasOnboarded == true {
+        let userHasOnboarded = defaults.bool(forKey: "userHasOnboarded")
+        //self.window?.rootViewController = self.generateStandardOnboardingVC()
+        
+        if userHasOnboarded {
             self.setupNormalRootViewController()
         } else {
             self.window?.rootViewController = self.generateStandardOnboardingVC()
         }
-        */
+        
         return true
     }
     
@@ -213,8 +213,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func setupNormalRootViewController() {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = mainStoryboard.instantiateViewController(withIdentifier: "NavigationController")
-        UIApplication.shared.keyWindow?.rootViewController = viewController
+        let viewController = mainStoryboard.instantiateViewController(withIdentifier: "NavigationController") as! UINavigationController
+        self.window?.rootViewController = viewController
         let defaults = UserDefaults.standard
         defaults.set(true, forKey: "userHasOnboarded")
     }

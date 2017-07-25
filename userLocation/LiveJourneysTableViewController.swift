@@ -304,7 +304,11 @@ class LiveJourneysTableViewController: UITableViewController {
     }
     */
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let label: UILabel = UILabel()
+        let containerView = UIView()
+        let label = UILabel()
+        containerView.addSubview(label)
+        containerView.backgroundColor = FlatRed()
+        label.backgroundColor = FlatGreen()
         if section == 0 {
             label.text = "My Current Journey"
             label.textColor = FlatTealDark()
@@ -312,7 +316,9 @@ class LiveJourneysTableViewController: UITableViewController {
             label.text = "Live Journeys Shared With Me"
             label.textColor = FlatTealDark()
         }
-        return label
+        label.sizeToFit()
+        
+        return containerView
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
