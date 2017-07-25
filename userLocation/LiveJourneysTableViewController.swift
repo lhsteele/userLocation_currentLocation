@@ -307,8 +307,7 @@ class LiveJourneysTableViewController: UITableViewController {
         let containerView = UIView()
         let label = UILabel()
         containerView.addSubview(label)
-        containerView.backgroundColor = FlatRed()
-        label.backgroundColor = FlatGreen()
+        
         if section == 0 {
             label.text = "My Current Journey"
             label.textColor = FlatTealDark()
@@ -317,7 +316,9 @@ class LiveJourneysTableViewController: UITableViewController {
             label.textColor = FlatTealDark()
         }
         label.sizeToFit()
-        
+        let labelHeight = label.frame.size.height
+        let newFrame = CGRect(x: 10, y: (45 - labelHeight)/2, width: label.frame.size.width, height: label.frame.size.height)
+        label.frame = newFrame
         return containerView
     }
     
