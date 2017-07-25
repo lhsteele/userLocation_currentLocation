@@ -82,7 +82,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         self.addressTextField.delegate = self
         
         createAFavoriteLocation.setTitleColor(FlatTealDark(), for: UIControlState.normal)
-        
+        self.navigationController?.navigationBar.tintColor = FlatWhite()
     }
     
     

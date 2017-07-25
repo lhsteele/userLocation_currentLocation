@@ -32,6 +32,7 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
 
         view.backgroundColor = FlatTeal()
         shareLocSubmitButton.setTitleColor(FlatWhite  (), for: UIControlState.normal)
+        self.navigationController?.navigationBar.tintColor = FlatWhite()
         label.textColor = FlatWhite()
         
     }

@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import Firebase
+import ChameleonFramework
 
 class FavLocMapViewController: UIViewController {
     
@@ -25,7 +26,7 @@ class FavLocMapViewController: UIViewController {
         super.viewDidLoad()
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        
+        self.navigationController?.navigationBar.tintColor = FlatWhite()
         getLocationCoordinates()
         print (favLocToMap)
     }

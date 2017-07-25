@@ -44,6 +44,8 @@ class StartJourneyMapViewController: UIViewController, CLLocationManagerDelegate
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
         
+        self.navigationController?.navigationBar.tintColor = FlatWhite()
+        
         displayShareAlertMessage(messageToDisplay: "Would you like to share this journey?")
         
         view.backgroundColor = FlatTeal()

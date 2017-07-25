@@ -23,6 +23,7 @@ class UpdateEmailViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
 
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.navigationBar.tintColor = FlatWhite()
         
         newEmailTextField.delegate = self
         newEmailTextField.returnKeyType = UIReturnKeyType.done

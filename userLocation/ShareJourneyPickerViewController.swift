@@ -48,7 +48,7 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
         shareJourneyButton.setTitleColor(FlatWhite(), for: UIControlState.normal)
         pickerLabel.textColor = FlatWhite()
         picker.tintColor = FlatWhite()
-        
+        self.navigationController?.navigationBar.tintColor = FlatWhite()
     }
     
     func createSubscribedUsersArray() {

@@ -23,6 +23,7 @@ class NewPasswordViewController: UIViewController, UITextFieldDelegate{
         super.viewDidLoad()
 
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.navigationBar.tintColor = FlatWhite()
         
         newPasswordTextField.delegate = self
         newPasswordTextField.returnKeyType = UIReturnKeyType.done

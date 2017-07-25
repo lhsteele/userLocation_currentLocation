@@ -24,6 +24,7 @@ class ChangePasswordReauthViewController: UIViewController, UITextFieldDelegate 
         super.viewDidLoad()
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.navigationBar.tintColor = FlatWhite()
 
         reauthEmailTextField.delegate = self
         reauthEmailTextField.returnKeyType = UIReturnKeyType.done

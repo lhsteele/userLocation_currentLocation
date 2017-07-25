@@ -240,6 +240,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let favorite = self.listOfFavorites[indexPath.row]
         cell.textLabel?.text = favorite.location
+        cell.textLabel?.textColor = FlatTealDark()
         return cell
     }
     

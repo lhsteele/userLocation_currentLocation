@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import Firebase
+import ChameleonFramework
 
 class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate{
     
@@ -33,6 +34,8 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
         
         liveJourneyMap.delegate = self
         manager.delegate = self
+        
+        self.navigationController?.navigationBar.tintColor = FlatWhite()
         
         getStartingCoordinates()
     }

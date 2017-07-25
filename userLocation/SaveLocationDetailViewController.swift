@@ -46,7 +46,8 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         locationNameField.returnKeyType = UIReturnKeyType.done
         
         saveFavorite.setTitleColor(FlatTealDark(), for: UIControlState.normal)
-        label.textColor = FlatWhite()
+        self.navigationController?.navigationBar.tintColor = FlatWhite()
+        label.textColor = FlatTealDark()
         
         print ("SaveLoc\(fireUserID)")
     }
