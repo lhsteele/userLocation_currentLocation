@@ -47,9 +47,20 @@ class UpdateEmailViewController: UIViewController, UITextFieldDelegate {
             if error != nil {
                 self.displayAlertMessage(messageToDisplay: "There has been an error changing your email address. Please try again.")
             } else {
+                self.updateUserEmailInDB()
                 self.displaySucessAlertMessage(messageToDisplay: "Your email has been successfully updated. Please login with your new email address.")
             }
         })
+    }
+    
+    func updateUserEmailInDB() {
+        if let userID = Auth.auth().currentUser?.uid {
+            let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+            let destination = ref.child("Users").child(userID)
+            let updatedEmail = ["Email" : newEmailTextField.text]
+            destination.updateChildValues(updatedEmail)
+        }
+        
     }
     
     func displayAlertMessage(messageToDisplay: String) {
