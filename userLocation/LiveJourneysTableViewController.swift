@@ -303,9 +303,11 @@ class LiveJourneysTableViewController: UITableViewController {
         if section == 0 {
             label.text = "My Current Journey"
             label.textColor = FlatTealDark()
+            label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
         } else {
             label.text = "Live Journeys Shared With Me"
             label.textColor = FlatTealDark()
+            label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
         }
         label.sizeToFit()
         let labelHeight = label.frame.size.height
