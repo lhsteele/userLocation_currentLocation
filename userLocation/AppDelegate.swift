@@ -183,7 +183,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func generateStandardOnboardingVC () -> OnboardingViewController {
         var onboardingVC = OnboardingViewController()
         
-        let firstPage = OnboardingContentViewController.content(withTitle: "See You Soon", body: nil, image: UIImage(named: ""), buttonText: nil, action: nil)
+        let firstPage = OnboardingContentViewController.content(withTitle: "See You Soon!", body: nil, image: UIImage(named: ""), buttonText: nil, action: nil)
         
         let secondPage = OnboardingContentViewController.content(withTitle: "Share a journey with someone.", body: "Let them know you're on your way.", image: UIImage(named: "Share"), buttonText: nil, action: nil)
         
