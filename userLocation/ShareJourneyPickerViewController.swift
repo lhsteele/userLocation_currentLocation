@@ -118,8 +118,6 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
                             if let location = pair.value as? String {
                                 
                                         self.locationName = location
-                                
-                                    
                                     } else {
                                         if let value = pair.value as? CLLocationDegrees {
                                             
@@ -130,15 +128,12 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
                                             } else {
                                                 self.longitude = value
                                             }
-                                            //self.saveDestinationCoordToDB()
-                                            print ("getDestCoords run")
                                         }
                                     }
                             }
                         }
-                        self.saveDestinationCoordToDB()
                     }
-                
+                    self.saveDestinationCoordToDB()
                 }
         })
     }
