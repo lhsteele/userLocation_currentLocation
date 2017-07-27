@@ -130,12 +130,13 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
                                             } else {
                                                 self.longitude = value
                                             }
-                                            self.saveDestinationCoordToDB()
+                                            //self.saveDestinationCoordToDB()
                                             print ("getDestCoords run")
                                         }
                                     }
                             }
                         }
+                        self.saveDestinationCoordToDB()
                     }
                 
                 }
@@ -147,6 +148,7 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
             let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
             let destination = ref.child("StartedJourneys").child(userID).key
             let destinationCoordinates = ["StartedJourneys/\(destination)" : ["DestinationLat" : latitude, "DestinationLong" : longitude, "CurrentLat" : localValue.latitude, "CurrentLong" : localValue.longitude, "SharedWithUser" : sharedUserName, "DestinationName" : locationName, "SharedWithUserID" : self.sharedUserID, "JourneyEnded" : journeyEnded]] as [String : Any]
+            print ("destCoords\(destinationCoordinates)")
             ref.updateChildValues(destinationCoordinates) { (Error, FIRDatabaseReference) in
                 self.retrieveUsername()
             }
