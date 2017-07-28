@@ -264,7 +264,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                 self.listOfFavorites.remove(at: indexPath.row)
                 self.listOfCreatedLocations.remove(at: indexPath.row)
                 self.tableView.reloadData()
-            
+                print (userFavToDelete)
                 self.startDeletion(location: userFavToDelete)
             
                 //tableView.deleteRows(at: [indexPath], with: .fade)
@@ -288,11 +288,11 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         let locDeletionRef = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("Locations").child(secondLocation)
         locDeletionRef.removeValue { (error, reference) in
             //check error is nil before running the next. if nil, print to console.
-            self.deleteFromSubscribedUsers(thirdLocation: secondLocation)
+            //self.deleteFromSubscribedUsers(thirdLocation: secondLocation)
             if error != nil {
-                self.deleteFromSubscribedUsers(thirdLocation: secondLocation)
-            } else {
                 print ("error\(reference)")
+            } else {
+                self.deleteFromSubscribedUsers(thirdLocation: secondLocation)
             }
         }
     }
@@ -302,11 +302,11 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         
         let locToDeleteRef = subscribedUsersDeletionRef.child(thirdLocation)
         locToDeleteRef.removeValue { (error, reference) in
-            self.deleteFromUsersCreatedLocations(fourthLocation: thirdLocation)
+            //self.deleteFromUsersCreatedLocations(fourthLocation: thirdLocation)
             if error != nil {
-                self.deleteFromUsersCreatedLocations(fourthLocation: thirdLocation)
-            } else {
                 print ("error\(reference)")
+            } else {
+                self.deleteFromUsersCreatedLocations(fourthLocation: thirdLocation)
             }
         }
     }
@@ -328,12 +328,13 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                                 valueToDelete = value
                                 print ("valToDelete\(valueToDelete)")
                                 ref.child(pair.key).removeValue { (error, reference) in
-                                    self.deleteKeyFromLocationsSharedWithUser(sixthLocation: fourthLocation)
+                                    //self.deleteKeyFromLocationsSharedWithUser(sixthLocation: fourthLocation)
                                     if error != nil {
-                                        //self.deleteKeyFromLocationsSharedWithUser(fifthLocation: fourthLocation)
-                                        self.findSharedEmailsUserID(fifthLocation: fourthLocation)
-                                    } else {
                                         print ("error\(reference)")
+                                    } else {
+                                        //this is extra??
+                                        //self.deleteKeyFromLocationsSharedWithUser(sixthLocation: fourthLocation)
+                                        self.findSharedEmailsUserID(fifthLocation: fourthLocation)
                                     }
                                 }
                             }
@@ -347,45 +348,53 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     func findSharedEmailsUserID(fifthLocation: String) {
         let databaseRef = Database.database().reference().child("SubscribedUsers").queryOrderedByKey()
         _ = databaseRef.queryEqual(toValue: journeyToStart).observe(.value, with: { (snapshot) in
-            for item in snapshot.children {
-                
-                if let userid = item as? DataSnapshot {
+            if snapshot.exists() {
+                for item in snapshot.children {
                     
-                    for item2 in userid.children {
-                        if let pair = item2 as? DataSnapshot {
-                            if let userID = pair.value as? String {
-                                let usersName = pair.key
-                                
-                                if usersName == self.sharedUserName {
-                                    self.sharedUserID = userID
-                                    self.deleteKeyFromLocationsSharedWithUser(sixthLocation: fifthLocation)
+                    if let userid = item as? DataSnapshot {
+                        
+                        for item2 in userid.children {
+                            if let pair = item2 as? DataSnapshot {
+                                if let userID = pair.value as? String {
+                                    let usersName = pair.key
+                                    
+                                    if usersName == self.sharedUserName {
+                                        self.sharedUserID = userID
+                                        self.deleteKeyFromLocationsSharedWithUser(sixthLocation: fifthLocation)
+                                    } else {
+                                        return
+                                    }
+                                    print ("retrieve run")
                                 }
-                                print ("retrieve run")
                             }
                         }
                     }
                 }
+
             }
         })
     }
     
     func deleteKeyFromLocationsSharedWithUser(sixthLocation: String) {
-        let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("LocationsSharedWithUser").child(sharedEmailsUserID)
+        let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("LocationsSharedWithUser")
         
-        ref.observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            let entries = snapshot.children
-            var valueToDelete = String()
-            for item in entries {
-                if let pair = item as? DataSnapshot {
-                    
-                    if let value = pair.value as? String {
-                        if value == sixthLocation{
-                            valueToDelete = value
-                            ref.child(pair.key).removeValue()
+        ref.queryEqual(toValue: sharedEmailsUserID).observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.exists() {
+                let entries = snapshot.children
+                var valueToDelete = String()
+                for item in entries {
+                    if let pair = item as? DataSnapshot {
+                        
+                        if let value = pair.value as? String {
+                            if value == sixthLocation{
+                                valueToDelete = value
+                                ref.child(pair.key).removeValue()
+                            }
                         }
                     }
                 }
+            } else {
+                return
             }
         })
     }
