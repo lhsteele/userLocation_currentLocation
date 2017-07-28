@@ -59,18 +59,7 @@ exports.newEntry = functions.database.ref('/StartedJourneys/{fireUserID}')
     //console.log(sharedUserID)
     var db = admin.database();
     var ref = db.ref('/UserTokens');
-    ref.orderByKey().equalTo(sharedUserID).on("child_added", function(snapshot) {
-    	const deviceToken = snapshot.val();
-    	userDeviceToken = deviceToken
-    	admin.messaging().sendToDevice(deviceToken, payload, options)
-    		.then (function(response) {
-    			console.log("Successfully sent message:", response);
-    		})
-    		.catch(function(error) {
-    			console.log("Error sending message:", error);
-    		})
-    })
-    /*
+    
     return ref.orderByKey().equalTo(sharedUserID).on("child_added", function(snapshot) {
       const deviceToken = snapshot.val();
       //userDeviceToken = deviceToken
@@ -87,6 +76,6 @@ exports.newEntry = functions.database.ref('/StartedJourneys/{fireUserID}')
 	  	});
 
     })
-   	*/
+   	
 })
 
