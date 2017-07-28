@@ -286,6 +286,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
     func deleteFromLocationsDB(secondLocation: String) {
         let locDeletionRef = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("Locations").child(secondLocation)
+        print (locDeletionRef)
         locDeletionRef.removeValue { (error, reference) in
             if error != nil {
                 print ("error\(reference)")
@@ -299,6 +300,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         let databaseRef = Database.database().reference().child("SubscribedUsers").queryOrderedByKey()
         _ = databaseRef.queryEqual(toValue: thirdLocation).observe(.value, with: { (snapshot) in
             if snapshot.exists() {
+                print (snapshot)
                 for item in snapshot.children {
                     
                     if let userid = item as? DataSnapshot {
@@ -306,30 +308,27 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                         for item2 in userid.children {
                             if let pair = item2 as? DataSnapshot {
                                 if let userID = pair.value as? String {
-                                    //let usersName = pair.key
-                                    
-                                    //if usersName != nil == self.sharedUserName {
-                                        self.sharedUserID = userID
+                                    self.sharedUserID = userID
+                                    print ("sharedUserID \(self.sharedUserID)")
                                     print ("aboutToRunDeleteKeyFrom")
                                     self.deleteKeyFromLocationsSharedWithUser(fourthLocation: thirdLocation)
-                                    //} else {
-                                        //return
-                                    //}
-                                    print ("retrieve run")
                                 }
                             }
                         }
                     }
                 }
                 
+            } else {
+                self.deleteKeyFromLocationsSharedWithUser(fourthLocation: thirdLocation)
             }
         })
     }
     
     func deleteKeyFromLocationsSharedWithUser(fourthLocation: String) {
-        let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("LocationsSharedWithUser")
-        
+        let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("LocationsSharedWithUser").queryOrderedByKey()
+        print (sharedUserID)
         ref.queryEqual(toValue: sharedUserID).observeSingleEvent(of: .value, with: { (snapshot) in
+            print (snapshot)
             if snapshot.exists() {
                 print ("lswu\(snapshot)")
                 let entries = snapshot.children
@@ -340,7 +339,9 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                         if let value = pair.value as? String {
                             if value == fourthLocation {
                                 valueToDelete = value
-                                ref.child(pair.key).removeValue()
+                                let keyToDelete = pair.key
+                                print (keyToDelete)
+                                ref.child(keyToDelete).removeValue()
                             }
                         }
                     }
