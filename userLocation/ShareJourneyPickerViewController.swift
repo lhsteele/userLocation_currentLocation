@@ -186,7 +186,7 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
     @IBAction func shareJourney(_ sender: Any) {
         retrieveSharedUserID()
         print ("perform Segue")
-        performSegue(withIdentifier: "BackToFavorites", sender: shareJourneyButton)
+        displaySuccessAlertMessage(messageToDisplay: "Your journey has been shared.")
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -210,6 +210,15 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let attributedString = NSAttributedString(string: arrayOfSubscribedUsers[row], attributes: [NSForegroundColorAttributeName : FlatWhite()])
         return attributedString
+    }
+    
+    func displaySuccessAlertMessage(messageToDisplay: String) {
+        let alertController = UIAlertController(title: "Success", message: messageToDisplay, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action: UIAlertAction) in
+            self.performSegue(withIdentifier: "PickerToLiveJourneysSegue", sender: self)
+        }
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
