@@ -319,7 +319,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                 }
                 
             } else {
-                self.deleteFromUsersCreatedLocations(sixthLocation: thirdLocation)
+                self.deleteFromUsersCreatedLocations(sixthLocation: thirdLocation )
             }
         })
     }

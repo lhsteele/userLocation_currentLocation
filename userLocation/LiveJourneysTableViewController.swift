@@ -25,7 +25,7 @@ class LiveJourneysTableViewController: UITableViewController {
     var userCurrentJourney: JourneyLocation?
     var userCurrentJourneyLocation = ""
     var sharedWithLiveJourney: [JourneyLocation] = []
-    //var usersSharingJourneys: [String] = []
+    //var userSharingJourneys: [String] = []
     var userSharingJourney = String()
     var journeyIsLive = false
     var sharedUserID = String()
@@ -321,18 +321,28 @@ class LiveJourneysTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let endJourney = UITableViewRowAction(style: .normal, title: "End Journey") { (action, indexPath) in
-            if indexPath.section == 0 {
+        if indexPath.section == 0 {
+            let endJourney = UITableViewRowAction(style: .normal, title: "End Journey") { (action, indexPath) in
+                
                 _ = self.userCurrentJourneyLocation
-        
+                
                 self.findSharedUsersForLocation()
                 self.displaySuccessAlertMessage(messageToDisplay: "Journey has been succesfully ended.")
                 self.tableView.reloadData()
                 
-            } 
+                
+            }
+            return [endJourney]
+        } else {
+            let viewJourney = UITableViewRowAction(style: .normal, title: "View Journey") { (action, indexPath) in
+                _ = self.userSharingJourney
+                self.performSegue(withIdentifier: "LiveJourneyMapViewSegue", sender: self)
+                self.tableView.reloadData()
+            }
+            return [viewJourney]
         }
-        return [endJourney]
     }
+    
     
     func updateUserLiveJourneyBoolean() {
         if let userID = Auth.auth().currentUser?.uid {
@@ -349,26 +359,7 @@ class LiveJourneysTableViewController: UITableViewController {
         let update = ["JourneyEnded" : true]
         destination.updateChildValues(update)
         self.updateUserLiveJourneyBoolean()
-        //self.deleteUserLiveJourney(location: self.journeyToEnd)
     }
-    
-    /*
-    func deleteSharedWithLiveJourneys() {
-        let databaseRef = FIRDatabase.database().reference().child("SharedWithLiveJourneys").child(sharedUserID)
-        databaseRef.removeValue { (error, reference) in
-            self.deleteUserLiveJourney(location: self.journeyToEnd)
-        }
-        self.tableView.reloadData()
-    }
-     
-    func deleteUserLiveJourney(location : String) {
-        if let userID = FIRAuth.auth()?.currentUser?.uid {
-        let ref = FIRDatabase.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("StartedJourneys").child(userID)
-        ref.removeValue()
-        }
-        self.tableView.reloadData()
-     }
-    */
     
     func findSharedUsersForLocation() {
         let databaseRef = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("StartedJourneys")
