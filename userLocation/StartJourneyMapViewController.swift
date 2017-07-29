@@ -65,6 +65,7 @@ class StartJourneyMapViewController: UIViewController, CLLocationManagerDelegate
         }
         
         let noAction = UIAlertAction(title: "No", style: .default) { (action:UIAlertAction!) in
+            self.performSegue(withIdentifier: "ShareToFavoritesSegue", sender: self)
         }
         
         alertController.addAction(yesAction)
