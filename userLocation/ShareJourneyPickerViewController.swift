@@ -93,7 +93,8 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
                                 
                                 if usersName == self.sharedUserName {
                                     self.sharedUserID = userID
-                                    self.getDestinationCoordinates(userID : self.sharedUserID)
+                                    self.checkIfUserAlreadyHasSharedJourney(userID: self.sharedUserID)
+                                    //self.getDestinationCoordinates(userID : self.sharedUserID)
                                 }
                                 print ("retrieve run")
                             }
@@ -102,6 +103,18 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
                 }
             }
         })
+    }
+    
+    func checkIfUserAlreadyHasSharedJourney(userID: String) {
+        let ref = Database.database().reference().child("SharedWithLiveJourneys").queryOrderedByKey()
+        ref.queryEqual(toValue: self.sharedUserID).observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.exists() {
+                self.displayErrorAlertMessage(messageToDisplay: "Unable to share your journey with this user. Another user is already sharing their journey with them.")
+            } else {
+                self.getDestinationCoordinates(userID: self.sharedUserID)
+            }
+        })
+        
     }
  
     func getDestinationCoordinates(userID : String) {
@@ -181,12 +194,13 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
             let childUpdates = ["/SharedWithLiveJourneys/\(destination)" : destinationCoordinates]
             ref.updateChildValues(childUpdates)
         }
+        displaySuccessAlertMessage(messageToDisplay: "Your journey has been shared.")
     }
     
     @IBAction func shareJourney(_ sender: Any) {
         retrieveSharedUserID()
         print ("perform Segue")
-        displaySuccessAlertMessage(messageToDisplay: "Your journey has been shared.")
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -216,6 +230,15 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
         let alertController = UIAlertController(title: "Success", message: messageToDisplay, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { (action: UIAlertAction) in
             self.performSegue(withIdentifier: "PickerToLiveJourneysSegue", sender: self)
+        }
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func displayErrorAlertMessage(messageToDisplay: String) {
+        let alertController = UIAlertController(title: "Error", message: messageToDisplay, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action: UIAlertAction) in
+            self.performSegue(withIdentifier: "BackToFavorites", sender: self)
         }
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
