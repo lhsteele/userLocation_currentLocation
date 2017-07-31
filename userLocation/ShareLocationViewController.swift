@@ -117,7 +117,7 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
             let items = snapshot.children
             for item in items {
                 if let locationID = item as? DataSnapshot {
-                    if let locIDKey = locationID.key as? String {
+                    let locIDKey = locationID.key 
                         if locIDKey == self.locationToShare {
                             print ("location found")
                             if let userID = item as? DataSnapshot {
@@ -142,9 +142,6 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
                         } else {
                             self.findEmailsUsername()
                         }
-                        
-                    }
-                    
                 }
                 
             }
@@ -173,7 +170,7 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
                 for snap in listOfUserIDs {
                     if let displayName = snap as? DataSnapshot {
                         
-                        if let userID = displayName.key as? String {
+                        let userID = displayName.key as String
                             print (userID)
                             if userID == self.sharedEmailsUserID {
                                 if let usersName = displayName.value as? String {
@@ -182,7 +179,6 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
                                     return
                                 }
                             }
-                        }
                     }
                     
                 }
