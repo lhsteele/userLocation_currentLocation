@@ -231,11 +231,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func saveEmail() {
         let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
-        //print ("saveEmailRun")
         if let userID = Auth.auth().currentUser?.uid {
-            //print (userID)
             let value = [userID : userEmail]
-            //print (value)
             ref.child("Emails").updateChildValues(value) { (err, ref) in
                 
                 if err != nil {

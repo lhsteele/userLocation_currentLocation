@@ -17,6 +17,7 @@ class UpdateEmailViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var newEmailTextField: UITextField!
     @IBOutlet var submitButton: UIButton!
     
+    
     var handle: AuthStateDidChangeListenerHandle?
 
     override func viewDidLoad() {
@@ -57,20 +58,26 @@ class UpdateEmailViewController: UIViewController, UITextFieldDelegate {
     func updateUserEmailInDB() {
         if let userID = Auth.auth().currentUser?.uid {
             let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
-            let destination = ref.child("Users").child(userID)
-            let updatedEmail = ["Email" : newEmailTextField.text] 
-            destination.updateChildValues(updatedEmail)
+            let destination = ref.child("Users").child(userID).key
+            let updatedEmail = ["Email" : newEmailTextField.text]
+            let childUpdates = ["/Users/\(destination)" : updatedEmail]
+            ref.updateChildValues(childUpdates)
         }
         self.updateDBEmailList()
         
     }
     
     func updateDBEmailList() {
+        let newEmail = newEmailTextField.text
+        let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
         if let userID = Auth.auth().currentUser?.uid {
-            let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
-            let destination = ref.child("Emails")
-            let updatedEmail = [userID : newEmailTextField.text]
-            destination.updateChildValues(updatedEmail)
+            let updatedEmail = [userID : newEmail]
+            
+            ref.child("Emails").updateChildValues(updatedEmail) { (err, ref) in
+                if err != nil {
+                    return
+                }
+            }
         }
     }
     
