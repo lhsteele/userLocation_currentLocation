@@ -43,37 +43,27 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         
         emailTextField.returnKeyType = UIReturnKeyType.done
-        //emailTextField.tag = 0
         emailTextField.delegate = self
         
-    
-        
         passwordTextField.delegate = self
-        //passwordTextField.tag = 1
         passwordTextField.returnKeyType = UIReturnKeyType.done
         
         usernameTextField.delegate = self
-        //usernameTextField.tag = 2
         usernameTextField.returnKeyType = UIReturnKeyType.done
         
-        //var colorArray = ColorSchemeOf(ColorScheme.complementary, color: FlatNavyBlue(), isFlatScheme: true)
         view.backgroundColor = FlatTeal()
         signInToggle.tintColor = FlatWhite()
         submitButton.tintColor = FlatWhite()
         signInLabel.textColor = FlatWhite()
-        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func signInToggleChanged(_ sender: UISegmentedControl) {
-        //Flip the boolean
         isSignIn = !isSignIn
         
-        //Check the bool and set the button text
         if isSignIn {
             signInLabel.text = "Sign In"
             submitButton.setTitle ("Sign In", for: .normal)
@@ -87,18 +77,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func submitButtonTapped(_ sender: UIButton) {
-        
-        // Check if it's sign in or register
         if isSignIn {
-                // Sign in the user with Firebase
             validateFormForSignIn()
         } else {
-                // Register the user with Firebase
             validateFormForRegistration()
         }
-        
         getUserInfo()
-              
     }
     
     func validateFormForSignIn() {
@@ -141,7 +125,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.saveEmail()
                 self.saveUsername()
             }
-            
             let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
             let values = ["Email": self.emailTextField.text, "Username": self.usernameTextField.text]
             //Don't need to update passwords, keeps it from being printed in database
@@ -167,7 +150,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.performSegue(withIdentifier: "FavoriteLocationsTableSegue", sender: self.submitButton)
             }
         })
-        
     }
     
     func isEmailValid(emailAddressString: String) -> Bool {
@@ -186,10 +168,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }
             
         } catch _ as NSError {
-            //print("invalid regex: \(error.localizedDescription)")
             returnValue = false
         }
-        
         return  returnValue
     }
     
@@ -225,7 +205,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             userEmail = email
             username = usernameTextField.text!
             userPassword = passwordTextField.text!
-            
         }
     }
     
@@ -234,7 +213,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if let userID = Auth.auth().currentUser?.uid {
             let value = [userID : userEmail]
             ref.child("Emails").updateChildValues(value) { (err, ref) in
-                
                 if err != nil {
                     return
                 }
@@ -255,16 +233,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-    
-    
-    /*
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //dismiss the keyboard when the view is tapped on.
-        emailTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
-    }
-    */
-    
+   
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == self.emailTextField, textField == self.passwordTextField, textField == self.usernameTextField {
             self.emailTextField.text = textField.text!
