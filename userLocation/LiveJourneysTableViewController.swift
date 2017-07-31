@@ -374,7 +374,7 @@ class LiveJourneysTableViewController: UITableViewController {
                 for item in entries {
                     if let pair = item as? DataSnapshot {
                         print (pair)
-                        if let key = pair.key as? String {
+                        let key = pair.key
                             if key == "SharedWithUserID" {
                                 if let value = pair.value as? String {
                                     sharedUser = value
@@ -383,7 +383,6 @@ class LiveJourneysTableViewController: UITableViewController {
                                     self.updateSharedWithLiveJourneysBoolean(sharedUserID: self.sharedUserID)
                                 }
                             }
-                        }
                     }
                 }
             })

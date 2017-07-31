@@ -59,7 +59,6 @@ class FavLocMapViewController: UIViewController {
         print (locationID)
         _ = databaseRef.queryEqual(toValue: locationID).observe(.value, with: { (snapshot) in
             for item in snapshot.children {
-                var favLocation = String()
                 var favLat = Double()
                 var favLong = Double()
                 
@@ -68,24 +67,19 @@ class FavLocMapViewController: UIViewController {
                     for item in dbLocation.children {
                         
                         if let pair = item as? DataSnapshot {
-                            if let location = pair.value as? String {
-                                favLocation = location
-                            } else {
-                                if let value = pair.value as? Double {
-                                    let valueName = pair.key
+                            if let value = pair.value as? Double {
+                                let valueName = pair.key
+                                
+                                if valueName == "Latitude" {
                                     
-                                    if valueName == "Latitude" {
-                                        
-                                        favLat = value as CLLocationDegrees
-                                        self.locationLat = favLat as CLLocationDegrees
-                                        
-                                    } else {
-                                        favLong = value as CLLocationDegrees
-                                        self.locationLong = favLong as CLLocationDegrees
-                                    }
+                                    favLat = value as CLLocationDegrees
+                                    self.locationLat = favLat as CLLocationDegrees
+                                    
+                                } else {
+                                    favLong = value as CLLocationDegrees
+                                    self.locationLong = favLong as CLLocationDegrees
                                 }
                             }
-                            
                         }
                     }
                     let favCoordinate = CLLocationCoordinate2DMake(self.locationLat, self.locationLong)

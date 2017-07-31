@@ -63,12 +63,9 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
                     
                     for item2 in username.children {
                         if let pair = item2 as? DataSnapshot {
-                            if let userName = pair.key as? String {
-                                
+                            let userName = pair.key
                                 user = userName
                                 self.arrayOfSubscribedUsers.append(user)
-                            }
-                            
                         }
                     }
                     self.arrayOfSubscribedUsers.insert("Select User", at: 0)

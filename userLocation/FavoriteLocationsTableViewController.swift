@@ -332,13 +332,11 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             if snapshot.exists() {
                 print ("lswu\(snapshot)")
                 let entries = snapshot.children
-                var valueToDelete = String()
                 for item in entries {
                     if let pair = item as? DataSnapshot {
                         
                         if let value = pair.value as? String {
                             if value == fourthLocation {
-                                valueToDelete = value
                                 let keyToDelete = pair.key
                                 print (keyToDelete)
                                  ref.child(keyToDelete).removeValue()
