@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ChameleonFramework
+//import ChameleonFramework
 
 class GoodbyeViewController: UIViewController {
 
@@ -16,9 +16,12 @@ class GoodbyeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        /*
         view.backgroundColor = FlatTeal()
         label.textColor = FlatWhite()
+        */
+        view.backgroundColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
+        label.textColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
     }
 
     override func didReceiveMemoryWarning() {

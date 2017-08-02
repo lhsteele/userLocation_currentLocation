@@ -62,6 +62,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         addLocationButton.setTitleColor(UIColor(red: 0.20, green: 0.38, blue: 0.45, alpha: 1.0), for: UIControlState.normal)
         
         loadFavorites()
+        
     }
     
     func loadFavorites() {

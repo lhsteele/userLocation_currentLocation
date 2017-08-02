@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-import ChameleonFramework
+//import ChameleonFramework
 
 class UpdateEmailReauthViewController: UIViewController, UITextFieldDelegate {
 
@@ -24,7 +24,8 @@ class UpdateEmailReauthViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.navigationController?.navigationBar.tintColor = FlatWhite()
+        //self.navigationController?.navigationBar.tintColor = FlatWhite()
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
         
         reauthToUpdateEmailTextField.delegate = self
         reauthToUpdateEmailTextField.returnKeyType = UIReturnKeyType.done
@@ -32,9 +33,15 @@ class UpdateEmailReauthViewController: UIViewController, UITextFieldDelegate {
         reauthToUpdatePasswordTextField.delegate = self
         reauthToUpdatePasswordTextField.returnKeyType = UIReturnKeyType.done
         
+        /*
         view.backgroundColor = FlatTeal()
         submitButton.tintColor = FlatWhite()
         label.textColor = FlatWhite()
+        */
+        view.backgroundColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
+        submitButton.tintColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
+        label.textColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
+
     }
 
     override func didReceiveMemoryWarning() {

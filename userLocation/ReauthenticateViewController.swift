@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 import Firebase
-import ChameleonFramework
+//import ChameleonFramework
 
 class ReauthenticateViewController: UIViewController, UITextFieldDelegate {
     
@@ -23,7 +23,8 @@ class ReauthenticateViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.navigationController?.navigationBar.tintColor = FlatWhite()
+        //self.navigationController?.navigationBar.tintColor = FlatWhite()
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
         
         reauthEmailTextField.delegate = self
         reauthEmailTextField.returnKeyType = UIReturnKeyType.done
@@ -31,10 +32,14 @@ class ReauthenticateViewController: UIViewController, UITextFieldDelegate {
         reauthPasswordTextField.delegate = self
         reauthPasswordTextField.returnKeyType = UIReturnKeyType.done
         
+        /*
         view.backgroundColor = FlatTeal()
         reauthSubmitButton.tintColor = FlatWhite()
         label.textColor = FlatWhite()
-        
+        */
+        view.backgroundColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
+        reauthSubmitButton.tintColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
+        label.textColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
     }
 
     override func didReceiveMemoryWarning() {
