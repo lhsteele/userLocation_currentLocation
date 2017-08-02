@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseMessaging
 import UserNotifications
-import ChameleonFramework
+//import ChameleonFramework
 import Onboard
 
 
@@ -36,9 +36,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         //NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotification), name: .firInstanceIDTokenRefresh, object: nil)
         
-        UINavigationBar.appearance().tintColor = FlatTeal()
-        UINavigationBar.appearance().barTintColor = FlatTeal()
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: FlatWhite()]
+        //UINavigationBar.appearance().tintColor = FlatTeal()
+        //UINavigationBar.appearance().barTintColor = FlatTeal()
+        //UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: FlatWhite()]
+        UINavigationBar.appearance().tintColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
+        UINavigationBar.appearance().barTintColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)]
         
         let defaults = UserDefaults.standard
         let userHasOnboarded = defaults.bool(forKey: "userHasOnboarded")
@@ -192,16 +195,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let fourthPage = OnboardingContentViewController.content(withTitle: "The map will also show your ETA.", body: "That way they know when to expect you.", image: UIImage(named: "ETA"), buttonText: "Get started", action: self.handleOnboardingCompletion)
         
         onboardingVC = OnboardingViewController.onboard(withBackgroundImage: UIImage(named: ""), contents: [firstPage, secondPage, thirdPage, fourthPage])
-        onboardingVC.view.backgroundColor = FlatTeal().lighten(byPercentage: 70)
+        onboardingVC.view.backgroundColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0).lighten(byPercentage: 70)
         onboardingVC.shouldFadeTransitions = true
         onboardingVC.shouldMaskBackground = false
         onboardingVC.shouldBlurBackground = false
         onboardingVC.fadePageControlOnLastPage = true
-        onboardingVC.pageControl.pageIndicatorTintColor = FlatWhiteDark()
-        onboardingVC.pageControl.currentPageIndicatorTintColor = FlatWhite()
+        onboardingVC.pageControl.pageIndicatorTintColor = UIColor(red:0.74, green:0.76, blue:0.78, alpha:1.0)
+        onboardingVC.pageControl.currentPageIndicatorTintColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
         onboardingVC.allowSkipping = false
         onboardingVC.swipingEnabled = true
-        fourthPage.actionButton.backgroundColor = FlatTealDark()
+        fourthPage.actionButton.backgroundColor = UIColor(red:0.20, green:0.38, blue:0.45, alpha:1.0)
         
         
         

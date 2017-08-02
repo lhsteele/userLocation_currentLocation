@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
-import ChameleonFramework
+//import ChameleonFramework
 
 
 
@@ -51,15 +51,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         usernameTextField.delegate = self
         usernameTextField.returnKeyType = UIReturnKeyType.done
         
+        /*
         view.backgroundColor = FlatTeal()
         signInToggle.tintColor = FlatWhite()
         submitButton.tintColor = FlatWhite()
         signInLabel.textColor = FlatWhite()
-        
-        print (FlatWhite().hexValue() as String)
-        print (FlatWhiteDark().hexValue() as String)
-        print (FlatTeal().hexValue() as String)
-        print (FlatTealDark().hexValue() as String)
+        */
+        view.backgroundColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
+        signInToggle.tintColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
+        submitButton.tintColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
+        signInLabel.textColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
     }
 
     override func didReceiveMemoryWarning() {

@@ -12,7 +12,7 @@ import FirebaseDatabase
 import Firebase
 import FirebaseMessaging
 import UserNotifications
-import ChameleonFramework
+//import ChameleonFramework
 
 let favoriteLocationKey = "NewFavoriteLocation"
 
@@ -53,10 +53,13 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         super.viewDidLoad()
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        settingsButton.tintColor = FlatWhite()
-        journeysButton.tintColor = FlatWhite()
+        //settingsButton.tintColor = FlatWhite()
+        //journeysButton.tintColor = FlatWhite()
+        settingsButton.tintColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
+        journeysButton.tintColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
 
-        addLocationButton.setTitleColor(FlatTealDark(), for: UIControlState.normal)
+        //addLocationButton.setTitleColor(FlatTealDark(), for: UIControlState.normal)
+        addLocationButton.setTitleColor(UIColor(red: 0.20, green: 0.38, blue: 0.45, alpha: 1.0), for: UIControlState.normal)
         
         loadFavorites()
     }
@@ -240,7 +243,8 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let favorite = self.listOfFavorites[indexPath.row]
         cell.textLabel?.text = favorite.location
-        cell.textLabel?.textColor = FlatTealDark()
+        //cell.textLabel?.textColor = FlatTealDark()
+        cell.textLabel?.textColor = UIColor(red: 0.20, green: 0.38, blue: 0.45, alpha: 1.0)
         return cell
     }
     
