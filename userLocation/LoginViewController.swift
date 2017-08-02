@@ -55,6 +55,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         signInToggle.tintColor = FlatWhite()
         submitButton.tintColor = FlatWhite()
         signInLabel.textColor = FlatWhite()
+        
+        print (FlatWhite().hexValue() as String)
+        print (FlatWhiteDark().hexValue() as String)
+        print (FlatTeal().hexValue() as String)
+        print (FlatTealDark().hexValue() as String)
     }
 
     override func didReceiveMemoryWarning() {
