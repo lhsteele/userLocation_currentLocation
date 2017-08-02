@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import MapKit
-//import ChameleonFramework
 
 
 class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
@@ -42,11 +41,6 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         self.locationNameField.delegate = self
         locationNameField.returnKeyType = UIReturnKeyType.done
         
-        /*
-        saveFavorite.setTitleColor(FlatTealDark(), for: UIControlState.normal)
-        self.navigationController?.navigationBar.tintColor = FlatWhite()
-        label.textColor = FlatTealDark()
-        */
         saveFavorite.setTitleColor(UIColor(red: 0.20, green: 0.38, blue: 0.45, alpha: 1.0), for: UIControlState.normal)
         self.navigationController?.navigationBar.tintColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
         label.textColor = UIColor(red: 0.20, green: 0.38, blue: 0.45, alpha: 1.0)

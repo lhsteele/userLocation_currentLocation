@@ -8,7 +8,6 @@
 
 import UIKit
 import FirebaseAuth
-//import ChameleonFramework
 
 class SettingsTableViewController: UITableViewController {
     
@@ -28,15 +27,8 @@ class SettingsTableViewController: UITableViewController {
         super.viewDidLoad()
 
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        //self.navigationController?.navigationBar.tintColor = FlatWhite()
         self.navigationController?.navigationBar.tintColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
         
-        /*
-        updateEmailButton.textLabel?.textColor = FlatTeal()
-        changePasswordButton.textLabel?.textColor = FlatTeal()
-        logoutButton.textLabel?.textColor = FlatTeal()
-        deleteAccountButton.textLabel?.textColor = FlatRedDark()
-        */
         updateEmailButton.textLabel?.textColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
         changePasswordButton.textLabel?.textColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
         logoutButton.textLabel?.textColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)

@@ -10,7 +10,6 @@ import UIKit
 import MapKit
 import CoreLocation
 import Firebase
-//import ChameleonFramework
 
 class StartJourneyMapViewController: UIViewController, CLLocationManagerDelegate {
     
@@ -44,12 +43,10 @@ class StartJourneyMapViewController: UIViewController, CLLocationManagerDelegate
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
         
-        //self.navigationController?.navigationBar.tintColor = FlatWhite()
         self.navigationController?.navigationBar.tintColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
         
         displayShareAlertMessage(messageToDisplay: "Would you like to share this journey?")
         
-        //view.backgroundColor = FlatTeal()
         view.backgroundColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
     }
     

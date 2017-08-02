@@ -6,6 +6,5 @@ target "userLocation" do
     pod 'Firebase/Database', '4.0.4'
     pod 'Firebase/Auth', '4.0.4'
     pod 'Firebase/Messaging', '4.0.4'
-    pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
     pod 'Onboard'
 end
