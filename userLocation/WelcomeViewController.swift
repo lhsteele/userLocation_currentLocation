@@ -8,7 +8,6 @@
 
 import UIKit
 import FirebaseAuth
-//import ChameleonFramework
 
 class WelcomeViewController: UIViewController, UIGestureRecognizerDelegate {
 

@@ -10,7 +10,6 @@ import UIKit
 import MapKit
 import FirebaseDatabase
 import Firebase
-//import ChameleonFramework
 
 class LiveJourneysTableViewController: UITableViewController {
     
@@ -45,9 +44,7 @@ class LiveJourneysTableViewController: UITableViewController {
         loadUserLiveJourney()
         loadSharedWithLiveJourneyData()
         tableView.reloadData()
-       //usernamesSharingJourneys()
-        
-        //self.navigationController?.navigationBar.tintColor = FlatWhite()
+       
         self.navigationController?.navigationBar.tintColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
     }
     
@@ -284,7 +281,6 @@ class LiveJourneysTableViewController: UITableViewController {
             cell.textLabel?.text = sharedData
             //cell.textLabel?.textColor = FlatTeal()
             cell.textLabel?.textColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
-            cell.accessoryType = .disclosureIndicator
         }
 
         return cell
@@ -307,12 +303,10 @@ class LiveJourneysTableViewController: UITableViewController {
         
         if section == 0 {
             label.text = "My Current Journey"
-            //label.textColor = FlatTealDark()
             label.textColor = UIColor(red: 0.20, green: 0.38, blue: 0.45, alpha: 1.0)
             label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
         } else {
             label.text = "Live Journeys Shared With Me"
-            //label.textColor = FlatTealDark()
             label.textColor = UIColor(red: 0.20, green: 0.38, blue: 0.45, alpha: 1.0)
             label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
         }
