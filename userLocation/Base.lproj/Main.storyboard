@@ -33,7 +33,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter address:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GZ3-6p-2CT">
-                                <rect key="frame" x="16" y="84" width="343" height="30"/>
+                                <rect key="frame" x="16" y="40" width="343" height="30"/>
                                 <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -672,19 +672,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your new password:" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ytL-uv-Jnl">
-                                <rect key="frame" x="36" y="94" width="303" height="20.5"/>
+                                <rect key="frame" x="36" y="50" width="303" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MXA-OV-8tF">
-                                <rect key="frame" x="36" y="164.5" width="303" height="30"/>
+                                <rect key="frame" x="36" y="120.5" width="303" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZOL-Hw-wbE">
-                                <rect key="frame" x="163" y="259.5" width="49" height="30"/>
+                                <rect key="frame" x="163" y="215.5" width="49" height="30"/>
                                 <state key="normal" title="Submit"/>
                                 <connections>
                                     <action selector="reauthDeleteUser:" destination="Wh7-Cd-sly" eventType="touchUpInside" id="p0X-fk-Yqj"/>
@@ -732,19 +732,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your new email address:" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YgX-xf-01T">
-                                <rect key="frame" x="36" y="94" width="303" height="20.5"/>
+                                <rect key="frame" x="36" y="50" width="303" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nyi-Oc-Cdy">
-                                <rect key="frame" x="36" y="164.5" width="303" height="30"/>
+                                <rect key="frame" x="36" y="120.5" width="303" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XwZ-QD-ON4">
-                                <rect key="frame" x="163" y="259.5" width="49" height="30"/>
+                                <rect key="frame" x="163" y="215.5" width="49" height="30"/>
                                 <state key="normal" title="Submit"/>
                                 <connections>
                                     <action selector="reauthDeleteUser:" destination="Wh7-Cd-sly" eventType="touchUpInside" id="gju-fb-be4"/>
@@ -792,25 +792,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AJs-qF-h8L">
-                                <rect key="frame" x="36" y="155" width="303" height="30"/>
+                                <rect key="frame" x="36" y="111" width="303" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cDf-CN-Zxe">
-                                <rect key="frame" x="36" y="220" width="303" height="30"/>
+                                <rect key="frame" x="36" y="176" width="303" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In order to delete your account, re-authentication is required." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d8Y-OT-T3B">
-                                <rect key="frame" x="36" y="94" width="303" height="41"/>
+                                <rect key="frame" x="36" y="50" width="303" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z9v-UV-Grg">
-                                <rect key="frame" x="163" y="315" width="49" height="30"/>
+                                <rect key="frame" x="163" y="271" width="49" height="30"/>
                                 <state key="normal" title="Submit"/>
                                 <connections>
                                     <action selector="reauthDeleteUser:" destination="Wh7-Cd-sly" eventType="touchUpInside" id="S27-z4-40y"/>
@@ -1062,14 +1062,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coordinates" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FEf-9O-2Ju">
-                                <rect key="frame" x="16" y="249" width="343" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tG5-RV-zxw">
-                                <rect key="frame" x="84" y="548" width="206" height="30"/>
+                                <rect key="frame" x="84" y="548" width="207" height="30"/>
                                 <state key="normal" title="Save Favorite"/>
                                 <connections>
                                     <action selector="saveFavorite:" destination="1fE-IW-njT" eventType="touchUpInside" id="aFr-jG-7nI"/>
@@ -1079,22 +1073,18 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="KOp-Cc-tZR" firstAttribute="leading" secondItem="CWw-kd-Soz" secondAttribute="leadingMargin" id="AfO-gG-RFF"/>
-                            <constraint firstItem="FEf-9O-2Ju" firstAttribute="centerX" secondItem="tG5-RV-zxw" secondAttribute="centerX" id="DeW-ZB-yZ4"/>
                             <constraint firstItem="KOp-Cc-tZR" firstAttribute="top" secondItem="tGL-wn-hl8" secondAttribute="bottom" constant="34" id="E2e-V9-3gs"/>
-                            <constraint firstItem="FEf-9O-2Ju" firstAttribute="top" secondItem="QU3-IV-h1n" secondAttribute="bottom" constant="30" id="WFd-d2-W8h"/>
+                            <constraint firstItem="tG5-RV-zxw" firstAttribute="centerX" secondItem="CWw-kd-Soz" secondAttribute="centerX" id="cOF-J6-1Su"/>
                             <constraint firstItem="KOp-Cc-tZR" firstAttribute="trailing" secondItem="QU3-IV-h1n" secondAttribute="trailing" id="dnm-CX-zZm"/>
                             <constraint firstItem="tG5-RV-zxw" firstAttribute="leading" secondItem="CWw-kd-Soz" secondAttribute="leadingMargin" constant="68" id="h66-3A-pOO"/>
-                            <constraint firstItem="QU3-IV-h1n" firstAttribute="trailing" secondItem="FEf-9O-2Ju" secondAttribute="trailing" id="oUJ-Mp-ynt"/>
                             <constraint firstItem="uxn-5g-1YL" firstAttribute="top" secondItem="tG5-RV-zxw" secondAttribute="bottom" constant="89" id="rJe-Vo-nun"/>
                             <constraint firstItem="KOp-Cc-tZR" firstAttribute="leading" secondItem="QU3-IV-h1n" secondAttribute="leading" id="sCn-GQ-BjG"/>
                             <constraint firstItem="QU3-IV-h1n" firstAttribute="top" secondItem="KOp-Cc-tZR" secondAttribute="bottom" constant="70" id="tS0-D2-yGf"/>
                             <constraint firstItem="KOp-Cc-tZR" firstAttribute="trailing" secondItem="CWw-kd-Soz" secondAttribute="trailingMargin" id="vLS-qo-4ID"/>
-                            <constraint firstItem="QU3-IV-h1n" firstAttribute="leading" secondItem="FEf-9O-2Ju" secondAttribute="leading" id="zir-B0-Ibq"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="label" destination="KOp-Cc-tZR" id="ico-UR-Fwo"/>
-                        <outlet property="locationCoordinates" destination="FEf-9O-2Ju" id="kAY-Bl-KCK"/>
                         <outlet property="locationNameField" destination="QU3-IV-h1n" id="YWu-6z-2Qw"/>
                         <outlet property="saveFavorite" destination="tG5-RV-zxw" id="JCr-Ev-yxV"/>
                         <segue destination="8vQ-W8-wwu" kind="show" identifier="NewFavLocationSegue" id="zct-xe-Nlu"/>
@@ -1142,9 +1132,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="R4Y-j0-YUS"/>
-        <segue reference="1xk-cg-YgG"/>
+        <segue reference="zct-xe-Nlu"/>
         <segue reference="y8I-s4-yWc"/>
         <segue reference="cWw-05-A8f"/>
+        <segue reference="R4Y-j0-YUS"/>
     </inferredMetricsTieBreakers>
 </document>

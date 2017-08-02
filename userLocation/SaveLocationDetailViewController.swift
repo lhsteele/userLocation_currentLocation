@@ -17,7 +17,6 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var label: UILabel!
     @IBOutlet var locationNameField: UITextField!
-    @IBOutlet var locationCoordinates: UILabel!
     @IBOutlet var saveFavorite: UIButton!
     
     var locationNameString = String()
@@ -39,9 +38,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         self.navigationController?.setNavigationBarHidden(true, animated: true)
-        
-        locationCoordinates.text = "\(latCoordPassed);\(longCoordPassed)"
-        
+               
         self.locationNameField.delegate = self
         locationNameField.returnKeyType = UIReturnKeyType.done
         
