@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>ChameleonFramework.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>GTMSessionFetcher.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -34,11 +29,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SkyFloatingLabelTextField.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>nanopb.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,17 +37,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>497C5AB3B33A522A86ACADEABEA3EB31</key>
+		<key>1910B2957458880912F7B451DDF71A32</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>6D5CEDECD3D8DC52EA507E0431BDA8A0</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>76BD4592010354D6C23D6ECCA20D83A8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -77,12 +62,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F2D9B58248C183AF232C79FB172B76E2</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F5451BFA8279C4CCA903DC835CA821CD</key>
+		<key>EE8A5146ABF1AE1C32BEEE08389B66A6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
