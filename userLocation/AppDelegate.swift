@@ -192,7 +192,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         onboardingVC = OnboardingViewController.onboard(withBackgroundImage: UIImage(named: ""), contents: [firstPage, secondPage, thirdPage, fourthPage])
         //create an image that is my hex color?
-        //onboardingVC.view.backgroundColor = UIColor(red: 0.38, green: 0.92, blue: 1.10,   alpha: 1.0)
+        onboardingVC.view.backgroundColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
         onboardingVC.shouldFadeTransitions = true
         onboardingVC.shouldMaskBackground = false
         onboardingVC.shouldBlurBackground = false
