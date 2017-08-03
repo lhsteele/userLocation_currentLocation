@@ -41,14 +41,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let defaults = UserDefaults.standard
         let userHasOnboarded = defaults.bool(forKey: "userHasOnboarded")
-        //self.window?.rootViewController = self.generateStandardOnboardingVC()
-        
+        self.window?.rootViewController = self.generateStandardOnboardingVC()
+        /*
         if userHasOnboarded {
             self.setupNormalRootViewController()
         } else {
             self.window?.rootViewController = self.generateStandardOnboardingVC()
         }
-        
+        */
         return true
     }
     
@@ -191,7 +191,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let fourthPage = OnboardingContentViewController.content(withTitle: "The map will also show your ETA.", body: "That way they know when to expect you.", image: UIImage(named: "ETA"), buttonText: "Get started", action: self.handleOnboardingCompletion)
         
         onboardingVC = OnboardingViewController.onboard(withBackgroundImage: UIImage(named: ""), contents: [firstPage, secondPage, thirdPage, fourthPage])
-        onboardingVC.view.backgroundColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0).lighten(byPercentage: 70)
+        //create an image that is my hex color?
+        //onboardingVC.view.backgroundColor = UIColor(red: 0.38, green: 0.92, blue: 1.10,   alpha: 1.0)
         onboardingVC.shouldFadeTransitions = true
         onboardingVC.shouldMaskBackground = false
         onboardingVC.shouldBlurBackground = false
