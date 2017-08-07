@@ -192,7 +192,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         onboardingVC = OnboardingViewController.onboard(withBackgroundImage: UIImage(named: ""), contents: [firstPage, secondPage, thirdPage, fourthPage])
         //create an image that is my hex color?
-        onboardingVC.view.backgroundColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
+        onboardingVC.view.backgroundColor = UIColor(red: 0.42, green: 0.82, blue: 0.95, alpha: 1.0)
         onboardingVC.shouldFadeTransitions = true
         onboardingVC.shouldMaskBackground = false
         onboardingVC.shouldBlurBackground = false
@@ -201,7 +201,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         onboardingVC.pageControl.currentPageIndicatorTintColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
         onboardingVC.allowSkipping = false
         onboardingVC.swipingEnabled = true
-        fourthPage.actionButton.backgroundColor = UIColor(red:0.20, green:0.38, blue:0.45, alpha:1.0)
+        fourthPage.actionButton.backgroundColor = UIColor(red:0.23, green:0.44, blue:0.51, alpha:1.0)
         
         
         
