@@ -31,9 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if #available(iOS 10, *) {
             UNUserNotificationCenter.current().delegate = self
             
-            Messaging.messaging().delegate = self //as? MessagingDelegate
+            Messaging.messaging().delegate = self
         }
-        //NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotification), name: .firInstanceIDTokenRefresh, object: nil)
         
         UINavigationBar.appearance().tintColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
         UINavigationBar.appearance().barTintColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
@@ -53,8 +52,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
-        //if receiving message while app is in background, this callback will not be fired until user taps on notification launchign app.
-        //Handle data of notification.
         
         if let messageID = userInfo[gcmMessageIDKey] {
             print ("Mssage ID: \(messageID)")
@@ -64,9 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        //if receiving message while app is in background, this callback will not be fired until user taps on notification launchign app.
-        //Handle data of notification.
-        
+
         if let messageID = userInfo[gcmMessageIDKey] {
             print ("Message ID: \(messageID)")
         }
@@ -75,7 +70,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         completionHandler(UIBackgroundFetchResult.newData)
         
-        //to perform action when app is opened upon notification click, set click_action in notification payload.
     }
     
     
@@ -104,16 +98,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         Messaging.messaging().shouldEstablishDirectChannel = true
-        
-        /*
-        Messaging.messaging().connect { (error) in
-            if error != nil {
-                print ("Unable to connect with FCM. \(error?.localizedDescription ?? "")")
-            } else {
-                print ("Connected to FCM")
-            }
-        }
-        */
     }
     
     
@@ -134,12 +118,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-        // Let FCM know about the message for analytics etc.
+        
         Messaging.messaging().appDidReceiveMessage(userInfo)
-        // handle your message
-        //userInfo dictionary will contain the payload.
-        //displayAlertMessage(messageToDisplay: "Someone has shared a journey with you.")
-        //may need to write a test to see if app .isActive (or something similar)
         
     }
   
@@ -175,7 +155,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         alertController.addAction(dismissAction)
         
         let viewAction = UIAlertAction(title: "View", style: .default) { (action: UIAlertAction!) in
-            //segue to the Live Journeys VC
+            
         }
         alertController.addAction(viewAction)
         self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
@@ -240,12 +220,11 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         completionHandler([.alert, .sound])
         
         let userInfo = notification.request.content.userInfo
-        // Print message ID.
+       
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID: \(messageID)")
         }
         
-        // Print full message.
         print(userInfo)
         
     }
@@ -254,12 +233,11 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
-        // Print message ID.
+        
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID: \(messageID)")
         }
-        
-        // Print full message.
+       
         print(userInfo)
         
         completionHandler()
