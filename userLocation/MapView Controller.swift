@@ -68,8 +68,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        //self.navigationController?.setNavigationBarHidden(true, animated: true)
+   
         map.delegate = self
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
@@ -107,7 +106,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                 self.latCoordPassed = inputLat
                 self.longCoordPassed = inputLong
                 let coordMaker = CLLocationCoordinate2DMake(inputLat, inputLong)
-                print ("Lat: \(inputLat), Long: \(inputLong)")
                 self.inputAddressCoordinates = coordMaker
             }
             self.showInputAddressOnMap()

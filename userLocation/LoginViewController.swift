@@ -126,7 +126,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }
             let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
             let values = ["Email": self.emailTextField.text, "Username": self.usernameTextField.text]
-            //Don't need to update passwords, keeps it from being printed in database
             if let userID = Auth.auth().currentUser?.uid {
                 ref.child("Users").child(userID).updateChildValues(values as Any as! [AnyHashable : Any]) { (err, ref) in
                 

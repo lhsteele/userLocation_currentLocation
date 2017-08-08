@@ -37,12 +37,9 @@ class SettingsTableViewController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //indexPath data type has two values, section and row 
-        //use a switch case statement to assign a function to each case/index number.
         switch indexPath.row {
         case 0:
             print("not working")

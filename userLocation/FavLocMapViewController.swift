@@ -28,12 +28,10 @@ class FavLocMapViewController: UIViewController {
         
         self.navigationController?.navigationBar.tintColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
         getLocationCoordinates()
-        print (favLocToMap)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func showMap() {
@@ -45,7 +43,6 @@ class FavLocMapViewController: UIViewController {
         let annotation = MKPointAnnotation()
         
         annotation.coordinate = favLocToMap
-        print (favLocToMap)
         annotation.title = ""
         
         favLocMap.addAnnotation(annotation)
@@ -56,7 +53,6 @@ class FavLocMapViewController: UIViewController {
     
     func getLocationCoordinates() {
         let databaseRef = Database.database().reference().child("Locations").queryOrderedByKey()
-        print (locationID)
         _ = databaseRef.queryEqual(toValue: locationID).observe(.value, with: { (snapshot) in
             for item in snapshot.children {
                 var favLat = Double()

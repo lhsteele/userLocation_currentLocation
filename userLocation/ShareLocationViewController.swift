@@ -38,14 +38,11 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     
     @IBAction func shareLocation(_ sender: Any) {
         emailToCheck = shareLocEmailTextField.text!
-        //findEmailsUserID()
-        //findEmailsUsername()
         
         let validEmail = isEmailValid(emailAddressString: emailToCheck)
         
@@ -66,7 +63,6 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
                             if let userEmail = email.value as? String {
                                 if userEmail == self.emailToCheck {
                                     emailFound = true
-                                    print ("email is found")
                                     self.findEmailsUserID()
                                 }
                             }
@@ -96,7 +92,6 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
                         if let userEmail = email.value as? String {
                             let userKey = email.key
                             if userEmail == self.emailToCheck {
-                                print ("email match")
                                 self.sharedEmailsUserID = userKey
                                 self.checkIfLocationAlreadySharedWithUser()
                             }
@@ -109,16 +104,13 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
     }
     
     func checkIfLocationAlreadySharedWithUser() {
-        print ("locationToShare\(locationToShare)")
         let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("SubscribedUsers").queryOrderedByKey()
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
-            print (snapshot)
             let items = snapshot.children
             for item in items {
                 if let locationID = item as? DataSnapshot {
                     let locIDKey = locationID.key 
                         if locIDKey == self.locationToShare {
-                            print ("location found")
                             if let userID = item as? DataSnapshot {
                                 
                                 for item2 in userID.children {
@@ -128,7 +120,6 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
                                             
                                             
                                             if ID == self.sharedEmailsUserID {
-                                                print ("ID match")
                                                 self.displayEmailExistsErrorAlertMessage(messageToDisplay: "Location has already been shared with this user.")
                                                 return
                                             }
@@ -170,7 +161,6 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
                     if let displayName = snap as? DataSnapshot {
                         
                         let userID = displayName.key as String
-                            print (userID)
                             if userID == self.sharedEmailsUserID {
                                 if let usersName = displayName.value as? String {
                                     usernameToShare = usersName
@@ -186,7 +176,6 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
     }
     
     func saveSubscribedUserToLoc(username: String) {
-        print ("username\(username)")
         let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
         let saveRef = ref.child("SubscribedUsers").child(locationToShare)
         let updates = [username : sharedEmailsUserID]
@@ -205,7 +194,6 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
         let alertController = UIAlertController(title: "Success", message: messageToDisplay, preferredStyle: .alert)
         
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
-            //self.deleteKey()
             self.performSegue(withIdentifier: "BackToFavorites", sender: self)
         }
         alertController.addAction(OKAction)
@@ -222,7 +210,6 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
         
         
         let shareAction = UIAlertAction(title: "Share", style: .default) { (action:UIAlertAction) in
-            print ("share button tapped")
             let activityVC = UIActivityViewController(activityItems: ["input app store address here?"], applicationActivities: nil)
             activityVC.popoverPresentationController?.sourceView = self.view
             
@@ -259,7 +246,6 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
             }
             
         } catch _ as NSError {
-            //print("invalid regex: \(error.localizedDescription)")
             returnValue = false
         }
         

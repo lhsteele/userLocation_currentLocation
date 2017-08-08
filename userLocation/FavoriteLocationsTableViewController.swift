@@ -240,7 +240,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let favorite = self.listOfFavorites[indexPath.row]
         cell.textLabel?.text = favorite.location
-        //cell.textLabel?.textColor = FlatTealDark()
         cell.textLabel?.textColor = UIColor(red: 0.20, green: 0.38, blue: 0.45, alpha: 1.0)
         return cell
     }
@@ -255,7 +254,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         
         let startJourney = UITableViewRowAction(style: .normal, title: "Start Journey") { (action, indexPath) in
             self.journeyToStart = self.listOfCreatedLocations[indexPath.row] as String
-            print ("journeyToStart\(self.journeyToStart)")
             self.checkForExistingLiveJourney()
         }
         
@@ -265,10 +263,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                 self.listOfFavorites.remove(at: indexPath.row)
                 self.listOfCreatedLocations.remove(at: indexPath.row)
                 self.tableView.reloadData()
-                print (userFavToDelete)
                 self.startDeletion(location: userFavToDelete)
-            
-                //tableView.deleteRows(at: [indexPath], with: .fade)
             }
         _ = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             tableView.deleteRows(at: [indexPath], with: .fade)
@@ -277,17 +272,12 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         return [share, startJourney, delete]
     }
     
-    //putting all deletion methods within one, with each nested in the completion handler of the previous as all are asynchronious calls.
-    //Each function has an argument passed in. This way we are not depending on a global variable that may or may not have a value when we need it.
-    //We know that the value exists and is being passed in to the fuction.
-    //The value being passed in and the value being received are called two different things because the names are just a container for the value.
     func startDeletion(location: String) {
         deleteFromLocationsDB(secondLocation: location)
     }
     
     func deleteFromLocationsDB(secondLocation: String) {
         let locDeletionRef = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("Locations").child(secondLocation)
-        print (locDeletionRef)
         locDeletionRef.removeValue { (error, reference) in
             if error != nil {
                 print ("error\(reference)")
@@ -301,7 +291,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         let databaseRef = Database.database().reference().child("SubscribedUsers").queryOrderedByKey()
         _ = databaseRef.queryEqual(toValue: thirdLocation).observe(.value, with: { (snapshot) in
             if snapshot.exists() {
-                print (snapshot)
                 for item in snapshot.children {
                     
                     if let userid = item as? DataSnapshot {
@@ -310,8 +299,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                             if let pair = item2 as? DataSnapshot {
                                 if let userID = pair.value as? String {
                                     self.sharedUserID = userID
-                                    print ("sharedUserID \(self.sharedUserID)")
-                                    print ("aboutToRunDeleteKeyFrom")
                                     self.deleteKeyFromLocationsSharedWithUser(fourthLocation: thirdLocation)
                                 }
                             }
@@ -327,11 +314,8 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     
     func deleteKeyFromLocationsSharedWithUser(fourthLocation: String) {
         let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("LocationsSharedWithUser").child(sharedUserID)
-        print (sharedUserID)
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
-            print (snapshot)
             if snapshot.exists() {
-                print ("lswu\(snapshot)")
                 let entries = snapshot.children
                 for item in entries {
                     if let pair = item as? DataSnapshot {
@@ -339,7 +323,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                         if let value = pair.value as? String {
                             if value == fourthLocation {
                                 let keyToDelete = pair.key
-                                print (keyToDelete)
                                  ref.child(keyToDelete).removeValue()
                             }
                         }
@@ -379,10 +362,8 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                 for item in entries {
                     if let pair = item as? DataSnapshot {
                         if let value = pair.value as? String {
-                            print (value)
                             if value == sixthLocation {
                                 valueToDelete = value
-                                print ("valToDelete\(valueToDelete)")
                                 ref.child(pair.key).removeValue { (error, reference) in
                                     if error != nil {
                                         print ("error\(reference)")
@@ -408,7 +389,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                     let children = snapshot.children
                     for item in children {
                         if let pair = item as? DataSnapshot {
-                            print (pair)
                             if let boolean = pair.value as? Bool {
                                 let boolKey = pair.key
                                 if boolKey == "JourneyEnded" {
@@ -441,13 +421,11 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         let indexPath = tableView.indexPathForSelectedRow!
         _ = tableView.cellForRow(at: indexPath)! as UITableViewCell
         self.locationID = self.listOfCreatedLocations[indexPath.row] as String
-        print ("locID\(self.locationID)")
         performSegue(withIdentifier: "FavLocMapViewSegue", sender: self)
     }
     
     @IBAction func addNewLocation(_ sender: Any) {
         performSegue(withIdentifier: "MapViewSegue", sender: addLocationButton)
-        print (fireUserID)
     }
     
     
@@ -493,8 +471,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        //The below shows the notification upon loading of the login screen, not after hitting submit.
-        //This also make the notifications not deliver to my phone.
         self.requestNotificationAuthorisation()
     }
     
@@ -533,13 +509,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-    
-    /*
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-        let favoriteMoving = listOfFavorites.remove(at: fromIndexPath.row)
-        listOfFavorites.insert(favoriteMoving, at: to.row)
-    }
-    */
 
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         if tableView.isEditing {
@@ -578,20 +547,15 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .sound], categories: nil)
             UIApplication.shared.registerUserNotificationSettings(settings)
         }
-        //This needs to be called in order to register for APNS token.
         UIApplication.shared.registerForRemoteNotifications()
-        //self.checkIfRegisteredForNotifications()
     }
     
     func checkIfRegisteredForNotifications() {
         let isRegistered = UIApplication.shared.isRegisteredForRemoteNotifications
         if isRegistered {
             print ("userIsRegisteredForNotifications")
-            //save token to database
             self.printFCMToken()
-        } else {
-            //show alert user is not registered for notification.
-        }
+        } 
     }
     
     func addTokenToDB(userToken : String) {
@@ -609,7 +573,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         } else {
             print ("We dont have an FCM token yet.")
         }
-        
         connectToFCM()
     }
     
@@ -634,16 +597,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         } else {
             print ("Unable to connect with FCM.")
         }
-        /*
-        Messaging.messaging().isDirectChannelEstablished { (error) in
-            if error != nil {
-                print ("Unable to connect with FCM. \(error?.localizedDescription ?? "")")
-            } else {
-                print ("Connected to FCM")
-            }
-        }
-        */
     }
-    
- 
+
 }

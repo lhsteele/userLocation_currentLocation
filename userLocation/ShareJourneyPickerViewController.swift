@@ -40,9 +40,6 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
         picker.delegate = self
         picker.dataSource = self
         
-        print (journeyToStart)
-        print (fireUserID)
-        
         view.backgroundColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
         shareJourneyButton.setTitleColor(UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0), for: UIControlState.normal)
         pickerLabel.textColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
@@ -90,9 +87,7 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
                                 if usersName == self.sharedUserName {
                                     self.sharedUserID = userID
                                     self.checkIfUserAlreadyHasSharedJourney(userID: self.sharedUserID)
-                                    //self.getDestinationCoordinates(userID : self.sharedUserID)
                                 }
-                                print ("retrieve run")
                             }
                         }
                     }
@@ -118,7 +113,6 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
         _ = databaseRef.queryEqual(toValue: journeyToStart).observe(.value, with: { (snapshot) in
             
             for item in snapshot.children {
-                print (snapshot)
                 if let destination = item as? DataSnapshot {
                     
                     for item in destination.children {
@@ -152,7 +146,6 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
             let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
             let destination = ref.child("StartedJourneys").child(userID).key
             let destinationCoordinates = ["StartedJourneys/\(destination)" : ["DestinationLat" : latitude, "DestinationLong" : longitude, "CurrentLat" : localValue.latitude, "CurrentLong" : localValue.longitude, "SharedWithUser" : sharedUserName, "DestinationName" : locationName, "SharedWithUserID" : self.sharedUserID, "JourneyEnded" : journeyEnded]] as [String : Any]
-            print ("destCoords\(destinationCoordinates)")
             ref.updateChildValues(destinationCoordinates) { (Error, FIRDatabaseReference) in
                 self.retrieveUsername()
             }
@@ -171,7 +164,6 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
                             
                             if key == userID {
                                 self.usernameMakingJourney = name
-                                print (self.usernameMakingJourney)
                                 self.saveLiveJourneyToSharedWithUser(userID: self.sharedUserID)
                             }
                         }
@@ -195,8 +187,6 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
     
     @IBAction func shareJourney(_ sender: Any) {
         retrieveSharedUserID()
-        print ("perform Segue")
-        
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {

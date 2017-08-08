@@ -40,11 +40,7 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
     }
     
     func plotOnMap() {
-        
-        
-        print ("starting\(startingCoordinates)")
-        print ("end\(destinationCoordinates)")
-        
+
         let startLocation = startingCoordinates
         let destinationLocation = destinationCoordinates
         
@@ -62,7 +58,6 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
         }
         
         let destinationAnnotation = MKPointAnnotation()
-        //need to write logic to retrieve destination location name from DB
         destinationAnnotation.title = destinationName
         
         
@@ -91,11 +86,9 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
             
             let rect = route.polyline.boundingMapRect
             self.liveJourneyMap.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
-            print ("Distance: \(route.distance), ETA: \(route.expectedTravelTime)")
             
             let seconds = route.expectedTravelTime
             let minutes = round(seconds / 60)
-            print ("ETA in mins \(minutes)")
             destinationAnnotation.subtitle = "Estimated ETA : \(minutes) minutes"
 
         }
@@ -126,7 +119,6 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
   
     
@@ -158,7 +150,6 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
                     }
                     let currentCoordinate = CLLocationCoordinate2DMake(self.startingLat, self.startingLong)
                     self.startingCoordinates = currentCoordinate
-                    print (self.startingCoordinates)
                 })
             }
         getDestinationCoordinates()
@@ -191,7 +182,6 @@ class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLoca
                 }
                 let endCoordinate = CLLocationCoordinate2DMake(self.destinationLat, self.destinationLong)
                 self.destinationCoordinates = endCoordinate
-                print (self.destinationCoordinates)
                 self.getDestinationLocationName()
             })
         }

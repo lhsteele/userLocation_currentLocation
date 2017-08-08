@@ -45,7 +45,6 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.navigationBar.tintColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
         label.textColor = UIColor(red: 0.20, green: 0.38, blue: 0.45, alpha: 1.0)
         
-        print ("SaveLoc\(fireUserID)")
     }
     
     
@@ -77,7 +76,6 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         let databaseRef = Database.database().reference()
         
         locationAutoKey = databaseRef.child("Locations").childByAutoId().key
-        print (locationAutoKey)
         let location = ["Latitude": newLatCoord, "Longitude": newLongCoord, "LocationName": newFavLoc, "CreatedBy": [fireUserID]] as [String : Any]
         let childUpdates = ["/Locations/\(locationAutoKey)" : location]
         databaseRef.updateChildValues(childUpdates)
@@ -89,7 +87,6 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         if let userID = Auth.auth().currentUser?.uid {
             let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("Users").child(userID).child("CreatedLocations")
             usersCreatedLocationKey = ref.childByAutoId().key
-            print ("usersCreatedLocationKey/\(usersCreatedLocationKey)")
             let updates = [usersCreatedLocationKey : locationAutoKey]
             ref.updateChildValues(updates)
         }

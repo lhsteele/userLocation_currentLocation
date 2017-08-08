@@ -38,7 +38,6 @@ class ChangePasswordReauthViewController: UIViewController, UITextFieldDelegate 
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func reauthToChangePassword(_ sender: Any) {

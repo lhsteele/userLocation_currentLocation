@@ -24,7 +24,6 @@ class LiveJourneysTableViewController: UITableViewController {
     var userCurrentJourney: JourneyLocation?
     var userCurrentJourneyLocation = ""
     var sharedWithLiveJourney: [JourneyLocation] = []
-    //var userSharingJourneys: [String] = []
     var userSharingJourney = String()
     var journeyIsLive = false
     var sharedUserID = String()
@@ -60,11 +59,9 @@ class LiveJourneysTableViewController: UITableViewController {
                 for item in liveJourneys {
                     
                     if let pair = item as? DataSnapshot {
-                        print (pair)
                             if let boolean = pair.value as? Bool {
                                 let boolKey = pair.key
                                 if boolKey == "JourneyEnded" {
-                                    print ("journeyEnded reached")
                                     if boolean != true {
                                         self.loadUserLiveDataForTable()
                                     } else {
@@ -96,7 +93,6 @@ class LiveJourneysTableViewController: UITableViewController {
                                 self.locationID = value
                             }
                             self.userCurrentJourneyLocation = "\(self.locationID): shared with \(self.sharedWithUsername)"
-                            print ("userCurrentJourneyLocation \(self.userCurrentJourneyLocation)")
                         }
                     }
                 }
@@ -149,7 +145,6 @@ class LiveJourneysTableViewController: UITableViewController {
         if let userID = Auth.auth().currentUser?.uid {
             let databaseRef = Database.database().reference().child("SharedWithLiveJourneys").queryOrderedByKey()
             _ = databaseRef.queryEqual(toValue: userID).observe(.value, with: { (snapshot) in
-                print (snapshot)
                 for item in snapshot.children {
                     
                     if let journeyLoc = item as? DataSnapshot {
@@ -159,7 +154,6 @@ class LiveJourneysTableViewController: UITableViewController {
                                 if let boolean = pair.value as? Bool {
                                     let boolKey = pair.key
                                     if boolKey == "JourneyEnded" {
-                                        print ("journeyEnded reached")
                                         if boolean != true {
                                             self.loadSharedWithLiveDataForTable()
                                         } else {
@@ -188,18 +182,15 @@ class LiveJourneysTableViewController: UITableViewController {
                                     let name = pair.key
                                     if name == "DestinationName" {
                                         self.destinationName = user
-                                        print (self.destinationName)
                                         
                                     } else if name == "UserMakingJourney" {
                                         self.sharingUsername = user
-                                        print (self.sharingUsername)
                                         self.sharedWithUserData = "\(self.sharingUsername): going to \(self.destinationName)"
                                     }
                                 }
                             }
                         }
                         self.userSharingJourney = self.sharedWithUserData
-                        print ("userSharingJourney\(self.userSharingJourney)")
                         self.getSharedCoordinates()
                     }
                 }
@@ -252,8 +243,6 @@ class LiveJourneysTableViewController: UITableViewController {
         
     }
 
-    // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
        
         return 2
@@ -275,11 +264,9 @@ class LiveJourneysTableViewController: UITableViewController {
         let sharedData = self.userSharingJourney
         if indexPath.section == 0 {
             cell.textLabel?.text = userData
-            //cell.textLabel?.textColor = FlatTeal()
             cell.textLabel?.textColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
         } else {
             cell.textLabel?.text = sharedData
-            //cell.textLabel?.textColor = FlatTeal()
             cell.textLabel?.textColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
             cell.accessoryType = .disclosureIndicator
         }
@@ -363,19 +350,15 @@ class LiveJourneysTableViewController: UITableViewController {
     func findSharedUsersForLocation() {
         let databaseRef = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("StartedJourneys")
         if let userID = Auth.auth().currentUser?.uid {
-            print (userID)
             databaseRef.child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
-                print (snapshot)
                 let entries = snapshot.children
                 var sharedUser = ""
                 for item in entries {
                     if let pair = item as? DataSnapshot {
-                        print (pair)
                         let key = pair.key
                             if key == "SharedWithUserID" {
                                 if let value = pair.value as? String {
                                     sharedUser = value
-                                    print (sharedUser)
                                     self.sharedUserID = sharedUser
                                     self.updateSharedWithLiveJourneysBoolean(sharedUserID: self.sharedUserID)
                                 }
@@ -389,7 +372,6 @@ class LiveJourneysTableViewController: UITableViewController {
     func displaySuccessAlertMessage(messageToDisplay: String) {
         let alertController = UIAlertController(title: "Sucess", message: messageToDisplay, preferredStyle: .alert)
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
-            //performSegue
             self.performSegue(withIdentifier: "JourneyEndedBackToFavorites", sender: self)
         }
         alertController.addAction(OKAction)
@@ -409,49 +391,4 @@ class LiveJourneysTableViewController: UITableViewController {
         try! Auth.auth().signOut()
     }
     
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
