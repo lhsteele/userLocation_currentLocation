@@ -93,7 +93,8 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
                 let listOfEmails = snapshot.children
                 for snap in listOfEmails {
                     if let email = snap as? DataSnapshot {
-                        if let userEmail = email.value as? String, let userKey = email.key as? String {
+                        if let userEmail = email.value as? String {
+                            let userKey = email.key
                             if userEmail == self.emailToCheck {
                                 print ("email match")
                                 self.sharedEmailsUserID = userKey

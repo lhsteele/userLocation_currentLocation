@@ -67,14 +67,15 @@ class UpdateEmailViewController: UIViewController, UITextFieldDelegate {
     }
     
     func updateDBEmailList() {
-        let newEmail = newEmailTextField.text
-        let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
-        if let userID = Auth.auth().currentUser?.uid {
-            let updatedEmail = [userID : newEmail]
-            
-            ref.child("Emails").updateChildValues(updatedEmail) { (err, ref) in
-                if err != nil {
-                    return
+        if let newEmail = newEmailTextField.text {
+            let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/")
+            if let userID = Auth.auth().currentUser?.uid {
+                let updatedEmail = [userID : newEmail]
+                
+                ref.child("Emails").updateChildValues(updatedEmail) { (err, ref) in
+                    if err != nil {
+                        return
+                    }
                 }
             }
         }

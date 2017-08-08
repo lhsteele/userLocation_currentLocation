@@ -281,12 +281,12 @@ class LiveJourneysTableViewController: UITableViewController {
             cell.textLabel?.text = sharedData
             //cell.textLabel?.textColor = FlatTeal()
             cell.textLabel?.textColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
+            cell.accessoryType = .disclosureIndicator
         }
 
         return cell
     }
     
-    /*
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let indexPath = tableView.indexPathForSelectedRow!
         _ = tableView.cellForRow(at: indexPath)! as UITableViewCell
@@ -294,7 +294,6 @@ class LiveJourneysTableViewController: UITableViewController {
             performSegue(withIdentifier: "LiveJourneyMapViewSegue", sender: self)
         }
     }
-    */
  
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let containerView = UIView()
@@ -331,19 +330,18 @@ class LiveJourneysTableViewController: UITableViewController {
                 self.displaySuccessAlertMessage(messageToDisplay: "Journey has been succesfully ended.")
                 self.tableView.reloadData()
                 
-                
             }
             return [endJourney]
-        } else {
-            let viewJourney = UITableViewRowAction(style: .normal, title: "View Journey") { (action, indexPath) in
-                _ = self.userSharingJourney
-                self.performSegue(withIdentifier: "LiveJourneyMapViewSegue", sender: self)
-                self.tableView.reloadData()
-            }
-            return [viewJourney]
         }
+        return nil
     }
     
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.section == 0 {
+            return true
+        }
+        return false
+    }
     
     func updateUserLiveJourneyBoolean() {
         if let userID = Auth.auth().currentUser?.uid {
