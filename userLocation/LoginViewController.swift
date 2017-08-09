@@ -56,6 +56,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         view.backgroundColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
         signInToggle.tintColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
         submitButton.tintColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
+        submitButton.layer.borderColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0).cgColor
+        submitButton.layer.borderWidth = 1
+        submitButton.layer.cornerRadius = 10
         signInLabel.textColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
         signInLabel.isHidden = true
     }
