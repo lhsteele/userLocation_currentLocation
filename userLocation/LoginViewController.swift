@@ -83,7 +83,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func submitButtonTapped(_ sender: UIButton) {
-        if isSignIn {
+        if !isSignIn {
             validateFormForSignIn()
         } else {
             validateFormForRegistration()
@@ -92,8 +92,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func validateFormForSignIn() {
-        if let email = emailTextField.text, let password = passwordTextField.text, let username = usernameTextField.text {
-            if !email.isEmpty && !password.isEmpty && !username.isEmpty {
+        if let email = emailTextField.text, let password = passwordTextField.text {
+            if !email.isEmpty && !password.isEmpty {
                 userLogin()
             } else {
                 displayAlertMessage(messageToDisplay: "All text fields are required.")
@@ -103,11 +103,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     
     func validateFormForRegistration() {
-        if let email = emailTextField.text, let password = passwordTextField.text, let username = usernameTextField.text {
-            if !email.isEmpty && !password.isEmpty && !username.isEmpty {
+        if let email = emailTextField.text, let password = passwordTextField.text, let username = usernameTextField.text, let confirm = confirmPasswordTextField.text {
+            if !email.isEmpty && !password.isEmpty && !username.isEmpty && !confirm.isEmpty {
                 let emailIsValid = isEmailValid(emailAddressString: emailTextField.text!)
                 if emailIsValid {
-                    createAccount(email: email, password: password)
+                    if password == confirm {
+                        createAccount(email: email, password: password)
+                    } else {
+                        displayAlertMessage(messageToDisplay: "Your passwords do not match. Please try again.")
+                    }
                 } else {
                     print("email not valid")
                     displayAlertMessage(messageToDisplay: "This email address is invalid.")
