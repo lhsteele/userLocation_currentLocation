@@ -40,7 +40,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         
-        
         emailTextField.returnKeyType = UIReturnKeyType.done
         emailTextField.delegate = self
         
@@ -54,6 +53,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         signInToggle.tintColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
         submitButton.tintColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
         signInLabel.textColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
+        signInLabel.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,11 +66,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if isSignIn {
             signInLabel.text = "Sign In"
             submitButton.setTitle ("Sign In", for: .normal)
+            usernameTextField.isHidden = true
         
         } else {
             signInLabel.text = "Register"
             submitButton.setTitle ("Register", for: .normal)
-            
+            usernameTextField.isHidden = false
         }
         
     }
