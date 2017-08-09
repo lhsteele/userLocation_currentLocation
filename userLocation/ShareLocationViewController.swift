@@ -69,13 +69,13 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
                         }
                     }
                     if !emailFound {
-                        self.displayErrorAlertMessage(messageToDisplay: "This is not a registered email address. Would you like to share the app?")
+                        self.displayUserNotRegisteredAlertMessage(messageToDisplay: "This is not a registered email address. Would you like to share the app?")
                     }
                 }
                 
             })
         } else {
-            displayErrorAlertMessage(messageToDisplay: "This email address is invalid or already in use.")
+            displayWarningAlertMessage(messageToDisplay: "This email address is invalid or is not registered to an existing account.")
             return
         }
         
@@ -201,9 +201,18 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
         self.present(alertController, animated: true, completion:nil)
     }
     
-    func displayErrorAlertMessage(messageToDisplay: String) {
+    func displayWarningAlertMessage(messageToDisplay: String) {
         let alertController = UIAlertController(title: "Error", message: messageToDisplay, preferredStyle: .alert)
         
+        let tryAgainAction = UIAlertAction(title: "Try Again", style: .default) { (action:UIAlertAction!) in
+        }
+        alertController.addAction(tryAgainAction)
+        
+        self.present(alertController, animated: true, completion:nil)
+    }
+    
+    func displayUserNotRegisteredAlertMessage(messageToDisplay: String) {
+        let alertController = UIAlertController(title: "Warning", message: messageToDisplay, preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (action:UIAlertAction!) in
         }
         alertController.addAction(cancelAction)
