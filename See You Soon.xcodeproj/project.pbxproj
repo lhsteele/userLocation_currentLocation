@@ -138,9 +138,9 @@
 		EF3821481E2415DF00032F42 = {
 			isa = PBXGroup;
 			children = (
-				EF3821531E2415DF00032F42 /* userLocation */,
-				EF3821681E2415DF00032F42 /* userLocationTests */,
-				EF3821731E2415DF00032F42 /* userLocationUITests */,
+				EF3821531E2415DF00032F42 /* See You Soon */,
+				EF3821681E2415DF00032F42 /* SeeYouSoonTests */,
+				EF3821731E2415DF00032F42 /* SeeYouSoonUITests */,
 				EF3821521E2415DF00032F42 /* Products */,
 				EF3821821E24162A00032F42 /* Frameworks */,
 				59958EE151DFF5C31286BE15 /* Pods */,
@@ -157,7 +157,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		EF3821531E2415DF00032F42 /* userLocation */ = {
+		EF3821531E2415DF00032F42 /* See You Soon */ = {
 			isa = PBXGroup;
 			children = (
 				EF5A9AED1E51618500650937 /* userLocation.entitlements */,
@@ -188,24 +188,26 @@
 				EF3821601E2415DF00032F42 /* Info.plist */,
 				EF2D04331EF389D800942F51 /* GoogleService-Info.plist */,
 			);
-			path = userLocation;
+			name = "See You Soon";
 			sourceTree = "<group>";
 		};
-		EF3821681E2415DF00032F42 /* userLocationTests */ = {
+		EF3821681E2415DF00032F42 /* SeeYouSoonTests */ = {
 			isa = PBXGroup;
 			children = (
 				EF3821691E2415DF00032F42 /* userLocationTests.swift */,
 				EF38216B1E2415DF00032F42 /* Info.plist */,
 			);
+			name = SeeYouSoonTests;
 			path = userLocationTests;
 			sourceTree = "<group>";
 		};
-		EF3821731E2415DF00032F42 /* userLocationUITests */ = {
+		EF3821731E2415DF00032F42 /* SeeYouSoonUITests */ = {
 			isa = PBXGroup;
 			children = (
 				EF3821741E2415DF00032F42 /* userLocationUITests.swift */,
 				EF3821761E2415DF00032F42 /* Info.plist */,
 			);
+			name = SeeYouSoonUITests;
 			path = userLocationUITests;
 			sourceTree = "<group>";
 		};
@@ -593,11 +595,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 77F66T2364;
-				INFOPLIST_FILE = userLocation/Info.plist;
+				INFOPLIST_FILE = SeeYouSoon/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "XC-com-lisahsteele-userLocation";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SeeYouSoon;
 				PROVISIONING_PROFILE = "fb9dac1e-14c6-429a-b253-77a26b9a43eb";
 				PROVISIONING_PROFILE_SPECIFIER = SeeYouSoon;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -615,11 +617,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 77F66T2364;
-				INFOPLIST_FILE = userLocation/Info.plist;
+				INFOPLIST_FILE = SeeYouSoon/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "XC-com-lisahsteele-userLocation";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SeeYouSoon;
 				PROVISIONING_PROFILE = "fb9dac1e-14c6-429a-b253-77a26b9a43eb";
 				PROVISIONING_PROFILE_SPECIFIER = SeeYouSoon;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
