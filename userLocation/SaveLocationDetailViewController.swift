@@ -15,6 +15,7 @@ import MapKit
 class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     
     
+    @IBOutlet var label: UILabel!
     @IBOutlet var locationNameField: UITextField!
     @IBOutlet var saveFavorite: UIButton!
     
@@ -42,8 +43,12 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         locationNameField.returnKeyType = UIReturnKeyType.done
         
         saveFavorite.setTitleColor(UIColor(red: 0.20, green: 0.38, blue: 0.45, alpha: 1.0), for: UIControlState.normal)
+        saveFavorite.layer.borderColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0).cgColor
+        saveFavorite.layer.borderWidth = 1
+        saveFavorite.layer.cornerRadius = 10
         self.navigationController?.navigationBar.tintColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
-                
+        
+        label.textColor = UIColor(red: 0.20, green: 0.38, blue: 0.45, alpha: 1.0)
     }
     
     

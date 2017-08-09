@@ -25,33 +25,34 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dg0-d2-acE">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5vh-wZ-Dsu">
-                                <rect key="frame" x="98" y="550" width="179" height="30"/>
-                                <state key="normal" title="Create a Favorite Location"/>
-                                <connections>
-                                    <action selector="saveUserFavorite:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MFY-HB-ogT"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter address:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GZ3-6p-2CT">
                                 <rect key="frame" x="16" y="84" width="343" height="30"/>
                                 <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5vh-wZ-Dsu">
+                                <rect key="frame" x="16" y="129" width="343" height="30"/>
+                                <state key="normal" title="Create a Favorite Location"/>
+                                <connections>
+                                    <action selector="saveUserFavorite:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MFY-HB-ogT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="GZ3-6p-2CT" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="6qk-FJ-uah"/>
-                            <constraint firstItem="dg0-d2-acE" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="L0z-8l-D4f"/>
+                            <constraint firstItem="5vh-wZ-Dsu" firstAttribute="top" secondItem="GZ3-6p-2CT" secondAttribute="bottom" constant="15" id="JsB-HJ-HaB"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="dg0-d2-acE" secondAttribute="bottom" id="T9a-ey-OLp"/>
                             <constraint firstItem="dg0-d2-acE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="VWy-BX-glQ"/>
                             <constraint firstItem="dg0-d2-acE" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Xm5-Ae-6dQ"/>
-                            <constraint firstItem="dg0-d2-acE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="dyH-4O-0NR"/>
+                            <constraint firstItem="5vh-wZ-Dsu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="ZkM-vI-INF"/>
+                            <constraint firstItem="5vh-wZ-Dsu" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="aZs-HF-CPU"/>
                             <constraint firstItem="dg0-d2-acE" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="fDm-CS-UIc"/>
                             <constraint firstItem="dg0-d2-acE" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="fQA-kv-UCP"/>
                             <constraint firstItem="GZ3-6p-2CT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="k7G-Jo-eoo"/>
                             <constraint firstItem="GZ3-6p-2CT" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="m1d-hq-RfI"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="5vh-wZ-Dsu" secondAttribute="bottom" constant="87" id="ogb-R3-ReD"/>
+                            <constraint firstItem="5vh-wZ-Dsu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="ot2-pa-cSW"/>
                             <constraint firstAttribute="trailing" secondItem="dg0-d2-acE" secondAttribute="trailing" id="s52-bP-rwL"/>
                             <constraint firstItem="dg0-d2-acE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="swF-hZ-p5p"/>
                             <constraint firstItem="dg0-d2-acE" firstAttribute="centerX" secondItem="5vh-wZ-Dsu" secondAttribute="centerX" id="wEA-1C-5Ri"/>
@@ -83,10 +84,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ei-Q0-6df">
-                                    <rect key="frame" x="125" y="7" width="124" height="30"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="124" id="nLj-s3-mk4"/>
-                                    </constraints>
+                                    <rect key="frame" x="20" y="7" width="335" height="30"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <state key="normal" title="Add Location">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -98,9 +96,10 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstItem="9Ei-Q0-6df" firstAttribute="centerX" secondItem="xiK-CG-Ew7" secondAttribute="centerX" id="24S-lW-n4G"/>
-                                <constraint firstItem="9Ei-Q0-6df" firstAttribute="top" secondItem="xiK-CG-Ew7" secondAttribute="top" constant="7" id="DOG-lO-tMo"/>
-                                <constraint firstItem="9Ei-Q0-6df" firstAttribute="centerY" secondItem="xiK-CG-Ew7" secondAttribute="centerY" id="TkX-K6-7rA"/>
+                                <constraint firstItem="9Ei-Q0-6df" firstAttribute="leading" secondItem="xiK-CG-Ew7" secondAttribute="leading" constant="20" id="4ce-Fs-u4Y"/>
+                                <constraint firstItem="9Ei-Q0-6df" firstAttribute="centerX" secondItem="xiK-CG-Ew7" secondAttribute="centerX" id="Kgm-ck-QaF"/>
+                                <constraint firstAttribute="trailing" secondItem="9Ei-Q0-6df" secondAttribute="trailing" constant="20" id="ilC-oj-ZGx"/>
+                                <constraint firstItem="9Ei-Q0-6df" firstAttribute="top" secondItem="xiK-CG-Ew7" secondAttribute="top" constant="7" id="uaQ-Al-CNg"/>
                             </constraints>
                         </view>
                         <prototypes>
@@ -1076,7 +1075,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tG5-RV-zxw">
-                                <rect key="frame" x="84" y="548" width="207" height="30"/>
+                                <rect key="frame" x="16" y="234" width="343" height="30"/>
                                 <state key="normal" title="Save Favorite"/>
                                 <connections>
                                     <action selector="saveFavorite:" destination="1fE-IW-njT" eventType="touchUpInside" id="aFr-jG-7nI"/>
@@ -1087,17 +1086,18 @@
                         <constraints>
                             <constraint firstItem="KOp-Cc-tZR" firstAttribute="leading" secondItem="CWw-kd-Soz" secondAttribute="leadingMargin" id="AfO-gG-RFF"/>
                             <constraint firstItem="KOp-Cc-tZR" firstAttribute="top" secondItem="tGL-wn-hl8" secondAttribute="bottom" constant="34" id="E2e-V9-3gs"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="tG5-RV-zxw" secondAttribute="trailing" id="bRu-uE-STz"/>
                             <constraint firstItem="tG5-RV-zxw" firstAttribute="centerX" secondItem="CWw-kd-Soz" secondAttribute="centerX" id="cOF-J6-1Su"/>
+                            <constraint firstItem="tG5-RV-zxw" firstAttribute="leading" secondItem="CWw-kd-Soz" secondAttribute="leadingMargin" id="dFc-3p-Uad"/>
                             <constraint firstItem="KOp-Cc-tZR" firstAttribute="trailing" secondItem="QU3-IV-h1n" secondAttribute="trailing" id="dnm-CX-zZm"/>
-                            <constraint firstItem="tG5-RV-zxw" firstAttribute="leading" secondItem="CWw-kd-Soz" secondAttribute="leadingMargin" constant="68" id="h66-3A-pOO"/>
-                            <constraint firstItem="uxn-5g-1YL" firstAttribute="top" secondItem="tG5-RV-zxw" secondAttribute="bottom" constant="89" id="rJe-Vo-nun"/>
+                            <constraint firstItem="tG5-RV-zxw" firstAttribute="top" secondItem="QU3-IV-h1n" secondAttribute="bottom" constant="15" id="rO0-z3-NHA"/>
                             <constraint firstItem="KOp-Cc-tZR" firstAttribute="leading" secondItem="QU3-IV-h1n" secondAttribute="leading" id="sCn-GQ-BjG"/>
                             <constraint firstItem="QU3-IV-h1n" firstAttribute="top" secondItem="KOp-Cc-tZR" secondAttribute="bottom" constant="70" id="tS0-D2-yGf"/>
                             <constraint firstItem="KOp-Cc-tZR" firstAttribute="trailing" secondItem="CWw-kd-Soz" secondAttribute="trailingMargin" id="vLS-qo-4ID"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="label" destination="KOp-Cc-tZR" id="ico-UR-Fwo"/>
+                        <outlet property="label" destination="KOp-Cc-tZR" id="Bh2-Cc-NRe"/>
                         <outlet property="locationNameField" destination="QU3-IV-h1n" id="YWu-6z-2Qw"/>
                         <outlet property="saveFavorite" destination="tG5-RV-zxw" id="JCr-Ev-yxV"/>
                         <segue destination="8vQ-W8-wwu" kind="show" identifier="NewFavLocationSegue" id="zct-xe-Nlu"/>
@@ -1145,9 +1145,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="GUW-PM-UeP"/>
+        <segue reference="zct-xe-Nlu"/>
+        <segue reference="KaS-cP-Sre"/>
+        <segue reference="tX9-J2-yO8"/>
         <segue reference="R4Y-j0-YUS"/>
-        <segue reference="cWw-05-A8f"/>
-        <segue reference="y8I-s4-yWc"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -56,6 +56,9 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         journeysButton.tintColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
 
         addLocationButton.setTitleColor(UIColor(red: 0.20, green: 0.38, blue: 0.45, alpha: 1.0), for: UIControlState.normal)
+        addLocationButton.layer.borderWidth = 1
+        addLocationButton.layer.borderColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0).cgColor
+        addLocationButton.layer.cornerRadius = 10
         
         loadFavorites()
         
