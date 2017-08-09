@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EF0A2B481EA013CE006709C3 /* ReauthenticateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0A2B471EA013CE006709C3 /* ReauthenticateViewController.swift */; };
-		EF0DBD491ECA51FA00A9699E /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF0DBD481ECA51FA00A9699E /* UserNotifications.framework */; };
+		EF0DBD491ECA51FA00A9699E /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF0DBD481ECA51FA00A9699E /* UserNotifications.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		EF0ECD151EA175D200902441 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0ECD141EA175D200902441 /* SettingsTableViewController.swift */; };
 		EF2D04341EF389D800942F51 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF2D04331EF389D800942F51 /* GoogleService-Info.plist */; };
 		EF3821551E2415DF00032F42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3821541E2415DF00032F42 /* AppDelegate.swift */; };
@@ -18,7 +18,6 @@
 		EF38215F1E2415DF00032F42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF38215D1E2415DF00032F42 /* LaunchScreen.storyboard */; };
 		EF38216A1E2415DF00032F42 /* userLocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3821691E2415DF00032F42 /* userLocationTests.swift */; };
 		EF3821751E2415DF00032F42 /* userLocationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3821741E2415DF00032F42 /* userLocationUITests.swift */; };
-		EF3821841E24162A00032F42 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3821831E24162A00032F42 /* CoreLocation.framework */; };
 		EF3CCA891EBD1CCB00C655C2 /* ChangePasswordReauthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3CCA881EBD1CCB00C655C2 /* ChangePasswordReauthViewController.swift */; };
 		EF3CCA8B1EBD1FDC00C655C2 /* NewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3CCA8A1EBD1FDC00C655C2 /* NewPasswordViewController.swift */; };
 		EF556EB31F229D1F004783E2 /* GoodbyeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF556EB21F229D1F004783E2 /* GoodbyeViewController.swift */; };
@@ -30,6 +29,7 @@
 		EF8367F21EC64CF4005079E2 /* ShareJourneyPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8367F11EC64CF4005079E2 /* ShareJourneyPickerViewController.swift */; };
 		EF8765141E9454EE0078E3E5 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8765131E9454EE0078E3E5 /* WelcomeViewController.swift */; };
 		EF8F84801E25A33A00C32EBA /* userFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8F847F1E25A33A00C32EBA /* userFavorites.swift */; };
+		EF96EB311F3BC287009C95C5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3821831E24162A00032F42 /* CoreLocation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		EFB922841EF8C99800BD6413 /* LiveJourneysTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB922831EF8C99800BD6413 /* LiveJourneysTableViewController.swift */; };
 		EFB922861EF8D52200BD6413 /* JourneyLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB922851EF8D52200BD6413 /* JourneyLocations.swift */; };
 		EFCE5AA91F3BBE1100566DA6 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = EFCE5AA81F3BBE1100566DA6 /* Podfile */; };
@@ -108,7 +108,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF0DBD491ECA51FA00A9699E /* UserNotifications.framework in Frameworks */,
-				EF3821841E24162A00032F42 /* CoreLocation.framework in Frameworks */,
+				EF96EB311F3BC287009C95C5 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
