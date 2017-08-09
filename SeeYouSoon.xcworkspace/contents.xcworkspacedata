@@ -5,9 +5,9 @@
       location = "group:/Users/lisasteele/Desktop/Thinkful_Swift/userLocation/See You Soon.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Pods/Pods.xcodeproj">
+      location = "group:SeeYouSoon.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:SeeYouSoon.xcodeproj">
+      location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

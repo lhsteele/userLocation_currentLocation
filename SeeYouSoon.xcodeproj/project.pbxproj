@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17C379BA67CD162396917B28 /* Pods_userLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6AD688DCCE6AB9651D6E88E /* Pods_userLocation.framework */; };
 		EF0A2B481EA013CE006709C3 /* ReauthenticateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0A2B471EA013CE006709C3 /* ReauthenticateViewController.swift */; };
 		EF0DBD491ECA51FA00A9699E /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF0DBD481ECA51FA00A9699E /* UserNotifications.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		EF0ECD151EA175D200902441 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0ECD141EA175D200902441 /* SettingsTableViewController.swift */; };
@@ -109,6 +110,7 @@
 			files = (
 				EF0DBD491ECA51FA00A9699E /* UserNotifications.framework in Frameworks */,
 				EF96EB311F3BC287009C95C5 /* CoreLocation.framework in Frameworks */,
+				17C379BA67CD162396917B28 /* Pods_userLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
