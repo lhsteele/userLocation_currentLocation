@@ -229,17 +229,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="25p-nT-Bhd">
-                                <rect key="frame" x="123" y="325" width="129" height="29"/>
+                                <rect key="frame" x="123" y="385" width="129" height="29"/>
                                 <segments>
-                                    <segment title="Sign In"/>
                                     <segment title="Register"/>
+                                    <segment title="Sign In"/>
                                 </segments>
                                 <connections>
                                     <action selector="signInToggleChanged:" destination="4fS-mw-GIs" eventType="valueChanged" id="I0X-gt-2Gm"/>
                                 </connections>
                             </segmentedControl>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Dpl-xg-9vd">
-                                <rect key="frame" x="16" y="100" width="343" height="210"/>
+                                <rect key="frame" x="16" y="100" width="343" height="270"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XNk-oM-Y8b">
                                         <rect key="frame" x="20" y="0.0" width="303" height="30"/>
@@ -253,14 +253,20 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2ai-0L-4ef">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lsp-ho-OZA">
                                         <rect key="frame" x="20" y="120" width="303" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2ai-0L-4ef">
+                                        <rect key="frame" x="20" y="180" width="303" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ySi-4J-tfe">
-                                        <rect key="frame" x="147" y="180" width="49" height="30"/>
+                                        <rect key="frame" x="147" y="240" width="49" height="30"/>
                                         <state key="normal" title="Submit"/>
                                         <connections>
                                             <action selector="submitButtonTapped:" destination="4fS-mw-GIs" eventType="touchUpInside" id="qai-QU-aZv"/>
@@ -273,7 +279,11 @@
                                     <constraint firstItem="qCP-DS-nO7" firstAttribute="leading" secondItem="Dpl-xg-9vd" secondAttribute="leading" constant="20" id="O1M-Qc-pc8"/>
                                     <constraint firstAttribute="trailing" secondItem="XNk-oM-Y8b" secondAttribute="trailing" constant="20" id="UIS-Gy-GCD"/>
                                     <constraint firstItem="2ai-0L-4ef" firstAttribute="leading" secondItem="Dpl-xg-9vd" secondAttribute="leading" constant="20" id="bBl-kU-miI"/>
+                                    <constraint firstAttribute="trailing" secondItem="lsp-ho-OZA" secondAttribute="trailing" constant="20" id="dbJ-hM-ca5"/>
+                                    <constraint firstItem="lsp-ho-OZA" firstAttribute="leading" secondItem="Dpl-xg-9vd" secondAttribute="leading" constant="20" id="jCo-bk-0qk"/>
+                                    <constraint firstItem="lsp-ho-OZA" firstAttribute="top" secondItem="qCP-DS-nO7" secondAttribute="bottom" constant="30" id="lxH-Uf-RQx"/>
                                     <constraint firstAttribute="trailing" secondItem="qCP-DS-nO7" secondAttribute="trailing" constant="20" id="rkl-Rn-bTI"/>
+                                    <constraint firstItem="2ai-0L-4ef" firstAttribute="top" secondItem="lsp-ho-OZA" secondAttribute="bottom" constant="30" id="scQ-DW-dcM"/>
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OnC-aO-Xt6">
@@ -298,6 +308,7 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="LDD-cu-SgA"/>
                     <connections>
+                        <outlet property="confirmPasswordTextField" destination="lsp-ho-OZA" id="ftm-xc-OnZ"/>
                         <outlet property="emailTextField" destination="XNk-oM-Y8b" id="C0P-kY-EEq"/>
                         <outlet property="passwordTextField" destination="qCP-DS-nO7" id="qHI-ZE-sI4"/>
                         <outlet property="signInLabel" destination="OnC-aO-Xt6" id="44M-6B-g5r"/>

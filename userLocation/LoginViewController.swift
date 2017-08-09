@@ -26,6 +26,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
    
     @IBOutlet var signInLabel: UILabel!
     
+    @IBOutlet var confirmPasswordTextField: UITextField!
+    
+    
+    
     var fireUserID = String()
     var userEmail = String()
     var username = String()
@@ -61,19 +65,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func signInToggleChanged(_ sender: UISegmentedControl) {
+        
         isSignIn = !isSignIn
         
         if isSignIn {
-            signInLabel.text = "Sign In"
-            submitButton.setTitle ("Sign In", for: .normal)
-            usernameTextField.isHidden = true
-        
-        } else {
             signInLabel.text = "Register"
             submitButton.setTitle ("Register", for: .normal)
             usernameTextField.isHidden = false
+            confirmPasswordTextField.isHidden = false
+        } else {
+            signInLabel.text = "Sign In"
+            submitButton.setTitle ("Sign In", for: .normal)
+            usernameTextField.isHidden = true
+            confirmPasswordTextField.isHidden = true
+
         }
-        
     }
     
     @IBAction func submitButtonTapped(_ sender: UIButton) {
