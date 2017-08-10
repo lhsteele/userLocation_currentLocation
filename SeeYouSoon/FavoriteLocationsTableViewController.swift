@@ -60,7 +60,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         addLocationButton.layer.borderColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0).cgColor
         addLocationButton.layer.cornerRadius = 10
         
-        self.showPopup()
+        //self.showPopup()
         loadFavorites()
         
     }
@@ -92,7 +92,10 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                     }
                     
                     self.listOfCreatedLocations.append(self.locationID)
-                    
+                }
+                if self.listOfCreatedLocations.isEmpty {
+                    print ("list is empty")
+                    self.showPopup()
                 }
                 self.loadData()
             })
@@ -611,5 +614,7 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             print ("Unable to connect with FCM.")
         }
     }
+    
+    
 
 }
