@@ -10,6 +10,72 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Pop Up View Controller-->
+        <scene sceneID="Aqm-h7-WQs">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R8r-t4-Xcv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="PopUpVC" id="WzR-zd-9ph" customClass="PopUpViewController" customModule="SeeYouSoon" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DxQ-PW-gkh"/>
+                        <viewControllerLayoutGuide type="bottom" id="eQV-EA-R4f"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HP9-mc-ZhN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NiW-qp-kcQ">
+                                <rect key="frame" x="67" y="169" width="240" height="177"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vjb-z5-IPW">
+                                        <rect key="frame" x="4" y="17" width="232" height="122"/>
+                                        <string key="text">1. Save a favorite location.
+2. Swipe left to share it with another user. 
+3. Start a journey and share it with them to let them know you'll see them soon!</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="vjb-z5-IPW" secondAttribute="trailing" constant="4" id="GYB-kS-AIf"/>
+                                    <constraint firstItem="vjb-z5-IPW" firstAttribute="leading" secondItem="NiW-qp-kcQ" secondAttribute="leading" constant="4" id="GvS-wt-D5a"/>
+                                    <constraint firstItem="vjb-z5-IPW" firstAttribute="top" secondItem="NiW-qp-kcQ" secondAttribute="top" constant="17" id="IfH-XM-PB9"/>
+                                    <constraint firstAttribute="width" constant="240" id="Ip6-vM-f3F"/>
+                                    <constraint firstAttribute="height" constant="177" id="m5t-Je-EAY"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gR7-Iv-4aU">
+                                <rect key="frame" x="162" y="316" width="51" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Close"/>
+                                <connections>
+                                    <action selector="close:" destination="WzR-zd-9ph" eventType="touchUpInside" id="t7Q-ZD-zhV"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="NiW-qp-kcQ" secondAttribute="trailing" constant="52" id="9uk-7b-a4C"/>
+                            <constraint firstItem="NiW-qp-kcQ" firstAttribute="leading" secondItem="HP9-mc-ZhN" secondAttribute="leadingMargin" constant="51" id="Ced-nt-3jc"/>
+                            <constraint firstItem="gR7-Iv-4aU" firstAttribute="leading" secondItem="HP9-mc-ZhN" secondAttribute="leadingMargin" constant="146" id="FWG-Va-7pm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gR7-Iv-4aU" secondAttribute="trailing" constant="146" id="PN0-dy-U7N"/>
+                            <constraint firstItem="NiW-qp-kcQ" firstAttribute="top" secondItem="DxQ-PW-gkh" secondAttribute="bottom" constant="149" id="cZF-A7-ZKw"/>
+                            <constraint firstItem="gR7-Iv-4aU" firstAttribute="top" secondItem="vjb-z5-IPW" secondAttribute="bottom" constant="8" id="m6G-r0-BKJ"/>
+                            <constraint firstItem="NiW-qp-kcQ" firstAttribute="centerY" secondItem="HP9-mc-ZhN" secondAttribute="centerY" constant="-76" id="q2B-go-tFe"/>
+                            <constraint firstItem="NiW-qp-kcQ" firstAttribute="centerX" secondItem="HP9-mc-ZhN" secondAttribute="centerX" id="qfY-WK-M6V"/>
+                            <constraint firstItem="eQV-EA-R4f" firstAttribute="top" secondItem="NiW-qp-kcQ" secondAttribute="bottom" constant="321" id="rud-EY-SU7"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="closeButton" destination="gR7-Iv-4aU" id="3Y5-6n-EcT"/>
+                        <outlet property="label" destination="vjb-z5-IPW" id="5ma-Dy-Yso"/>
+                        <outlet property="popupView" destination="NiW-qp-kcQ" id="qy6-ep-riX"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="3572" y="169.56521739130437"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
