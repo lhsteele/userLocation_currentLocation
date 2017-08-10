@@ -13,7 +13,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SeeYouSoon" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -74,7 +74,7 @@
         <!--Favorite Locations-->
         <scene sceneID="Bf6-in-On2">
             <objects>
-                <tableViewController storyboardIdentifier="FavoritesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8vQ-W8-wwu" customClass="FavoriteLocationsTableViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FavoritesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8vQ-W8-wwu" customClass="FavoriteLocationsTableViewController" customModule="SeeYouSoon" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="EBi-Zd-QvF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -173,8 +173,8 @@
                         <segue destination="CsW-Pa-AJx" kind="show" identifier="SettingsSegue" id="HEm-QN-C6g"/>
                         <segue destination="fbu-6W-fHY" kind="show" identifier="ShareLocationSegue" id="X6m-dw-UvP"/>
                         <segue destination="Krg-GJ-ehI" kind="show" identifier="FavLocMapViewSegue" id="gq1-7V-UZe"/>
-                        <segue destination="b21-sT-Dqv" kind="show" identifier="StartJourneySegue" id="Yrl-wJ-WI2"/>
                         <segue destination="vZp-uk-xNM" kind="show" identifier="liveJourneysSegue" id="KaS-cP-Sre"/>
+                        <segue destination="VC7-8f-SV8" kind="show" identifier="ShareJourneySegue" id="an1-hP-5o5"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pX4-EA-J4z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -184,7 +184,7 @@
         <!--WelcomeViewController-->
         <scene sceneID="l3R-zt-VQi">
             <objects>
-                <viewController storyboardIdentifier="WelcomeViewController" title="WelcomeViewController" id="gtg-Z4-3m4" customClass="WelcomeViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WelcomeViewController" title="WelcomeViewController" id="gtg-Z4-3m4" customClass="WelcomeViewController" customModule="SeeYouSoon" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1rL-cO-xwD"/>
                         <viewControllerLayoutGuide type="bottom" id="oTu-Cl-FL1"/>
@@ -218,7 +218,7 @@
         <!--Login View Controller-->
         <scene sceneID="wMg-Zx-xbr">
             <objects>
-                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="4fS-mw-GIs" customClass="LoginViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="4fS-mw-GIs" customClass="LoginViewController" customModule="SeeYouSoon" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1wa-Hv-7HH"/>
                         <viewControllerLayoutGuide type="bottom" id="JJX-js-uB7"/>
@@ -327,7 +327,7 @@
         <!--Live Journeys Table View Controller-->
         <scene sceneID="WaA-go-d52">
             <objects>
-                <tableViewController id="vZp-uk-xNM" customClass="LiveJourneysTableViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="vZp-uk-xNM" customClass="LiveJourneysTableViewController" customModule="SeeYouSoon" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="dWp-pH-bQV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -359,7 +359,7 @@
         <!--Live Journeys Map View Controller-->
         <scene sceneID="8DF-dk-iBC">
             <objects>
-                <viewController storyboardIdentifier="LiveJourneyMapView" id="tkZ-yj-GPa" customClass="LiveJourneysMapViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LiveJourneyMapView" id="tkZ-yj-GPa" customClass="LiveJourneysMapViewController" customModule="SeeYouSoon" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="T3r-ar-4Uv"/>
                         <viewControllerLayoutGuide type="bottom" id="NTd-Cb-860"/>
@@ -393,7 +393,7 @@
         <!--Fav Loc Map View Controller-->
         <scene sceneID="suJ-FH-ciX">
             <objects>
-                <viewController id="Krg-GJ-ehI" customClass="FavLocMapViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Krg-GJ-ehI" customClass="FavLocMapViewController" customModule="SeeYouSoon" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hg1-zm-VIA"/>
                         <viewControllerLayoutGuide type="bottom" id="fIZ-yT-ajm"/>
@@ -427,7 +427,7 @@
         <!--Start Journey Map View Controller-->
         <scene sceneID="EF5-Yf-TZU">
             <objects>
-                <viewController id="b21-sT-Dqv" customClass="StartJourneyMapViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="b21-sT-Dqv" customClass="StartJourneyMapViewController" customModule="SeeYouSoon" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dgh-cC-azB"/>
                         <viewControllerLayoutGuide type="bottom" id="87d-Tm-ner"/>
@@ -463,7 +463,7 @@
         <!--Share Journey Picker View Controller-->
         <scene sceneID="T3y-lc-xdB">
             <objects>
-                <viewController id="VC7-8f-SV8" customClass="ShareJourneyPickerViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="VC7-8f-SV8" customClass="ShareJourneyPickerViewController" customModule="SeeYouSoon" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="c8M-co-Ya3"/>
                         <viewControllerLayoutGuide type="bottom" id="5ha-D8-hz1"/>
@@ -532,7 +532,7 @@
         <!--Change Password Reauth View Controller-->
         <scene sceneID="FK6-eg-gjx">
             <objects>
-                <viewController id="iuV-tU-uEz" customClass="ChangePasswordReauthViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="iuV-tU-uEz" customClass="ChangePasswordReauthViewController" customModule="SeeYouSoon" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uhd-I0-qqT"/>
                         <viewControllerLayoutGuide type="bottom" id="7K1-7E-zmP"/>
@@ -603,7 +603,7 @@
         <!--Update Email Reauth View Controller-->
         <scene sceneID="CiL-7o-i1t">
             <objects>
-                <viewController id="9XQ-9z-uUW" customClass="UpdateEmailReauthViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9XQ-9z-uUW" customClass="UpdateEmailReauthViewController" customModule="SeeYouSoon" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="AY0-VH-mjZ"/>
                         <viewControllerLayoutGuide type="bottom" id="ehG-DS-xjx"/>
@@ -674,7 +674,7 @@
         <!--New Password View Controller-->
         <scene sceneID="e2f-JN-6cb">
             <objects>
-                <viewController id="fBl-MB-HM5" customClass="NewPasswordViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="fBl-MB-HM5" customClass="NewPasswordViewController" customModule="SeeYouSoon" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="AgJ-8O-u3D"/>
                         <viewControllerLayoutGuide type="bottom" id="tqb-mq-3CX"/>
@@ -734,7 +734,7 @@
         <!--Update Email View Controller-->
         <scene sceneID="J9N-Zo-AMy">
             <objects>
-                <viewController id="ajm-4a-7ac" customClass="UpdateEmailViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ajm-4a-7ac" customClass="UpdateEmailViewController" customModule="SeeYouSoon" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YwE-Mt-Zc1"/>
                         <viewControllerLayoutGuide type="bottom" id="O3M-6A-kqb"/>
@@ -794,7 +794,7 @@
         <!--Reauthenticate View Controller-->
         <scene sceneID="dd6-5Y-CMH">
             <objects>
-                <viewController id="Wh7-Cd-sly" customClass="ReauthenticateViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Wh7-Cd-sly" customClass="ReauthenticateViewController" customModule="SeeYouSoon" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7SN-7g-tJ2"/>
                         <viewControllerLayoutGuide type="bottom" id="5nN-ek-2JQ"/>
@@ -863,7 +863,7 @@
         <!--Settings Table View Controller-->
         <scene sceneID="MWt-rK-Jan">
             <objects>
-                <tableViewController id="CsW-Pa-AJx" customClass="SettingsTableViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="CsW-Pa-AJx" customClass="SettingsTableViewController" customModule="SeeYouSoon" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="LXV-ax-Duw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -962,7 +962,7 @@
         <!--Share Location View Controller-->
         <scene sceneID="uzI-HJ-y03">
             <objects>
-                <viewController id="fbu-6W-fHY" customClass="ShareLocationViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="fbu-6W-fHY" customClass="ShareLocationViewController" customModule="SeeYouSoon" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8Vg-QY-SfH"/>
                         <viewControllerLayoutGuide type="bottom" id="4VI-1S-7gz"/>
@@ -1024,7 +1024,7 @@
         <!--Goodbye View Controller-->
         <scene sceneID="vaW-tB-fba">
             <objects>
-                <viewController id="e7m-4j-9jD" customClass="GoodbyeViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="e7m-4j-9jD" customClass="GoodbyeViewController" customModule="SeeYouSoon" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UcV-YN-zGk"/>
                         <viewControllerLayoutGuide type="bottom" id="xfy-OE-dh5"/>
@@ -1053,7 +1053,7 @@
         <!--Save Location Detail View Controller-->
         <scene sceneID="NYj-pq-Pap">
             <objects>
-                <viewController id="1fE-IW-njT" customClass="SaveLocationDetailViewController" customModule="userLocation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="1fE-IW-njT" customClass="SaveLocationDetailViewController" customModule="SeeYouSoon" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tGL-wn-hl8"/>
                         <viewControllerLayoutGuide type="bottom" id="uxn-5g-1YL"/>
@@ -1145,9 +1145,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="zct-xe-Nlu"/>
-        <segue reference="KaS-cP-Sre"/>
         <segue reference="tX9-J2-yO8"/>
+        <segue reference="1xk-cg-YgG"/>
+        <segue reference="an1-hP-5o5"/>
+        <segue reference="y8I-s4-yWc"/>
         <segue reference="R4Y-j0-YUS"/>
     </inferredMetricsTieBreakers>
 </document>

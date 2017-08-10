@@ -392,20 +392,21 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                     let children = snapshot.children
                     for item in children {
                         if let pair = item as? DataSnapshot {
+                            print (pair)
                             if let boolean = pair.value as? Bool {
                                 let boolKey = pair.key
                                 if boolKey == "JourneyEnded" {
                                     if boolean != true {
                                         self.displayErrorAlertMessage(messageToDisplay: "You are currently on a journey and have already shared it with another user.")
                                     } else {
-                                        self.performSegue(withIdentifier: "StartJourneySegue", sender: Any.self)
+                                        self.performSegue(withIdentifier: "ShareJourneySegue", sender: Any.self)
                                     }
                                 }
                             }
                         }
                     }
                 } else {
-                    self.performSegue(withIdentifier: "StartJourneySegue", sender: Any.self)
+                    self.performSegue(withIdentifier: "ShareJourneySegue", sender: Any.self)
                 }
                 
             })
@@ -462,8 +463,8 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             let pointer = segue.destination as! FavLocMapViewController
             pointer.locationID = self.locationID
         }
-        if (segue.identifier == "StartJourneySegue") {
-            let pointer = segue.destination as! StartJourneyMapViewController
+        if (segue.identifier == "ShareJourneySegue") {
+            let pointer = segue.destination as! ShareJourneyPickerViewController
             pointer.journeyToStart = self.journeyToStart
             pointer.fireUserID = self.fireUserID
         }

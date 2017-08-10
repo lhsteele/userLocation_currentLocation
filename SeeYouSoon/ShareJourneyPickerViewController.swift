@@ -97,10 +97,24 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
     }
     
     func checkIfUserAlreadyHasSharedJourney(userID: String) {
-        let ref = Database.database().reference().child("SharedWithLiveJourneys").queryOrderedByKey()
-        ref.queryEqual(toValue: self.sharedUserID).observeSingleEvent(of: .value, with: { (snapshot) in
+        let ref = Database.database().reference(fromURL: "https://userlocation-aba20.firebaseio.com/").child("SharedWithLiveJourneys").child(self.sharedUserID)
+        _ = ref.observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists() {
-                self.displayErrorAlertMessage(messageToDisplay: "Unable to share your journey with this user. Another user is already sharing their journey with them.")
+                let children = snapshot.children
+                for item in children {
+                    if let pair = item as? DataSnapshot {
+                        if let boolean = pair.value as? Bool {
+                            let boolKey = pair.key
+                            if boolKey == "JourneyEnded" {
+                                if boolean != true {
+                                    self.displayErrorAlertMessage(messageToDisplay: "Unable to share your journey with this user. Another user is already sharing their journey with them.")
+                                } else {
+                                    self.getDestinationCoordinates(userID: self.sharedUserID)
+                                }
+                            }
+                        }
+                    }
+                }
             } else {
                 self.getDestinationCoordinates(userID: self.sharedUserID)
             }
