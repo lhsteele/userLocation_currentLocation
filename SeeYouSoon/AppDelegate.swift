@@ -40,14 +40,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let defaults = UserDefaults.standard
         let userHasOnboarded = defaults.bool(forKey: "userHasOnboarded")
-        //self.window?.rootViewController = self.generateStandardOnboardingVC()
-        
+        self.window?.rootViewController = self.generateStandardOnboardingVC()
+        /*
         if userHasOnboarded {
             self.setupNormalRootViewController()
         } else {
             self.window?.rootViewController = self.generateStandardOnboardingVC()
         }
-        
+        */
         return true
     }
     

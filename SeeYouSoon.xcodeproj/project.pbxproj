@@ -318,6 +318,7 @@
 					};
 					EF3821641E2415DF00032F42 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 77F66T2364;
 						ProvisioningStyle = Automatic;
 						TestTargetID = EF3821501E2415DF00032F42;
 					};
@@ -603,8 +604,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SeeYouSoon.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lisa Steele (77F66T2364)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lisa Steele (77F66T2364)";
 				DEVELOPMENT_TEAM = 77F66T2364;
 				INFOPLIST_FILE = SeeYouSoon/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -625,8 +626,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SeeYouSoon.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lisa Steele (77F66T2364)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lisa Steele (77F66T2364)";
 				DEVELOPMENT_TEAM = 77F66T2364;
 				INFOPLIST_FILE = SeeYouSoon/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -647,6 +648,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 77F66T2364;
 				INFOPLIST_FILE = userLocationTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.LisaSteele.userLocationTests;
@@ -661,6 +663,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 77F66T2364;
 				INFOPLIST_FILE = userLocationTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.LisaSteele.userLocationTests;
