@@ -74,7 +74,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
-        print ("MapView\(fireUserID)")
         
         addressTextField.returnKeyType = UIReturnKeyType.done
         self.addressTextField.delegate = self
