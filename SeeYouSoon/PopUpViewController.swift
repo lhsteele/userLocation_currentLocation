@@ -17,7 +17,10 @@ class PopUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        closeButton.tintColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
+        closeButton.tintColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
+        closeButton.layer.borderColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0).cgColor
+        closeButton.layer.cornerRadius = 10
+        closeButton.backgroundColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
         label.textColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
         self.view.backgroundColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
         popupView.layer.cornerRadius = 10
