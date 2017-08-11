@@ -278,7 +278,12 @@ class LiveJourneysTableViewController: UITableViewController {
         let indexPath = tableView.indexPathForSelectedRow!
         _ = tableView.cellForRow(at: indexPath)! as UITableViewCell
         if indexPath.section != 0 {
-            performSegue(withIdentifier: "LiveJourneyMapViewSegue", sender: self)
+            print (self.userSharingJourney)
+            if self.userSharingJourney.isEmpty {
+                return    
+            } else {
+                performSegue(withIdentifier: "LiveJourneyMapViewSegue", sender: self)
+            }
         }
     }
  
