@@ -49,6 +49,9 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.navigationBar.tintColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
         
         label.textColor = UIColor(red: 0.20, green: 0.38, blue: 0.45, alpha: 1.0)
+        
+        print (latCoordPassed)
+        print (longCoordPassed)
     }
     
     
@@ -60,6 +63,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         newLongCoord = longCoordPassed
         newFavLoc = locationNameString
         
+        self.addToFirebase()
     }
     
 
@@ -97,10 +101,8 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-   
-    
     @IBAction func saveFavorite(_ sender: Any) {
-        addToFirebase()
+        saveNewFavLoc()
         performSegue(withIdentifier: "NewFavLocationSegue", sender: self)
        
     }

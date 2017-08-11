@@ -24,12 +24,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NiW-qp-kcQ">
-                                <rect key="frame" x="67" y="169" width="240" height="140"/>
+                                <rect key="frame" x="67" y="169" width="240" height="238"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vjb-z5-IPW">
-                                        <rect key="frame" x="4" y="17" width="232" height="100.5"/>
-                                        <string key="text">1. Save a favorite location.
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gR7-Iv-4aU">
+                                        <rect key="frame" x="95" y="175.5" width="51" height="30"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Close"/>
+                                        <connections>
+                                            <action selector="close:" destination="WzR-zd-9ph" eventType="touchUpInside" id="t7Q-ZD-zhV"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="11" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vjb-z5-IPW">
+                                        <rect key="frame" x="10" y="0.0" width="220" height="167.5"/>
+                                        <string key="text">                   Get Started
+
+1. Add a favorite location.
+
 2. Swipe left to share it with another user. 
+
 3. Start a journey and share it with them to let them know you'll see them soon!</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
@@ -38,33 +50,25 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="vjb-z5-IPW" secondAttribute="trailing" constant="4" id="GYB-kS-AIf"/>
-                                    <constraint firstItem="vjb-z5-IPW" firstAttribute="leading" secondItem="NiW-qp-kcQ" secondAttribute="leading" constant="4" id="GvS-wt-D5a"/>
-                                    <constraint firstItem="vjb-z5-IPW" firstAttribute="top" secondItem="NiW-qp-kcQ" secondAttribute="top" constant="17" id="IfH-XM-PB9"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="gR7-Iv-4aU" secondAttribute="trailing" constant="86" id="BDO-oY-wmg"/>
+                                    <constraint firstItem="vjb-z5-IPW" firstAttribute="top" secondItem="NiW-qp-kcQ" secondAttribute="top" id="IfH-XM-PB9"/>
                                     <constraint firstAttribute="width" constant="240" id="Ip6-vM-f3F"/>
-                                    <constraint firstAttribute="height" constant="140" id="m5t-Je-EAY"/>
+                                    <constraint firstItem="gR7-Iv-4aU" firstAttribute="top" secondItem="vjb-z5-IPW" secondAttribute="bottom" constant="8" id="Z79-WH-pJL"/>
+                                    <constraint firstItem="vjb-z5-IPW" firstAttribute="leading" secondItem="NiW-qp-kcQ" secondAttribute="leading" constant="10" id="Zj9-et-bKn"/>
+                                    <constraint firstAttribute="height" constant="238" id="m5t-Je-EAY"/>
+                                    <constraint firstItem="gR7-Iv-4aU" firstAttribute="leading" secondItem="NiW-qp-kcQ" secondAttribute="leadingMargin" constant="87" id="taC-NR-0LY"/>
+                                    <constraint firstAttribute="trailing" secondItem="vjb-z5-IPW" secondAttribute="trailing" constant="10" id="uUM-WC-b5U"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gR7-Iv-4aU">
-                                <rect key="frame" x="162" y="305" width="51" height="30"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Close"/>
-                                <connections>
-                                    <action selector="close:" destination="WzR-zd-9ph" eventType="touchUpInside" id="t7Q-ZD-zhV"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="gR7-Iv-4aU" firstAttribute="leading" secondItem="HP9-mc-ZhN" secondAttribute="leadingMargin" constant="146" id="71e-xb-joy"/>
                             <constraint firstAttribute="trailingMargin" secondItem="NiW-qp-kcQ" secondAttribute="trailing" constant="52" id="9uk-7b-a4C"/>
                             <constraint firstItem="NiW-qp-kcQ" firstAttribute="leading" secondItem="HP9-mc-ZhN" secondAttribute="leadingMargin" constant="51" id="Ced-nt-3jc"/>
-                            <constraint firstItem="gR7-Iv-4aU" firstAttribute="top" secondItem="vjb-z5-IPW" secondAttribute="bottom" constant="18.5" id="QUw-i0-fqS"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="gR7-Iv-4aU" secondAttribute="trailing" constant="146" id="TZQ-Nc-57q"/>
                             <constraint firstItem="NiW-qp-kcQ" firstAttribute="top" secondItem="DxQ-PW-gkh" secondAttribute="bottom" constant="149" id="cZF-A7-ZKw"/>
-                            <constraint firstItem="NiW-qp-kcQ" firstAttribute="centerY" secondItem="HP9-mc-ZhN" secondAttribute="centerY" constant="-94.5" id="q2B-go-tFe"/>
+                            <constraint firstItem="NiW-qp-kcQ" firstAttribute="centerY" secondItem="HP9-mc-ZhN" secondAttribute="centerY" constant="-45.5" id="q2B-go-tFe"/>
                             <constraint firstItem="NiW-qp-kcQ" firstAttribute="centerX" secondItem="HP9-mc-ZhN" secondAttribute="centerX" id="qfY-WK-M6V"/>
-                            <constraint firstItem="eQV-EA-R4f" firstAttribute="top" secondItem="NiW-qp-kcQ" secondAttribute="bottom" constant="358" id="rud-EY-SU7" userLabel="Bottom Layout Guide.top = Popup View.bottom + 350"/>
+                            <constraint firstItem="eQV-EA-R4f" firstAttribute="top" secondItem="NiW-qp-kcQ" secondAttribute="bottom" constant="260" id="rud-EY-SU7" userLabel="Bottom Layout Guide.top = Popup View.bottom + 350"/>
                         </constraints>
                     </view>
                     <connections>
