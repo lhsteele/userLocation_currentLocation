@@ -31,6 +31,9 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
 
         view.backgroundColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
         shareLocSubmitButton.setTitleColor(UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0), for: UIControlState.normal)
+        shareLocSubmitButton.layer.borderColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0).cgColor
+        shareLocSubmitButton.layer.borderWidth = 1
+        shareLocSubmitButton.layer.cornerRadius = 10
         self.navigationController?.navigationBar.tintColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
         label.textColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
     }
