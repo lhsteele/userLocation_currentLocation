@@ -60,7 +60,6 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
         addLocationButton.layer.borderColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0).cgColor
         addLocationButton.layer.cornerRadius = 10
         
-        //self.showPopup()
         loadFavorites()
         
     }

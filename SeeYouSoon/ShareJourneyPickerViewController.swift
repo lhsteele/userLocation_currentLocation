@@ -34,7 +34,6 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print (journeyToStart)
         createSubscribedUsersArray()
         
         picker.delegate = self
@@ -62,7 +61,6 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
                             let userName = pair.key
                                 user = userName
                                 self.arrayOfSubscribedUsers.append(user)
-                            print (self.arrayOfSubscribedUsers)
                         }
                     }
                     self.arrayOfSubscribedUsers.insert("Select User", at: 0)
