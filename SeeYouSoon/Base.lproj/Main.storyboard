@@ -25,15 +25,16 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NiW-qp-kcQ">
                                 <rect key="frame" x="67" y="169" width="240" height="238"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="11" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vjb-z5-IPW">
-                                        <rect key="frame" x="10" y="0.0" width="220" height="167.5"/>
-                                        <string key="text">                       Get Started
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="12" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vjb-z5-IPW">
+                                        <rect key="frame" x="10" y="0.0" width="220" height="184"/>
+                                        <string key="text">                       
+                   Get Started
 
-1. Add a favorite location.
+1. Input an address or add your current location as a favorite.
 
 2. Swipe left to share it with another user. 
 
-3. Start a journey and share it with them to let them know you'll see them soon!</string>
+3. Share your journey and let them know you'll see them soon!</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -49,7 +50,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gR7-Iv-4aU">
-                                <rect key="frame" x="77" y="377" width="220" height="30"/>
+                                <rect key="frame" x="77" y="393.5" width="220" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Close"/>
                                 <connections>
