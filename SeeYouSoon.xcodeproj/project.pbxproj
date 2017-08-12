@@ -32,6 +32,7 @@
 		EF8F84801E25A33A00C32EBA /* userFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8F847F1E25A33A00C32EBA /* userFavorites.swift */; };
 		EF96EB311F3BC287009C95C5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3821831E24162A00032F42 /* CoreLocation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		EF9C84FD1F3C1595006F7005 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9C84FC1F3C1595006F7005 /* PopUpViewController.swift */; };
+		EF9C85011F3EAA59006F7005 /* StartJourneyMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9C85001F3EAA59006F7005 /* StartJourneyMapViewController.swift */; };
 		EFB922841EF8C99800BD6413 /* LiveJourneysTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB922831EF8C99800BD6413 /* LiveJourneysTableViewController.swift */; };
 		EFB922861EF8D52200BD6413 /* JourneyLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB922851EF8D52200BD6413 /* JourneyLocations.swift */; };
 		EFCE5AA91F3BBE1100566DA6 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = EFCE5AA81F3BBE1100566DA6 /* Podfile */; };
@@ -95,6 +96,7 @@
 		EF8765131E9454EE0078E3E5 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		EF8F847F1E25A33A00C32EBA /* userFavorites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userFavorites.swift; sourceTree = "<group>"; };
 		EF9C84FC1F3C1595006F7005 /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
+		EF9C85001F3EAA59006F7005 /* StartJourneyMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StartJourneyMapViewController.swift; path = ../StartJourneyMapViewController.swift; sourceTree = "<group>"; };
 		EFB922831EF8C99800BD6413 /* LiveJourneysTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveJourneysTableViewController.swift; sourceTree = "<group>"; };
 		EFB922851EF8D52200BD6413 /* JourneyLocations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JourneyLocations.swift; sourceTree = "<group>"; };
 		EFCE5AA81F3BBE1100566DA6 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				EFB922851EF8D52200BD6413 /* JourneyLocations.swift */,
 				EF63100A1EBCEFE300A7CC84 /* FavLocMapViewController.swift */,
 				EF3821561E2415DF00032F42 /* MapView Controller.swift */,
+				EF9C85001F3EAA59006F7005 /* StartJourneyMapViewController.swift */,
 				EF8367F11EC64CF4005079E2 /* ShareJourneyPickerViewController.swift */,
 				EFFB04E21E2E8BD40071D961 /* SaveLocationDetailViewController.swift */,
 				EF7DCC481EB29AD400D70194 /* ShareLocationViewController.swift */,
@@ -446,6 +449,7 @@
 				EFFB04E31E2E8BD40071D961 /* SaveLocationDetailViewController.swift in Sources */,
 				EFB922841EF8C99800BD6413 /* LiveJourneysTableViewController.swift in Sources */,
 				EF61AD6C1F083EE400D7DD9E /* LiveJourneysMapViewController.swift in Sources */,
+				EF9C85011F3EAA59006F7005 /* StartJourneyMapViewController.swift in Sources */,
 				EF63100F1EBCFBC500A7CC84 /* UpdateEmailViewController.swift in Sources */,
 				EF9C84FD1F3C1595006F7005 /* PopUpViewController.swift in Sources */,
 				EF3821571E2415DF00032F42 /* MapView Controller.swift in Sources */,

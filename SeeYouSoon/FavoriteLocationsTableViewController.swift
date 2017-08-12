@@ -411,14 +411,14 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
                                     if boolean != true {
                                         self.displayErrorAlertMessage(messageToDisplay: "You are currently on a journey and have already shared it with another user.")
                                     } else {
-                                        self.performSegue(withIdentifier: "ShareJourneySegue", sender: Any.self)
+                                        self.performSegue(withIdentifier: "StartJourneySegue", sender: Any.self)
                                     }
                                 }
                             }
                         }
                     }
                 } else {
-                    self.performSegue(withIdentifier: "ShareJourneySegue", sender: Any.self)
+                    self.performSegue(withIdentifier: "StartJourneySegue", sender: Any.self)
                 }
                 
             })
@@ -475,8 +475,8 @@ class FavoriteLocationsTableViewController: UITableViewController, CLLocationMan
             let pointer = segue.destination as! FavLocMapViewController
             pointer.locationID = self.locationID
         }
-        if (segue.identifier == "ShareJourneySegue") {
-            let pointer = segue.destination as! ShareJourneyPickerViewController
+        if (segue.identifier == "StartJourneySegue") {
+            let pointer = segue.destination as! StartJourneyMapViewController
             pointer.journeyToStart = self.journeyToStart
             pointer.fireUserID = self.fireUserID
         }

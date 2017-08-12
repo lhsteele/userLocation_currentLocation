@@ -244,7 +244,7 @@
                         <segue destination="fbu-6W-fHY" kind="show" identifier="ShareLocationSegue" id="X6m-dw-UvP"/>
                         <segue destination="Krg-GJ-ehI" kind="show" identifier="FavLocMapViewSegue" id="gq1-7V-UZe"/>
                         <segue destination="vZp-uk-xNM" kind="show" identifier="liveJourneysSegue" id="KaS-cP-Sre"/>
-                        <segue destination="VC7-8f-SV8" kind="show" identifier="ShareJourneySegue" id="an1-hP-5o5"/>
+                        <segue destination="ESb-wp-BTC" kind="show" identifier="StartJourneySegue" id="8Ez-wQ-UN3"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pX4-EA-J4z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -494,6 +494,34 @@
             </objects>
             <point key="canvasLocation" x="6277.6000000000004" y="170.46476761619192"/>
         </scene>
+        <!--Start Journey Map View Controller-->
+        <scene sceneID="xJg-wA-SQ4">
+            <objects>
+                <viewController id="ESb-wp-BTC" customClass="StartJourneyMapViewController" customModule="SeeYouSoon" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fvX-hh-oI9"/>
+                        <viewControllerLayoutGuide type="bottom" id="uSj-Td-du2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kTz-tI-1Nl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="aMg-d8-8Gn">
+                                <rect key="frame" x="0.0" y="-13" width="387" height="680"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="startAJourneyMap" destination="aMg-d8-8Gn" id="5Cb-ec-ddW"/>
+                        <segue destination="VC7-8f-SV8" kind="show" identifier="ShareJourneySegue" id="Fpj-Z8-14B"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m74-jo-nmM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7141.6000000000004" y="169.56521739130437"/>
+        </scene>
         <!--Share Journey Picker View Controller-->
         <scene sceneID="T3y-lc-xdB">
             <objects>
@@ -561,7 +589,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="evr-vX-Yk3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7142" y="170"/>
+            <point key="canvasLocation" x="7937" y="170"/>
         </scene>
         <!--Change Password Reauth View Controller-->
         <scene sceneID="FK6-eg-gjx">
@@ -1179,9 +1207,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="1xk-cg-YgG"/>
-        <segue reference="y8I-s4-yWc"/>
         <segue reference="tX9-J2-yO8"/>
+        <segue reference="1xk-cg-YgG"/>
+        <segue reference="KaS-cP-Sre"/>
         <segue reference="R4Y-j0-YUS"/>
     </inferredMetricsTieBreakers>
 </document>
