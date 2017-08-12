@@ -92,7 +92,7 @@ class LiveJourneysTableViewController: UITableViewController {
                             } else if key == "DestinationName" {
                                 self.locationID = value
                             }
-                            self.userCurrentJourneyLocation = "\(self.locationID): shared with \(self.sharedWithUsername)"
+                            self.userCurrentJourneyLocation = "\(self.locationID): Shared with \(self.sharedWithUsername)"
                         }
                     }
                 }
@@ -185,7 +185,7 @@ class LiveJourneysTableViewController: UITableViewController {
                                         
                                     } else if name == "UserMakingJourney" {
                                         self.sharingUsername = user
-                                        self.sharedWithUserData = "\(self.sharingUsername): going to \(self.destinationName)"
+                                        self.sharedWithUserData = "\(self.sharingUsername): Going to \(self.destinationName)"
                                     }
                                 }
                             }

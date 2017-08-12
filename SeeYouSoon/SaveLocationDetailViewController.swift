@@ -37,7 +37,7 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
                
         self.locationNameField.delegate = self
         locationNameField.returnKeyType = UIReturnKeyType.done

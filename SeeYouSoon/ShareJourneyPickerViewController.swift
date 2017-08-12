@@ -41,7 +41,11 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
         
         view.backgroundColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
         shareJourneyButton.setTitleColor(UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0), for: UIControlState.normal)
-        pickerLabel.textColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
+        shareJourneyButton.layer.borderColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0).cgColor
+        shareJourneyButton.layer.borderWidth = 1
+        shareJourneyButton.layer.cornerRadius = 10
+        //pickerLabel.textColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
+        pickerLabel.isHidden = true
         picker.tintColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
         self.navigationController?.navigationBar.tintColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
     }

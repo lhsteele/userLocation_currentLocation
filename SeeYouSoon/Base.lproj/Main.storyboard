@@ -34,7 +34,7 @@
 
 2. Swipe left to share it with another user. 
 
-3. Share your journey and let them know you'll see them soon!</string>
+3. Start your journey and let them know you'll see them soon!</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -516,6 +516,7 @@
                     <connections>
                         <outlet property="startAJourneyMap" destination="aMg-d8-8Gn" id="5Cb-ec-ddW"/>
                         <segue destination="VC7-8f-SV8" kind="show" identifier="ShareJourneySegue" id="Fpj-Z8-14B"/>
+                        <segue destination="8vQ-W8-wwu" kind="show" identifier="DontShareSegue" id="n2r-Cb-QJ0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m74-jo-nmM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -551,7 +552,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ysd-CW-bqa">
-                                <rect key="frame" x="138" y="450" width="99" height="30"/>
+                                <rect key="frame" x="28" y="450" width="319" height="30"/>
                                 <state key="normal" title="Share Journey">
                                     <color key="titleColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -563,6 +564,8 @@
                         <constraints>
                             <constraint firstItem="Ysd-CW-bqa" firstAttribute="centerX" secondItem="cFM-0F-ua1" secondAttribute="centerX" id="2kh-xP-Ytg"/>
                             <constraint firstItem="A7W-ak-MUd" firstAttribute="centerX" secondItem="cFM-0F-ua1" secondAttribute="centerX" id="4W9-rb-hZa"/>
+                            <constraint firstItem="Ysd-CW-bqa" firstAttribute="leading" secondItem="cFM-0F-ua1" secondAttribute="leadingMargin" constant="12" id="6Cp-7N-nRo"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ysd-CW-bqa" secondAttribute="trailing" constant="12" id="7jJ-GI-B68"/>
                             <constraint firstItem="hFg-Y2-KL5" firstAttribute="leading" secondItem="A7W-ak-MUd" secondAttribute="leading" id="CrM-cD-G0X"/>
                             <constraint firstItem="kGb-5o-9ER" firstAttribute="top" secondItem="hFg-Y2-KL5" secondAttribute="bottom" constant="10" id="Efh-Iy-b6t"/>
                             <constraint firstItem="Ysd-CW-bqa" firstAttribute="top" secondItem="A7W-ak-MUd" secondAttribute="bottom" constant="8" id="GMa-kP-DCl"/>
@@ -589,7 +592,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="evr-vX-Yk3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7937" y="170"/>
+            <point key="canvasLocation" x="7936.8000000000002" y="169.56521739130437"/>
         </scene>
         <!--Change Password Reauth View Controller-->
         <scene sceneID="FK6-eg-gjx">
@@ -817,7 +820,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XwZ-QD-ON4">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XwZ-QD-ON4">
                                 <rect key="frame" x="36" y="216" width="303" height="30"/>
                                 <state key="normal" title="Submit"/>
                                 <connections>
@@ -832,11 +835,11 @@
                             <constraint firstItem="XwZ-QD-ON4" firstAttribute="centerX" secondItem="oPV-ip-30F" secondAttribute="centerX" id="6YU-3f-nXD"/>
                             <constraint firstItem="YgX-xf-01T" firstAttribute="top" secondItem="YwE-Mt-Zc1" secondAttribute="bottom" constant="30" id="8Am-P3-w9Z"/>
                             <constraint firstItem="YgX-xf-01T" firstAttribute="leading" secondItem="oPV-ip-30F" secondAttribute="leadingMargin" constant="20" id="EiI-O1-7jr"/>
-                            <constraint firstItem="XwZ-QD-ON4" firstAttribute="leading" secondItem="oPV-ip-30F" secondAttribute="leadingMargin" constant="147" id="Fe4-nF-nDK"/>
+                            <constraint firstItem="XwZ-QD-ON4" firstAttribute="leading" secondItem="oPV-ip-30F" secondAttribute="leadingMargin" constant="20" id="Fe4-nF-nDK"/>
                             <constraint firstItem="Nyi-Oc-Cdy" firstAttribute="leading" secondItem="oPV-ip-30F" secondAttribute="leadingMargin" constant="20" id="Tys-Ki-Zey"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Nyi-Oc-Cdy" secondAttribute="trailing" constant="20" id="fQT-B8-rGj"/>
-                            <constraint firstItem="XwZ-QD-ON4" firstAttribute="top" secondItem="Nyi-Oc-Cdy" secondAttribute="bottom" constant="65" id="fit-QW-1g0"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="XwZ-QD-ON4" secondAttribute="trailing" constant="147" id="oFX-L6-i3u"/>
+                            <constraint firstItem="XwZ-QD-ON4" firstAttribute="top" secondItem="Nyi-Oc-Cdy" secondAttribute="bottom" constant="21.5" id="fit-QW-1g0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="XwZ-QD-ON4" secondAttribute="trailing" constant="20" id="oFX-L6-i3u"/>
                             <constraint firstItem="Nyi-Oc-Cdy" firstAttribute="top" secondItem="YgX-xf-01T" secondAttribute="bottom" constant="50" id="rTG-VC-Vyc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YgX-xf-01T" secondAttribute="trailing" constant="20" id="u5x-vo-wq1"/>
                             <constraint firstItem="Nyi-Oc-Cdy" firstAttribute="centerX" secondItem="oPV-ip-30F" secondAttribute="centerX" id="uxS-xZ-exr"/>
@@ -1207,9 +1210,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="GUW-PM-UeP"/>
-        <segue reference="TxF-nw-k2B"/>
-        <segue reference="KaS-cP-Sre"/>
+        <segue reference="1xk-cg-YgG"/>
+        <segue reference="y8I-s4-yWc"/>
         <segue reference="tX9-J2-yO8"/>
+        <segue reference="TxF-nw-k2B"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -44,7 +44,7 @@ class StartJourneyMapViewController: UIViewController, CLLocationManagerDelegate
         
         self.navigationController?.navigationBar.tintColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
         
-        displayShareAlertMessage(messageToDisplay: "Would you like to share this journey?")
+        displayShareAlertMessage(messageToDisplay: "ETA will be generated from current location.")
         
         view.backgroundColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
     }
@@ -55,14 +55,14 @@ class StartJourneyMapViewController: UIViewController, CLLocationManagerDelegate
     }
     
     func displayShareAlertMessage(messageToDisplay: String) {
-        let alertController = UIAlertController(title: "Share Journey?", message: messageToDisplay, preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Start and share journey?", message: messageToDisplay, preferredStyle: .alert)
         
         let yesAction = UIAlertAction(title: "Yes", style: .default) { (action:UIAlertAction!) in
             self.performSegue(withIdentifier: "ShareJourneySegue", sender: self)
         }
         
         let noAction = UIAlertAction(title: "No", style: .default) { (action:UIAlertAction!) in
-            self.performSegue(withIdentifier: "ShareToFavoritesSegue", sender: self)
+            self.performSegue(withIdentifier: "DontShareSegue", sender: self)
         }
         
         alertController.addAction(yesAction)
