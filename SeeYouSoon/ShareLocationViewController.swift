@@ -222,7 +222,7 @@ class ShareLocationViewController: UIViewController, UITextFieldDelegate {
         
         
         let shareAction = UIAlertAction(title: "Share", style: .default) { (action:UIAlertAction) in
-            let activityVC = UIActivityViewController(activityItems: ["input app store address here?"], applicationActivities: nil)
+            let activityVC = UIActivityViewController(activityItems: ["https://itunes.apple.com/us/app/see-you-soon/id1266551646?mt=8"], applicationActivities: nil)
             activityVC.popoverPresentationController?.sourceView = self.view
             
             self.present(activityVC, animated: true, completion: nil)
