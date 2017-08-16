@@ -40,14 +40,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let defaults = UserDefaults.standard
         let userHasOnboarded = defaults.bool(forKey: "userHasOnboarded")
-        //self.window?.rootViewController = self.generateStandardOnboardingVC()
-        
+        self.window?.rootViewController = self.generateStandardOnboardingVC()
+        /*
         if userHasOnboarded {
             self.setupNormalRootViewController()
         } else {
             self.window?.rootViewController = self.generateStandardOnboardingVC()
         }
-        
+        */
         return true
     }
     
@@ -163,14 +163,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func generateStandardOnboardingVC () -> OnboardingViewController {
         var onboardingVC = OnboardingViewController()
+        var onboardingCVC = OnboardingContentViewController()
         
         let firstPage = OnboardingContentViewController.content(withTitle: "See You Soon!", body: nil, image: UIImage(named: ""), buttonText: nil, action: nil)
+        firstPage.titleLabel.adjustsFontSizeToFitWidth = true
         
         let secondPage = OnboardingContentViewController.content(withTitle: "Share a journey with someone.", body: "Let them know you're on your way.", image: UIImage(named: "Share"), buttonText: nil, action: nil)
         
         let thirdPage = OnboardingContentViewController.content(withTitle: "Your journey is plotted on a map.", body: "Friends and family can see the route you're taking.", image: UIImage(named: "PlotOnMap"), buttonText: nil, action: nil)
         
         let fourthPage = OnboardingContentViewController.content(withTitle: "The map will also show your ETA.", body: "That way they know when to expect you.", image: UIImage(named: "ETA"), buttonText: "Get started", action: self.handleOnboardingCompletion)
+        fourthPage.bodyLabel.adjustsFontSizeToFitWidth = true
         
         onboardingVC = OnboardingViewController.onboard(withBackgroundImage: UIImage(named: ""), contents: [firstPage, secondPage, thirdPage, fourthPage])
         //create an image that is my hex color?
