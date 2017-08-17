@@ -511,12 +511,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="aMg-d8-8Gn">
-                                <rect key="frame" x="0.0" y="-13" width="387" height="680"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="aMg-d8-8Gn">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aMg-d8-8Gn" firstAttribute="top" secondItem="kTz-tI-1Nl" secondAttribute="top" id="373-Xk-nnn"/>
+                            <constraint firstAttribute="trailing" secondItem="aMg-d8-8Gn" secondAttribute="trailing" id="9Bf-rB-M1R"/>
+                            <constraint firstItem="uSj-Td-du2" firstAttribute="top" secondItem="aMg-d8-8Gn" secondAttribute="bottom" id="Bgh-W5-X24"/>
+                            <constraint firstItem="aMg-d8-8Gn" firstAttribute="top" secondItem="kTz-tI-1Nl" secondAttribute="top" id="U2J-i7-6VO"/>
+                            <constraint firstItem="aMg-d8-8Gn" firstAttribute="leading" secondItem="kTz-tI-1Nl" secondAttribute="leading" id="kgg-uC-m1T"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="startAJourneyMap" destination="aMg-d8-8Gn" id="5Cb-ec-ddW"/>
@@ -526,7 +532,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m74-jo-nmM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7141.6000000000004" y="169.56521739130437"/>
+            <point key="canvasLocation" x="7140.579710144928" y="169.56521739130437"/>
         </scene>
         <!--Share Journey Picker View Controller-->
         <scene sceneID="T3y-lc-xdB">
@@ -1216,7 +1222,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ziV-4J-GkS"/>
+        <segue reference="n2r-Cb-QJ0"/>
         <segue reference="tX9-J2-yO8"/>
         <segue reference="TxF-nw-k2B"/>
         <segue reference="y8I-s4-yWc"/>
