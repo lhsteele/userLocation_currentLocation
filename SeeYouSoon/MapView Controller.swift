@@ -35,6 +35,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     var listOfSharedFavorites: [SavedFavorites] = []
     var locationID = ""
     var inputAddressCoordinates = CLLocationCoordinate2D()
+    var resultSearchController: UISearchController? = nil
 
     let manager = CLLocationManager ()
     let geocoder = CLGeocoder()
@@ -84,6 +85,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         createAFavoriteLocation.layer.cornerRadius = 10
         createAFavoriteLocation.backgroundColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
         self.navigationController?.navigationBar.tintColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
+        
+        let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "SearchTable") as! SearchTable
+        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
+        resultSearchController?.searchResultsUpdater = locationSearchTable
+        
+        let searchBar = resultSearchController!.searchBar
+        searchBar.sizeToFit()
+        searchBar.placeholder = "Search for location"
+        navigationItem.titleView = resultSearchController?.searchBar
+        
+        resultSearchController?.hidesNavigationBarDuringPresentation = false
+        resultSearchController?.dimsBackgroundDuringPresentation = true
+        definesPresentationContext = true
+        
+        locationSearchTable.mapView = map
     }
     
     
