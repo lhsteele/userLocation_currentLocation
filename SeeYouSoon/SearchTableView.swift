@@ -14,10 +14,22 @@ class SearchTable : UITableViewController {
     var matchingItems: [MKMapItem] = []
     var mapView: MKMapView? = nil
     
-    override func viewDidLoad() {
-        
+    func parseAddress(selectedItem: MKPlacemark) -> String {
+        let firstSpace = (selectedItem.subThoroughfare != nil && selectedItem.thoroughfare != nil) ? " " : " "
+        let comma = (selectedItem.subThoroughfare != nil || selectedItem.thoroughfare != nil) && (selectedItem.subAdministrativeArea != nil || selectedItem.administrativeArea != nil) ? ", " : ""
+        let secondSpace = (selectedItem.subAdministrativeArea != nil && selectedItem.administrativeArea != nil) ? " "  : ""
+        let addressLine = String(
+            format: "%@%@%@%@%@%@%@",
+            selectedItem.subThoroughfare ?? "",
+            firstSpace,
+            selectedItem.thoroughfare ?? "",
+            comma,
+            selectedItem.locality ?? "",
+            secondSpace,
+            selectedItem.administrativeArea ?? ""
+        )
+        return addressLine
     }
-    
     
 }
 
@@ -48,7 +60,7 @@ extension SearchTable {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
         let selectedItem = matchingItems[indexPath.row].placemark
         cell.textLabel?.text = selectedItem.name
-        cell.detailTextLabel?.text = ""
+        cell.detailTextLabel?.text = parseAddress(selectedItem: selectedItem)
         return cell
     }
 }
