@@ -13,6 +13,7 @@ class SearchTable : UITableViewController {
     
     var matchingItems: [MKMapItem] = []
     var mapView: MKMapView? = nil
+    var handleMapSearchDelegate: HandleMapSearch? = nil
     
     func parseAddress(selectedItem: MKPlacemark) -> String {
         let firstSpace = (selectedItem.subThoroughfare != nil && selectedItem.thoroughfare != nil) ? " " : " "
@@ -62,5 +63,13 @@ extension SearchTable {
         cell.textLabel?.text = selectedItem.name
         cell.detailTextLabel?.text = parseAddress(selectedItem: selectedItem)
         return cell
+    }
+}
+
+extension SearchTable {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedItem = matchingItems[indexPath.row].placemark
+        handleMapSearchDelegate?.dropPinZoomIn(placemark: selectedItem)
+        dismiss(animated: true, completion: nil)
     }
 }

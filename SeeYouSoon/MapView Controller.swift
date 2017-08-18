@@ -11,7 +11,9 @@ import MapKit
 import CoreLocation
 import Firebase
 
-
+protocol HandleMapSearch {
+    func dropPinZoomIn(placemark: MKPlacemark)
+}
 
 class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UITextFieldDelegate {
     
@@ -36,6 +38,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     var locationID = ""
     var inputAddressCoordinates = CLLocationCoordinate2D()
     var resultSearchController: UISearchController? = nil
+    var selectedPin: MKPlacemark? = nil
 
     let manager = CLLocationManager ()
     let geocoder = CLGeocoder()
@@ -100,6 +103,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         definesPresentationContext = true
         
         locationSearchTable.mapView = map
+        locationSearchTable.handleMapSearchDelegate = self 
     }
     
     
@@ -189,5 +193,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
 }
 
-
+extension ViewController: HandleMapSearch {
+    func dropPinZoomIn(placemark: MKPlacemark) {
+        selectedPin = placemark
+        map.removeAnnotations(map.annotations)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = placemark.coordinate
+        annotation.title = placemark.name
+        if let city = placemark.locality,
+            let state = placemark.administrativeArea {
+            annotation.subtitle = "(city) (state)"
+        }
+        map.addAnnotation(annotation)
+        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let region = MKCoordinateRegionMake(placemark.coordinate, span)
+        map.setRegion(region, animated: true)
+    }
+}
 
