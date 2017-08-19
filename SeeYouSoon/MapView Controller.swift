@@ -202,7 +202,7 @@ extension ViewController: HandleMapSearch {
         annotation.title = placemark.name
         if let city = placemark.locality,
             let state = placemark.administrativeArea {
-            annotation.subtitle = "(city) (state)"
+            annotation.subtitle = "\(city)\(state)"
         }
         map.addAnnotation(annotation)
         let span = MKCoordinateSpanMake(0.05, 0.05)
