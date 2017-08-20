@@ -11,7 +11,6 @@
 		EF0A2B481EA013CE006709C3 /* ReauthenticateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0A2B471EA013CE006709C3 /* ReauthenticateViewController.swift */; };
 		EF0DBD491ECA51FA00A9699E /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF0DBD481ECA51FA00A9699E /* UserNotifications.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		EF0ECD151EA175D200902441 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0ECD141EA175D200902441 /* SettingsTableViewController.swift */; };
-		EF2D04341EF389D800942F51 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF2D04331EF389D800942F51 /* GoogleService-Info.plist */; };
 		EF3821551E2415DF00032F42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3821541E2415DF00032F42 /* AppDelegate.swift */; };
 		EF3821571E2415DF00032F42 /* MapView Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3821561E2415DF00032F42 /* MapView Controller.swift */; };
 		EF38215A1E2415DF00032F42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF3821581E2415DF00032F42 /* Main.storyboard */; };
@@ -36,6 +35,7 @@
 		EFB922841EF8C99800BD6413 /* LiveJourneysTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB922831EF8C99800BD6413 /* LiveJourneysTableViewController.swift */; };
 		EFB922861EF8D52200BD6413 /* JourneyLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB922851EF8D52200BD6413 /* JourneyLocations.swift */; };
 		EFCBAEF71F469C770037F079 /* SearchTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCBAEF61F469C770037F079 /* SearchTableView.swift */; };
+		EFCBAEFB1F4A3EC00037F079 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EFCBAEFA1F4A3EC00037F079 /* GoogleService-Info.plist */; };
 		EFCE5AA91F3BBE1100566DA6 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = EFCE5AA81F3BBE1100566DA6 /* Podfile */; };
 		EFDE1A591E3A9403002D1589 /* FavoriteLocationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDE1A581E3A9403002D1589 /* FavoriteLocationsTableViewController.swift */; };
 		EFF6AB0D1E8EF2FF00366DB2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF6AB0C1E8EF2FF00366DB2 /* LoginViewController.swift */; };
@@ -68,7 +68,6 @@
 		EF0A2B471EA013CE006709C3 /* ReauthenticateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReauthenticateViewController.swift; sourceTree = "<group>"; };
 		EF0DBD481ECA51FA00A9699E /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		EF0ECD141EA175D200902441 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
-		EF2D04331EF389D800942F51 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EF3821511E2415DF00032F42 /* SeeYouSoon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeeYouSoon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF3821541E2415DF00032F42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF3821561E2415DF00032F42 /* MapView Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapView Controller.swift"; sourceTree = "<group>"; };
@@ -101,6 +100,7 @@
 		EFB922831EF8C99800BD6413 /* LiveJourneysTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveJourneysTableViewController.swift; sourceTree = "<group>"; };
 		EFB922851EF8D52200BD6413 /* JourneyLocations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JourneyLocations.swift; sourceTree = "<group>"; };
 		EFCBAEF61F469C770037F079 /* SearchTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableView.swift; sourceTree = "<group>"; };
+		EFCBAEFA1F4A3EC00037F079 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EFCE5AA81F3BBE1100566DA6 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		EFDE1A581E3A9403002D1589 /* FavoriteLocationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteLocationsTableViewController.swift; sourceTree = "<group>"; };
 		EFF6AB0C1E8EF2FF00366DB2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -197,8 +197,8 @@
 				EF38215D1E2415DF00032F42 /* LaunchScreen.storyboard */,
 				EF3821581E2415DF00032F42 /* Main.storyboard */,
 				EF38215B1E2415DF00032F42 /* Assets.xcassets */,
+				EFCBAEFA1F4A3EC00037F079 /* GoogleService-Info.plist */,
 				EF3821601E2415DF00032F42 /* Info.plist */,
-				EF2D04331EF389D800942F51 /* GoogleService-Info.plist */,
 				EFCE5AA81F3BBE1100566DA6 /* Podfile */,
 			);
 			name = "See You Soon";
@@ -309,7 +309,7 @@
 					EF3821501E2415DF00032F42 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 77F66T2364;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -362,7 +362,7 @@
 			files = (
 				EFCE5AA91F3BBE1100566DA6 /* Podfile in Resources */,
 				EF38215F1E2415DF00032F42 /* LaunchScreen.storyboard in Resources */,
-				EF2D04341EF389D800942F51 /* GoogleService-Info.plist in Resources */,
+				EFCBAEFB1F4A3EC00037F079 /* GoogleService-Info.plist in Resources */,
 				EF38215C1E2415DF00032F42 /* Assets.xcassets in Resources */,
 				EF38215A1E2415DF00032F42 /* Main.storyboard in Resources */,
 			);
@@ -613,15 +613,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SeeYouSoon.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Lisa Steele (77F66T2364)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lisa Steele (77F66T2364)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 77F66T2364;
 				INFOPLIST_FILE = SeeYouSoon/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "XC-com-lisahsteele-userLocation";
 				PRODUCT_NAME = SeeYouSoon;
-				PROVISIONING_PROFILE = "fb9dac1e-14c6-429a-b253-77a26b9a43eb";
-				PROVISIONING_PROFILE_SPECIFIER = SeeYouSoon;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -635,15 +635,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SeeYouSoon.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Lisa Steele (77F66T2364)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lisa Steele (77F66T2364)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 77F66T2364;
 				INFOPLIST_FILE = SeeYouSoon/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "XC-com-lisahsteele-userLocation";
 				PRODUCT_NAME = SeeYouSoon;
-				PROVISIONING_PROFILE = "fb9dac1e-14c6-429a-b253-77a26b9a43eb";
-				PROVISIONING_PROFILE_SPECIFIER = SeeYouSoon;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;

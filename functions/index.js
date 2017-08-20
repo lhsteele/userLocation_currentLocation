@@ -40,9 +40,11 @@ exports.newEntry = functions.database.ref('/StartedJourneys/{fireUserID}')
     sharedUserID = original.SharedWithUserID;
     var db = admin.database();
     var ref = db.ref('/UserTokens');
+    console.log (sharedUserID)
     
     return ref.orderByKey().equalTo(sharedUserID).on("child_added", function(snapshot) {
       const deviceToken = snapshot.val();
+      console.log (deviceToken)
 
       admin.messaging().sendToDevice(deviceToken, payload, options)
 	  	.then(function(response) {
