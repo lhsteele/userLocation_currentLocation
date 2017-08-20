@@ -11,7 +11,9 @@ import MapKit
 import CoreLocation
 import Firebase
 
-
+protocol HandleMapSearch {
+    func dropPinZoomIn(placemark: MKPlacemark)
+}
 
 class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UITextFieldDelegate {
     
@@ -35,9 +37,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     var listOfSharedFavorites: [SavedFavorites] = []
     var locationID = ""
     var inputAddressCoordinates = CLLocationCoordinate2D()
+    var resultSearchController: UISearchController? = nil
+    var selectedPin: MKPlacemark? = nil
 
     let manager = CLLocationManager ()
-    let geocoder = CLGeocoder()
+    
     
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -75,8 +79,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
         
-        addressTextField.returnKeyType = UIReturnKeyType.done
-        self.addressTextField.delegate = self
+        //addressTextField.returnKeyType = UIReturnKeyType.done
+        //self.addressTextField.delegate = self
         
         createAFavoriteLocation.setTitleColor(UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0), for: UIControlState.normal)
         createAFavoriteLocation.layer.borderColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0).cgColor
@@ -84,9 +88,25 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         createAFavoriteLocation.layer.cornerRadius = 10
         createAFavoriteLocation.backgroundColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
         self.navigationController?.navigationBar.tintColor = UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)
+        
+        let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "SearchTable") as! SearchTable
+        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
+        resultSearchController?.searchResultsUpdater = locationSearchTable
+        
+        let searchBar = resultSearchController!.searchBar
+        searchBar.sizeToFit()
+        searchBar.placeholder = "Search for location"
+        navigationItem.titleView = resultSearchController?.searchBar
+        
+        resultSearchController?.hidesNavigationBarDuringPresentation = false
+        resultSearchController?.dimsBackgroundDuringPresentation = true
+        definesPresentationContext = true
+        
+        locationSearchTable.mapView = map
+        locationSearchTable.handleMapSearchDelegate = self 
     }
     
-    
+    /*
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let reuseID = "pin"
         var annotationView = map.dequeueReusableAnnotationView(withIdentifier: (reuseID))
@@ -98,48 +118,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         }
         return annotationView
     }
-    
-    func plotInputAddress() {
-        let geocoder = CLGeocoder()
-        _ = MKPointAnnotation()
-        let inputAddress = addressTextField.text!
-        geocoder.geocodeAddressString(inputAddress) { (placemarks, error) in
-            let placemark = placemarks?.first
-            if let inputLat = placemark?.location?.coordinate.latitude, let inputLong = placemark?.location?.coordinate.longitude {
-                self.latCoordPassed = inputLat
-                self.longCoordPassed = inputLong
-                let coordMaker = CLLocationCoordinate2DMake(inputLat, inputLong)
-                self.inputAddressCoordinates = coordMaker
-            }
-            self.showInputAddressOnMap()
-        }
-        
-    }
-    
-    func showInputAddressOnMap() {
-        print ("inputAddressCoordinates \(inputAddressCoordinates)")
-        let span = MKCoordinateSpanMake(0.5, 0.5)
-        let region = MKCoordinateRegionMake(inputAddressCoordinates, span)
-        
-        map.setRegion(region, animated: true)
-        
-        let annotation = MKPointAnnotation()
-        
-        annotation.coordinate = inputAddressCoordinates
-        annotation.title = addressTextField.text
-        
-        map.addAnnotation(annotation)
-        map.showAnnotations([annotation], animated: true)
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        addressTextField.resignFirstResponder()
-        if addressTextField != nil {
-            self.plotInputAddress()
-        }
-        return true
-    }
-    
+    */
     
     @IBAction func saveUserFavorite(_ sender: Any) {
         performSegue(withIdentifier: "SaveLocationDetailSegue", sender: self)
@@ -173,5 +152,27 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
 }
 
-
+extension ViewController: HandleMapSearch {
+    func dropPinZoomIn(placemark: MKPlacemark) {
+        selectedPin = placemark
+        map.removeAnnotations(map.annotations)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = placemark.coordinate
+        annotation.title = placemark.name
+        if let city = placemark.locality,
+            let state = placemark.administrativeArea {
+            annotation.subtitle = "\(city)\(state)"
+        }
+        if let inputLat = placemark.location?.coordinate.latitude, let inputLong = placemark.location?.coordinate.longitude {
+            self.latCoordPassed = inputLat
+            self.longCoordPassed = inputLong
+            let coordMaker = CLLocationCoordinate2DMake(inputLat, inputLong)
+            self.inputAddressCoordinates = coordMaker
+        }
+        map.addAnnotation(annotation)
+        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let region = MKCoordinateRegionMake(placemark.coordinate, span)
+        map.setRegion(region, animated: true)
+    }
+}
 
