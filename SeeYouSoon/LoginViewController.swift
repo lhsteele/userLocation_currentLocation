@@ -156,7 +156,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func userLogin() {
         Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
             if error != nil {
-                self.signInLabel.text = "There has been an error. Please try again."
+                self.displayAlertMessage(messageToDisplay: "There has been an error. Please try again.")
             } else {
                 self.getUserInfo()
                 self.performSegue(withIdentifier: "FavoriteLocationsTableSegue", sender: self.submitButton)
