@@ -98,6 +98,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         searchBar.placeholder = "Search for location"
         navigationItem.titleView = resultSearchController?.searchBar
         
+        
         resultSearchController?.hidesNavigationBarDuringPresentation = false
         resultSearchController?.dimsBackgroundDuringPresentation = true
         definesPresentationContext = true
@@ -132,6 +133,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             pointer.latCoordPassed = self.latCoordPassed
             pointer.longCoordPassed = self.longCoordPassed
             pointer.fireUserID = self.fireUserID
+            
+            definesPresentationContext = false
         }
     }
 
