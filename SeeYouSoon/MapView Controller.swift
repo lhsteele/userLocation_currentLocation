@@ -120,10 +120,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     }
     */
     
-    @IBAction func saveUserFavorite(_ sender: Any) {
+    
+    @IBAction func CreateAFavoriteLoc(_ sender: Any) {
         performSegue(withIdentifier: "SaveLocationDetailSegue", sender: self)
     }
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "SaveLocationDetailSegue") {

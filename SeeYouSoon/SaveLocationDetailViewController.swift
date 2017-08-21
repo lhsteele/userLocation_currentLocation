@@ -76,7 +76,6 @@ class SaveLocationDetailViewController: UIViewController, UITextFieldDelegate {
 
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         locationNameField.resignFirstResponder()
-        saveNewFavLoc()
         return true
     }
     

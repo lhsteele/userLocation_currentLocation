@@ -154,7 +154,7 @@
                                 <rect key="frame" x="20" y="686" width="374" height="30"/>
                                 <state key="normal" title="Create a Favorite Location"/>
                                 <connections>
-                                    <action selector="saveUserFavorite:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MFY-HB-ogT"/>
+                                    <action selector="CreateAFavoriteLoc:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QDa-iS-Mgk"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -178,7 +178,7 @@
                     <connections>
                         <outlet property="createAFavoriteLocation" destination="5vh-wZ-Dsu" id="EPQ-DQ-Tcl"/>
                         <outlet property="map" destination="dg0-d2-acE" id="Ssm-V4-yEi"/>
-                        <segue destination="1fE-IW-njT" kind="show" identifier="SaveLocationDetailSegue" id="gc5-UK-cdB"/>
+                        <segue destination="1fE-IW-njT" kind="show" identifier="SaveLocationDetailSegue" id="rwm-FS-kdm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

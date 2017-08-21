@@ -8,6 +8,8 @@
 	<string></string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleGetInfoString</key>
+	<string></string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -17,13 +19,15 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1</string>
+	<string>1.2</string>
 	<key>CFBundleVersion</key>
-	<string>2.1</string>
+	<string>2.2</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSHumanReadableCopyright</key>
+	<string></string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Location updates are necessary in order to tell your friends where you are on your journey.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
@@ -45,8 +49,6 @@
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 	<key>WKBackgroundModes</key>
-	<array>
-		<string></string>
-	</array>
+	<array/>
 </dict>
 </plist>

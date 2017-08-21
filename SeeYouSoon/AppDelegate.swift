@@ -163,7 +163,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func generateStandardOnboardingVC () -> OnboardingViewController {
         var onboardingVC = OnboardingViewController()
-        var onboardingCVC = OnboardingContentViewController()
         
         let firstPage = OnboardingContentViewController.content(withTitle: "See You Soon!", body: nil, image: UIImage(named: ""), buttonText: nil, action: nil)
         firstPage.titleLabel.adjustsFontSizeToFitWidth = true
@@ -240,7 +239,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID: \(messageID)")
         }
-       
+        
         print(userInfo)
         
         completionHandler()
