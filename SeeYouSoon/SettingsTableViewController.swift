@@ -20,6 +20,7 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet var changePasswordButton: UITableViewCell!
     @IBOutlet var logoutButton: UITableViewCell!
     @IBOutlet var deleteAccountButton: UITableViewCell!
+    @IBOutlet var guideButton: UITableViewCell!
     var handle: AuthStateDidChangeListenerHandle?
     
     
@@ -32,6 +33,7 @@ class SettingsTableViewController: UITableViewController {
         updateEmailButton.textLabel?.textColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
         changePasswordButton.textLabel?.textColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
         logoutButton.textLabel?.textColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
+        guideButton.textLabel?.textColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
         deleteAccountButton.textLabel?.textColor = UIColor(red: 0.75, green: 0.22, blue: 0.16, alpha: 1.0)
     }
 
@@ -57,6 +59,8 @@ class SettingsTableViewController: UITableViewController {
             
             performSegue(withIdentifier: "LogoutSegue", sender: logoutButton)
         case 3:
+            performSegue(withIdentifier: "GuideSegue", sender: guideButton)
+        case 4:
             performSegue(withIdentifier: "ReauthenticateSegue", sender: deleteAccountButton)
         default:
             ()
