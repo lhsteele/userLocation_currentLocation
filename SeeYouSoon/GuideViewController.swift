@@ -16,7 +16,7 @@ class GuideViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        text.textColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
+        
         closebutton.setTitleColor(UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0), for: UIControlState.normal)
         closebutton.layer.borderColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0).cgColor
         closebutton.layer.borderWidth = 1
