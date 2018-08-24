@@ -12,6 +12,7 @@ import FirebaseDatabase
 import Firebase
 import FirebaseMessaging
 import UserNotifications
+import FirebaseInstanceID
 
 let favoriteLocationKey = "NewFavoriteLocation"
 

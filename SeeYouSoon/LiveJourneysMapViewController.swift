@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import FirebaseDatabase
 import Firebase
 
 class LiveJourneysMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate{

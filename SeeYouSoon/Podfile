@@ -5,6 +5,7 @@ target "userLocation" do
 pod 'Firebase/Core', '4.0.4'
 pod 'Firebase/Database', '4.0.0'
 pod 'Firebase/Auth', '4.0.0'
-pod 'Firebase/Messaging', '2.0.0'
+pod 'Firebase/Messaging', '2.0.6'
+pod 'Firebase/InstanceID', '2.0.6'
 pod 'Onboard', '2.3.1'
 end

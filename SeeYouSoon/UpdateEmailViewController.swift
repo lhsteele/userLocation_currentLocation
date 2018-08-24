@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 import Firebase
 
 class UpdateEmailViewController: UIViewController, UITextFieldDelegate {

@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 import FirebaseMessaging
+import FirebaseDatabase
+import FirebaseInstanceID
 import UserNotifications
 import Onboard
 
@@ -114,8 +116,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print ("APNs token retrieved: \(readableToken)")
         
         Messaging.messaging().apnsToken = deviceToken
+        
+        if let refreshedToken = InstanceID.instanceID().token() {
+            print("InstanceID token: \(refreshedToken)")
+        }
     }
-    
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         
