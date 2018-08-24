@@ -20,6 +20,7 @@
 		EF3821751E2415DF00032F42 /* userLocationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3821741E2415DF00032F42 /* userLocationUITests.swift */; };
 		EF3CCA891EBD1CCB00C655C2 /* ChangePasswordReauthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3CCA881EBD1CCB00C655C2 /* ChangePasswordReauthViewController.swift */; };
 		EF3CCA8B1EBD1FDC00C655C2 /* NewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3CCA8A1EBD1FDC00C655C2 /* NewPasswordViewController.swift */; };
+		EF4C177620F3DBA00026DAFD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF4C177520F3D75C0026DAFD /* GoogleService-Info.plist */; };
 		EF556EB31F229D1F004783E2 /* GoodbyeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF556EB21F229D1F004783E2 /* GoodbyeViewController.swift */; };
 		EF61AD6C1F083EE400D7DD9E /* LiveJourneysMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF61AD6B1F083EE400D7DD9E /* LiveJourneysMapViewController.swift */; };
 		EF63100B1EBCEFE300A7CC84 /* FavLocMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF63100A1EBCEFE300A7CC84 /* FavLocMapViewController.swift */; };
@@ -36,7 +37,6 @@
 		EFB922841EF8C99800BD6413 /* LiveJourneysTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB922831EF8C99800BD6413 /* LiveJourneysTableViewController.swift */; };
 		EFB922861EF8D52200BD6413 /* JourneyLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB922851EF8D52200BD6413 /* JourneyLocations.swift */; };
 		EFCBAEF71F469C770037F079 /* SearchTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCBAEF61F469C770037F079 /* SearchTableView.swift */; };
-		EFCBAEFB1F4A3EC00037F079 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EFCBAEFA1F4A3EC00037F079 /* GoogleService-Info.plist */; };
 		EFCE5AA91F3BBE1100566DA6 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = EFCE5AA81F3BBE1100566DA6 /* Podfile */; };
 		EFDE1A591E3A9403002D1589 /* FavoriteLocationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDE1A581E3A9403002D1589 /* FavoriteLocationsTableViewController.swift */; };
 		EFF6AB0D1E8EF2FF00366DB2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF6AB0C1E8EF2FF00366DB2 /* LoginViewController.swift */; };
@@ -85,6 +85,7 @@
 		EF3821831E24162A00032F42 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		EF3CCA881EBD1CCB00C655C2 /* ChangePasswordReauthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordReauthViewController.swift; sourceTree = "<group>"; };
 		EF3CCA8A1EBD1FDC00C655C2 /* NewPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPasswordViewController.swift; sourceTree = "<group>"; };
+		EF4C177520F3D75C0026DAFD /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EF556EB21F229D1F004783E2 /* GoodbyeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodbyeViewController.swift; sourceTree = "<group>"; };
 		EF5A9AED1E51618500650937 /* userLocation.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = userLocation.entitlements; path = SeeYouSoon/userLocation.entitlements; sourceTree = "<group>"; };
 		EF5EDB9E1F3BAE8D00B6F62E /* SeeYouSoon.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SeeYouSoon.entitlements; sourceTree = SOURCE_ROOT; };
@@ -102,7 +103,6 @@
 		EFB922831EF8C99800BD6413 /* LiveJourneysTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveJourneysTableViewController.swift; sourceTree = "<group>"; };
 		EFB922851EF8D52200BD6413 /* JourneyLocations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JourneyLocations.swift; sourceTree = "<group>"; };
 		EFCBAEF61F469C770037F079 /* SearchTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableView.swift; sourceTree = "<group>"; };
-		EFCBAEFA1F4A3EC00037F079 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EFCE5AA81F3BBE1100566DA6 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		EFDE1A581E3A9403002D1589 /* FavoriteLocationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteLocationsTableViewController.swift; sourceTree = "<group>"; };
 		EFF6AB0C1E8EF2FF00366DB2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -200,9 +200,9 @@
 				EF38215D1E2415DF00032F42 /* LaunchScreen.storyboard */,
 				EF3821581E2415DF00032F42 /* Main.storyboard */,
 				EF38215B1E2415DF00032F42 /* Assets.xcassets */,
-				EFCBAEFA1F4A3EC00037F079 /* GoogleService-Info.plist */,
 				EF3821601E2415DF00032F42 /* Info.plist */,
 				EFCE5AA81F3BBE1100566DA6 /* Podfile */,
+				EF4C177520F3D75C0026DAFD /* GoogleService-Info.plist */,
 			);
 			name = "See You Soon";
 			path = /Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/SeeYouSoon;
@@ -306,7 +306,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Lisa Steele";
 				TargetAttributes = {
 					EF3821501E2415DF00032F42 = {
@@ -365,7 +365,7 @@
 			files = (
 				EFCE5AA91F3BBE1100566DA6 /* Podfile in Resources */,
 				EF38215F1E2415DF00032F42 /* LaunchScreen.storyboard in Resources */,
-				EFCBAEFB1F4A3EC00037F079 /* GoogleService-Info.plist in Resources */,
+				EF4C177620F3DBA00026DAFD /* GoogleService-Info.plist in Resources */,
 				EF38215C1E2415DF00032F42 /* Assets.xcassets in Resources */,
 				EF38215A1E2415DF00032F42 /* Main.storyboard in Resources */,
 			);
@@ -541,7 +541,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -549,7 +551,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -591,7 +597,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -599,7 +607,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -680,7 +692,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.LisaSteele.userLocationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/userLocation.app/userLocation";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SeeYouSoon.app/SeeYouSoon";
 			};
 			name = Debug;
 		};
@@ -695,7 +707,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.LisaSteele.userLocationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/userLocation.app/userLocation";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SeeYouSoon.app/SeeYouSoon";
 			};
 			name = Release;
 		};

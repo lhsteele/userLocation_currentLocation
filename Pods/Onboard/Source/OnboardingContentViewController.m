@@ -21,8 +21,8 @@ static CGFloat const kDefaultUnderIconPadding = 30;
 static CGFloat const kDefaultUnderTitlePadding = 30;
 static CGFloat const kDefaultBottomPadding = 0;
 static CGFloat const kDefaultUnderPageControlPadding = 0;
-static CGFloat const kDefaultTitleFontSize = 20;
-static CGFloat const kDefaultBodyFontSize = 15;
+static CGFloat const kDefaultTitleFontSize = 38;
+static CGFloat const kDefaultBodyFontSize = 28;
 static CGFloat const kDefaultButtonFontSize = 24;
 
 static CGFloat const kActionButtonHeight = 50;
