@@ -226,7 +226,7 @@ class ShareJourneyPickerViewController: UIViewController, UIPickerViewDelegate, 
     }
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        let attributedString = NSAttributedString(string: arrayOfSubscribedUsers[row], attributes: [NSForegroundColorAttributeName : UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)])
+        let attributedString = NSAttributedString(string: arrayOfSubscribedUsers[row], attributes: [NSAttributedStringKey.foregroundColor : UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)])
         return attributedString
     }
     

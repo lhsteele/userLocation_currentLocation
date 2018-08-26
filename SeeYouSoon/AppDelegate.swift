@@ -34,11 +34,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UNUserNotificationCenter.current().delegate = self
             
             Messaging.messaging().delegate = self
+            
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in })
+        } else {
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+
         }
+        
+        application.registerForRemoteNotifications()
         
         UINavigationBar.appearance().tintColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
         UINavigationBar.appearance().barTintColor = UIColor(red: 0.23, green: 0.44, blue: 0.51, alpha: 1.0)
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor(red: 0.93, green: 0.95, blue: 0.95, alpha: 1.0)]
         
         let defaults = UserDefaults.standard
         let userHasOnboarded = defaults.bool(forKey: "userHasOnboarded")

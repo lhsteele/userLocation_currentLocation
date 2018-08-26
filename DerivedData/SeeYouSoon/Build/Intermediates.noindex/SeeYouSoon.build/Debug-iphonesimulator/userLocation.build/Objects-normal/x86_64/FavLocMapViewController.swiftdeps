@@ -1,0 +1,1088 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "FavLocMapViewController"
+provides-nominal:
+- "10SeeYouSoon23FavLocMapViewControllerC"
+provides-member:
+- ["10SeeYouSoon23FavLocMapViewControllerC", ""]
+provides-dynamic-lookup:
+- "annotation"
+- "appDidEnterBackground"
+- "didReceiveMemoryWarning"
+- "favLocMap"
+- "favLocToMap"
+- "getLocationCoordinates"
+- "handle"
+- "locationID"
+- "locationLat"
+- "locationLong"
+- "showMap"
+- "viewDidLoad"
+- "viewWillAppear"
+- "viewWillDisappear"
+depends-top-level:
+- !private "=="
+- !private "Array"
+- "AssignmentPrecedence"
+- !private "Auth"
+- "AuthStateDidChangeListenerHandle"
+- "Bool"
+- !private "BooleanLiteralType"
+- "CLLocationCoordinate2D"
+- !private "CLLocationCoordinate2DMake"
+- "CLLocationDegrees"
+- !private "CastingPrecedence"
+- !private "DataSnapshot"
+- !private "Database"
+- !private "Double"
+- "FavLocMapViewController"
+- !private "MKCoordinateRegionMake"
+- !private "MKCoordinateSpanMake"
+- "MKMapView"
+- "MKPointAnnotation"
+- "StringLiteralType"
+- "UIApplication"
+- !private "UIColor"
+- "UIViewController"
+depends-member:
+- !private ["So4AuthC", "addStateDidChangeListener"]
+- !private ["So4AuthC", "auth"]
+- !private ["So4AuthC", "removeStateDidChangeListener"]
+- !private ["So4AuthC", "signOut"]
+- ["s23BidirectionalCollectionP", "init"]
+- ["s19BinaryFloatingPointP", "init"]
+- !private ["Sb", "_getBuiltinLogicValue"]
+- !private ["So15CALayerDelegateP", "addAnnotation"]
+- !private ["So15CALayerDelegateP", "setRegion"]
+- !private ["So15CALayerDelegateP", "showAnnotations"]
+- !private ["So15CALayerDelegateP", "tintColor"]
+- ["SC22CLLocationCoordinate2DV", "init"]
+- !private ["s7CVarArgP", "Auth"]
+- ["s7CVarArgP", "CLLocationCoordinate2D"]
+- !private ["s7CVarArgP", "CLLocationCoordinate2DMake"]
+- ["s7CVarArgP", "CLLocationDegrees"]
+- !private ["s7CVarArgP", "Database"]
+- !private ["s7CVarArgP", "Double"]
+- !private ["s7CVarArgP", "MKCoordinateRegionMake"]
+- !private ["s7CVarArgP", "MKCoordinateSpanMake"]
+- ["s7CVarArgP", "MKPointAnnotation"]
+- !private ["s7CVarArgP", "UIColor"]
+- ["s7CVarArgP", ""]
+- !private ["s7CVarArgP", "_getBuiltinLogicValue"]
+- !private ["s7CVarArgP", "addAnnotation"]
+- !private ["s7CVarArgP", "addStateDidChangeListener"]
+- !private ["s7CVarArgP", "auth"]
+- !private ["s7CVarArgP", "child"]
+- !private ["s7CVarArgP", "children"]
+- !private ["s7CVarArgP", "coordinate"]
+- !private ["s7CVarArgP", "database"]
+- !private ["s7CVarArgP", "didReceiveMemoryWarning"]
+- !private ["s7CVarArgP", "favLocMap"]
+- !private ["s7CVarArgP", "favLocToMap"]
+- !private ["s7CVarArgP", "getLocationCoordinates"]
+- !private ["s7CVarArgP", "handle"]
+- ["s7CVarArgP", "init"]
+- !private ["s7CVarArgP", "key"]
+- !private ["s7CVarArgP", "locationID"]
+- !private ["s7CVarArgP", "locationLat"]
+- !private ["s7CVarArgP", "locationLong"]
+- !private ["s7CVarArgP", "navigationBar"]
+- !private ["s7CVarArgP", "navigationController"]
+- !private ["s7CVarArgP", "observe"]
+- !private ["s7CVarArgP", "queryEqual"]
+- !private ["s7CVarArgP", "queryOrderedByKey"]
+- !private ["s7CVarArgP", "reference"]
+- !private ["s7CVarArgP", "removeStateDidChangeListener"]
+- !private ["s7CVarArgP", "setNavigationBarHidden"]
+- !private ["s7CVarArgP", "setRegion"]
+- !private ["s7CVarArgP", "showAnnotations"]
+- !private ["s7CVarArgP", "showMap"]
+- !private ["s7CVarArgP", "signOut"]
+- !private ["s7CVarArgP", "tintColor"]
+- !private ["s7CVarArgP", "title"]
+- !private ["s7CVarArgP", "value"]
+- !private ["s7CVarArgP", "viewDidLoad"]
+- !private ["s7CVarArgP", "viewWillAppear"]
+- ["s10CollectionP", "init"]
+- ["s10ComparableP", "init"]
+- !private ["s28CustomDebugStringConvertibleP", "Auth"]
+- ["s28CustomDebugStringConvertibleP", "CLLocationCoordinate2D"]
+- !private ["s28CustomDebugStringConvertibleP", "CLLocationCoordinate2DMake"]
+- ["s28CustomDebugStringConvertibleP", "CLLocationDegrees"]
+- !private ["s28CustomDebugStringConvertibleP", "Database"]
+- !private ["s28CustomDebugStringConvertibleP", "Double"]
+- !private ["s28CustomDebugStringConvertibleP", "MKCoordinateRegionMake"]
+- !private ["s28CustomDebugStringConvertibleP", "MKCoordinateSpanMake"]
+- ["s28CustomDebugStringConvertibleP", "MKPointAnnotation"]
+- !private ["s28CustomDebugStringConvertibleP", "UIColor"]
+- ["s28CustomDebugStringConvertibleP", ""]
+- !private ["s28CustomDebugStringConvertibleP", "addAnnotation"]
+- !private ["s28CustomDebugStringConvertibleP", "addStateDidChangeListener"]
+- !private ["s28CustomDebugStringConvertibleP", "auth"]
+- !private ["s28CustomDebugStringConvertibleP", "child"]
+- !private ["s28CustomDebugStringConvertibleP", "children"]
+- !private ["s28CustomDebugStringConvertibleP", "coordinate"]
+- !private ["s28CustomDebugStringConvertibleP", "database"]
+- !private ["s28CustomDebugStringConvertibleP", "didReceiveMemoryWarning"]
+- !private ["s28CustomDebugStringConvertibleP", "favLocMap"]
+- !private ["s28CustomDebugStringConvertibleP", "favLocToMap"]
+- !private ["s28CustomDebugStringConvertibleP", "getLocationCoordinates"]
+- !private ["s28CustomDebugStringConvertibleP", "handle"]
+- ["s28CustomDebugStringConvertibleP", "init"]
+- !private ["s28CustomDebugStringConvertibleP", "key"]
+- !private ["s28CustomDebugStringConvertibleP", "locationID"]
+- !private ["s28CustomDebugStringConvertibleP", "locationLat"]
+- !private ["s28CustomDebugStringConvertibleP", "locationLong"]
+- !private ["s28CustomDebugStringConvertibleP", "navigationBar"]
+- !private ["s28CustomDebugStringConvertibleP", "navigationController"]
+- !private ["s28CustomDebugStringConvertibleP", "observe"]
+- !private ["s28CustomDebugStringConvertibleP", "queryEqual"]
+- !private ["s28CustomDebugStringConvertibleP", "queryOrderedByKey"]
+- !private ["s28CustomDebugStringConvertibleP", "reference"]
+- !private ["s28CustomDebugStringConvertibleP", "removeStateDidChangeListener"]
+- !private ["s28CustomDebugStringConvertibleP", "setNavigationBarHidden"]
+- !private ["s28CustomDebugStringConvertibleP", "setRegion"]
+- !private ["s28CustomDebugStringConvertibleP", "showAnnotations"]
+- !private ["s28CustomDebugStringConvertibleP", "showMap"]
+- !private ["s28CustomDebugStringConvertibleP", "signOut"]
+- !private ["s28CustomDebugStringConvertibleP", "tintColor"]
+- !private ["s28CustomDebugStringConvertibleP", "title"]
+- !private ["s28CustomDebugStringConvertibleP", "value"]
+- !private ["s28CustomDebugStringConvertibleP", "viewDidLoad"]
+- !private ["s28CustomDebugStringConvertibleP", "viewWillAppear"]
+- !private ["s29CustomPlaygroundQuickLookableP", "_getBuiltinLogicValue"]
+- ["s29CustomPlaygroundQuickLookableP", "init"]
+- !private ["s17CustomReflectableP", "_getBuiltinLogicValue"]
+- ["s17CustomReflectableP", "init"]
+- !private ["s23CustomStringConvertibleP", "Auth"]
+- ["s23CustomStringConvertibleP", "CLLocationCoordinate2D"]
+- !private ["s23CustomStringConvertibleP", "CLLocationCoordinate2DMake"]
+- ["s23CustomStringConvertibleP", "CLLocationDegrees"]
+- !private ["s23CustomStringConvertibleP", "Database"]
+- !private ["s23CustomStringConvertibleP", "Double"]
+- !private ["s23CustomStringConvertibleP", "MKCoordinateRegionMake"]
+- !private ["s23CustomStringConvertibleP", "MKCoordinateSpanMake"]
+- ["s23CustomStringConvertibleP", "MKPointAnnotation"]
+- !private ["s23CustomStringConvertibleP", "UIColor"]
+- ["s23CustomStringConvertibleP", ""]
+- !private ["s23CustomStringConvertibleP", "_getBuiltinLogicValue"]
+- !private ["s23CustomStringConvertibleP", "addAnnotation"]
+- !private ["s23CustomStringConvertibleP", "addStateDidChangeListener"]
+- !private ["s23CustomStringConvertibleP", "auth"]
+- !private ["s23CustomStringConvertibleP", "child"]
+- !private ["s23CustomStringConvertibleP", "children"]
+- !private ["s23CustomStringConvertibleP", "coordinate"]
+- !private ["s23CustomStringConvertibleP", "database"]
+- !private ["s23CustomStringConvertibleP", "didReceiveMemoryWarning"]
+- !private ["s23CustomStringConvertibleP", "favLocMap"]
+- !private ["s23CustomStringConvertibleP", "favLocToMap"]
+- !private ["s23CustomStringConvertibleP", "getLocationCoordinates"]
+- !private ["s23CustomStringConvertibleP", "handle"]
+- ["s23CustomStringConvertibleP", "init"]
+- !private ["s23CustomStringConvertibleP", "key"]
+- !private ["s23CustomStringConvertibleP", "locationID"]
+- !private ["s23CustomStringConvertibleP", "locationLat"]
+- !private ["s23CustomStringConvertibleP", "locationLong"]
+- !private ["s23CustomStringConvertibleP", "navigationBar"]
+- !private ["s23CustomStringConvertibleP", "navigationController"]
+- !private ["s23CustomStringConvertibleP", "observe"]
+- !private ["s23CustomStringConvertibleP", "queryEqual"]
+- !private ["s23CustomStringConvertibleP", "queryOrderedByKey"]
+- !private ["s23CustomStringConvertibleP", "reference"]
+- !private ["s23CustomStringConvertibleP", "removeStateDidChangeListener"]
+- !private ["s23CustomStringConvertibleP", "setNavigationBarHidden"]
+- !private ["s23CustomStringConvertibleP", "setRegion"]
+- !private ["s23CustomStringConvertibleP", "showAnnotations"]
+- !private ["s23CustomStringConvertibleP", "showMap"]
+- !private ["s23CustomStringConvertibleP", "signOut"]
+- !private ["s23CustomStringConvertibleP", "tintColor"]
+- !private ["s23CustomStringConvertibleP", "title"]
+- !private ["s23CustomStringConvertibleP", "value"]
+- !private ["s23CustomStringConvertibleP", "viewDidLoad"]
+- !private ["s23CustomStringConvertibleP", "viewWillAppear"]
+- !private ["SC13DataEventTypeO", "value"]
+- !private ["So12DataSnapshotC", "children"]
+- !private ["So12DataSnapshotC", "key"]
+- !private ["So12DataSnapshotC", "value"]
+- !private ["So8DatabaseC", "database"]
+- !private ["So8DatabaseC", "reference"]
+- !private ["So13DatabaseQueryC", "child"]
+- !private ["So13DatabaseQueryC", "observe"]
+- !private ["So13DatabaseQueryC", "queryEqual"]
+- !private ["So13DatabaseQueryC", "queryOrderedByKey"]
+- !private ["So17DatabaseReferenceC", "child"]
+- !private ["So17DatabaseReferenceC", "queryOrderedByKey"]
+- !private ["s9DecodableP", "_getBuiltinLogicValue"]
+- ["s9DecodableP", "init"]
+- ["Sd", "init"]
+- !private ["s9EncodableP", "_getBuiltinLogicValue"]
+- ["s9EncodableP", "init"]
+- !private ["s9EquatableP", "Auth"]
+- ["s9EquatableP", "CLLocationCoordinate2D"]
+- !private ["s9EquatableP", "CLLocationCoordinate2DMake"]
+- ["s9EquatableP", "CLLocationDegrees"]
+- !private ["s9EquatableP", "Database"]
+- !private ["s9EquatableP", "Double"]
+- !private ["s9EquatableP", "MKCoordinateRegionMake"]
+- !private ["s9EquatableP", "MKCoordinateSpanMake"]
+- ["s9EquatableP", "MKPointAnnotation"]
+- !private ["s9EquatableP", "UIColor"]
+- ["s9EquatableP", ""]
+- !private ["s9EquatableP", "_getBuiltinLogicValue"]
+- !private ["s9EquatableP", "addAnnotation"]
+- !private ["s9EquatableP", "addStateDidChangeListener"]
+- !private ["s9EquatableP", "auth"]
+- !private ["s9EquatableP", "child"]
+- !private ["s9EquatableP", "children"]
+- !private ["s9EquatableP", "coordinate"]
+- !private ["s9EquatableP", "database"]
+- !private ["s9EquatableP", "didReceiveMemoryWarning"]
+- !private ["s9EquatableP", "favLocMap"]
+- !private ["s9EquatableP", "favLocToMap"]
+- !private ["s9EquatableP", "getLocationCoordinates"]
+- !private ["s9EquatableP", "handle"]
+- ["s9EquatableP", "init"]
+- !private ["s9EquatableP", "key"]
+- !private ["s9EquatableP", "locationID"]
+- !private ["s9EquatableP", "locationLat"]
+- !private ["s9EquatableP", "locationLong"]
+- !private ["s9EquatableP", "navigationBar"]
+- !private ["s9EquatableP", "navigationController"]
+- !private ["s9EquatableP", "observe"]
+- !private ["s9EquatableP", "queryEqual"]
+- !private ["s9EquatableP", "queryOrderedByKey"]
+- !private ["s9EquatableP", "reference"]
+- !private ["s9EquatableP", "removeStateDidChangeListener"]
+- !private ["s9EquatableP", "setNavigationBarHidden"]
+- !private ["s9EquatableP", "setRegion"]
+- !private ["s9EquatableP", "showAnnotations"]
+- !private ["s9EquatableP", "showMap"]
+- !private ["s9EquatableP", "signOut"]
+- !private ["s9EquatableP", "tintColor"]
+- !private ["s9EquatableP", "title"]
+- !private ["s9EquatableP", "value"]
+- !private ["s9EquatableP", "viewDidLoad"]
+- !private ["s9EquatableP", "viewWillAppear"]
+- !private ["s27ExpressibleByBooleanLiteralP", "_getBuiltinLogicValue"]
+- ["s43ExpressibleByExtendedGraphemeClusterLiteralP", "init"]
+- ["s25ExpressibleByFloatLiteralP", "init"]
+- ["s27ExpressibleByIntegerLiteralP", "init"]
+- ["s26ExpressibleByStringLiteralP", "init"]
+- ["s33ExpressibleByUnicodeScalarLiteralP", "init"]
+- !private ["10SeeYouSoon23FavLocMapViewControllerC", "Auth"]
+- ["10SeeYouSoon23FavLocMapViewControllerC", "AuthStateDidChangeListenerHandle"]
+- ["10SeeYouSoon23FavLocMapViewControllerC", "Bool"]
+- ["10SeeYouSoon23FavLocMapViewControllerC", "CLLocationCoordinate2D"]
+- !private ["10SeeYouSoon23FavLocMapViewControllerC", "CLLocationCoordinate2DMake"]
+- ["10SeeYouSoon23FavLocMapViewControllerC", "CLLocationDegrees"]
+- !private ["10SeeYouSoon23FavLocMapViewControllerC", "DataSnapshot"]
+- !private ["10SeeYouSoon23FavLocMapViewControllerC", "Database"]
+- !private ["10SeeYouSoon23FavLocMapViewControllerC", "Double"]
+- !private ["10SeeYouSoon23FavLocMapViewControllerC", "MKCoordinateRegionMake"]
+- !private ["10SeeYouSoon23FavLocMapViewControllerC", "MKCoordinateSpanMake"]
+- ["10SeeYouSoon23FavLocMapViewControllerC", "MKMapView"]
+- ["10SeeYouSoon23FavLocMapViewControllerC", "MKPointAnnotation"]
+- ["10SeeYouSoon23FavLocMapViewControllerC", "UIApplication"]
+- !private ["10SeeYouSoon23FavLocMapViewControllerC", "UIColor"]
+- ["10SeeYouSoon23FavLocMapViewControllerC", "annotation"]
+- ["10SeeYouSoon23FavLocMapViewControllerC", "appDidEnterBackground"]
+- ["10SeeYouSoon23FavLocMapViewControllerC", "deinit"]
+- ["10SeeYouSoon23FavLocMapViewControllerC", "didReceiveMemoryWarning"]
+- ["10SeeYouSoon23FavLocMapViewControllerC", "favLocMap"]
+- ["10SeeYouSoon23FavLocMapViewControllerC", "favLocToMap"]
+- ["10SeeYouSoon23FavLocMapViewControllerC", "getLocationCoordinates"]
+- ["10SeeYouSoon23FavLocMapViewControllerC", "handle"]
+- ["10SeeYouSoon23FavLocMapViewControllerC", "init"]
+- ["10SeeYouSoon23FavLocMapViewControllerC", "locationID"]
+- ["10SeeYouSoon23FavLocMapViewControllerC", "locationLat"]
+- ["10SeeYouSoon23FavLocMapViewControllerC", "locationLong"]
+- !private ["10SeeYouSoon23FavLocMapViewControllerC", "navigationController"]
+- ["10SeeYouSoon23FavLocMapViewControllerC", "showMap"]
+- ["10SeeYouSoon23FavLocMapViewControllerC", "viewDidLoad"]
+- ["10SeeYouSoon23FavLocMapViewControllerC", "viewWillAppear"]
+- ["10SeeYouSoon23FavLocMapViewControllerC", "viewWillDisappear"]
+- ["s13FloatingPointP", "init"]
+- !private ["s8HashableP", "Auth"]
+- ["s8HashableP", "CLLocationCoordinate2D"]
+- !private ["s8HashableP", "CLLocationCoordinate2DMake"]
+- ["s8HashableP", "CLLocationDegrees"]
+- !private ["s8HashableP", "Database"]
+- !private ["s8HashableP", "Double"]
+- !private ["s8HashableP", "MKCoordinateRegionMake"]
+- !private ["s8HashableP", "MKCoordinateSpanMake"]
+- ["s8HashableP", "MKPointAnnotation"]
+- !private ["s8HashableP", "UIColor"]
+- ["s8HashableP", ""]
+- !private ["s8HashableP", "_getBuiltinLogicValue"]
+- !private ["s8HashableP", "addAnnotation"]
+- !private ["s8HashableP", "addStateDidChangeListener"]
+- !private ["s8HashableP", "auth"]
+- !private ["s8HashableP", "child"]
+- !private ["s8HashableP", "children"]
+- !private ["s8HashableP", "coordinate"]
+- !private ["s8HashableP", "database"]
+- !private ["s8HashableP", "didReceiveMemoryWarning"]
+- !private ["s8HashableP", "favLocMap"]
+- !private ["s8HashableP", "favLocToMap"]
+- !private ["s8HashableP", "getLocationCoordinates"]
+- !private ["s8HashableP", "handle"]
+- ["s8HashableP", "init"]
+- !private ["s8HashableP", "key"]
+- !private ["s8HashableP", "locationID"]
+- !private ["s8HashableP", "locationLat"]
+- !private ["s8HashableP", "locationLong"]
+- !private ["s8HashableP", "navigationBar"]
+- !private ["s8HashableP", "navigationController"]
+- !private ["s8HashableP", "observe"]
+- !private ["s8HashableP", "queryEqual"]
+- !private ["s8HashableP", "queryOrderedByKey"]
+- !private ["s8HashableP", "reference"]
+- !private ["s8HashableP", "removeStateDidChangeListener"]
+- !private ["s8HashableP", "setNavigationBarHidden"]
+- !private ["s8HashableP", "setRegion"]
+- !private ["s8HashableP", "showAnnotations"]
+- !private ["s8HashableP", "showMap"]
+- !private ["s8HashableP", "signOut"]
+- !private ["s8HashableP", "tintColor"]
+- !private ["s8HashableP", "title"]
+- !private ["s8HashableP", "value"]
+- !private ["s8HashableP", "viewDidLoad"]
+- !private ["s8HashableP", "viewWillAppear"]
+- !private ["s25LosslessStringConvertibleP", "_getBuiltinLogicValue"]
+- ["s25LosslessStringConvertibleP", "init"]
+- !private ["So12MKAnnotationP", "coordinate"]
+- ["So12MKAnnotationP", "init"]
+- !private ["So12MKAnnotationP", "title"]
+- !private ["So9MKMapViewC", "addAnnotation"]
+- !private ["So9MKMapViewC", "setRegion"]
+- !private ["So9MKMapViewC", "showAnnotations"]
+- !private ["So17MKPointAnnotationC", "coordinate"]
+- ["So17MKPointAnnotationC", "init"]
+- !private ["So17MKPointAnnotationC", "title"]
+- !private ["So7MKShapeC", "coordinate"]
+- ["So7MKShapeC", "init"]
+- !private ["So7MKShapeC", "title"]
+- ["s10MirrorPathP", "init"]
+- !private ["So8NSCodingP", "Auth"]
+- ["So8NSCodingP", "CLLocationCoordinate2D"]
+- !private ["So8NSCodingP", "CLLocationCoordinate2DMake"]
+- ["So8NSCodingP", "CLLocationDegrees"]
+- !private ["So8NSCodingP", "Database"]
+- !private ["So8NSCodingP", "Double"]
+- !private ["So8NSCodingP", "MKCoordinateRegionMake"]
+- !private ["So8NSCodingP", "MKCoordinateSpanMake"]
+- ["So8NSCodingP", "MKPointAnnotation"]
+- !private ["So8NSCodingP", "UIColor"]
+- ["So8NSCodingP", ""]
+- !private ["So8NSCodingP", "addAnnotation"]
+- !private ["So8NSCodingP", "didReceiveMemoryWarning"]
+- !private ["So8NSCodingP", "favLocMap"]
+- !private ["So8NSCodingP", "favLocToMap"]
+- !private ["So8NSCodingP", "getLocationCoordinates"]
+- !private ["So8NSCodingP", "handle"]
+- !private ["So8NSCodingP", "init"]
+- !private ["So8NSCodingP", "locationID"]
+- !private ["So8NSCodingP", "locationLat"]
+- !private ["So8NSCodingP", "locationLong"]
+- !private ["So8NSCodingP", "navigationBar"]
+- !private ["So8NSCodingP", "navigationController"]
+- !private ["So8NSCodingP", "setNavigationBarHidden"]
+- !private ["So8NSCodingP", "setRegion"]
+- !private ["So8NSCodingP", "showAnnotations"]
+- !private ["So8NSCodingP", "showMap"]
+- !private ["So8NSCodingP", "tintColor"]
+- !private ["So8NSCodingP", "viewDidLoad"]
+- !private ["So8NSCodingP", "viewWillAppear"]
+- !private ["So9NSCopyingP", "init"]
+- !private ["So26NSExtensionRequestHandlingP", "Auth"]
+- ["So26NSExtensionRequestHandlingP", "CLLocationCoordinate2D"]
+- !private ["So26NSExtensionRequestHandlingP", "CLLocationCoordinate2DMake"]
+- ["So26NSExtensionRequestHandlingP", "CLLocationDegrees"]
+- !private ["So26NSExtensionRequestHandlingP", "Database"]
+- !private ["So26NSExtensionRequestHandlingP", "Double"]
+- !private ["So26NSExtensionRequestHandlingP", "MKCoordinateRegionMake"]
+- !private ["So26NSExtensionRequestHandlingP", "MKCoordinateSpanMake"]
+- ["So26NSExtensionRequestHandlingP", "MKPointAnnotation"]
+- !private ["So26NSExtensionRequestHandlingP", "UIColor"]
+- ["So26NSExtensionRequestHandlingP", ""]
+- !private ["So26NSExtensionRequestHandlingP", "didReceiveMemoryWarning"]
+- !private ["So26NSExtensionRequestHandlingP", "favLocMap"]
+- !private ["So26NSExtensionRequestHandlingP", "favLocToMap"]
+- !private ["So26NSExtensionRequestHandlingP", "getLocationCoordinates"]
+- !private ["So26NSExtensionRequestHandlingP", "handle"]
+- !private ["So26NSExtensionRequestHandlingP", "init"]
+- !private ["So26NSExtensionRequestHandlingP", "locationID"]
+- !private ["So26NSExtensionRequestHandlingP", "locationLat"]
+- !private ["So26NSExtensionRequestHandlingP", "locationLong"]
+- !private ["So26NSExtensionRequestHandlingP", "navigationBar"]
+- !private ["So26NSExtensionRequestHandlingP", "navigationController"]
+- !private ["So26NSExtensionRequestHandlingP", "setNavigationBarHidden"]
+- !private ["So26NSExtensionRequestHandlingP", "showMap"]
+- !private ["So26NSExtensionRequestHandlingP", "viewDidLoad"]
+- !private ["So26NSExtensionRequestHandlingP", "viewWillAppear"]
+- !private ["So21NSItemProviderReadingP", "init"]
+- !private ["So21NSItemProviderWritingP", "init"]
+- !private ["So8NSObjectC", "Auth"]
+- ["So8NSObjectC", "AuthStateDidChangeListenerHandle"]
+- ["So8NSObjectC", "Bool"]
+- ["So8NSObjectC", "CLLocationCoordinate2D"]
+- !private ["So8NSObjectC", "CLLocationCoordinate2DMake"]
+- ["So8NSObjectC", "CLLocationDegrees"]
+- !private ["So8NSObjectC", "DataSnapshot"]
+- !private ["So8NSObjectC", "Database"]
+- !private ["So8NSObjectC", "Double"]
+- !private ["So8NSObjectC", "MKCoordinateRegionMake"]
+- !private ["So8NSObjectC", "MKCoordinateSpanMake"]
+- ["So8NSObjectC", "MKMapView"]
+- ["So8NSObjectC", "MKPointAnnotation"]
+- ["So8NSObjectC", "UIApplication"]
+- !private ["So8NSObjectC", "UIColor"]
+- !private ["So8NSObjectC", "addAnnotation"]
+- !private ["So8NSObjectC", "addStateDidChangeListener"]
+- ["So8NSObjectC", "annotation"]
+- ["So8NSObjectC", "appDidEnterBackground"]
+- !private ["So8NSObjectC", "auth"]
+- !private ["So8NSObjectC", "child"]
+- !private ["So8NSObjectC", "children"]
+- !private ["So8NSObjectC", "coordinate"]
+- !private ["So8NSObjectC", "database"]
+- ["So8NSObjectC", "didReceiveMemoryWarning"]
+- ["So8NSObjectC", "favLocMap"]
+- ["So8NSObjectC", "favLocToMap"]
+- ["So8NSObjectC", "getLocationCoordinates"]
+- ["So8NSObjectC", "handle"]
+- ["So8NSObjectC", "init"]
+- !private ["So8NSObjectC", "key"]
+- ["So8NSObjectC", "locationID"]
+- ["So8NSObjectC", "locationLat"]
+- ["So8NSObjectC", "locationLong"]
+- !private ["So8NSObjectC", "navigationBar"]
+- !private ["So8NSObjectC", "navigationController"]
+- !private ["So8NSObjectC", "observe"]
+- !private ["So8NSObjectC", "queryEqual"]
+- !private ["So8NSObjectC", "queryOrderedByKey"]
+- !private ["So8NSObjectC", "reference"]
+- !private ["So8NSObjectC", "removeStateDidChangeListener"]
+- !private ["So8NSObjectC", "setNavigationBarHidden"]
+- !private ["So8NSObjectC", "setRegion"]
+- !private ["So8NSObjectC", "showAnnotations"]
+- ["So8NSObjectC", "showMap"]
+- !private ["So8NSObjectC", "signOut"]
+- !private ["So8NSObjectC", "tintColor"]
+- !private ["So8NSObjectC", "title"]
+- !private ["So8NSObjectC", "value"]
+- ["So8NSObjectC", "viewDidLoad"]
+- ["So8NSObjectC", "viewWillAppear"]
+- ["So8NSObjectC", "viewWillDisappear"]
+- !private ["So16NSObjectProtocolP", "Auth"]
+- ["So16NSObjectProtocolP", "CLLocationCoordinate2D"]
+- !private ["So16NSObjectProtocolP", "CLLocationCoordinate2DMake"]
+- ["So16NSObjectProtocolP", "CLLocationDegrees"]
+- !private ["So16NSObjectProtocolP", "Database"]
+- !private ["So16NSObjectProtocolP", "Double"]
+- !private ["So16NSObjectProtocolP", "MKCoordinateRegionMake"]
+- !private ["So16NSObjectProtocolP", "MKCoordinateSpanMake"]
+- ["So16NSObjectProtocolP", "MKPointAnnotation"]
+- !private ["So16NSObjectProtocolP", "UIColor"]
+- ["So16NSObjectProtocolP", ""]
+- !private ["So16NSObjectProtocolP", "addAnnotation"]
+- !private ["So16NSObjectProtocolP", "addStateDidChangeListener"]
+- !private ["So16NSObjectProtocolP", "auth"]
+- !private ["So16NSObjectProtocolP", "child"]
+- !private ["So16NSObjectProtocolP", "children"]
+- !private ["So16NSObjectProtocolP", "coordinate"]
+- !private ["So16NSObjectProtocolP", "database"]
+- !private ["So16NSObjectProtocolP", "didReceiveMemoryWarning"]
+- !private ["So16NSObjectProtocolP", "favLocMap"]
+- !private ["So16NSObjectProtocolP", "favLocToMap"]
+- !private ["So16NSObjectProtocolP", "getLocationCoordinates"]
+- !private ["So16NSObjectProtocolP", "handle"]
+- ["So16NSObjectProtocolP", "init"]
+- !private ["So16NSObjectProtocolP", "key"]
+- !private ["So16NSObjectProtocolP", "locationID"]
+- !private ["So16NSObjectProtocolP", "locationLat"]
+- !private ["So16NSObjectProtocolP", "locationLong"]
+- !private ["So16NSObjectProtocolP", "navigationBar"]
+- !private ["So16NSObjectProtocolP", "navigationController"]
+- !private ["So16NSObjectProtocolP", "observe"]
+- !private ["So16NSObjectProtocolP", "queryEqual"]
+- !private ["So16NSObjectProtocolP", "queryOrderedByKey"]
+- !private ["So16NSObjectProtocolP", "reference"]
+- !private ["So16NSObjectProtocolP", "removeStateDidChangeListener"]
+- !private ["So16NSObjectProtocolP", "setNavigationBarHidden"]
+- !private ["So16NSObjectProtocolP", "setRegion"]
+- !private ["So16NSObjectProtocolP", "showAnnotations"]
+- !private ["So16NSObjectProtocolP", "showMap"]
+- !private ["So16NSObjectProtocolP", "signOut"]
+- !private ["So16NSObjectProtocolP", "tintColor"]
+- !private ["So16NSObjectProtocolP", "title"]
+- !private ["So16NSObjectProtocolP", "value"]
+- !private ["So16NSObjectProtocolP", "viewDidLoad"]
+- !private ["So16NSObjectProtocolP", "viewWillAppear"]
+- !private ["So14NSSecureCodingP", "init"]
+- ["s7NumericP", "init"]
+- ["s26RangeReplaceableCollectionP", "init"]
+- !private ["s16RawRepresentableP", "value"]
+- ["s8SequenceP", "init"]
+- ["s13SignedNumericP", "init"]
+- ["s10StrideableP", "init"]
+- ["SS", "init"]
+- ["s14StringProtocolP", "init"]
+- ["s16TextOutputStreamP", "init"]
+- ["s20TextOutputStreamableP", "init"]
+- !private ["So29UIAccessibilityIdentificationP", "addAnnotation"]
+- !private ["So29UIAccessibilityIdentificationP", "setRegion"]
+- !private ["So29UIAccessibilityIdentificationP", "showAnnotations"]
+- !private ["So29UIAccessibilityIdentificationP", "tintColor"]
+- !private ["So12UIAppearanceP", "addAnnotation"]
+- !private ["So12UIAppearanceP", "setRegion"]
+- !private ["So12UIAppearanceP", "showAnnotations"]
+- !private ["So12UIAppearanceP", "tintColor"]
+- !private ["So21UIAppearanceContainerP", "Auth"]
+- ["So21UIAppearanceContainerP", "CLLocationCoordinate2D"]
+- !private ["So21UIAppearanceContainerP", "CLLocationCoordinate2DMake"]
+- ["So21UIAppearanceContainerP", "CLLocationDegrees"]
+- !private ["So21UIAppearanceContainerP", "Database"]
+- !private ["So21UIAppearanceContainerP", "Double"]
+- !private ["So21UIAppearanceContainerP", "MKCoordinateRegionMake"]
+- !private ["So21UIAppearanceContainerP", "MKCoordinateSpanMake"]
+- ["So21UIAppearanceContainerP", "MKPointAnnotation"]
+- !private ["So21UIAppearanceContainerP", "UIColor"]
+- ["So21UIAppearanceContainerP", ""]
+- !private ["So21UIAppearanceContainerP", "addAnnotation"]
+- !private ["So21UIAppearanceContainerP", "didReceiveMemoryWarning"]
+- !private ["So21UIAppearanceContainerP", "favLocMap"]
+- !private ["So21UIAppearanceContainerP", "favLocToMap"]
+- !private ["So21UIAppearanceContainerP", "getLocationCoordinates"]
+- !private ["So21UIAppearanceContainerP", "handle"]
+- !private ["So21UIAppearanceContainerP", "init"]
+- !private ["So21UIAppearanceContainerP", "locationID"]
+- !private ["So21UIAppearanceContainerP", "locationLat"]
+- !private ["So21UIAppearanceContainerP", "locationLong"]
+- !private ["So21UIAppearanceContainerP", "navigationBar"]
+- !private ["So21UIAppearanceContainerP", "navigationController"]
+- !private ["So21UIAppearanceContainerP", "setNavigationBarHidden"]
+- !private ["So21UIAppearanceContainerP", "setRegion"]
+- !private ["So21UIAppearanceContainerP", "showAnnotations"]
+- !private ["So21UIAppearanceContainerP", "showMap"]
+- !private ["So21UIAppearanceContainerP", "tintColor"]
+- !private ["So21UIAppearanceContainerP", "viewDidLoad"]
+- !private ["So21UIAppearanceContainerP", "viewWillAppear"]
+- !private ["So16UIBarPositioningP", "tintColor"]
+- !private ["So7UIColorC", "init"]
+- !private ["So18UIContentContainerP", "Auth"]
+- ["So18UIContentContainerP", "CLLocationCoordinate2D"]
+- !private ["So18UIContentContainerP", "CLLocationCoordinate2DMake"]
+- ["So18UIContentContainerP", "CLLocationDegrees"]
+- !private ["So18UIContentContainerP", "Database"]
+- !private ["So18UIContentContainerP", "Double"]
+- !private ["So18UIContentContainerP", "MKCoordinateRegionMake"]
+- !private ["So18UIContentContainerP", "MKCoordinateSpanMake"]
+- ["So18UIContentContainerP", "MKPointAnnotation"]
+- !private ["So18UIContentContainerP", "UIColor"]
+- ["So18UIContentContainerP", ""]
+- !private ["So18UIContentContainerP", "didReceiveMemoryWarning"]
+- !private ["So18UIContentContainerP", "favLocMap"]
+- !private ["So18UIContentContainerP", "favLocToMap"]
+- !private ["So18UIContentContainerP", "getLocationCoordinates"]
+- !private ["So18UIContentContainerP", "handle"]
+- !private ["So18UIContentContainerP", "init"]
+- !private ["So18UIContentContainerP", "locationID"]
+- !private ["So18UIContentContainerP", "locationLat"]
+- !private ["So18UIContentContainerP", "locationLong"]
+- !private ["So18UIContentContainerP", "navigationBar"]
+- !private ["So18UIContentContainerP", "navigationController"]
+- !private ["So18UIContentContainerP", "setNavigationBarHidden"]
+- !private ["So18UIContentContainerP", "showMap"]
+- !private ["So18UIContentContainerP", "viewDidLoad"]
+- !private ["So18UIContentContainerP", "viewWillAppear"]
+- !private ["So17UICoordinateSpaceP", "addAnnotation"]
+- !private ["So17UICoordinateSpaceP", "setRegion"]
+- !private ["So17UICoordinateSpaceP", "showAnnotations"]
+- !private ["So17UICoordinateSpaceP", "tintColor"]
+- !private ["So13UIDynamicItemP", "addAnnotation"]
+- !private ["So13UIDynamicItemP", "setRegion"]
+- !private ["So13UIDynamicItemP", "showAnnotations"]
+- !private ["So13UIDynamicItemP", "tintColor"]
+- !private ["So18UIFocusEnvironmentP", "Auth"]
+- ["So18UIFocusEnvironmentP", "CLLocationCoordinate2D"]
+- !private ["So18UIFocusEnvironmentP", "CLLocationCoordinate2DMake"]
+- ["So18UIFocusEnvironmentP", "CLLocationDegrees"]
+- !private ["So18UIFocusEnvironmentP", "Database"]
+- !private ["So18UIFocusEnvironmentP", "Double"]
+- !private ["So18UIFocusEnvironmentP", "MKCoordinateRegionMake"]
+- !private ["So18UIFocusEnvironmentP", "MKCoordinateSpanMake"]
+- ["So18UIFocusEnvironmentP", "MKPointAnnotation"]
+- !private ["So18UIFocusEnvironmentP", "UIColor"]
+- ["So18UIFocusEnvironmentP", ""]
+- !private ["So18UIFocusEnvironmentP", "addAnnotation"]
+- !private ["So18UIFocusEnvironmentP", "didReceiveMemoryWarning"]
+- !private ["So18UIFocusEnvironmentP", "favLocMap"]
+- !private ["So18UIFocusEnvironmentP", "favLocToMap"]
+- !private ["So18UIFocusEnvironmentP", "getLocationCoordinates"]
+- !private ["So18UIFocusEnvironmentP", "handle"]
+- !private ["So18UIFocusEnvironmentP", "init"]
+- !private ["So18UIFocusEnvironmentP", "locationID"]
+- !private ["So18UIFocusEnvironmentP", "locationLat"]
+- !private ["So18UIFocusEnvironmentP", "locationLong"]
+- !private ["So18UIFocusEnvironmentP", "navigationBar"]
+- !private ["So18UIFocusEnvironmentP", "navigationController"]
+- !private ["So18UIFocusEnvironmentP", "setNavigationBarHidden"]
+- !private ["So18UIFocusEnvironmentP", "setRegion"]
+- !private ["So18UIFocusEnvironmentP", "showAnnotations"]
+- !private ["So18UIFocusEnvironmentP", "showMap"]
+- !private ["So18UIFocusEnvironmentP", "tintColor"]
+- !private ["So18UIFocusEnvironmentP", "viewDidLoad"]
+- !private ["So18UIFocusEnvironmentP", "viewWillAppear"]
+- !private ["So11UIFocusItemP", "addAnnotation"]
+- !private ["So11UIFocusItemP", "setRegion"]
+- !private ["So11UIFocusItemP", "showAnnotations"]
+- !private ["So11UIFocusItemP", "tintColor"]
+- !private ["So15UINavigationBarC", "tintColor"]
+- !private ["So22UINavigationControllerC", "navigationBar"]
+- !private ["So22UINavigationControllerC", "setNavigationBarHidden"]
+- !private ["So30UIPasteConfigurationSupportingP", "Auth"]
+- ["So30UIPasteConfigurationSupportingP", "CLLocationCoordinate2D"]
+- !private ["So30UIPasteConfigurationSupportingP", "CLLocationCoordinate2DMake"]
+- ["So30UIPasteConfigurationSupportingP", "CLLocationDegrees"]
+- !private ["So30UIPasteConfigurationSupportingP", "Database"]
+- !private ["So30UIPasteConfigurationSupportingP", "Double"]
+- !private ["So30UIPasteConfigurationSupportingP", "MKCoordinateRegionMake"]
+- !private ["So30UIPasteConfigurationSupportingP", "MKCoordinateSpanMake"]
+- ["So30UIPasteConfigurationSupportingP", "MKPointAnnotation"]
+- !private ["So30UIPasteConfigurationSupportingP", "UIColor"]
+- ["So30UIPasteConfigurationSupportingP", ""]
+- !private ["So30UIPasteConfigurationSupportingP", "addAnnotation"]
+- !private ["So30UIPasteConfigurationSupportingP", "didReceiveMemoryWarning"]
+- !private ["So30UIPasteConfigurationSupportingP", "favLocMap"]
+- !private ["So30UIPasteConfigurationSupportingP", "favLocToMap"]
+- !private ["So30UIPasteConfigurationSupportingP", "getLocationCoordinates"]
+- !private ["So30UIPasteConfigurationSupportingP", "handle"]
+- !private ["So30UIPasteConfigurationSupportingP", "init"]
+- !private ["So30UIPasteConfigurationSupportingP", "locationID"]
+- !private ["So30UIPasteConfigurationSupportingP", "locationLat"]
+- !private ["So30UIPasteConfigurationSupportingP", "locationLong"]
+- !private ["So30UIPasteConfigurationSupportingP", "navigationBar"]
+- !private ["So30UIPasteConfigurationSupportingP", "navigationController"]
+- !private ["So30UIPasteConfigurationSupportingP", "setNavigationBarHidden"]
+- !private ["So30UIPasteConfigurationSupportingP", "setRegion"]
+- !private ["So30UIPasteConfigurationSupportingP", "showAnnotations"]
+- !private ["So30UIPasteConfigurationSupportingP", "showMap"]
+- !private ["So30UIPasteConfigurationSupportingP", "tintColor"]
+- !private ["So30UIPasteConfigurationSupportingP", "viewDidLoad"]
+- !private ["So30UIPasteConfigurationSupportingP", "viewWillAppear"]
+- !private ["So11UIResponderC", "Auth"]
+- ["So11UIResponderC", "AuthStateDidChangeListenerHandle"]
+- ["So11UIResponderC", "Bool"]
+- ["So11UIResponderC", "CLLocationCoordinate2D"]
+- !private ["So11UIResponderC", "CLLocationCoordinate2DMake"]
+- ["So11UIResponderC", "CLLocationDegrees"]
+- !private ["So11UIResponderC", "DataSnapshot"]
+- !private ["So11UIResponderC", "Database"]
+- !private ["So11UIResponderC", "Double"]
+- !private ["So11UIResponderC", "MKCoordinateRegionMake"]
+- !private ["So11UIResponderC", "MKCoordinateSpanMake"]
+- ["So11UIResponderC", "MKMapView"]
+- ["So11UIResponderC", "MKPointAnnotation"]
+- ["So11UIResponderC", "UIApplication"]
+- !private ["So11UIResponderC", "UIColor"]
+- !private ["So11UIResponderC", "addAnnotation"]
+- ["So11UIResponderC", "annotation"]
+- ["So11UIResponderC", "appDidEnterBackground"]
+- ["So11UIResponderC", "didReceiveMemoryWarning"]
+- ["So11UIResponderC", "favLocMap"]
+- ["So11UIResponderC", "favLocToMap"]
+- ["So11UIResponderC", "getLocationCoordinates"]
+- ["So11UIResponderC", "handle"]
+- ["So11UIResponderC", "init"]
+- ["So11UIResponderC", "locationID"]
+- ["So11UIResponderC", "locationLat"]
+- ["So11UIResponderC", "locationLong"]
+- !private ["So11UIResponderC", "navigationBar"]
+- !private ["So11UIResponderC", "navigationController"]
+- !private ["So11UIResponderC", "setNavigationBarHidden"]
+- !private ["So11UIResponderC", "setRegion"]
+- !private ["So11UIResponderC", "showAnnotations"]
+- ["So11UIResponderC", "showMap"]
+- !private ["So11UIResponderC", "tintColor"]
+- ["So11UIResponderC", "viewDidLoad"]
+- ["So11UIResponderC", "viewWillAppear"]
+- ["So11UIResponderC", "viewWillDisappear"]
+- !private ["So30UIResponderStandardEditActionsP", "Auth"]
+- ["So30UIResponderStandardEditActionsP", "CLLocationCoordinate2D"]
+- !private ["So30UIResponderStandardEditActionsP", "CLLocationCoordinate2DMake"]
+- ["So30UIResponderStandardEditActionsP", "CLLocationDegrees"]
+- !private ["So30UIResponderStandardEditActionsP", "Database"]
+- !private ["So30UIResponderStandardEditActionsP", "Double"]
+- !private ["So30UIResponderStandardEditActionsP", "MKCoordinateRegionMake"]
+- !private ["So30UIResponderStandardEditActionsP", "MKCoordinateSpanMake"]
+- ["So30UIResponderStandardEditActionsP", "MKPointAnnotation"]
+- !private ["So30UIResponderStandardEditActionsP", "UIColor"]
+- ["So30UIResponderStandardEditActionsP", ""]
+- !private ["So30UIResponderStandardEditActionsP", "addAnnotation"]
+- !private ["So30UIResponderStandardEditActionsP", "didReceiveMemoryWarning"]
+- !private ["So30UIResponderStandardEditActionsP", "favLocMap"]
+- !private ["So30UIResponderStandardEditActionsP", "favLocToMap"]
+- !private ["So30UIResponderStandardEditActionsP", "getLocationCoordinates"]
+- !private ["So30UIResponderStandardEditActionsP", "handle"]
+- !private ["So30UIResponderStandardEditActionsP", "init"]
+- !private ["So30UIResponderStandardEditActionsP", "locationID"]
+- !private ["So30UIResponderStandardEditActionsP", "locationLat"]
+- !private ["So30UIResponderStandardEditActionsP", "locationLong"]
+- !private ["So30UIResponderStandardEditActionsP", "navigationBar"]
+- !private ["So30UIResponderStandardEditActionsP", "navigationController"]
+- !private ["So30UIResponderStandardEditActionsP", "setNavigationBarHidden"]
+- !private ["So30UIResponderStandardEditActionsP", "setRegion"]
+- !private ["So30UIResponderStandardEditActionsP", "showAnnotations"]
+- !private ["So30UIResponderStandardEditActionsP", "showMap"]
+- !private ["So30UIResponderStandardEditActionsP", "tintColor"]
+- !private ["So30UIResponderStandardEditActionsP", "viewDidLoad"]
+- !private ["So30UIResponderStandardEditActionsP", "viewWillAppear"]
+- !private ["So16UIStateRestoringP", "Auth"]
+- ["So16UIStateRestoringP", "CLLocationCoordinate2D"]
+- !private ["So16UIStateRestoringP", "CLLocationCoordinate2DMake"]
+- ["So16UIStateRestoringP", "CLLocationDegrees"]
+- !private ["So16UIStateRestoringP", "Database"]
+- !private ["So16UIStateRestoringP", "Double"]
+- !private ["So16UIStateRestoringP", "MKCoordinateRegionMake"]
+- !private ["So16UIStateRestoringP", "MKCoordinateSpanMake"]
+- ["So16UIStateRestoringP", "MKPointAnnotation"]
+- !private ["So16UIStateRestoringP", "UIColor"]
+- ["So16UIStateRestoringP", ""]
+- !private ["So16UIStateRestoringP", "didReceiveMemoryWarning"]
+- !private ["So16UIStateRestoringP", "favLocMap"]
+- !private ["So16UIStateRestoringP", "favLocToMap"]
+- !private ["So16UIStateRestoringP", "getLocationCoordinates"]
+- !private ["So16UIStateRestoringP", "handle"]
+- !private ["So16UIStateRestoringP", "init"]
+- !private ["So16UIStateRestoringP", "locationID"]
+- !private ["So16UIStateRestoringP", "locationLat"]
+- !private ["So16UIStateRestoringP", "locationLong"]
+- !private ["So16UIStateRestoringP", "navigationBar"]
+- !private ["So16UIStateRestoringP", "navigationController"]
+- !private ["So16UIStateRestoringP", "setNavigationBarHidden"]
+- !private ["So16UIStateRestoringP", "showMap"]
+- !private ["So16UIStateRestoringP", "viewDidLoad"]
+- !private ["So16UIStateRestoringP", "viewWillAppear"]
+- !private ["So18UITraitEnvironmentP", "Auth"]
+- ["So18UITraitEnvironmentP", "CLLocationCoordinate2D"]
+- !private ["So18UITraitEnvironmentP", "CLLocationCoordinate2DMake"]
+- ["So18UITraitEnvironmentP", "CLLocationDegrees"]
+- !private ["So18UITraitEnvironmentP", "Database"]
+- !private ["So18UITraitEnvironmentP", "Double"]
+- !private ["So18UITraitEnvironmentP", "MKCoordinateRegionMake"]
+- !private ["So18UITraitEnvironmentP", "MKCoordinateSpanMake"]
+- ["So18UITraitEnvironmentP", "MKPointAnnotation"]
+- !private ["So18UITraitEnvironmentP", "UIColor"]
+- ["So18UITraitEnvironmentP", ""]
+- !private ["So18UITraitEnvironmentP", "addAnnotation"]
+- !private ["So18UITraitEnvironmentP", "didReceiveMemoryWarning"]
+- !private ["So18UITraitEnvironmentP", "favLocMap"]
+- !private ["So18UITraitEnvironmentP", "favLocToMap"]
+- !private ["So18UITraitEnvironmentP", "getLocationCoordinates"]
+- !private ["So18UITraitEnvironmentP", "handle"]
+- !private ["So18UITraitEnvironmentP", "init"]
+- !private ["So18UITraitEnvironmentP", "locationID"]
+- !private ["So18UITraitEnvironmentP", "locationLat"]
+- !private ["So18UITraitEnvironmentP", "locationLong"]
+- !private ["So18UITraitEnvironmentP", "navigationBar"]
+- !private ["So18UITraitEnvironmentP", "navigationController"]
+- !private ["So18UITraitEnvironmentP", "setNavigationBarHidden"]
+- !private ["So18UITraitEnvironmentP", "setRegion"]
+- !private ["So18UITraitEnvironmentP", "showAnnotations"]
+- !private ["So18UITraitEnvironmentP", "showMap"]
+- !private ["So18UITraitEnvironmentP", "tintColor"]
+- !private ["So18UITraitEnvironmentP", "viewDidLoad"]
+- !private ["So18UITraitEnvironmentP", "viewWillAppear"]
+- !private ["So6UIViewC", "addAnnotation"]
+- !private ["So6UIViewC", "setRegion"]
+- !private ["So6UIViewC", "showAnnotations"]
+- !private ["So6UIViewC", "tintColor"]
+- !private ["So16UIViewControllerC", "Auth"]
+- ["So16UIViewControllerC", "AuthStateDidChangeListenerHandle"]
+- ["So16UIViewControllerC", "Bool"]
+- ["So16UIViewControllerC", "CLLocationCoordinate2D"]
+- !private ["So16UIViewControllerC", "CLLocationCoordinate2DMake"]
+- ["So16UIViewControllerC", "CLLocationDegrees"]
+- !private ["So16UIViewControllerC", "DataSnapshot"]
+- !private ["So16UIViewControllerC", "Database"]
+- !private ["So16UIViewControllerC", "Double"]
+- !private ["So16UIViewControllerC", "MKCoordinateRegionMake"]
+- !private ["So16UIViewControllerC", "MKCoordinateSpanMake"]
+- ["So16UIViewControllerC", "MKMapView"]
+- ["So16UIViewControllerC", "MKPointAnnotation"]
+- ["So16UIViewControllerC", "UIApplication"]
+- !private ["So16UIViewControllerC", "UIColor"]
+- ["So16UIViewControllerC", ""]
+- ["So16UIViewControllerC", "annotation"]
+- ["So16UIViewControllerC", "appDidEnterBackground"]
+- ["So16UIViewControllerC", "didReceiveMemoryWarning"]
+- ["So16UIViewControllerC", "favLocMap"]
+- ["So16UIViewControllerC", "favLocToMap"]
+- ["So16UIViewControllerC", "getLocationCoordinates"]
+- ["So16UIViewControllerC", "handle"]
+- ["So16UIViewControllerC", "init"]
+- ["So16UIViewControllerC", "locationID"]
+- ["So16UIViewControllerC", "locationLat"]
+- ["So16UIViewControllerC", "locationLong"]
+- !private ["So16UIViewControllerC", "navigationBar"]
+- !private ["So16UIViewControllerC", "navigationController"]
+- !private ["So16UIViewControllerC", "setNavigationBarHidden"]
+- ["So16UIViewControllerC", "showMap"]
+- ["So16UIViewControllerC", "viewDidLoad"]
+- ["So16UIViewControllerC", "viewWillAppear"]
+- ["So16UIViewControllerC", "viewWillDisappear"]
+- ["s15_CVarArgAlignedP", "init"]
+- ["s22_CVarArgPassedAsDoubleP", "init"]
+- !private ["s37_DefaultCustomPlaygroundQuickLookableP", "addAnnotation"]
+- !private ["s37_DefaultCustomPlaygroundQuickLookableP", "setRegion"]
+- !private ["s37_DefaultCustomPlaygroundQuickLookableP", "showAnnotations"]
+- !private ["s37_DefaultCustomPlaygroundQuickLookableP", "tintColor"]
+- !private ["s35_ExpressibleByBuiltinBooleanLiteralP", "_getBuiltinLogicValue"]
+- ["s51_ExpressibleByBuiltinExtendedGraphemeClusterLiteralP", "init"]
+- ["s33_ExpressibleByBuiltinFloatLiteralP", "init"]
+- ["s35_ExpressibleByBuiltinIntegerLiteralP", "init"]
+- ["s34_ExpressibleByBuiltinStringLiteralP", "init"]
+- ["s39_ExpressibleByBuiltinUTF16StringLiteralP", "init"]
+- ["s41_ExpressibleByBuiltinUnicodeScalarLiteralP", "init"]
+- !private ["s26_ExpressibleByColorLiteralP", "init"]
+- ["s33_ExpressibleByStringInterpolationP", "init"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "Auth"]
+- ["10Foundation27_KeyValueCodingAndObservingP", "CLLocationCoordinate2D"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "CLLocationCoordinate2DMake"]
+- ["10Foundation27_KeyValueCodingAndObservingP", "CLLocationDegrees"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "Database"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "Double"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "MKCoordinateRegionMake"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "MKCoordinateSpanMake"]
+- ["10Foundation27_KeyValueCodingAndObservingP", "MKPointAnnotation"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "UIColor"]
+- ["10Foundation27_KeyValueCodingAndObservingP", ""]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "addAnnotation"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "addStateDidChangeListener"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "auth"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "child"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "children"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "coordinate"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "database"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "didReceiveMemoryWarning"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "favLocMap"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "favLocToMap"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "getLocationCoordinates"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "handle"]
+- ["10Foundation27_KeyValueCodingAndObservingP", "init"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "key"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "locationID"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "locationLat"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "locationLong"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "navigationBar"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "navigationController"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "observe"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "queryEqual"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "queryOrderedByKey"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "reference"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "removeStateDidChangeListener"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "setNavigationBarHidden"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "setRegion"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "showAnnotations"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "showMap"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "signOut"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "tintColor"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "title"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "value"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "viewDidLoad"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "viewWillAppear"]
+- !private ["s21_ObjectiveCBridgeableP", "_getBuiltinLogicValue"]
+- ["s21_ObjectiveCBridgeableP", "init"]
+- ["s16_SwiftStringViewP", "init"]
+depends-nominal:
+- !private "So4AuthC"
+- "s23BidirectionalCollectionP"
+- "s19BinaryFloatingPointP"
+- !private "Sb"
+- !private "So15CALayerDelegateP"
+- "SC22CLLocationCoordinate2DV"
+- "s7CVarArgP"
+- "s10CollectionP"
+- "s10ComparableP"
+- "s28CustomDebugStringConvertibleP"
+- "s29CustomPlaygroundQuickLookableP"
+- "s17CustomReflectableP"
+- "s23CustomStringConvertibleP"
+- !private "SC13DataEventTypeO"
+- !private "So12DataSnapshotC"
+- !private "So8DatabaseC"
+- !private "So13DatabaseQueryC"
+- !private "So17DatabaseReferenceC"
+- "s9DecodableP"
+- "Sd"
+- "s9EncodableP"
+- "s9EquatableP"
+- !private "s27ExpressibleByBooleanLiteralP"
+- "s43ExpressibleByExtendedGraphemeClusterLiteralP"
+- "s25ExpressibleByFloatLiteralP"
+- "s27ExpressibleByIntegerLiteralP"
+- "s26ExpressibleByStringLiteralP"
+- "s33ExpressibleByUnicodeScalarLiteralP"
+- "10SeeYouSoon23FavLocMapViewControllerC"
+- "s13FloatingPointP"
+- "s8HashableP"
+- "s25LosslessStringConvertibleP"
+- "So12MKAnnotationP"
+- !private "So9MKMapViewC"
+- "So17MKPointAnnotationC"
+- "So7MKShapeC"
+- "s10MirrorPathP"
+- "So8NSCodingP"
+- !private "So9NSCopyingP"
+- "So26NSExtensionRequestHandlingP"
+- !private "So21NSItemProviderReadingP"
+- !private "So21NSItemProviderWritingP"
+- "So8NSObjectC"
+- "So16NSObjectProtocolP"
+- !private "So14NSSecureCodingP"
+- "s7NumericP"
+- "s26RangeReplaceableCollectionP"
+- !private "s16RawRepresentableP"
+- "s8SequenceP"
+- "s13SignedNumericP"
+- "s10StrideableP"
+- "SS"
+- "s14StringProtocolP"
+- "s16TextOutputStreamP"
+- "s20TextOutputStreamableP"
+- !private "So29UIAccessibilityIdentificationP"
+- !private "So12UIAppearanceP"
+- "So21UIAppearanceContainerP"
+- !private "So16UIBarPositioningP"
+- !private "So7UIColorC"
+- "So18UIContentContainerP"
+- !private "So17UICoordinateSpaceP"
+- !private "So13UIDynamicItemP"
+- "So18UIFocusEnvironmentP"
+- !private "So11UIFocusItemP"
+- !private "So15UINavigationBarC"
+- !private "So22UINavigationControllerC"
+- "So30UIPasteConfigurationSupportingP"
+- "So11UIResponderC"
+- "So30UIResponderStandardEditActionsP"
+- "So16UIStateRestoringP"
+- "So18UITraitEnvironmentP"
+- !private "So6UIViewC"
+- "So16UIViewControllerC"
+- "s15_CVarArgAlignedP"
+- "s22_CVarArgPassedAsDoubleP"
+- !private "s37_DefaultCustomPlaygroundQuickLookableP"
+- !private "s35_ExpressibleByBuiltinBooleanLiteralP"
+- "s51_ExpressibleByBuiltinExtendedGraphemeClusterLiteralP"
+- "s33_ExpressibleByBuiltinFloatLiteralP"
+- "s35_ExpressibleByBuiltinIntegerLiteralP"
+- "s34_ExpressibleByBuiltinStringLiteralP"
+- "s39_ExpressibleByBuiltinUTF16StringLiteralP"
+- "s41_ExpressibleByBuiltinUnicodeScalarLiteralP"
+- !private "s26_ExpressibleByColorLiteralP"
+- "s33_ExpressibleByStringInterpolationP"
+- "10Foundation27_KeyValueCodingAndObservingP"
+- "s21_ObjectiveCBridgeableP"
+- "s16_SwiftStringViewP"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Dispatch.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreMedia.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/simd.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreImage.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/QuartzCore.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Metal.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreLocation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/AVFoundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreFoundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreAudio.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Swift.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/MapKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/SwiftOnoneSupport.swiftmodule"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseInstanceID/Frameworks/FirebaseInstanceID.framework/Headers/FIRInstanceID.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseInstanceID/Frameworks/FirebaseInstanceID.framework/Headers/FirebaseInstanceID.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/DerivedData/SeeYouSoon/Build/Products/Debug-iphonesimulator/Onboard/Onboard.framework/Headers/Onboard-umbrella.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseDatabase/Frameworks/FirebaseDatabase.framework/Headers/FIRMutableData.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseDatabase/Frameworks/FirebaseDatabase.framework/Headers/FIRDatabaseReference.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseAuth/Frameworks/FirebaseAuth.framework/Headers/FIRAuthAPNSTokenType.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseDatabase/Frameworks/FirebaseDatabase.framework/Headers/FIRDataEventType.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseCore/Frameworks/FirebaseCore.framework/Headers/FirebaseCore.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseDatabase/Frameworks/FirebaseDatabase.framework/Headers/FIRDatabase.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseDatabase/Frameworks/FirebaseDatabase.framework/Headers/FirebaseDatabase.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/Firebase/Core/Sources/Firebase.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.framework/Headers/FIRAnalytics+AppDelegate.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseDatabase/Frameworks/FirebaseDatabase.framework/Headers/FIRServerValue.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseMessaging/Frameworks/FirebaseMessaging.framework/Headers/FIRMessaging.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseMessaging/Frameworks/FirebaseMessaging.framework/Headers/FirebaseMessaging.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseAuth/Frameworks/FirebaseAuth.framework/Headers/FIRAuth.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseAuth/Frameworks/FirebaseAuth.framework/Headers/FirebaseAuth.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseAuth/Frameworks/FirebaseAuth.framework/Headers/FIRAuthCredential.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseAuth/Frameworks/FirebaseAuth.framework/Headers/FIRPhoneAuthCredential.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseCore/Frameworks/FirebaseCore.framework/Headers/FIRLoggerLevel.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseAuth/Frameworks/FirebaseAuth.framework/Headers/FirebaseAuthVersion.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseCore/Frameworks/FirebaseCore.framework/Headers/FIRConfiguration.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.framework/Headers/FIRConfiguration.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseCore/Frameworks/FirebaseCore.framework/Headers/FIRAnalyticsConfiguration.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.framework/Headers/FIRAnalyticsConfiguration.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseAuth/Frameworks/FirebaseAuth.framework/Headers/FIRUserInfo.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseAuth/Frameworks/FirebaseAuth.framework/Headers/FIRAdditionalUserInfo.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseCore/Frameworks/FirebaseCore.framework/Headers/FIRApp.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.framework/Headers/FIRApp.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseAuth/Frameworks/FirebaseAuth.framework/Headers/FIROAuthProvider.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseAuth/Frameworks/FirebaseAuth.framework/Headers/FIRGitHubAuthProvider.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseAuth/Frameworks/FirebaseAuth.framework/Headers/FIRGoogleAuthProvider.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseAuth/Frameworks/FirebaseAuth.framework/Headers/FIRPhoneAuthProvider.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseAuth/Frameworks/FirebaseAuth.framework/Headers/FIRFacebookAuthProvider.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseAuth/Frameworks/FirebaseAuth.framework/Headers/FIREmailAuthProvider.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseAuth/Frameworks/FirebaseAuth.framework/Headers/FIRTwitterAuthProvider.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/DerivedData/SeeYouSoon/Build/Products/Debug-iphonesimulator/Onboard/Onboard.framework/Headers/OnboardingViewController.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/DerivedData/SeeYouSoon/Build/Products/Debug-iphonesimulator/Onboard/Onboard.framework/Headers/OnboardingContentViewController.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseAuth/Frameworks/FirebaseAuth.framework/Headers/FIRUser.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.framework/Headers/FIRAnalytics.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.framework/Headers/FirebaseAnalytics.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.framework/Headers/FIRParameterNames.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.framework/Headers/FIREventNames.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.framework/Headers/FIRUserPropertyNames.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseCore/Frameworks/FirebaseCore.framework/Headers/FIROptions.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.framework/Headers/FIROptions.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseAuth/Frameworks/FirebaseAuth.framework/Headers/FIRAuthErrors.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseAuth/Frameworks/FirebaseAuth.framework/Headers/FIRAuthDataResult.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseDatabase/Frameworks/FirebaseDatabase.framework/Headers/FIRTransactionResult.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseDatabase/Frameworks/FirebaseDatabase.framework/Headers/FIRDataSnapshot.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseCore/Frameworks/FirebaseCore.framework/Headers/FIRCoreSwiftNameSupport.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseDatabase/Frameworks/FirebaseDatabase.framework/Headers/FIRDatabaseSwiftNameSupport.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseAuth/Frameworks/FirebaseAuth.framework/Headers/FIRAuthSwiftNameSupport.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.framework/Headers/FIRAnalyticsSwiftNameSupport.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseDatabase/Frameworks/FirebaseDatabase.framework/Headers/FIRDatabaseQuery.h"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/Firebase/Core/Sources/module.modulemap"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseInstanceID/Frameworks/FirebaseInstanceID.framework/Modules/module.modulemap"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/DerivedData/SeeYouSoon/Build/Products/Debug-iphonesimulator/Onboard/Onboard.framework/Modules/module.modulemap"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseCore/Frameworks/FirebaseCore.framework/Modules/module.modulemap"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseDatabase/Frameworks/FirebaseDatabase.framework/Modules/module.modulemap"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseMessaging/Frameworks/FirebaseMessaging.framework/Modules/module.modulemap"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseAuth/Frameworks/FirebaseAuth.framework/Modules/module.modulemap"
+- "/Users/lisasteele/Desktop/Thinkful_Swift/SeeYouSoon/Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.framework/Modules/module.modulemap"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.4.sdk/usr/include/objc/ObjectiveC.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.4.sdk/System/Library/Frameworks/OpenGLES.framework/Headers/OpenGLES.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.4.sdk/System/Library/Frameworks/CoreImage.framework/Headers/CoreImage.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.4.sdk/System/Library/Frameworks/QuartzCore.framework/Headers/QuartzCore.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.4.sdk/System/Library/Frameworks/Metal.framework/Headers/Metal.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.4.sdk/usr/include/Darwin.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.4.sdk/System/Library/Frameworks/CoreLocation.framework/Headers/CoreLocation.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.4.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.4.sdk/System/Library/Frameworks/AVFoundation.framework/Headers/AVFoundation.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.4.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers/CoreGraphics.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.4.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.4.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.4.sdk/System/Library/Frameworks/AVKit.framework/Headers/AVKit.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.4.sdk/System/Library/Frameworks/MapKit.framework/Headers/MapKit.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.4.sdk/System/Library/Frameworks/CoreText.framework/Headers/CoreText.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.4.sdk/System/Library/Frameworks/AudioToolbox.framework/Headers/AudioToolbox.apinotes"
+interface-hash: "cb4e3722df1479fb72da14282f547afa"
